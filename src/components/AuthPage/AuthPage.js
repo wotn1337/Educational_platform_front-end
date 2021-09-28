@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
-import Register from "./Register/Register";
+import React from 'react';
+import Login from "./Login/Login";
+import RegisterContainer from "./Register/RegisterContainer";
 
-const AuthPage = () => {
-	const [login, setLogin] = useState(true);
-
-	const clickHandler = (evt) => {
-		evt.preventDefault();
-		setLogin(!login);
+const AuthPage = (props) => {
+	const showRegisterForm = (e) => {
+		e.preventDefault();
+		props.changeShowRegisterForm();
 	};
 
 	return (
 		<div className="container-md">
-			{/*{login ? <Login clickHandler={clickHandler}/> : <Register clickHandler={clickHandler}/>}*/}
-			{/*<Login/>*/}
-			<Register/>
+			{props.authPage.showRegisterForm ? <RegisterContainer/> : <Login/>}
+			<a
+				href="#"
+				className="link-primary"
+				style={{display: 'inline-block', marginTop: '30px'}}
+				onClick={event => showRegisterForm(event)}
+			>
+				{props.authPage.showRegisterForm ? 'Войти' : 'Зарегистрироваться'}
+			</a>
 		</div>
 	);
 }

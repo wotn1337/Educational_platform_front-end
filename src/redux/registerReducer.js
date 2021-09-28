@@ -13,6 +13,7 @@ const initState = {
 const registerReducer = (state = initState, action) => {
 	switch (action.type) {
 		case CHANGE_FIELD:
+			console.log(state);
 			return {
 				...state,
 				[action.field]: action.newValue
@@ -22,11 +23,11 @@ const registerReducer = (state = initState, action) => {
 			return 'register';
 
 		default:
-			return 'nothing';
+			return state;
 	}
 };
 
-export const loginAC = () => {
+export const registerAC = () => {
 	return {
 		type: REGISTER
 	};
