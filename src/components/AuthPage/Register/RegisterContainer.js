@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import Register from "./Register";
-import {registerAC} from "../../../redux/registerReducer";
+import {clearValidationMessagesAC, registerAC, setValidationMessagesAC} from "../../../redux/registerReducer";
 import {changeFieldAC} from "../../../redux/registerReducer";
 
 
@@ -18,6 +18,14 @@ const mapDispatchToProps = (dispatch) => {
 
 		changeField: (field, value) => {
 			dispatch(changeFieldAC(field, value));
+		},
+
+		setValidationMessage: (errors) => {
+			dispatch(setValidationMessagesAC(errors));
+		},
+
+		clearValidationMessages: () => {
+			dispatch(clearValidationMessagesAC());
 		}
 	};
 };
