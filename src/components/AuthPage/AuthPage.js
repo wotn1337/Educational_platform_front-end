@@ -1,6 +1,6 @@
 import React from 'react';
-import Login from "./Login/Login";
 import RegisterContainer from "./Register/RegisterContainer";
+import LoginContainer from "./Login/LoginContainer";
 
 const AuthPage = (props) => {
 	const showRegisterForm = (e) => {
@@ -10,7 +10,7 @@ const AuthPage = (props) => {
 
 	return (
 		<div className="container-md">
-			{props.authPage.showRegisterForm ? <RegisterContainer/> : <Login/>}
+			{props.authPage.showRegisterForm ? <RegisterContainer/> : <LoginContainer/>}
 			<a
 				href="#"
 				className="link-primary"
