@@ -1,12 +1,11 @@
 import {connect} from 'react-redux';
-import Register from "./Register";
-import {clearValidationMessagesAC, registerAC, setValidationMessagesAC} from "../../../redux/registerReducer";
-import {changeFieldAC} from "../../../redux/registerReducer";
+import {changeFieldAC, clearValidationMessagesAC, setValidationMessagesAC} from "../../../redux/loginReducer";
+import Login from "./Login";
 
 
 const mapStateToProps = (state) => {
 	return {
-		register: state.register
+		login: state.login
 	};
 };
 
@@ -26,4 +25,4 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
