@@ -2,6 +2,7 @@ import React from "react";
 import EmailInput from "../inputFieldComponents/EmailInput";
 import PasswordInput from "../inputFieldComponents/PasswordInput";
 import axios from "axios";
+import s from "./../AuthPage.module.css";
 
 
 const Login = (props) => {
@@ -28,9 +29,9 @@ const Login = (props) => {
 	};
 
 	return (
-		<div className="container-sm">
-			<h1>Войдите в систему</h1>
-			<form>
+		<div className={`container-sm ${s.container_sm}`}>
+			<form className={`${s.loginForm}`}>
+				<h1 className={s.text}>Войти в свой кабинет</h1>
 				<div className="invalid-feedback" style={{display: 'block'}}>
 					{props.login.validationMessages.all}
 				</div>
@@ -45,10 +46,10 @@ const Login = (props) => {
 					validationMessage={props.login.validationMessages.password}
 				/>
 				<button
-					className="btn btn-primary"
+					className={`btn btn-primary ${s.btn} ${s.text}`}
 					onClick={event => submitForm(event)}
 				>
-					Войти
+					Подтвердить
 				</button>
 			</form>
 		</div>

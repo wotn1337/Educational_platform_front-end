@@ -1,0 +1,72 @@
+html, body {
+    background-image: url("./../../Stylesheets/backgraund-img.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: rgba(83, 104, 113, 0.73);
+    /*background: linear-gradient(127deg, #5F9FEB, rgba(175, 58, 231, 0.6));*/
+}
+
+.container_md {
+    padding: 40px 80px;
+    margin: 5% auto;
+    width: 50%;
+    border-radius: 17px;
+    background-color: white;
+}
+
+.logLink {
+    display: block;
+    font-family: Roboto Condensed, sans-serif;
+    margin: 0 auto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 28px;
+    text-decoration: none;
+    color: rgba(132, 132, 132, 0.52);
+    text-align: center;
+}
+
+.logLink:hover {
+    color: rgba(132, 132, 132, 0.52);
+}
+
+.logLink:focus {
+    color: rgba(132, 132, 132, 0.52);
+}
+
+a:hover {
+    color: rgba(175, 175, 175, 0.52);
+}
+
+h1 {
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.text {
+    font-stretch: condensed;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color: #000000;
+    text-align: center;
+}
+
+.btn {
+    display: block;
+    margin: 30px auto;
+    width: fit-content;
+    background: #EF5B5B;
+    border-radius: 17px;
+    border-color: transparent;
+    color: white;
+}
+
+.btn:focus, .btn:hover {
+    background-color: #f56464;
+    border-color: transparent;
+}
