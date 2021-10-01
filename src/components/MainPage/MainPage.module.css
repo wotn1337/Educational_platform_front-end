@@ -1,0 +1,9 @@
+html, body {
+    background-image: url("./../../Stylesheets/backgraund-img.png");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: rgba(83, 104, 113, 0.73);
+    /*background: linear-gradient(127deg, #5F9FEB, rgba(175, 58, 231, 0.6));*/
+}
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import s from './Register.module.css'
 
 const Register = (props) => {
 	const data = new FormData();
@@ -22,33 +23,34 @@ const Register = (props) => {
 
 	return (
 		<div className="container-sm">
-			<h1>Зарегистрируйтесь</h1>
-			<form action="http://localhost/api/register" method="POST" onSubmit={e => validHandl(e)}>
-				<div className="mb-3">
-					<label htmlFor="validationCustom01" className="form-label">ФИО</label>
+			<form className={s.registerForm} action="http://localhost/api/register" method="POST" onSubmit={e => validHandl(e)}>
+				<h1>Введите свои данные</h1>
+				<div className={`mb-3 ${s.formContainer}`}>
+					<label htmlFor="validationCustom01" className={`form-label ${s.formLabel}`}>ФИО</label>
 					<input
 						type="text"
-						className="form-control"
+						// placeholder='Фамилия Имя'
+						className={`form-control ${s.formControl}`}
 						id="validationCustom01"
 						aria-describedby="emailHelp"
 						onChange={(event) => props.changeField('name', event.target.value)}
 						value={props.name}
 					/>
 				</div>
-				<div className="mb-3">
-					<label htmlFor="validationCustom02" className="form-label">Дата рождения</label>
+				<div className={`mb-3 ${s.formContainer}`}>
+					<label htmlFor="validationCustom02" className={`form-label ${s.formLabel}`}>Дата рождения</label>
 					<input
 						type="date"
-						className="form-control"
+						className={`form-control ${s.formControl}`}
 						id="validationCustom02"
 						onChange={(event) => props.changeField('birthday', event.target.value)}
 						value={props.birthday}
 					/>
 				</div>
-				<div className="mb-3">
-					<label htmlFor="validationDefault03" className="form-label">Роль</label>
+				<div className={`mb-3 ${s.formContainer}`}>
+					<label htmlFor="validationDefault03" className={`form-label ${s.formLabel}`}>Роль</label>
 					<select
-						className="form-select"
+						className={`form-control ${s.formControl}`}
 						id="validationDefault03"
 						onChange={(event) => props.changeField('role', event.target.value)}
 						value={props.role}
@@ -57,11 +59,11 @@ const Register = (props) => {
 						<option value="student">Ученик</option>
 					</select>
 				</div>
-				<div className="mb-3">
-					<label htmlFor="validationDefault04" className="form-label">Email</label>
+				<div className={`mb-3 ${s.formContainer}`}>
+					<label htmlFor="validationDefault04" className={`form-label ${s.formLabel}`}>Email</label>
 					<input
 						type="email"
-						className="form-control"
+						className={`form-control ${s.formControl}`}
 						id="validationDefault04"
 						aria-describedby="emailHelp"
 						onChange={(event) => props.changeField('email', event.target.value)}
@@ -69,16 +71,16 @@ const Register = (props) => {
 					/>
 				</div>
 				<div className="mb-3">
-					<label htmlFor="validationDefault05" className="form-label">Пароль</label>
+					<label htmlFor="validationDefault05" className={`form-label ${s.formLabel}`}>Пароль</label>
 					<input
 						type="password"
-						className="form-control"
+						className={`form-control ${s.formControl}`}
 						id="validationDefault05"
 						onChange={(event) => props.changeField('password', event.target.value)}
 						value={props.password}
 					/>
 				</div>
-				<button type="submit" className="btn btn-primary">Зарегистрироваться</button>
+				<button type="submit" className={`btn btn-primary ${s.btn}`}>Зарегистрирваться</button>
 			</form>
 		</div>
 	);

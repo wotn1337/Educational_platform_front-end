@@ -1,0 +1,45 @@
+.text {
+    font-stretch: condensed;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    line-height: 35px;
+    color: #000000;
+    text-align: center;
+}
+
+.loginForm h1 {
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+.formControl {
+    margin: 0 auto;
+    color: #5a5a5a;
+    border: 3px solid rgba(164, 164, 164, 0.24);
+    border-radius: 27px;
+    height: 3.6em;
+    width: 95%;
+}
+
+.formControl:focus{
+    border-color: lightgray;
+    box-shadow: 0 0 0 0.3rem rgba(193, 193, 193, 0.33);
+}
+
+.btn {
+    display: block;
+    margin: 30px auto;
+    width: fit-content;
+    background: #EF5B5B;
+    border-radius: 17px;
+    border-color: transparent;
+    color: white;
+}
+
+.btn:focus, .btn:hover {
+    background-color: #f56464;
+    border-color: transparent;
+}
+
