@@ -1,12 +1,13 @@
 import React from 'react';
+import s from './Input.module.css'
 
 const RoleInput = (props) => {
 	return (
 		<div className="mb-3">
-			<label htmlFor="validationDefaultRole" className="form-label">Роль</label>
+			<label htmlFor="validationDefaultRole" className={`form-label ${s.formLabel}`}>Роль</label>
 			<div className="input-group">
 				<select
-					className="form-select"
+					className={`form-select ${s.formControl}`}
 					id="validationDefaultRole"
 					onChange={(event) => props.changeField('role', event.target.value)}
 					value={props.role}
@@ -14,9 +15,9 @@ const RoleInput = (props) => {
 					<option value="creator">Учитель</option>
 					<option value="student">Ученик</option>
 				</select>
-				<div className="invalid-feedback" style={{display: 'block'}}>
-					{props.validationMessage}
-				</div>
+			</div>
+			<div className="invalid-feedback" style={{display: 'block'}}>
+				{props.validationMessage}
 			</div>
 		</div>
 	);

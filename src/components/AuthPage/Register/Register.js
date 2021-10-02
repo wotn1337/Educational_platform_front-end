@@ -5,6 +5,7 @@ import BirthdayInput from "../inputFieldComponents/BirthdayInput";
 import EmailInput from "../inputFieldComponents/EmailInput";
 import RoleInput from "../inputFieldComponents/RoleInput";
 import PasswordInput from "../inputFieldComponents/PasswordInput";
+import s from "./../AuthPage.module.css";
 
 const Register = (props) => {
 	const submitForm = (e) => {
@@ -35,9 +36,9 @@ const Register = (props) => {
 	};
 
 	return (
-		<div className="container-sm">
-			<h1>Зарегистрируйтесь</h1>
-			<form>
+		<div className={`container-sm ${s.container_sm}`}>
+			<form className={s.registerForm}>
+				<h1 className={s.text}>Введите свои данные</h1>
 				<NameInput
 					changeField={props.changeField}
 					name={props.register.name}
@@ -63,7 +64,11 @@ const Register = (props) => {
 					password={props.register.password}
 					validationMessage={props.register.validationMessages.password}
 				/>
-				<button onClick={event => submitForm(event)} className="btn btn-primary">Зарегистрироваться</button>
+				<button
+					onClick={event => submitForm(event)}
+					className={`btn btn-primary ${s.btn} ${s.text}`}>
+					Зарегистрироваться
+				</button>
 			</form>
 		</div>
 	);
