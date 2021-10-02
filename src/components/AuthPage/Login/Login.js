@@ -23,7 +23,7 @@ const Login = (props) => {
 			props.setValidationMessage({
 				email: err.response.data.errors.email,
 				password: err.response.data.errors.password,
-				all: err.response.data.message
+				all: !(err.response.status == '422') ? err.response.data.message : ''
 			});
 		});
 	};
