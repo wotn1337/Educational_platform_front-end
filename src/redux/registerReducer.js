@@ -1,4 +1,3 @@
-const REGISTER = 'REGISTER';
 const CHANGE_FIELD = 'CHANGE_FIELD';
 const SET_VALIDATION_MESSAGES = 'SET_VALIDATION_MESSAGES';
 const CLEAR_VALIDATION_MESSAGES = 'CLEAR_VALIDATION_MESSAGES';
@@ -53,21 +52,12 @@ const registerReducer = (state = initState, action) => {
 				}
 			};
 
-		case REGISTER:
-			return 'register';
-
 		default:
 			return state;
 	}
 };
 
-export const registerAC = () => {
-	return {
-		type: REGISTER
-	};
-};
-
-export const changeFieldAC = (field, newValue) => {
+export const changeField = (field, newValue) => {
 	return {
 		type: CHANGE_FIELD,
 		field,
@@ -75,14 +65,14 @@ export const changeFieldAC = (field, newValue) => {
 	}
 };
 
-export const setValidationMessagesAC = (errors) => {
+export const setValidationMessages = (errors) => {
 	return {
 		type: SET_VALIDATION_MESSAGES,
 		errors
 	};
 };
 
-export const clearValidationMessagesAC = () => {
+export const clearValidationMessages = () => {
 	return {
 		type: CLEAR_VALIDATION_MESSAGES
 	};

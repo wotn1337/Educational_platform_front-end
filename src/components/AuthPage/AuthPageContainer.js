@@ -5,7 +5,8 @@ import AuthPage from "./AuthPage";
 
 const mapStateToProps = (state) => {
 	return {
-		authPage: state.authPage
+		authPage: state.authPage,
+		isAuth: state.auth.isAuth
 	};
 };
 

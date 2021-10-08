@@ -5,7 +5,7 @@ import NavbarContainer from "./components/Navbar/NavbarContainer";
 import AuthPageContainer from "./components/AuthPage/AuthPageContainer";
 import CatalogPage from "./components/CatalogPage/CatalogPage";
 import s from './App.css'
-import ProfilePage from "./components/ProfilePage/ProfilePage";
+import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
 
 function App() {
 	return (
@@ -25,7 +25,7 @@ function App() {
 			/>
 			<Route
 				exact path='/profile'
-				render={() => <ProfilePage/>}
+				render={() => <ProfilePageContainer/>}
 			/>
 		</div>
 	);

@@ -1,8 +1,23 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 import s from './Navbar.module.css'
 
 const Navbar = (props) => {
+	const logout = (e) => {
+		e.preventDefault();
+		axios.post('http://localhost/api/logout', {}, {
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `${props.tokenType} ${props.token}`
+			}
+		})
+			.then(res => {
+				props.logout();
+			})
+			.catch(err => console.log(err.response));
+	};
+
 	return (
 		// nav nav-pills nav-justified
 		// nav-link
@@ -17,9 +32,22 @@ const Navbar = (props) => {
 					to="/catalog">Каталог</NavLink>
 				<NavLink
 					className={`${s.navLink}`}
-					to="/auth">
-					{props.loggedIn ? 'Выйти' : 'Войти'}
-				</NavLink>
+					to="/profile">Мой профиль</NavLink>
+				{props.isAuth ?
+					<NavLink
+						className={`${s.navLink}`}
+						to="/auth"
+						onClick={e => logout(e)}
+					>
+						Выйти
+					</NavLink> :
+					<NavLink
+						className={`${s.navLink}`}
+						to="/auth"
+					>
+						Войти
+					</NavLink>
+				}
 			</nav>
 		</div>
 

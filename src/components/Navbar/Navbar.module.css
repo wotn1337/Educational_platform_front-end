@@ -45,7 +45,7 @@
 /*}*/
 .navLink:focus{
     color: #F56464;
-    background-image: url('./../../Stylesheets/menu_hover.svg');
+    //background-image: url('./../../Stylesheets/menu_hover.svg');
     background-repeat: no-repeat;
     background-size: 130px;
     background-position: center;

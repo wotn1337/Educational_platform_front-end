@@ -2,12 +2,17 @@ import React from 'react';
 import RegisterContainer from "./Register/RegisterContainer";
 import LoginContainer from "./Login/LoginContainer";
 import s from './AuthPage.module.css'
+import {Redirect} from "react-router-dom";
 
 const AuthPage = (props) => {
 	const showRegisterForm = (e) => {
 		e.preventDefault();
 		props.changeShowRegisterForm();
 	};
+
+	if (props.isAuth) {
+		return <Redirect to={'/'}/>;
+	}
 
 	return (
 		<div className={`container-md ${s.container_md}`}>

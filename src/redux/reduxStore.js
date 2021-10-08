@@ -4,6 +4,7 @@ import authPageReducer from "./authPageReducer";
 import loginReducer from "./loginReducer";
 import registerReducer from "./registerReducer";
 import navbarReducer from "./navbarReducer";
+import authReducer from "./authReducer";
 
 
 const reducers = combineReducers({
@@ -11,7 +12,8 @@ const reducers = combineReducers({
 	authPage: authPageReducer,
 	login: loginReducer,
 	register: registerReducer,
-	navbar: navbarReducer
+	navbar: navbarReducer,
+	auth: authReducer
 });
 
 const store = createStore(reducers);

@@ -10,21 +10,22 @@ const Login = (props) => {
 		e.preventDefault();
 		props.clearValidationMessages();
 		const data = JSON.stringify({
-			email: props.login.email,
-			password: props.login.password
+			email: props.email,
+			password: props.password
 		});
 		axios.post('http://localhost/api/login', data, {
+			//withCredentials: true,
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			}
 		}).then(res => {
-			console.log(res);
+			props.setAuth(res.data.token, res.data.token_type);
 		}).catch(err => {
-			props.setValidationMessage({
-				email: err.response.data.errors.email,
-				password: err.response.data.errors.password,
-				all: !(err.response.status == '422') ? err.response.data.message : ''
-			});
+			// props.setValidationMessages({
+			// 	email: err.response.data.errors.email,
+			// 	password: err.response.data.errors.password,
+			// 	all: !(err.response.status === 422) ? err.response.data.message : ''
+			// });
 		});
 	};
 
@@ -34,17 +35,17 @@ const Login = (props) => {
 				<form>
 					<h1 className={s.text}>Войти в свой кабинет</h1>
 					<div className="invalid-feedback" style={{display: 'block'}}>
-						{props.login.validationMessages.all}
+						{props.validationMessages.all}
 					</div>
 					<EmailInput
 						changeField={props.changeField}
-						email={props.login.email}
-						validationMessage={props.login.validationMessages.email}
+						email={props.email}
+						validationMessage={props.validationMessages.email}
 					/>
 					<PasswordInput
 						changeField={props.changeField}
-						password={props.login.password}
-						validationMessage={props.login.validationMessages.password}
+						password={props.password}
+						validationMessage={props.validationMessages.password}
 					/>
 				</form>
 			</div>

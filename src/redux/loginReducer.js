@@ -59,7 +59,7 @@ export const loginAC = () => {
 	};
 };
 
-export const changeFieldAC = (field, newValue) => {
+export const changeField = (field, newValue) => {
 	return {
 		type: CHANGE_FIELD,
 		field,
@@ -67,14 +67,14 @@ export const changeFieldAC = (field, newValue) => {
 	}
 };
 
-export const setValidationMessagesAC = (errors) => {
+export const setValidationMessages = (errors) => {
 	return {
 		type: SET_VALIDATION_MESSAGES,
 		errors
 	};
 };
 
-export const clearValidationMessagesAC = () => {
+export const clearValidationMessages = () => {
 	return {
 		type: CLEAR_VALIDATION_MESSAGES
 	};

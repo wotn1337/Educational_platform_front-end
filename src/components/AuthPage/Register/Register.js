@@ -12,26 +12,26 @@ const Register = (props) => {
         e.preventDefault();
         props.clearValidationMessages();
         const data = JSON.stringify({
-            name: props.register.name,
-            birthday: props.register.birthday,
-            role: props.register.role,
-            email: props.register.email,
-            password: props.register.password
+            name: props.name,
+            birthday: props.birthday,
+            role: props.role,
+            email: props.email,
+            password: props.password
         });
         axios.post('http://localhost/api/register', data, {
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            console.log(res);
+	        props.setAuth(res.data.token, res.data.token_type);
         }).catch(err => {
-            props.setValidationMessage({
-                name: err.response.data.errors.name,
-                date: err.response.data.errors.date,
-                role: err.response.data.errors.role,
-                email: err.response.data.errors.email,
-                password: err.response.data.errors.password,
-            });
+            // props.setValidationMessages({
+            //     name: err.response.data.errors.name,
+            //     date: err.response.data.errors.date,
+            //     role: err.response.data.errors.role,
+            //     email: err.response.data.errors.email,
+            //     password: err.response.data.errors.password,
+            // });
         });
     };
 
@@ -42,36 +42,35 @@ const Register = (props) => {
 					<h1 className={s.text}>Введите свои данные</h1>
 					<NameInput
 						changeField={props.changeField}
-						name={props.register.name}
-						validationMessage={props.register.validationMessages.name}
+						name={props.name}
+						validationMessage={props.validationMessages.name}
 					/>
 					<BirthdayInput
 						changeField={props.changeField}
-						birthday={props.register.birthday}
-						validationMessage={props.register.validationMessages.birthday}
+						birthday={props.birthday}
+						validationMessage={props.validationMessages.birthday}
 					/>
 					<RoleInput
 						changeField={props.changeField}
-						role={props.register.role}
-						validationMessage={props.register.validationMessages.role}
+						role={props.role}
+						validationMessage={props.validationMessages.role}
 					/>
 					<EmailInput
 						changeField={props.changeField}
-						email={props.register.email}
-						validationMessage={props.register.validationMessages.email}
+						email={props.email}
+						validationMessage={props.validationMessages.email}
 					/>
 					<PasswordInput
 						changeField={props.changeField}
-						password={props.register.password}
-						validationMessage={props.register.validationMessages.password}
+						password={props.password}
+						validationMessage={props.validationMessages.password}
 					/>
 				</form>
 			</div>
             <button
-                onClick={event => {
-                    submitForm(event)
-                }}
-                className={`${s.btn}`}>
+                onClick={event => submitForm(event)}
+                className={`${s.btn}`}
+            >
                 Зарегистрироваться
             </button>
         </div>
