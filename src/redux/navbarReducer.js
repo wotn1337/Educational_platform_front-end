@@ -1,8 +1,10 @@
 const CHANGE_LOGGED_IN_STATUS = 'CHANGE_LOGGED_IN_STATUS';
+const CHANGE_ACTIVE_LINK_STATUS = 'CHANGE_ACTIVE_LINK_STATUS';
 
 
 const initState = {
-	loggedIn: false
+	loggedIn: false,
+	active: false
 };
 
 const navbarReducer = (state = initState, action) => {
@@ -12,6 +14,11 @@ const navbarReducer = (state = initState, action) => {
 				...state,
 				loggedIn: !state.loggedIn
 			};
+		case CHANGE_ACTIVE_LINK_STATUS:
+			return {
+				...state,
+				active: !state.active
+			}
 
 		default:
 			return 'nothing';
@@ -21,6 +28,11 @@ const navbarReducer = (state = initState, action) => {
 export const changeLoggedInStatusAC = () => {
 	return {
 		type: CHANGE_LOGGED_IN_STATUS
+	};
+};
+export const changeActiveLinkStatusAC = () => {
+	return {
+		type: CHANGE_ACTIVE_LINK_STATUS
 	};
 };
 

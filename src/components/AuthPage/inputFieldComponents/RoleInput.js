@@ -16,7 +16,7 @@ const RoleInput = (props) => {
 					<option value="student">Ученик</option>
 				</select>
 			</div>
-			<div className="invalid-feedback" style={{display: 'block'}}>
+			<div className={`invalid-feedback ${s.invalidFeedback}`}>
 				{props.validationMessage}
 			</div>
 		</div>

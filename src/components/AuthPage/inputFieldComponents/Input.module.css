@@ -21,3 +21,8 @@
     margin-bottom: 10px;
     padding-left: 10px;
 }
+
+.invalidFeedback {
+    display: block;
+    text-align: center;
+}
