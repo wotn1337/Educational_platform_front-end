@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from 'react-redux';
 import Register from "./Register";
-import {changeField, clearValidationMessages, setValidationMessages} from "../../../redux/registerReducer";
-import {setAuth} from "../../../redux/authReducer";
+import {changeField} from "../../../redux/registerReducer";
+import {register} from "../../../redux/authReducer";
 import {Redirect} from "react-router-dom";
 
 class RegisterContainer extends React.Component {
@@ -18,13 +18,23 @@ class RegisterContainer extends React.Component {
 		}
 	}
 
+	register = () => {
+		this.props.register(
+			this.props.name,
+			this.props.birthday,
+			this.props.role,
+			this.props.email,
+			this.props.password
+		);
+	}
+
 	render() {
 		if (this.state.isAuth) {
 			return <Redirect to={'/'}/>
 		}
 
 		return (
-			<Register {...this.props}/>
+			<Register {...this.props} register={this.register}/>
 		);
 	}
 }
@@ -44,7 +54,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
 	changeField,
-	setValidationMessages,
-	clearValidationMessages,
-	setAuth
+	register
 })(RegisterContainer);

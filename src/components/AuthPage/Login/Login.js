@@ -1,33 +1,14 @@
 import React from "react";
 import EmailInput from "../inputFieldComponents/EmailInput";
 import PasswordInput from "../inputFieldComponents/PasswordInput";
-import axios from "axios";
 import s from "./../AuthPage.module.css";
 
 
 const Login = (props) => {
-	const submitForm = (e) => {
+	const login = (e) => {
 		e.preventDefault();
-		props.clearValidationMessages();
-		const data = JSON.stringify({
-			email: props.email,
-			password: props.password
-		});
-		axios.post('http://localhost/api/login', data, {
-			//withCredentials: true,
-			headers: {
-				'Content-Type': 'application/json',
-			}
-		}).then(res => {
-			props.setAuth(res.data.token, res.data.token_type);
-		}).catch(err => {
-			// props.setValidationMessages({
-			// 	email: err.response.data.errors.email,
-			// 	password: err.response.data.errors.password,
-			// 	all: !(err.response.status === 422) ? err.response.data.message : ''
-			// });
-		});
-	};
+		props.login();
+	}
 
 	return (
 		<div className={`container-sm ${s.form}`}>
@@ -51,7 +32,7 @@ const Login = (props) => {
 			</div>
 			<button
 				className={`${s.btn}`}
-				onClick={event => submitForm(event)}
+				onClick={event => login(event)}
 			>
 				Подтвердить
 			</button>

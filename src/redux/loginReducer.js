@@ -1,7 +1,7 @@
-const LOGIN = 'LOGIN';
 const CHANGE_FIELD = 'CHANGE_FIELD';
 const SET_VALIDATION_MESSAGES = 'SET_VALIDATION_MESSAGES';
 const CLEAR_VALIDATION_MESSAGES = 'CLEAR_VALIDATION_MESSAGES';
+const CLEAR_FIELDS = 'CLEAR_FIELDS';
 
 
 const initState = {
@@ -45,18 +45,16 @@ const loginReducer = (state = initState, action) => {
 				}
 			};
 
-		case LOGIN:
-			return 'login';
+		case CLEAR_FIELDS:
+			return {
+				...state,
+				email: '',
+				password: ''
+			};
 
 		default:
 			return state;
 	}
-};
-
-export const loginAC = () => {
-	return {
-		type: LOGIN
-	};
 };
 
 export const changeField = (field, newValue) => {
@@ -67,16 +65,22 @@ export const changeField = (field, newValue) => {
 	}
 };
 
-export const setValidationMessages = (errors) => {
+export const setLoginValidationMessages = (errors) => {
 	return {
 		type: SET_VALIDATION_MESSAGES,
 		errors
 	};
 };
 
-export const clearValidationMessages = () => {
+export const clearLoginValidationMessages = () => {
 	return {
 		type: CLEAR_VALIDATION_MESSAGES
+	};
+}
+
+export const clearLoginFields = () => {
+	return {
+		type: CLEAR_FIELDS
 	};
 }
 

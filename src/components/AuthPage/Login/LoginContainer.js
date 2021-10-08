@@ -1,12 +1,10 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {
-	changeField,
-	clearValidationMessages,
-	setValidationMessages,
+	changeField
 } from "../../../redux/loginReducer";
 import Login from "./Login";
-import {setAuth} from "../../../redux/authReducer";
+import {login} from "../../../redux/authReducer";
 import {Redirect} from "react-router-dom";
 
 class LoginContainer extends React.Component {
@@ -22,12 +20,16 @@ class LoginContainer extends React.Component {
 		}
 	}
 
+	login = () => {
+		this.props.login(this.props.email, this.props.password);
+	}
+
 	render() {
 		if (this.state.isAuth) {
 			return <Redirect to={'/'}/>
 		}
 
-		return <Login {...this.props}/>;
+		return <Login {...this.props} login={this.login}/>;
 	}
 }
 
@@ -43,7 +45,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
 	changeField,
-	setValidationMessages,
-	clearValidationMessages,
-	setAuth
+	login
 })(LoginContainer);

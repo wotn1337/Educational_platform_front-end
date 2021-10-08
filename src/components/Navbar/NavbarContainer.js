@@ -3,6 +3,7 @@ import React from "react";
 import Navbar from "./Navbar";
 import {logout} from "../../redux/authReducer";
 
+
 class NavbarContainer extends React.Component {
 	state = {
 		isAuth: false
@@ -16,8 +17,12 @@ class NavbarContainer extends React.Component {
 		}
 	}
 
+	logout = () => {
+		this.props.logout(this.props.tokenType, this.props.token);
+	}
+
 	render() {
-		return <Navbar {...this.props}/>;
+		return <Navbar {...this.props} logout={this.logout}/>;
 	}
 }
 

@@ -1,21 +1,12 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 import s from './Navbar.module.css'
+
 
 const Navbar = (props) => {
 	const logout = (e) => {
 		e.preventDefault();
-		axios.post('http://localhost/api/logout', {}, {
-			headers: {
-				'Content-Type': 'application/json',
-				'Authorization': `${props.tokenType} ${props.token}`
-			}
-		})
-			.then(res => {
-				props.logout();
-			})
-			.catch(err => console.log(err.response));
+		props.logout();
 	};
 
 	return (
@@ -24,29 +15,12 @@ const Navbar = (props) => {
 		<div className={s.header}>
 			{/*<img src={logo} alt="logo" height='30'/>*/}
 			<nav className={`${s.nav}`}>
-				<NavLink
-					className={s.navLink}
-					to="/">Главная</NavLink>
-				<NavLink
-					className={`${s.navLink}`}
-					to="/catalog">Каталог</NavLink>
-				<NavLink
-					className={`${s.navLink}`}
-					to="/profile">Мой профиль</NavLink>
-				{props.isAuth ?
-					<NavLink
-						className={`${s.navLink}`}
-						to="/auth"
-						onClick={e => logout(e)}
-					>
-						Выйти
-					</NavLink> :
-					<NavLink
-						className={`${s.navLink}`}
-						to="/auth"
-					>
-						Войти
-					</NavLink>
+				<NavLink className={s.navLink} to="/">Главная</NavLink>
+				<NavLink className={`${s.navLink}`} to="/catalog">Каталог</NavLink>
+				<NavLink className={`${s.navLink}`} to="/profile">Мой профиль</NavLink>
+				{props.isAuth
+					? <NavLink className={`${s.navLink}`} to="/auth" onClick={e => logout(e)}>Выйти</NavLink>
+					: <NavLink className={`${s.navLink}`} to="/auth">Войти</NavLink>
 				}
 			</nav>
 		</div>
