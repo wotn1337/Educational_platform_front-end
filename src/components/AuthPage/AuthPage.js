@@ -17,7 +17,7 @@ const AuthPage = (props) => {
 				className={`${s.logLink}`}
 				onClick={event => showRegisterForm(event)}
 			>
-				{props.authPage.showRegisterForm ? 'Войти' : 'Зарегистрироваться'}
+				{props.authPage.showRegisterForm ? 'Войти' : 'Регистрация'}
 			</a>
 		</div>
 	);

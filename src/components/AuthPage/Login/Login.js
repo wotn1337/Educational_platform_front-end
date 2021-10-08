@@ -29,29 +29,31 @@ const Login = (props) => {
 	};
 
 	return (
-		<div className={`container-sm ${s.container_sm}`}>
-			<form className={`${s.loginForm}`}>
-				<h1 className={s.text}>Войти в свой кабинет</h1>
-				<div className="invalid-feedback" style={{display: 'block'}}>
-					{props.login.validationMessages.all}
-				</div>
-				<EmailInput
-					changeField={props.changeField}
-					email={props.login.email}
-					validationMessage={props.login.validationMessages.email}
-				/>
-				<PasswordInput
-					changeField={props.changeField}
-					password={props.login.password}
-					validationMessage={props.login.validationMessages.password}
-				/>
-				<button
-					className={`btn btn-primary ${s.btn} ${s.text}`}
-					onClick={event => submitForm(event)}
-				>
-					Подтвердить
-				</button>
-			</form>
+		<div className={`container-sm ${s.form}`}>
+			<div className={s.form}>
+				<form>
+					<h1 className={s.text}>Войти в свой кабинет</h1>
+					<div className="invalid-feedback" style={{display: 'block'}}>
+						{props.login.validationMessages.all}
+					</div>
+					<EmailInput
+						changeField={props.changeField}
+						email={props.login.email}
+						validationMessage={props.login.validationMessages.email}
+					/>
+					<PasswordInput
+						changeField={props.changeField}
+						password={props.login.password}
+						validationMessage={props.login.validationMessages.password}
+					/>
+				</form>
+			</div>
+			<button
+				className={`${s.btn}`}
+				onClick={event => submitForm(event)}
+			>
+				Подтвердить
+			</button>
 		</div>
 	);
 };

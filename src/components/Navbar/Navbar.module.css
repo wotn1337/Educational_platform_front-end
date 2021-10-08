@@ -1,22 +1,93 @@
+.header {
+    margin-top: 1%;
+}
+
 .nav {
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
+    /*position: fixed;*/
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
 
+    /*background-color: #333; !* Black background color *!*/
+    /*position: fixed; !* Make it stick/fixed *!*/
+    /*top: -50px; !* Hide the navbar 50 px outside of the top view *!*/
+    /*width: 100%; !* Full width *!*/
+    /*transition: top 0.3s; !* Transition effect when sliding down (and up) *!*/
 }
 .navLink {
+    display: inline;
     text-decoration: none;
-    margin: 20px;
+    /*margin: 20px;*/
+    padding: 20px;
+    text-align: center;
+    width: 180px;
+    margin: 0 1%;
     color: white;
-    font-family: Roboto, sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 1.2em;
+    transition: all .15s;
+    border-bottom: 2px solid transparent;
+    background-position: center;
 }
 
-.sideNavLink {
-    justify-self: flex-end;
+/*.selectedLink {*/
+/*    background-color: white;*/
+/*    color: #F56464;*/
+/*    border-radius: 5px;*/
+/*    padding: 3px;*/
+/*}*/
+.navLink:focus{
+    color: #F56464;
+    background-image: url('./../../Stylesheets/menu_hover.svg');
+    background-repeat: no-repeat;
+    background-size: 130px;
+    background-position: center;
 }
 .navLink:hover{
-    color: white;
+    background-image: url('./../../Stylesheets/menu_hover.svg');
+    background-repeat: no-repeat;
+    /*border-color: white;*/
+    color: #F56464;
+    background-size: 130px;
+    background-position: center;
+
+}
+
+@media all and (max-width: 1500px){
+    .navLink {
+        font-size: 1.1em;
+    }
+
+}
+@media all and (max-width: 1200px){
+    .navLink {
+        font-size: 1.1em;
+    }
+}
+@media all and (max-width: 992px){
+    .navLink {
+        font-size: 1.2em;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .navLink {
+        font-size: 1.2em;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .navLink {
+        font-size: 1.2em;
+    }
+    .nav {
+        margin: 4% auto;
+    }
 }

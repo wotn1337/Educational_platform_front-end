@@ -1,0 +1,19 @@
+.contentWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: rgba(80, 80, 80, 0.59);
+    border-radius: 17px;
+    padding: 2%;
+    margin: 2% auto;
+    width: 900px;
+    height: auto;
+}
+
+.lesson {
+    background-color: white;
+    border-radius: 17px;
+    width: 40%;
+    height: 230px;
+    margin: 25px 8px;
+}
