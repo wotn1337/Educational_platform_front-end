@@ -3,6 +3,7 @@ import React from "react";
 import ProfilePage from "./ProfilePage";
 import {Redirect} from "react-router-dom";
 import axios from "axios";
+import {showProfileFormAC} from "../../redux/profileReducer";
 
 class ProfilePageContainer extends React.Component {
 	state = {
@@ -26,9 +27,9 @@ class ProfilePageContainer extends React.Component {
 	}
 
 	render() {
-		if (!this.state.isAuth) {
-			return <Redirect to={'/auth'}/>
-		}
+		// if (!this.state.isAuth) {
+		// 	return <Redirect to={'/auth'}/>
+		// }
 		return <ProfilePage {...this.props}/>;
 	}
 }
@@ -36,10 +37,19 @@ class ProfilePageContainer extends React.Component {
 
 export const mapStateToProps = (state) => {
 	return {
+		profile: state.profile,
 		isAuth: state.auth.isAuth,
 		token: state.auth.token,
 		tokenType: state.auth.tokenType
 	};
 };
 
-export default connect(mapStateToProps, {})(ProfilePageContainer);
+export const mapDispatchToProps = (dispatch) =>{
+	return {
+		changeShowProfilerForm: () => {
+			dispatch(showProfileFormAC());
+		}
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePageContainer);

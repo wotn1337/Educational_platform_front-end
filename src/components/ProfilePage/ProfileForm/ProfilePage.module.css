@@ -11,6 +11,7 @@
     filter: invert(100%);
     display: block;
     width: 127px;
+    /*margin-left: 75px;*/
     margin: 0 auto;
 }
 
@@ -87,8 +88,8 @@
 }
 
 .btn {
-    display: inline-block;
-    margin: 20px 20px;
+    display: block;;
+    margin: 20px auto;
     font-family: "Open Sans", sans-serif;
     font-weight: normal;
     font-size: 1.1em;
