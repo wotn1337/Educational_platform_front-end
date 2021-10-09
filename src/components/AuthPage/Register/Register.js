@@ -47,6 +47,7 @@ const Register = (props) => {
             <button
                 onClick={event => register(event)}
                 className={`${s.btn}`}
+                disabled={props.isFetching}
             >
                 Зарегистрироваться
             </button>

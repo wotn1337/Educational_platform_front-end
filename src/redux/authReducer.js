@@ -1,6 +1,16 @@
-import {clearLoginFields, clearLoginValidationMessages, setLoginValidationMessages} from "./loginReducer";
+import {
+	clearLoginFields,
+	clearLoginValidationMessages,
+	setLoginValidationMessages,
+	toggleLoginFetching
+} from "./loginReducer";
 import {authAPI} from "../api/api";
-import {clearRegisterFields, clearRegisterValidationMessages, setRegisterValidationMessages} from "./registerReducer";
+import {
+	clearRegisterFields,
+	clearRegisterValidationMessages,
+	setRegisterValidationMessages,
+	toggleRegisterFetching
+} from "./registerReducer";
 
 const SET_AUTH = 'SET_AUTH';
 const LOGOUT = 'LOGOUT';
@@ -51,36 +61,45 @@ export const logoutAction = () => {
 
 export const login = (email, password) => (dispatch) => {
 	dispatch(clearLoginValidationMessages());
-
+	dispatch(toggleLoginFetching(true));
 	authAPI.login(email, password)
 		.then(res => {
 			dispatch(setAuth(res.data.token, res.data.token_type));
 			dispatch(clearLoginFields());
+			dispatch(toggleLoginFetching(false));
 		})
 		.catch(err => {
-			dispatch(setLoginValidationMessages({
-				email: err.response.data.errors.email,
-				password: err.response.data.errors.password,
-				all: !(err.response.status === 422) && err.response.data.message
-			}));
+			if (err.response.status === 422 || err.response.status === 401) {
+				dispatch(setLoginValidationMessages({
+					email: err.response.data.errors.email,
+					password: err.response.data.errors.password,
+					all: !(err.response.status === 422) && err.response.data.message
+				}));
+			}
+			dispatch(toggleLoginFetching(false));
 		});
 };
 
 export const register = (name, birthday, role, email, password) => (dispatch) => {
 	dispatch(clearRegisterValidationMessages());
+	dispatch(toggleRegisterFetching(true));
 	authAPI.register(name, birthday, role, email, password)
 		.then(res => {
 			dispatch(setAuth(res.data.token, res.data.token_type));
 			dispatch(clearRegisterFields());
+			dispatch(toggleRegisterFetching(false));
 		})
 		.catch(err => {
-			dispatch(setRegisterValidationMessages({
-				name: err.response.data.errors.name,
-				date: err.response.data.errors.date,
-				role: err.response.data.errors.role,
-				email: err.response.data.errors.email,
-				password: err.response.data.errors.password,
-			}));
+			if (err.response.status === 422) {
+				dispatch(setRegisterValidationMessages({
+					name: err.response.data.errors.name,
+					date: err.response.data.errors.date,
+					role: err.response.data.errors.role,
+					email: err.response.data.errors.email,
+					password: err.response.data.errors.password,
+				}));
+			}
+			dispatch(toggleRegisterFetching(false));
 		});
 };
 

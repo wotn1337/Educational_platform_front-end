@@ -33,6 +33,7 @@ const Login = (props) => {
 			<button
 				className={`${s.btn}`}
 				onClick={event => login(event)}
+				disabled={props.isFetching}
 			>
 				Подтвердить
 			</button>

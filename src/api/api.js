@@ -3,7 +3,9 @@ import {instance} from "./instance";
 
 export const authAPI = {
 	login(email, password) {
-		return instance.post('login', JSON.stringify({email, password}));
+		return instance.post('login', JSON.stringify({email, password}), {
+			//withCredentials: true
+		});
 	},
 
 	register(name, birthday, role, email, password) {
