@@ -9,13 +9,19 @@ import {Redirect} from "react-router-dom";
 
 class LoginContainer extends React.Component {
 	state = {
-		isAuth: this.props.isAuth
+		isAuth: this.props.isAuth,
+		isFetching: this.props.isFetching
 	}
 
 	componentDidUpdate(prevProps, prevState, snapshot) {
 		if (prevProps.isAuth !== this.props.isAuth) {
 			this.setState({
 				isAuth: this.props.isAuth
+			});
+		}
+		if (prevProps.isFetching !== this.props.isFetching) {
+			this.setState({
+				isFetching: this.props.isFetching
 			});
 		}
 	}
@@ -29,7 +35,7 @@ class LoginContainer extends React.Component {
 			return <Redirect to={'/'}/>
 		}
 
-		return <Login {...this.props} login={this.login}/>;
+		return <Login {...this.props} login={this.login} isFetching={this.state.isFetching}/>;
 	}
 }
 
@@ -39,7 +45,8 @@ const mapStateToProps = (state) => {
 		email: state.login.email,
 		password: state.login.password,
 		isAuth: state.auth.isAuth,
-		validationMessages: state.login.validationMessages
+		validationMessages: state.login.validationMessages,
+		isFetching: state.login.isFetching
 	};
 };
 

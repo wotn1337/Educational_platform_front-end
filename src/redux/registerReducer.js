@@ -2,6 +2,7 @@ const CHANGE_FIELD = 'CHANGE_FIELD';
 const SET_VALIDATION_MESSAGES = 'SET_VALIDATION_MESSAGES';
 const CLEAR_VALIDATION_MESSAGES = 'CLEAR_VALIDATION_MESSAGES';
 const CLEAR_FIELDS = 'CLEAR_FIELDS';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 
 const initState = {
 	name: '',
@@ -15,7 +16,8 @@ const initState = {
 		role: '',
 		email: '',
 		password: ''
-	}
+	},
+	isFetching: false
 };
 
 
@@ -63,6 +65,12 @@ const registerReducer = (state = initState, action) => {
 				password: '',
 			};
 
+		case TOGGLE_FETCHING:
+			return {
+				...state,
+				isFetching: action.isFetching
+			};
+
 		default:
 			return state;
 	}
@@ -93,6 +101,13 @@ export const clearRegisterFields = () => {
 	return {
 		type: CLEAR_FIELDS
 	};
-}
+};
+
+export const toggleRegisterFetching = (isFetching) => {
+	return {
+		type: TOGGLE_FETCHING,
+		isFetching
+	};
+};
 
 export default registerReducer;

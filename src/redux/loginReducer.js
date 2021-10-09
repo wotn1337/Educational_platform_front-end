@@ -2,6 +2,7 @@ const CHANGE_FIELD = 'CHANGE_FIELD';
 const SET_VALIDATION_MESSAGES = 'SET_VALIDATION_MESSAGES';
 const CLEAR_VALIDATION_MESSAGES = 'CLEAR_VALIDATION_MESSAGES';
 const CLEAR_FIELDS = 'CLEAR_FIELDS';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 
 
 const initState = {
@@ -12,6 +13,7 @@ const initState = {
 		password: '',
 		all: ''
 	},
+	isFetching: false
 };
 
 
@@ -52,6 +54,12 @@ const loginReducer = (state = initState, action) => {
 				password: ''
 			};
 
+		case TOGGLE_FETCHING:
+			return {
+				...state,
+				isFetching: action.isFetching
+			};
+
 		default:
 			return state;
 	}
@@ -83,5 +91,12 @@ export const clearLoginFields = () => {
 		type: CLEAR_FIELDS
 	};
 }
+
+export const toggleLoginFetching = (isFetching) => {
+	return {
+		type: TOGGLE_FETCHING,
+		isFetching
+	};
+};
 
 export default loginReducer;
