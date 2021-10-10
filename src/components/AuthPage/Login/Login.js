@@ -15,7 +15,7 @@ const Login = (props) => {
 			<div className={s.form}>
 				<form>
 					<h1 className={s.text}>Войти в свой кабинет</h1>
-					<div className="invalid-feedback" style={{display: 'block'}}>
+					<div className={`invalid-feedback ${s.invalidFeedback}`}>
 						{props.validationMessages.all}
 					</div>
 					<EmailInput

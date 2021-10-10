@@ -12,12 +12,6 @@
     top: 0;
     left: 0;
     right: 0;
-
-    /*background-color: #333; !* Black background color *!*/
-    /*position: fixed; !* Make it stick/fixed *!*/
-    /*top: -50px; !* Hide the navbar 50 px outside of the top view *!*/
-    /*width: 100%; !* Full width *!*/
-    /*transition: top 0.3s; !* Transition effect when sliding down (and up) *!*/
 }
 .navLink {
     display: inline;
@@ -37,15 +31,9 @@
     background-position: center;
 }
 
-/*.selectedLink {*/
-/*    background-color: white;*/
-/*    color: #F56464;*/
-/*    border-radius: 5px;*/
-/*    padding: 3px;*/
-/*}*/
-.navLink:focus{
+.navLink a.active {
     color: #F56464;
-    //background-image: url('./../../Stylesheets/menu_hover.svg');
+    background-image: url('./../../Stylesheets/menu_hover.svg');
     background-repeat: no-repeat;
     background-size: 130px;
     background-position: center;
@@ -53,7 +41,6 @@
 .navLink:hover{
     background-image: url('./../../Stylesheets/menu_hover.svg');
     background-repeat: no-repeat;
-    /*border-color: white;*/
     color: #F56464;
     background-size: 130px;
     background-position: center;
