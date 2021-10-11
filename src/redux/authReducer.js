@@ -16,9 +16,9 @@ const SET_AUTH = 'SET_AUTH';
 const LOGOUT = 'LOGOUT';
 
 const initState = {
-	token: null,
-	tokenType: null,
-	isAuth: false
+	token: localStorage.getItem('token'),
+	tokenType: localStorage.getItem('tokenType'),
+	isAuth: !!localStorage.getItem('token')
 };
 
 
@@ -65,6 +65,8 @@ export const login = (email, password) => (dispatch) => {
 	authAPI.login(email, password)
 		.then(res => {
 			dispatch(setAuth(res.data.token, res.data.token_type));
+			localStorage.setItem('token', res.data.token);
+			localStorage.setItem('tokenType', res.data.token_type);
 			dispatch(clearLoginFields());
 			dispatch(toggleLoginFetching(false));
 		})
@@ -86,6 +88,8 @@ export const register = (name, birthday, role, email, password) => (dispatch) =>
 	authAPI.register(name, birthday, role, email, password)
 		.then(res => {
 			dispatch(setAuth(res.data.token, res.data.token_type));
+			localStorage.setItem('token', res.data.token);
+			localStorage.setItem('tokenType', res.data.token_type);
 			dispatch(clearRegisterFields());
 			dispatch(toggleRegisterFetching(false));
 		})
@@ -106,6 +110,7 @@ export const register = (name, birthday, role, email, password) => (dispatch) =>
 export const logout = (tokenType, token) => (dispatch) => {
 	authAPI.logout(tokenType, token)
 		.then(res => {
+			localStorage.clear();
 			dispatch(logoutAction());
 		})
 		.catch(err => console.log(err.response));

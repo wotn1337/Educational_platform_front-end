@@ -2,12 +2,9 @@ import {connect} from 'react-redux';
 import {showRegisterFormAC} from "../../redux/authPageReducer";
 import AuthPage from "./AuthPage";
 import React from 'react';
-import background from '/Users/elenagrekova/WebstormProjects/Educational_platform_front-end/src/Stylesheets/backgraund-img.png'
 
 class AuthPageContainer extends React.Component {
-
 	componentDidMount() {
-		this.props.changeBackground(background)
 	}
 
 	render() {

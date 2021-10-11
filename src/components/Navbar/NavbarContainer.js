@@ -6,7 +6,7 @@ import {logout} from "../../redux/authReducer";
 
 class NavbarContainer extends React.Component {
 	state = {
-		isAuth: false
+		isAuth: this.props.isAuth
 	}
 
 	componentDidUpdate(prevProps, prevState, snapshot) {

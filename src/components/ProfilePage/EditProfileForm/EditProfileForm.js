@@ -31,6 +31,7 @@ const EditProfileForm = (props) => {
                                 id="validationCustomDate"
                                 onChange={(event) => props.changeField('birthday', event.target.value)}
                                 value={props.birthday}
+                                placeholder={props.birthday}
                             />
                         </div>
                         <div className={`invalid-feedback ${s.invalidFeedback}`}>

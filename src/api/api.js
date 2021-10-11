@@ -3,9 +3,7 @@ import {instance} from "./instance";
 
 export const authAPI = {
 	login(email, password) {
-		return instance.post('login', JSON.stringify({email, password}), {
-			//withCredentials: true
-		});
+		return instance.post('login', JSON.stringify({email, password}));
 	},
 
 	register(name, birthday, role, email, password) {
@@ -14,6 +12,16 @@ export const authAPI = {
 
 	logout(tokenType, token) {
 		return instance.post('logout', {}, {
+			headers: {
+				'Authorization': `${tokenType} ${token}`
+			}
+		});
+	}
+};
+
+export const profileAPI = {
+	getProfile(tokenType, token) {
+		return instance.get('user/me', {
 			headers: {
 				'Authorization': `${tokenType} ${token}`
 			}

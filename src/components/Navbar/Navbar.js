@@ -17,7 +17,7 @@ const Navbar = (props) => {
 			<nav className={`${s.nav}`}>
 				<NavLink className={s.navLink} to="/">Главная</NavLink>
 				<NavLink className={`${s.navLink}`} to="/catalog">Каталог</NavLink>
-				<NavLink className={`${s.navLink}`} to="/profile">Мой профиль</NavLink>
+				{props.isAuth && <NavLink className={`${s.navLink}`} to="/profile">Мой профиль</NavLink>}
 				{props.isAuth
 					? <NavLink className={`${s.navLink}`} to="/auth" onClick={e => logout(e)}>Выйти</NavLink>
 					: <NavLink className={`${s.navLink}`} to="/auth">Войти</NavLink>
