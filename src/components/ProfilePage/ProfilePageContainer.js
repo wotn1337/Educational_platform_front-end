@@ -3,7 +3,7 @@ import React from "react";
 import ProfilePage from "./ProfilePage";
 import {Redirect} from "react-router-dom";
 import axios from "axios";
-import {showProfileFormAC} from "../../redux/profileReducer";
+import {changeFieldAC, showPasswordFormAC, showProfileFormAC} from "../../redux/profileReducer";
 
 class ProfilePageContainer extends React.Component {
 	state = {
@@ -48,7 +48,13 @@ export const mapDispatchToProps = (dispatch) =>{
 	return {
 		changeShowProfilerForm: () => {
 			dispatch(showProfileFormAC());
-		}
+		},
+		changeField: () => {
+			dispatch(changeFieldAC());
+		},
+		changeShowPasswordForm: () => {
+			dispatch(showPasswordFormAC());
+		},
 	};
 }
 
