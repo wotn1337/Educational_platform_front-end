@@ -16,6 +16,10 @@ export const authAPI = {
 				'Authorization': `${tokenType} ${token}`
 			}
 		});
+	},
+
+	adminLogin(email, password) {
+		return instance.post('admin/login', JSON.stringify({email, password}));
 	}
 };
 

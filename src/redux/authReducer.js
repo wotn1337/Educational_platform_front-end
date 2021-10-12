@@ -46,6 +46,8 @@ const authReducer = (state = initState, action) => {
 };
 
 export const setAuth = (token, tokenType) => {
+	localStorage.setItem('token', token);
+	localStorage.setItem('tokenType', tokenType);
 	return {
 		type: SET_AUTH,
 		token,
@@ -65,8 +67,6 @@ export const login = (email, password) => (dispatch) => {
 	authAPI.login(email, password)
 		.then(res => {
 			dispatch(setAuth(res.data.token, res.data.token_type));
-			localStorage.setItem('token', res.data.token);
-			localStorage.setItem('tokenType', res.data.token_type);
 			dispatch(clearLoginFields());
 			dispatch(toggleLoginFetching(false));
 		})
@@ -116,5 +116,26 @@ export const logout = (tokenType, token) => (dispatch) => {
 		.catch(err => console.log(err.response));
 };
 
+
+export const adminLogin = (email, password) => (dispatch) => {
+	dispatch(clearLoginValidationMessages());
+	dispatch(toggleLoginFetching(true));
+	authAPI.adminLogin(email, password)
+		.then(res => {
+			dispatch(setAuth(res.data.token, res.data.token_type));
+			dispatch(clearLoginFields());
+			dispatch(toggleLoginFetching(false));
+		})
+		.catch(err => {
+			if (err.response.status === 422 || err.response.status === 401) {
+				dispatch(setLoginValidationMessages({
+					email: err.response.data.errors.email,
+					password: err.response.data.errors.password,
+					all: !(err.response.status === 422) && err.response.data.message
+				}));
+			}
+			dispatch(toggleLoginFetching(false));
+		});
+};
 
 export default authReducer;

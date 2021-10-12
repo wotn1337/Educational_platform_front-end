@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {showRegisterFormAC} from "../../redux/authPageReducer";
+import {showRegisterForm} from "../../redux/authPageReducer";
 import AuthPage from "./AuthPage";
 import React from 'react';
 
@@ -16,14 +16,6 @@ const mapStateToProps = (state) => {
 		authPage: state.authPage,
 		isAuth: state.auth.isAuth
 	};
-};
+};;
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		changeShowRegisterForm: () => {
-			dispatch(showRegisterFormAC());
-		}
-	};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AuthPageContainer);
+export default connect(mapStateToProps, {showRegisterForm})(AuthPageContainer);
