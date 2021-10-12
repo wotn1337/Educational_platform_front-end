@@ -17,9 +17,24 @@
     text-align: center;
 }
 
-
 .logLink:hover {
     color: rgba(97, 97, 97, 0.52);
+}
+
+.resetLink {
+    display: block;
+    margin: 10px 0;
+    font-family: "Montserrat", sans-serif;
+    font-weight: normal;
+    font-size: 1.1em;
+    text-decoration: underline;
+    color: #F18A93;
+    text-align: center;
+}
+
+
+.resetLink:hover {
+    color: #FBCB84;
 }
 
 h1 {

@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import {
-	changeField
+	changeField, showResetPasswordFormAC
 } from "../../../redux/loginReducer";
 import Login from "./Login";
 import {login} from "../../../redux/authReducer";
@@ -51,6 +51,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+	showResetPasswordFormAC,
 	changeField,
 	login
 })(LoginContainer);
