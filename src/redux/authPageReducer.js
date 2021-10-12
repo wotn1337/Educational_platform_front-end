@@ -18,7 +18,7 @@ const authPageReducer = (state = initState, action) => {
 	}
 };
 
-export const showRegisterFormAC = () => {
+export const showRegisterForm = () => {
 	return {
 		type: SHOW_REGISTER_FORM
 	};

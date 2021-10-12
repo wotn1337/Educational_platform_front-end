@@ -7,7 +7,7 @@ import {Redirect} from "react-router-dom";
 const AuthPage = (props) => {
 	const showRegisterForm = (e) => {
 		e.preventDefault();
-		props.changeShowRegisterForm();
+		props.showRegisterForm();
 	};
 
 	if (props.isAuth) {

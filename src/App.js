@@ -6,6 +6,7 @@ import NavbarContainer from "./components/Navbar/NavbarContainer";
 import AuthPageContainer from "./components/AuthPage/AuthPageContainer";
 import CatalogPage from "./components/CatalogPage/CatalogPage";
 import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
+import AdminAuthPageContainer from "./admin/AdminAuthPage/AdminAuthPageContainer";
 
 class App extends React.Component {
     state = {
@@ -41,6 +42,10 @@ class App extends React.Component {
                 <Route
                     exact path='/profile'
                     render={() => <ProfilePageContainer/>}
+                />
+                <Route
+                    exact path='/admin/login'
+                    render={() => <AdminAuthPageContainer/>}
                 />
             </div>
         )
