@@ -10,12 +10,6 @@ const LoginForm = (props) => {
         props.login();
     }
 
-
-    const showResetForm = (e) => {
-        e.preventDefault();
-        props.showResetPasswordFormAC();
-    }
-
     return (
         <div className={s.form}>
             <form>
@@ -41,13 +35,6 @@ const LoginForm = (props) => {
             >
                 Подтвердить
             </button>
-            <a
-                href="#"
-                className={`${s.resetLink}`}
-                onClick={event => showResetForm(event)}
-            >
-                Забыли пароль?
-            </a>
         </div>
     );
 };

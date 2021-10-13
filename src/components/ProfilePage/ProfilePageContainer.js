@@ -3,7 +3,7 @@ import React from "react";
 import ProfilePage from "./ProfilePage";
 import {Redirect} from "react-router-dom";
 import axios from "axios";
-import {showProfileFormAC} from "../../redux/profileReducer";
+import {changeField, getProfile, showPasswordForm, showProfileForm} from "../../redux/profileReducer";
 
 class ProfilePageContainer extends React.Component {
 	state = {
@@ -11,11 +11,7 @@ class ProfilePageContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		axios.get('http://localhost/api/user/home', {
-			'Authorization': `${this.props.tokenType} ${this.props.token}`
-		})
-			.then(res => console.log(res))
-			.catch(err => console.log(err.response));
+		this.props.getProfile(this.props.tokenType, this.props.token);
 	}
 
 	componentDidUpdate(prevProps, prevState, snapshot) {
@@ -27,9 +23,9 @@ class ProfilePageContainer extends React.Component {
 	}
 
 	render() {
-		// if (!this.state.isAuth) {
-		// 	return <Redirect to={'/auth'}/>
-		// }
+		if (!this.state.isAuth) {
+			return <Redirect to={'/auth'}/>
+		}
 		return <ProfilePage {...this.props}/>;
 	}
 }
@@ -44,12 +40,9 @@ export const mapStateToProps = (state) => {
 	};
 };
 
-export const mapDispatchToProps = (dispatch) =>{
-	return {
-		changeShowProfilerForm: () => {
-			dispatch(showProfileFormAC());
-		}
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfilePageContainer);
+export default connect(mapStateToProps, {
+	showProfileForm,
+	showPasswordForm,
+	getProfile,
+	changeField
+})(ProfilePageContainer);

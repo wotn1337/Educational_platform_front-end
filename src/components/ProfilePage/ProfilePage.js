@@ -2,16 +2,24 @@ import React from "react";
 import s from './ProfilePage.module.css'
 import userPhoto from './../../Stylesheets/user.svg'
 import ProfileForm from "./ProfileForm/ProfileForm";
-import EditProfileForm from "./EditProfileForm/EditProfileForm";
+import PasswordForm from "./PasswordForm/PasswordForm";
+import {showPasswordForm} from "../../redux/profileReducer";
 
 const ProfilePage = (props) => {
+
     const showProfileForm= (e) => {
         e.preventDefault();
-        props.changeShowProfilerForm()
+        props.showProfileForm();
+    }
+
+    const showPasswordForm= (e) => {
+        e.preventDefault();
+        props.showPasswordForm();
     }
 
     return (
         <div className={s.wrapper}>
+
             <div className={s.user}>
                 <img className={s.userPhoto} src={userPhoto} alt="userPhoto"/>
                 <div>
@@ -20,7 +28,8 @@ const ProfilePage = (props) => {
                     </p>
                 </div>
             </div>
-            {props.role === "admin" ?
+
+            {props.role === "admin" &&
                 <div className={s.switches}>
                     <div className={s.switch}>
                         Моя страница
@@ -31,21 +40,29 @@ const ProfilePage = (props) => {
                     <div className={s.switch}>
                         Черный список
                     </div>
-                </div>
-                : null}
+                </div>}
+
             <div className={s.userInformation}>
-                {props.profile.showProfileForm ? <ProfileForm/>  : <EditProfileForm/>}
-                <button
-                    className={s.btn}
-                onClick={
-                    event => showProfileForm(event)
-                }>
-                    {props.profile.showProfileForm ? 'Изменить данные' : 'Сохранить данные'}
-                </button>
-                <button
-                    className={s.btn}>
-                    Сбросить пароль
-                </button>
+                {!props.profile.showPasswordForm ? <ProfileForm profile={props.profile}
+                                                              changeField={props.changeField}/>
+                    : <PasswordForm changeField={props.changeField}/>}
+
+                <div className={s.buttons}>
+                    <button
+                        className={s.btn}
+                        onClick={
+                            event => showProfileForm(event)
+                        }>
+                        {props.profile.showProfileForm ? 'Изменить данные' : 'Сохранить данные'}
+                    </button>
+                    <button
+                        className={s.btn}
+                        onClick={
+                            event => showPasswordForm(event)
+                        }>
+                        {props.profile.showPasswordForm ? 'Подтвердить' : 'Сбросить пароль'}
+                    </button>
+                </div>
             </div>
         </div>
     );

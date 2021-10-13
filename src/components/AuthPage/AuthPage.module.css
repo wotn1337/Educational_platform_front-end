@@ -43,12 +43,19 @@ h1 {
 }
 
 .text {
-    font-stretch: condensed;
+    /*font-stretch: condensed;*/
     font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 1.4em;
     color: #000000;
+    text-align: center;
+}
+
+.caption {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1em;
+    color: rgb(49, 49, 49);
     text-align: center;
 }
 

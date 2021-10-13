@@ -1,68 +1,42 @@
 import React from "react";
 import s from './../ProfilePage.module.css'
+import EmailInput from "../InputFields/EmailInput";
+import NameInput from "../InputFields/NameInput";
+import BirthdayInput from "../InputFields/BirthdayInput";
+import RoleInput from "../InputFields/RoleInput";
+import EditBirthdayInput from "../InputFields/EditBirthdayInput";
 
-const ProfileForm = (props) => {
-	return (
-		<div>
-			<form className={s.form}>
-				<div className="mb-3">
-					<label htmlFor="validationDefaultEmail" className={`form-label ${s.formLabel}`}>E-mail</label>
-					<div className="input-group">
-						<input
-							disabled
-							type="email"
-							className={`${s.formControl}`}
-							placeholder={props.email}
-							id="validationDefaultEmail"
-							onChange={(event) => props.changeField('email', event.target.value)}
-							value={props.email}
-						/>
-					</div>
-					<div className={`invalid-feedback ${s.invalidFeedback}`}>
-						{props.validationMessage}
-					</div>
-				</div>
-				<div className="mb-3">
-					<label htmlFor="validationCustomDate" className={`form-label ${s.formLabel}`}>Дата
-						рождения</label>
-					<div className="input-group">
-						{props.birthday}
-						{/*<input*/}
-						{/*	disabled*/}
-						{/*	type="date"*/}
-						{/*	className={`${s.formControl}`}*/}
-						{/*	id="validationCustomDate"*/}
-						{/*	onChange={(event) => props.changeField('birthday', event.target.value)}*/}
-						{/*	value={props.birthday}*/}
-						{/*	placeholder={props.birthday}*/}
-						{/*/>*/}
-					</div>
-					<div className={`invalid-feedback ${s.invalidFeedback}`}>
-						{props.validationMessage}
-					</div>
-				</div>
-				<div className="mb-3">
-					<label htmlFor="validationDefaultRole" className={`form-label ${s.formLabel}`}>Роль</label>
-					<div className="input-group">
-						<select
-							disabled
-							className={`${s.formControl}`}
-							id="validationDefaultRole"
-							onChange={(event) => props.changeField('role', event.target.value)}
-							value={props.role}
-							placeholder={props.role}
-						>
-							<option value="creator">Учитель</option>
-							<option value="student">Ученик</option>
-						</select>
-					</div>
-					<div className={`invalid-feedback ${s.invalidFeedback}`}>
-						{props.validationMessage}
-					</div>
-				</div>
-			</form>
-		</div>
-	);
-};
+class ProfileForm extends React.Component {
+
+    state = {
+        isEdit: false
+    };
+
+    changeEditMode = () => {
+        if (this.props.profile.showProfileForm === this.state.isEdit) {
+            this.setState({
+                isEdit: !this.props.profile.showProfileForm
+            });
+        }
+    };
+
+    render() {
+        this.changeEditMode();
+        return (
+            <div>
+                <form className={s.form}>
+                    {!this.state.isEdit ? <EmailInput email={this.props.profile.email}/>
+                        : <NameInput name={this.props.profile.name}
+                                     changeField={this.props.changeField}/>}
+                    {!this.state.isEdit ? <BirthdayInput birthday={this.props.profile.birthday}/>
+                        : <EditBirthdayInput birthday={this.props.profile.birthday}
+                                             changeField={this.props.changeField}/>}
+                    {!this.state.isEdit && <RoleInput role={this.props.profile.role}/>}
+                </form>
+            </div>
+        )
+    };
+}
+
 
 export default ProfileForm;

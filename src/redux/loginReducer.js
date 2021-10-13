@@ -15,7 +15,7 @@ const initState = {
 		all: ''
 	},
 	isFetching: false,
-	showResetPasswordForm: false
+	showPasswordForm: false
 };
 
 
@@ -65,7 +65,7 @@ const loginReducer = (state = initState, action) => {
 		case SHOW_RESET_PASSWORD_FORM:
 			return {
 				...state,
-				showResetPasswordForm: !state.showResetPasswordForm
+				showPasswordForm: !state.showPasswordForm
 			}
 
 		default:
@@ -107,7 +107,7 @@ export const toggleLoginFetching = (isFetching) => {
 	};
 };
 
-export const showResetPasswordFormAC = () => {
+export const showResetPasswordForm = () => {
 	return {
 		type: SHOW_RESET_PASSWORD_FORM
 	};
