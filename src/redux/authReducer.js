@@ -4,7 +4,7 @@ import {
 	setLoginValidationMessages,
 	toggleLoginFetching
 } from "./loginReducer";
-import {authAPI} from "../api/api";
+import {adminAPI, authAPI} from "../api/api";
 import {
 	clearRegisterFields,
 	clearRegisterValidationMessages,
@@ -109,7 +109,7 @@ export const register = (name, birthday, role, email, password) => (dispatch) =>
 
 export const logout = (tokenType, token) => (dispatch) => {
 	authAPI.logout(tokenType, token)
-		.then(res => {
+		.then(() => {
 			localStorage.clear();
 			dispatch(logoutAction());
 		})
@@ -120,7 +120,7 @@ export const logout = (tokenType, token) => (dispatch) => {
 export const adminLogin = (email, password) => (dispatch) => {
 	dispatch(clearLoginValidationMessages());
 	dispatch(toggleLoginFetching(true));
-	authAPI.adminLogin(email, password)
+	adminAPI.adminLogin(email, password)
 		.then(res => {
 			dispatch(setAuth(res.data.token, res.data.token_type));
 			dispatch(clearLoginFields());

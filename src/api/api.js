@@ -16,10 +16,6 @@ export const authAPI = {
 				'Authorization': `${tokenType} ${token}`
 			}
 		});
-	},
-
-	adminLogin(email, password) {
-		return instance.post('admin/login', JSON.stringify({email, password}));
 	}
 };
 
@@ -42,6 +38,20 @@ export const profileAPI = {
 
 	updateAvatar(tokenType, token, avatar) {
 		return instance.post('user/me/avatar', JSON.stringify({avatar}), {
+			headers: {
+				'Authorization': `${tokenType} ${token}`
+			}
+		});
+	}
+};
+
+export const adminAPI = {
+	adminLogin(email, password) {
+		return instance.post('admin/login', JSON.stringify({email, password}));
+	},
+
+	getUsers(tokenType, token) {
+		return instance.get('admin/users', {
 			headers: {
 				'Authorization': `${tokenType} ${token}`
 			}

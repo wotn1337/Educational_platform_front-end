@@ -3,8 +3,15 @@ import s from './ProfilePage.module.css'
 import userPhoto from './../../Stylesheets/user.svg'
 import ProfileForm from "./ProfileForm/ProfileForm";
 import PasswordForm from "./PasswordForm/PasswordForm";
+import AllUsers from "../../admin/AdminProfile/AllUsers/AllUsers";
 
 const ProfilePage = (props) => {
+    let flag = false;
+    const allUsers = () => {
+        props.getUsers();
+        flag = true;
+    };
+
     const showProfileForm= (e) => {
         e.preventDefault();
         props.showProfileForm();
@@ -35,18 +42,21 @@ const ProfilePage = (props) => {
                 </div>
             </div>
 
-            {props.role === "admin" &&
+            {props.profile.role === "admin" &&
                 <div className={s.switches}>
                     <div className={s.switch}>
                         Моя страница
                     </div>
-                    <div className={s.switch}>
+                    <div className={s.switch} onClick={allUsers}>
                         Список пользователей
                     </div>
                     <div className={s.switch}>
                         Черный список
                     </div>
-                </div>}
+                </div>
+            }
+            {/*Тестовое поле для вывода всех пользователей у админа в профиле*/}
+            {/*{<AllUsers users={props.users}/>}*/}
 
             <div className={s.userInformation}>
                 {!props.profile.showPasswordForm

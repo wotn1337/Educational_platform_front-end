@@ -7,6 +7,7 @@ import registerReducer from "./registerReducer";
 import navbarReducer from "./navbarReducer";
 import authReducer from "./authReducer";
 import profileReducer from "./profileReducer";
+import adminReducer from "./adminReducer";
 
 
 const reducers = combineReducers({
@@ -16,7 +17,8 @@ const reducers = combineReducers({
 	register: registerReducer,
 	navbar: navbarReducer,
 	auth: authReducer,
-	profile: profileReducer
+	profile: profileReducer,
+	admin: adminReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

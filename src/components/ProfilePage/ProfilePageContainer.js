@@ -10,6 +10,7 @@ import {
 	updateAvatar,
 	updateProfile
 } from "../../redux/profileReducer";
+import {getUsers} from "../../redux/adminReducer";
 
 class ProfilePageContainer extends React.Component {
 	state = {
@@ -45,11 +46,22 @@ class ProfilePageContainer extends React.Component {
 		);
 	}
 
+	getUsers = () => {
+		this.props.getUsers(
+			this.props.tokenType,
+			this.props.token
+		);
+	}
+
 	render() {
 		if (!this.state.isAuth) {
 			return <Redirect to={'/auth'}/>
 		}
-		return <ProfilePage {...this.props} updateProfile={this.updateProfile} updateAvatar={this.updateAvatar}/>;
+		return <ProfilePage {...this.props}
+		                    updateProfile={this.updateProfile}
+		                    updateAvatar={this.updateAvatar}
+		                    getUsers={this.getUsers}
+		/>;
 	}
 }
 
@@ -59,7 +71,8 @@ export const mapStateToProps = (state) => {
 		profile: state.profile,
 		isAuth: state.auth.isAuth,
 		token: state.auth.token,
-		tokenType: state.auth.tokenType
+		tokenType: state.auth.tokenType,
+		users: state.admin.users
 	};
 };
 
@@ -69,5 +82,6 @@ export default connect(mapStateToProps, {
 	getProfile,
 	changeField,
 	updateProfile,
-	updateAvatar
+	updateAvatar,
+	getUsers
 })(ProfilePageContainer);
