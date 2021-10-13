@@ -7,7 +7,6 @@ import RoleInput from "../InputFields/RoleInput";
 import EditBirthdayInput from "../InputFields/EditBirthdayInput";
 
 class ProfileForm extends React.Component {
-
     state = {
         isEdit: false
     };
@@ -31,6 +30,7 @@ class ProfileForm extends React.Component {
                     {!this.state.isEdit ? <BirthdayInput birthday={this.props.profile.birthday}/>
                         : <EditBirthdayInput birthday={this.props.profile.birthday}
                                              changeField={this.props.changeField}/>}
+                    {/* Незачем выводить роль в инпуте. Лучше сделать обычным текстом*/}
                     {!this.state.isEdit && <RoleInput role={this.props.profile.role}/>}
                 </form>
             </div>

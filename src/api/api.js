@@ -30,5 +30,21 @@ export const profileAPI = {
 				'Authorization': `${tokenType} ${token}`
 			}
 		});
+	},
+
+	updateProfile(tokenType, token, name, birthday) {
+		return instance.patch('user/me', JSON.stringify({name, birthday}),{
+			headers: {
+				'Authorization': `${tokenType} ${token}`
+			}
+		});
+	},
+
+	updateAvatar(tokenType, token, avatar) {
+		return instance.post('user/me/avatar', JSON.stringify({avatar}), {
+			headers: {
+				'Authorization': `${tokenType} ${token}`
+			}
+		});
 	}
 };

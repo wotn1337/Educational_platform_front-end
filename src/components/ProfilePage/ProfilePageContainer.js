@@ -2,8 +2,14 @@ import {connect} from 'react-redux';
 import React from "react";
 import ProfilePage from "./ProfilePage";
 import {Redirect} from "react-router-dom";
-import axios from "axios";
-import {changeField, getProfile, showPasswordForm, showProfileForm} from "../../redux/profileReducer";
+import {
+	changeField,
+	getProfile,
+	showPasswordForm,
+	showProfileForm,
+	updateAvatar,
+	updateProfile
+} from "../../redux/profileReducer";
 
 class ProfilePageContainer extends React.Component {
 	state = {
@@ -22,11 +28,28 @@ class ProfilePageContainer extends React.Component {
 		}
 	}
 
+	updateProfile = () => {
+		this.props.updateProfile(
+			this.props.tokenType,
+			this.props.token,
+			this.props.profile.name,
+			this.props.profile.birthday
+		);
+	}
+
+	updateAvatar = () => {
+		this.props.updateProfile(
+			this.props.tokenType,
+			this.props.token,
+			this.props.profile.avatar
+		);
+	}
+
 	render() {
 		if (!this.state.isAuth) {
 			return <Redirect to={'/auth'}/>
 		}
-		return <ProfilePage {...this.props}/>;
+		return <ProfilePage {...this.props} updateProfile={this.updateProfile} updateAvatar={this.updateAvatar}/>;
 	}
 }
 
@@ -44,5 +67,7 @@ export default connect(mapStateToProps, {
 	showProfileForm,
 	showPasswordForm,
 	getProfile,
-	changeField
+	changeField,
+	updateProfile,
+	updateAvatar
 })(ProfilePageContainer);
