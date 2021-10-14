@@ -18,7 +18,7 @@ class ProfilePageContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.getProfile(this.props.tokenType, this.props.token);
+		this.props.getProfile(this.props.token);
 	}
 
 	componentDidUpdate(prevProps, prevState, snapshot) {
@@ -31,7 +31,6 @@ class ProfilePageContainer extends React.Component {
 
 	updateProfile = () => {
 		this.props.updateProfile(
-			this.props.tokenType,
 			this.props.token,
 			this.props.profile.name,
 			this.props.profile.birthday
@@ -40,7 +39,6 @@ class ProfilePageContainer extends React.Component {
 
 	updateAvatar = () => {
 		this.props.updateProfile(
-			this.props.tokenType,
 			this.props.token,
 			this.props.profile.avatar
 		);
@@ -48,7 +46,6 @@ class ProfilePageContainer extends React.Component {
 
 	getUsers = () => {
 		this.props.getUsers(
-			this.props.tokenType,
 			this.props.token
 		);
 	}
@@ -71,7 +68,6 @@ export const mapStateToProps = (state) => {
 		profile: state.profile,
 		isAuth: state.auth.isAuth,
 		token: state.auth.token,
-		tokenType: state.auth.tokenType,
 		users: state.admin.users
 	};
 };

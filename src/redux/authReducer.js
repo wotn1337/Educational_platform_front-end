@@ -17,7 +17,6 @@ const LOGOUT = 'LOGOUT';
 
 const initState = {
 	token: localStorage.getItem('token'),
-	tokenType: localStorage.getItem('tokenType'),
 	isAuth: !!localStorage.getItem('token')
 };
 
@@ -28,7 +27,6 @@ const authReducer = (state = initState, action) => {
 			return {
 				...state,
 				token: action.token,
-				tokenType: action.tokenType,
 				isAuth: true
 			};
 
@@ -36,7 +34,6 @@ const authReducer = (state = initState, action) => {
 			return {
 				...state,
 				token: null,
-				tokenType: null,
 				isAuth: false
 			}
 
@@ -45,13 +42,11 @@ const authReducer = (state = initState, action) => {
 	}
 };
 
-export const setAuth = (token, tokenType) => {
+export const setAuth = (token) => {
 	localStorage.setItem('token', token);
-	localStorage.setItem('tokenType', tokenType);
 	return {
 		type: SET_AUTH,
 		token,
-		tokenType
 	};
 };
 
@@ -66,7 +61,7 @@ export const login = (email, password) => (dispatch) => {
 	dispatch(toggleLoginFetching(true));
 	authAPI.login(email, password)
 		.then(res => {
-			dispatch(setAuth(res.data.token, res.data.token_type));
+			dispatch(setAuth(res.data.token));
 			dispatch(clearLoginFields());
 			dispatch(toggleLoginFetching(false));
 		})
@@ -87,9 +82,7 @@ export const register = (name, birthday, role, email, password) => (dispatch) =>
 	dispatch(toggleRegisterFetching(true));
 	authAPI.register(name, birthday, role, email, password)
 		.then(res => {
-			dispatch(setAuth(res.data.token, res.data.token_type));
-			localStorage.setItem('token', res.data.token);
-			localStorage.setItem('tokenType', res.data.token_type);
+			dispatch(setAuth(res.data.token));
 			dispatch(clearRegisterFields());
 			dispatch(toggleRegisterFetching(false));
 		})
@@ -107,8 +100,8 @@ export const register = (name, birthday, role, email, password) => (dispatch) =>
 		});
 };
 
-export const logout = (tokenType, token) => (dispatch) => {
-	authAPI.logout(tokenType, token)
+export const logout = (token) => (dispatch) => {
+	authAPI.logout(token)
 		.then(() => {
 			localStorage.clear();
 			dispatch(logoutAction());
@@ -122,7 +115,7 @@ export const adminLogin = (email, password) => (dispatch) => {
 	dispatch(toggleLoginFetching(true));
 	adminAPI.adminLogin(email, password)
 		.then(res => {
-			dispatch(setAuth(res.data.token, res.data.token_type));
+			dispatch(setAuth(res.data.token));
 			dispatch(clearLoginFields());
 			dispatch(toggleLoginFetching(false));
 		})

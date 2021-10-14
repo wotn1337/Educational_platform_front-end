@@ -1,0 +1,12 @@
+.allUsersTable {
+    border: 2px solid black;
+    border-collapse: collapse;
+    width: 80%;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.allUsersTable td,
+.allUsersTable th {
+    border: 2px solid black;
+}
