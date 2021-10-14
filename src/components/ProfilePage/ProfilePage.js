@@ -1,27 +1,11 @@
 import React from "react";
 import s from './ProfilePage.module.css'
 import userPhoto from './../../Stylesheets/user.svg'
-import ProfileForm from "./ProfileForm/ProfileForm";
-import PasswordForm from "./PasswordForm/PasswordForm";
-import MainPage from "../MainPage/MainPage";
 import AllUsersContainer from "../../admin/AdminProfile/AllUsers/AllUsersContainer";
+import BlackList from "../../admin/AdminProfile/BlackListUsers/BlackListUsers";
+import MyPage from "./MyPage/MyPage";
 
 const ProfilePage = (props) => {
-    const showProfileForm= (e) => {
-        e.preventDefault();
-        props.showProfileForm();
-    }
-
-    const showPasswordForm= (e) => {
-        e.preventDefault();
-        props.showPasswordForm();
-    }
-
-    const updateProfile = (e) => {
-        e.preventDefault();
-        props.updateProfile();
-        showProfileForm(e);
-    }
 
     return (
         <div className={s.wrapper}>
@@ -50,36 +34,16 @@ const ProfilePage = (props) => {
                     </div>
                 </div>
             }
-            {/*Тестовое поле для вывода всех пользователей у админа в профиле*/}
-            {<AllUsersContainer/>}
 
-            {/*Стоит вынести мою страницу, список пользователей и черный список в разные компоненты*/}
-            {/*<div className={s.userInformation}>*/}
-            {/*    {!props.profile.showPasswordForm*/}
-            {/*        ? <ProfileForm profile={props.profile} changeField={props.changeField} updateProfile={props.updateProfile}/>*/}
-            {/*        : <PasswordForm changeField={props.changeField}/>}*/}
-
-            {/*    <div className={s.buttons}>*/}
-            {/*        {!props.profile.showPasswordForm &&*/}
-            {/*        <button*/}
-            {/*            className={s.btn}*/}
-            {/*            onClick={props.profile.showProfileForm*/}
-            {/*                ? event => showProfileForm(event)*/}
-            {/*                : event => updateProfile(event)*/}
-            {/*            }*/}
-            {/*        >*/}
-            {/*            {props.profile.showProfileForm ? 'Изменить данные' : 'Сохранить данные'}*/}
-            {/*        </button>*/}
-            {/*        }*/}
-            {/*        <button*/}
-            {/*            className={s.btn}*/}
-            {/*            onClick={*/}
-            {/*                event => showPasswordForm(event)*/}
-            {/*            }>*/}
-            {/*            {props.profile.showPasswordForm ? 'Подтвердить' : 'Изменить пароль'}*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
+            <div className={s.userInformation}>
+                <MyPage showProfileForm={props.showProfileForm}
+                        showPasswordForm={props.showPasswordForm}
+                        changeField={props.changeField}
+                        updateProfile={props.updateProfile}
+                        profile={props.profile}/>
+                {/*<AllUsersContainer/>*/}
+                {/*<BlackList/>*/}
+            </div>
         </div>
     );
 };
