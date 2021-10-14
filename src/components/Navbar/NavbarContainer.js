@@ -18,7 +18,7 @@ class NavbarContainer extends React.Component {
 	}
 
 	logout = () => {
-		this.props.logout(this.props.tokenType, this.props.token);
+		this.props.logout(this.props.token);
 	}
 
 	render() {
@@ -30,8 +30,7 @@ class NavbarContainer extends React.Component {
 export const mapStateToProps = (state) => {
 	return {
 		isAuth: state.auth.isAuth,
-		token: state.auth.token,
-		tokenType: state.auth.tokenType
+		token: state.auth.token
 	};
 };
 

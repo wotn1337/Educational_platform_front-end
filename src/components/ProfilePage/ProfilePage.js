@@ -3,15 +3,11 @@ import s from './ProfilePage.module.css'
 import userPhoto from './../../Stylesheets/user.svg'
 import ProfileForm from "./ProfileForm/ProfileForm";
 import PasswordForm from "./PasswordForm/PasswordForm";
-import AllUsers from "../../admin/AdminProfile/AllUsers/AllUsers";
+import MainPage from "../MainPage/MainPage";
+import {Route} from "react-router-dom";
+import AllUsersContainer from "../../admin/AdminProfile/AllUsers/AllUsersContainer";
 
 const ProfilePage = (props) => {
-    let flag = false;
-    const allUsers = () => {
-        props.getUsers();
-        flag = true;
-    };
-
     const showProfileForm= (e) => {
         e.preventDefault();
         props.showProfileForm();
@@ -47,7 +43,7 @@ const ProfilePage = (props) => {
                     <div className={s.switch}>
                         Моя страница
                     </div>
-                    <div className={s.switch} onClick={allUsers}>
+                    <div className={s.switch}>
                         Список пользователей
                     </div>
                     <div className={s.switch}>
@@ -56,32 +52,33 @@ const ProfilePage = (props) => {
                 </div>
             }
             {/*Тестовое поле для вывода всех пользователей у админа в профиле*/}
-            {/*{<AllUsers users={props.users}/>}*/}
+            {<AllUsersContainer/>}
 
-            <div className={s.userInformation}>
-                {!props.profile.showPasswordForm
-                    ? <ProfileForm profile={props.profile} changeField={props.changeField} updateProfile={props.updateProfile}/>
-                    : <PasswordForm changeField={props.changeField}/>}
+            {/*Стоит вынести мою страницу, список пользователей и черный список в разные компоненты*/}
+            {/*<div className={s.userInformation}>*/}
+            {/*    {!props.profile.showPasswordForm*/}
+            {/*        ? <ProfileForm profile={props.profile} changeField={props.changeField} updateProfile={props.updateProfile}/>*/}
+            {/*        : <PasswordForm changeField={props.changeField}/>}*/}
 
-                <div className={s.buttons}>
-                    <button
-                        className={s.btn}
-                        onClick={props.profile.showProfileForm
-                            ? event => showProfileForm(event)
-                            : event => updateProfile(event)
-                        }
-                    >
-                        {props.profile.showProfileForm ? 'Изменить данные' : 'Сохранить данные'}
-                    </button>
-                    <button
-                        className={s.btn}
-                        onClick={
-                            event => showPasswordForm(event)
-                        }>
-                        {props.profile.showPasswordForm ? 'Подтвердить' : 'Сбросить пароль'}
-                    </button>
-                </div>
-            </div>
+            {/*    <div className={s.buttons}>*/}
+            {/*        <button*/}
+            {/*            className={s.btn}*/}
+            {/*            onClick={props.profile.showProfileForm*/}
+            {/*                ? event => showProfileForm(event)*/}
+            {/*                : event => updateProfile(event)*/}
+            {/*            }*/}
+            {/*        >*/}
+            {/*            {props.profile.showProfileForm ? 'Изменить данные' : 'Сохранить данные'}*/}
+            {/*        </button>*/}
+            {/*        <button*/}
+            {/*            className={s.btn}*/}
+            {/*            onClick={*/}
+            {/*                event => showPasswordForm(event)*/}
+            {/*            }>*/}
+            {/*            {props.profile.showPasswordForm ? 'Подтвердить' : 'Сбросить пароль'}*/}
+            {/*        </button>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </div>
     );
 };
