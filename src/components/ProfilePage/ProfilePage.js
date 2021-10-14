@@ -61,6 +61,7 @@ const ProfilePage = (props) => {
             {/*        : <PasswordForm changeField={props.changeField}/>}*/}
 
             {/*    <div className={s.buttons}>*/}
+            {/*        {!props.profile.showPasswordForm &&*/}
             {/*        <button*/}
             {/*            className={s.btn}*/}
             {/*            onClick={props.profile.showProfileForm*/}
@@ -70,12 +71,13 @@ const ProfilePage = (props) => {
             {/*        >*/}
             {/*            {props.profile.showProfileForm ? 'Изменить данные' : 'Сохранить данные'}*/}
             {/*        </button>*/}
+            {/*        }*/}
             {/*        <button*/}
             {/*            className={s.btn}*/}
             {/*            onClick={*/}
             {/*                event => showPasswordForm(event)*/}
             {/*            }>*/}
-            {/*            {props.profile.showPasswordForm ? 'Подтвердить' : 'Сбросить пароль'}*/}
+            {/*            {props.profile.showPasswordForm ? 'Подтвердить' : 'Изменить пароль'}*/}
             {/*        </button>*/}
             {/*    </div>*/}
             {/*</div>*/}
