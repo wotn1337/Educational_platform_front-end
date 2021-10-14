@@ -9,7 +9,7 @@ const ResetPasswordForm = (props) => {
 		<div>
 			<h1 className={s.text}>Введите вашу почту в поле ниже</h1>
 			<EmailInput/>
-			<p className={s.caption}>После запроса вам придет письмо с новым паролем</p>
+			{/*<p className={s.caption}>После запроса вам придет письмо с новым паролем</p>*/}
 			<button
 				className={`${s.btn}`}
 				// onClick={event => }
