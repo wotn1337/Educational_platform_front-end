@@ -4,7 +4,6 @@ import userPhoto from './../../Stylesheets/user.svg'
 import ProfileForm from "./ProfileForm/ProfileForm";
 import PasswordForm from "./PasswordForm/PasswordForm";
 import MainPage from "../MainPage/MainPage";
-import {Route} from "react-router-dom";
 import AllUsersContainer from "../../admin/AdminProfile/AllUsers/AllUsersContainer";
 
 const ProfilePage = (props) => {

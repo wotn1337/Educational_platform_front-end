@@ -30,21 +30,20 @@
     border-bottom: 2px solid transparent;
     background-position: center;
 }
-
-.navLink a.active {
-    color: #F56464;
+.navLink:hover {
     background-image: url('./../../Stylesheets/menu_hover.svg');
     background-repeat: no-repeat;
+    color: #F56464;
     background-size: 130px;
     background-position: center;
 }
-.navLink:hover{
+
+a.active {
+    color: #F56464;
     background-image: url('./../../Stylesheets/menu_hover.svg');
     background-repeat: no-repeat;
-    color: #F56464;
     background-size: 130px;
     background-position: center;
-
 }
 
 @media all and (max-width: 1500px){

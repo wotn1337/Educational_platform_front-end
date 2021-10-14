@@ -15,12 +15,12 @@ const Navbar = (props) => {
 		<div className={s.header}>
 			{/*<img src={logo} alt="logo" height='30'/>*/}
 			<nav className={`${s.nav}`}>
-				<NavLink className={s.navLink} to="/">Главная</NavLink>
-				<NavLink className={`${s.navLink}`} to="/catalog">Каталог</NavLink>
-				{props.isAuth && <NavLink className={`${s.navLink}`} to="/profile">Мой профиль</NavLink>}
+				<NavLink className={s.navLink} exact to="/" activeClassName={s.active}>Главная</NavLink>
+				<NavLink className={`${s.navLink}`} to="/catalog" activeClassName={s.active}>Каталог</NavLink>
+				{props.isAuth && <NavLink className={`${s.navLink}`} to="/profile" activeClassName={s.active}>Мой профиль</NavLink>}
 				{props.isAuth
 					? <NavLink className={`${s.navLink}`} to="/auth" onClick={e => logout(e)}>Выйти</NavLink>
-					: <NavLink className={`${s.navLink}`} to="/auth">Войти</NavLink>
+					: <NavLink className={`${s.navLink}`} to="/auth" activeClassName={s.active}>Войти</NavLink>
 				}
 			</nav>
 		</div>
