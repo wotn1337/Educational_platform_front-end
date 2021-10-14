@@ -26,7 +26,7 @@
     margin: 0 auto;
     padding: 20px;
     border-radius: 17px;
-    width: 40%;
+    width: 60%;
     background-color: white;
 }
 
@@ -51,6 +51,7 @@
     color: black;
     font-family: "Montserrat", sans-serif;
     font-size: 1em;
+    cursor: pointer;
 }
 
 .switch:hover {
@@ -69,12 +70,12 @@
     margin-bottom: 16px;
 }
 
-.formControl{
+.formControl {
     border: 2px solid #757070;
     box-sizing: border-box;
     border-radius: 17px;
     height: 45px;
-    width: 600px;
+    width: 100%;
     margin-bottom: 5px;
     padding: 5px 30px;
     font-family: "Open Sans", sans-serif;
@@ -82,11 +83,11 @@
     color: #7C7676;
 }
 
-.formControl:active{
+.formControl:active {
     border: 2px solid #3d3a3a;
 }
 
-.buttons{
+.buttons {
     display: flex;
     justify-content: center;
 }
@@ -120,45 +121,41 @@
 @media all and (max-width: 1500px){
     .userInformation {
         width: 60%;
-        margin: 3% auto;
     }
     .btn {
         width: 30%;
     }
     .form {
-        margin: 40px 120px;
+        margin: 30px 90px;
     }
 }
 
 @media all and (max-width: 1200px){
     .userInformation {
         width: 65%;
-        margin: 3% auto;
     }
     .btn {
         width: 30%;
     }
     .form {
-        margin: 20px 90px;
+        margin: 20px 70px;
     }
 }
 @media all and (max-width: 992px){
     .userInformation {
         width: 75%;
-        margin: 5% auto;
     }
     .text {
         font-size: 1.2em;
     }
     .form {
-        margin: 25px 70px;
+        margin: 20px 60px;
     }
 }
 
 @media all and (max-width: 768px) {
     .userInformation {
         width: 80%;
-        margin: 5% auto;
         padding: 10px 20px;
     }
     .btn{
@@ -173,7 +170,6 @@
     .userInformation {
         width: 100%;
         padding: 7% 4%;
-        margin: 10% auto;
     }
     .btn{
         width: 30%;

@@ -19,13 +19,13 @@ class App extends React.Component {
     //     }
     // }
 
-    changeBackground = (backgroundImage) => {
-        this.setState({backgroundImage: backgroundImage})
-    }
+    // changeBackground = (backgroundImage) => {
+    //     this.setState({backgroundImage: backgroundImage})
+    // }
 
     render() {
         return (
-            <div className="wrapper" style={{backgroundImage: this.state.backgroundImage}}>
+            <div>
                 <NavbarContainer/>
                 <Route
                     exact path='/'
@@ -33,7 +33,7 @@ class App extends React.Component {
                 />
                 <Route
                     exact path='/auth'
-                    render={() => <AuthPageContainer changeBackground={this.changeBackground.bind(this)}/>}
+                    render={() => <AuthPageContainer/>}
                 />
                 <Route
                     exact path='/catalog'

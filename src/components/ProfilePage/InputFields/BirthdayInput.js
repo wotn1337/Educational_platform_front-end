@@ -7,7 +7,7 @@ const BirthdayInput = (props) => {
 			<label htmlFor="validationDefaultEmail" className={`form-label ${s.formLabel}`}>Дата рождения</label>
 			<div className="input-group">
 				<input
-					disabled
+					disabled={props.edit}
 					type="date"
 					className={`${s.formControl}`}
 					placeholder={props.birthday}
