@@ -97,8 +97,8 @@ export const showPasswordForm = () => {
 	};
 };
 
-export const getProfile = (tokenType, token) => (dispatch) => {
-	profileAPI.getProfile(tokenType, token)
+export const getProfile = (token) => (dispatch) => {
+	profileAPI.getProfile(token)
 		.then(res => {
 			console.log(res);
 			dispatch(setProfile(
@@ -111,8 +111,8 @@ export const getProfile = (tokenType, token) => (dispatch) => {
 		.catch(err => console.log(err.response));
 };
 
-export const updateProfile = (tokenType, token, name, birthday) => (dispatch) => {
-	profileAPI.updateProfile(tokenType, token, name, birthday)
+export const updateProfile = (token, name, birthday) => (dispatch) => {
+	profileAPI.updateProfile(token, name, birthday)
 		.then(res => {
 			console.log(res);
 			dispatch(setProfile(
@@ -125,8 +125,8 @@ export const updateProfile = (tokenType, token, name, birthday) => (dispatch) =>
 		.catch(err => console.log(err.response));
 };
 
-export const updateAvatar = (tokenType, token, avatar) => (dispatch) => {
-	profileAPI.updateAvatar(tokenType, token, avatar)
+export const updateAvatar = (token, avatar) => (dispatch) => {
+	profileAPI.updateAvatar(token, avatar)
 		.then(res => {
 			dispatch(setAvatar(res.data.avatar));
 		})

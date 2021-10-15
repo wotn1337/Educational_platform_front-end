@@ -37,10 +37,12 @@ class ProfilePageContainer extends React.Component {
 		);
 	}
 
-	updateAvatar = () => {
-		this.props.updateProfile(
+	updateAvatar = (avatar) => {
+		const data = new FormData();
+		data.append('file', avatar);
+		this.props.updateAvatar(
 			this.props.token,
-			this.props.profile.avatar
+			data
 		);
 	}
 

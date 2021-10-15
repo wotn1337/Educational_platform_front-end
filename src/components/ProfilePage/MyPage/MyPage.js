@@ -19,9 +19,17 @@ const MyPage = (props) => {
         props.updateProfile();
         showProfileForm(e);
     }
+    let avatar = null;
+    const avatarChange = (e) => {
+        avatar = e.target.files[0];
+    }
 
     return (
         <div>
+            <div>
+                <input type="file" onChange={e => avatarChange(e)}/>
+                <button onClick={() => props.updateAvatar(avatar)}>Change avatar</button>
+            </div>
                 {!props.profile.showPasswordForm
                     ? <ProfileForm profile={props.profile} changeField={props.changeField} updateProfile={props.updateProfile}/>
                     : <PasswordForm changeField={props.changeField}/>}
