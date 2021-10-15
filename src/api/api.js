@@ -1,4 +1,5 @@
 import {instance} from "./instance";
+import axios from "axios";
 const TOKEN_TYPE = 'Bearer';
 
 
@@ -38,9 +39,10 @@ export const profileAPI = {
 	},
 
 	updateAvatar(token, avatar) {
-		return instance.post('user/me/avatar', JSON.stringify({avatar}), {
+		return axios.post('http://localhost/api/user/me/avatar', avatar, {
 			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
+				'Authorization': `${TOKEN_TYPE} ${token}`,
+				'Content-Type': 'image/jpg'
 			}
 		});
 	}

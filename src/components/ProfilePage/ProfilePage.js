@@ -12,8 +12,6 @@ const ProfilePage = (props) => {
 
             <div className={s.user}>
                 <img className={s.userPhoto} src={props.profile.avatar || userPhoto} alt="userPhoto"/>
-                <input type="file" onChange={() => props.changeField('avatar', props.profile.avatar)} value={props.profile.avatar}/>
-                <button onClick={props.updateAvatar}>Change avatar</button>
                 <div>
                     <p className={s.userName}>
                         {props.profile.name}
@@ -40,6 +38,7 @@ const ProfilePage = (props) => {
                         showPasswordForm={props.showPasswordForm}
                         changeField={props.changeField}
                         updateProfile={props.updateProfile}
+                        updateAvatar={props.updateAvatar}
                         profile={props.profile}/>
                 {/*<AllUsersContainer/>*/}
                 {/*<BlackList/>*/}
