@@ -1,58 +1,65 @@
 import React from 'react';
-import NameInput from "../inputFieldComponents/NameInput";
-import BirthdayInput from "../inputFieldComponents/BirthdayInput";
-import EmailInput from "../inputFieldComponents/EmailInput";
-import RoleInput from "../inputFieldComponents/RoleInput";
-import PasswordInput from "../inputFieldComponents/PasswordInput";
+import {Form, Formik, Field} from "formik";
 import s from "./../AuthPage.module.css";
 
-const Register = (props) => {
-    const register = (e) => {
-        e.preventDefault();
-		props.register();
-    };
+const RegisterForm = (props) => {
+	return (
+		<Formik
+			initialValues={{
+				name: '',
+				birthday: new Date(),
+				role: 'student',
+				email: '',
+				password: ''
+			}}
+			onSubmit={(values, {setStatus}) => props.register(values, setStatus)}
+		>
+			{({status}) => (
+				<Form>
+					<div className={s.form}>
+						<h1 className={s.text}>Введите свои данные</h1>
+						<div className={'mb-3'}>
+							<Field type={'text'} name={'name'} className={`form-control ${s.formControl}`}
+							       placeholder={'ФИО'}/>
+							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.name}</div>
+						</div>
+						<div className={'mb-3'}>
+							<label htmlFor={'birthday'} className={`form-label ${s.formLabel}`}>Дата рождения</label>
+							<Field id={'birthday'} type={'date'} name={'birthday'} className={`form-control ${s.formControl}`}/>
+							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.birthday}</div>
+						</div>
+						<div className={'mb-3'}>
+							<label htmlFor={'role'} className={`form-label ${s.formLabel}`}>Роль</label>
+							<Field id={'role'} type={'select'} component={'select'} name={'role'} className={`form-control ${s.formControl}`}>
+								<option value="student">Ученик</option>
+								<option value="creator">Учитель</option>
+							</Field>
+							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.role}</div>
+						</div>
+						<div className={'mb-3'}>
+							<Field type={'email'} name={'email'} className={`form-control ${s.formControl}`}
+							       placeholder={'Email'}/>
+							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.email}</div>
+						</div>
+						<div className={'mb-3'}>
+							<Field type={'password'} name={'password'} className={`form-control ${s.formControl}`}
+							       placeholder={'Пароль'}/>
+							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.password}</div>
+						</div>
+					</div>
+					<button type={'submit'} disabled={props.isFetching} className={s.btn}>Зарегистрироваться</button>
+				</Form>
+			)}
+		</Formik>
+	);
+}
 
-    return (
-        <div className={`container-sm ${s.form}`}>
-			<div>
-				<form className={s.form}>
-					<h1 className={s.text}>Введите свои данные</h1>
-					<NameInput
-						changeField={props.changeField}
-						name={props.name}
-						validationMessage={props.validationMessages.name}
-					/>
-					<BirthdayInput
-						changeField={props.changeField}
-						birthday={props.birthday}
-						validationMessage={props.validationMessages.birthday}
-					/>
-					<RoleInput
-						changeField={props.changeField}
-						role={props.role}
-						validationMessage={props.validationMessages.role}
-					/>
-					<EmailInput
-						changeField={props.changeField}
-						email={props.email}
-						validationMessage={props.validationMessages.email}
-					/>
-					<PasswordInput
-						changeField={props.changeField}
-						password={props.password}
-						validationMessage={props.validationMessages.password}
-					/>
-				</form>
-			</div>
-            <button
-                onClick={event => register(event)}
-                className={`${s.btn}`}
-                disabled={props.isFetching}
-            >
-                Зарегистрироваться
-            </button>
-        </div>
-    );
+const Register = (props) => {
+	return (
+		<div className={`container-sm ${s.form}`}>
+			<RegisterForm register={props.register} isFetching={props.isFetching}/>
+		</div>
+	);
 }
 
 export default Register;

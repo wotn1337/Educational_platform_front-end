@@ -1,58 +1,22 @@
 import React from "react";
 import {connect} from 'react-redux';
-import {
-	changeField, showResetPasswordForm
-} from "../../../redux/loginReducer";
 import Login from "./Login";
-import {login} from "../../../redux/authReducer";
-import {Redirect} from "react-router-dom";
+import {login, toggleResetPasswordForm} from "../../../redux/authReducer";
 
 class LoginContainer extends React.Component {
-	state = {
-		isAuth: this.props.isAuth,
-		isFetching: this.props.isFetching
-	}
-
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		if (prevProps.isAuth !== this.props.isAuth) {
-			this.setState({
-				isAuth: this.props.isAuth
-			});
-		}
-		if (prevProps.isFetching !== this.props.isFetching) {
-			this.setState({
-				isFetching: this.props.isFetching
-			});
-		}
-	}
-
-	login = () => {
-		this.props.login(this.props.email, this.props.password);
-	}
-
 	render() {
-		if (this.state.isAuth) {
-			return <Redirect to={'/'}/>
-		}
-
-		return <Login {...this.props} login={this.login} isFetching={this.state.isFetching}/>;
+		return <Login {...this.props}/>;
 	}
 }
 
-
 const mapStateToProps = (state) => {
 	return {
-		email: state.login.email,
-		password: state.login.password,
-		isAuth: state.auth.isAuth,
-		validationMessages: state.login.validationMessages,
-		isFetching: state.login.isFetching,
-		showPasswordForm: state.login.showPasswordForm
+		isFetching: state.auth.isFetching,
+		showResetPasswordForm: state.auth.showResetPasswordForm
 	};
 };
 
 export default connect(mapStateToProps, {
-	showResetPasswordForm,
-	changeField,
+	toggleResetPasswordForm,
 	login
 })(LoginContainer);

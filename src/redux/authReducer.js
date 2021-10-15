@@ -1,23 +1,17 @@
-import {
-	clearLoginFields,
-	clearLoginValidationMessages,
-	setLoginValidationMessages,
-	toggleLoginFetching
-} from "./loginReducer";
 import {adminAPI, authAPI} from "../api/api";
-import {
-	clearRegisterFields,
-	clearRegisterValidationMessages,
-	setRegisterValidationMessages,
-	toggleRegisterFetching
-} from "./registerReducer";
+
 
 const SET_AUTH = 'SET_AUTH';
 const LOGOUT = 'LOGOUT';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const TOGGLE_RESET_PASSWORD_FORM = 'SHOW_RESET_PASSWORD_FORM';
+
 
 const initState = {
 	token: localStorage.getItem('token'),
-	isAuth: !!localStorage.getItem('token')
+	isAuth: !!localStorage.getItem('token'),
+	isFetching: false,
+	showResetPasswordForm: false
 };
 
 
@@ -37,12 +31,37 @@ const authReducer = (state = initState, action) => {
 				isAuth: false
 			}
 
+		case TOGGLE_IS_FETCHING:
+			return {
+				...state,
+				isFetching: action.isFetching
+			};
+
+		case TOGGLE_RESET_PASSWORD_FORM:
+			return {
+				...state,
+				showResetPasswordForm: !state.showResetPasswordForm
+			}
+
 		default:
 			return state;
 	}
 };
 
-export const setAuth = (token) => {
+const toggleIsFetching = (isFetching) => {
+	return {
+		type: TOGGLE_IS_FETCHING,
+		isFetching
+	};
+};
+
+export const toggleResetPasswordForm = () => {
+	return {
+		type: TOGGLE_RESET_PASSWORD_FORM
+	};
+};
+
+const setAuth = (token) => {
 	localStorage.setItem('token', token);
 	return {
 		type: SET_AUTH,
@@ -56,47 +75,43 @@ export const logoutAction = () => {
 	};
 };
 
-export const login = (email, password) => (dispatch) => {
-	dispatch(clearLoginValidationMessages());
-	dispatch(toggleLoginFetching(true));
-	authAPI.login(email, password)
+export const login = (data, setStatus) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	authAPI.login(data)
 		.then(res => {
 			dispatch(setAuth(res.data.token));
-			dispatch(clearLoginFields());
-			dispatch(toggleLoginFetching(false));
+			dispatch(toggleIsFetching(false));
 		})
 		.catch(err => {
 			if (err.response.status === 422 || err.response.status === 401) {
-				dispatch(setLoginValidationMessages({
+				setStatus({
 					email: err.response.data.errors.email,
 					password: err.response.data.errors.password,
-					all: !(err.response.status === 422) && err.response.data.message
-				}));
+					summary: !(err.response.status === 422) && err.response.data.message
+				});
 			}
-			dispatch(toggleLoginFetching(false));
+			dispatch(toggleIsFetching(false));
 		});
 };
 
-export const register = (name, birthday, role, email, password) => (dispatch) => {
-	dispatch(clearRegisterValidationMessages());
-	dispatch(toggleRegisterFetching(true));
-	authAPI.register(name, birthday, role, email, password)
+export const register = (data, setStatus) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	authAPI.register(data)
 		.then(res => {
 			dispatch(setAuth(res.data.token));
-			dispatch(clearRegisterFields());
-			dispatch(toggleRegisterFetching(false));
+			dispatch(toggleIsFetching(false));
 		})
 		.catch(err => {
 			if (err.response.status === 422) {
-				dispatch(setRegisterValidationMessages({
+				setStatus({
 					name: err.response.data.errors.name,
-					date: err.response.data.errors.date,
+					birthday: err.response.data.errors.date,
 					role: err.response.data.errors.role,
 					email: err.response.data.errors.email,
 					password: err.response.data.errors.password,
-				}));
+				});
 			}
-			dispatch(toggleRegisterFetching(false));
+			dispatch(toggleIsFetching(false));
 		});
 };
 
@@ -110,25 +125,25 @@ export const logout = (token) => (dispatch) => {
 };
 
 
-export const adminLogin = (email, password) => (dispatch) => {
-	dispatch(clearLoginValidationMessages());
-	dispatch(toggleLoginFetching(true));
-	adminAPI.adminLogin(email, password)
-		.then(res => {
-			dispatch(setAuth(res.data.token));
-			dispatch(clearLoginFields());
-			dispatch(toggleLoginFetching(false));
-		})
-		.catch(err => {
-			if (err.response.status === 422 || err.response.status === 401) {
-				dispatch(setLoginValidationMessages({
-					email: err.response.data.errors.email,
-					password: err.response.data.errors.password,
-					all: !(err.response.status === 422) && err.response.data.message
-				}));
-			}
-			dispatch(toggleLoginFetching(false));
-		});
-};
+// export const adminLogin = (email, password) => (dispatch) => {
+// 	dispatch(clearLoginValidationMessages());
+// 	dispatch(toggleLoginFetching(true));
+// 	adminAPI.adminLogin(email, password)
+// 		.then(res => {
+// 			dispatch(setAuth(res.data.token));
+// 			dispatch(clearLoginFields());
+// 			dispatch(toggleLoginFetching(false));
+// 		})
+// 		.catch(err => {
+// 			if (err.response.status === 422 || err.response.status === 401) {
+// 				dispatch(setLoginValidationMessages({
+// 					email: err.response.data.errors.email,
+// 					password: err.response.data.errors.password,
+// 					all: !(err.response.status === 422) && err.response.data.message
+// 				}));
+// 			}
+// 			dispatch(toggleLoginFetching(false));
+// 		});
+// };
 
 export default authReducer;

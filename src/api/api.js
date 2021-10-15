@@ -4,12 +4,12 @@ const TOKEN_TYPE = 'Bearer';
 
 
 export const authAPI = {
-	login(email, password) {
-		return instance.post('login', JSON.stringify({email, password}));
+	login(data) {
+		return instance.post('login', JSON.stringify(data));
 	},
 
-	register(name, birthday, role, email, password) {
-		return instance.post('register', JSON.stringify({name, birthday, role, email, password}));
+	register(data) {
+		return instance.post('register', JSON.stringify(data));
 	},
 
 	logout(token) {
