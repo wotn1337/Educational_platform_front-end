@@ -90,6 +90,40 @@ h1 {
     background-color: gray;
 }
 
+
+/*Стили инпутов*/
+.formControl {
+    padding: 0 15px;
+    margin: 0 auto;
+    color: #5a5a5a;
+    border: 3px solid rgba(164, 164, 164, 0.24);
+    border-radius: 27px;
+    height: 3.6em;
+    width: 95%;
+    font-size: 1em;
+}
+
+.formControl:focus{
+    outline: 0;
+    border-color: lightgray;
+    box-shadow: 0 0 0 0.2rem rgba(193, 193, 193, 0.33);
+    transition: rgba(164, 164, 164, 0.24) .15s;
+}
+
+.formLabel {
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.invalidFeedback {
+    display: block;
+    text-align: center;
+}
+/*----------------------*/
+
+
+
 @media all and (max-width: 1500px){
     .container_md {
         width: 45%;

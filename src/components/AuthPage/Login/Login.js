@@ -5,33 +5,22 @@ import ResetPasswordForm from "./ResetPasswordForm/ResetPasswordForm";
 
 
 const Login = (props) => {
-	const login = (e) => {
-		e.preventDefault();
-		props.login();
-	}
-
 	const showResetForm = (e) => {
 		e.preventDefault();
-		props.showResetPasswordForm();
+		props.toggleResetPasswordForm();
 	}
 
 	return (
 		<div>
-			{!props.showPasswordForm ? <LoginForm
-					login={props.login}
-					validationMessages={props.validationMessages}
-					changeField={props.changeField}
-					email={props.email}
-					password={props.password}
-					isFetching={props.isFetching}
-				/> :
-				<ResetPasswordForm/>}
+			{!props.showResetPasswordForm
+				? <LoginForm login={props.login} isFetching={props.isFetching}/>
+				: <ResetPasswordForm isFetching={props.isFetching}/>}
 			<a
 				href="#"
 				className={`${s.resetLink}`}
 				onClick={event => showResetForm(event)}
 			>
-				{props.showPasswordForm ? 'Войти' : 'Забыли пароль?'}
+				{props.showResetPasswordForm ? 'Войти' : 'Забыли пароль?'}
 			</a>
 		</div>
 	);
