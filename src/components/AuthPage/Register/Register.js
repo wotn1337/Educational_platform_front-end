@@ -19,8 +19,9 @@ const RegisterForm = (props) => {
 					<div className={s.form}>
 						<h1 className={s.text}>Введите свои данные</h1>
 						<div className={'mb-3'}>
+							<label htmlFor="validationCustomUsername" className={`form-label ${s.formLabel}`}>Имя пользователя</label>
 							<Field type={'text'} name={'name'} className={`form-control ${s.formControl}`}
-							       placeholder={'ФИО'}/>
+							       placeholder={'Фамилия Имя'}/>
 							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.name}</div>
 						</div>
 						<div className={'mb-3'}>

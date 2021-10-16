@@ -26,10 +26,6 @@ const MyPage = (props) => {
 
     return (
         <div>
-            <div>
-                <input type="file" onChange={e => avatarChange(e)}/>
-                <button onClick={() => props.updateAvatar(avatar)}>Change avatar</button>
-            </div>
                 {!props.profile.showPasswordForm
                     ? <ProfileForm profile={props.profile} changeField={props.changeField} updateProfile={props.updateProfile}/>
                     : <PasswordForm changeField={props.changeField}/>}
@@ -53,6 +49,9 @@ const MyPage = (props) => {
                         }>
                         {props.profile.showPasswordForm ? 'Подтвердить' : 'Изменить пароль'}
                     </button>
+                    <input type="file" onChange={e => avatarChange(e)}/>
+                    <button
+                            onClick={() => props.updateAvatar(avatar)}>Change avatar</button>
                 </div>
         </div>
     );
