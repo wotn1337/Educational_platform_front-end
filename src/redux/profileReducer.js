@@ -4,6 +4,7 @@ const SHOW_EDIT_FORM = 'SHOW_EDIT_FORM';
 const SET_PROFILE = 'SET_PROFILE';
 const SHOW_PASSWORD_FORM = 'SHOW_PASSWORD_FORM';
 const SET_AVATAR = 'SET_AVATAR';
+const TOGGLE_SWITCHES = 'TOGGLE_SWITCHES';
 
 const initState = {
 	showProfileForm: true,
@@ -14,7 +15,10 @@ const initState = {
 	id: null,
 	role: null,
 	password: null,
-	avatar: null
+	avatar: null,
+	isMyPage: true,
+	isBlackListUsers: false,
+	isAllUsers: false
 };
 
 
@@ -55,10 +59,36 @@ const profileReducer = (state = initState, action) => {
 				avatar: action.avatar
 			};
 
+		case TOGGLE_SWITCHES:
+			switch (action.tab) {
+				case 'myPage':
+					return {
+						...state,
+						isMyPage: true,
+						isAllUsers: false,
+						isBlackListUsers: false
+					};
+				case 'allUsers':
+					return {
+						...state,
+						isMyPage: false,
+						isAllUsers: true,
+						isBlackListUsers: false
+					};
+				case 'blackListUsers':
+					return {
+						...state,
+						isMyPage: false,
+						isAllUsers: false,
+						isBlackListUsers: true
+					};
+				default:
+					return state;
+			}
 		default:
 			return state;
 	}
-};
+}
 
 export const changeField = (field, newValue) => {
 	return {
@@ -94,6 +124,13 @@ export const showProfileForm = () => {
 export const showPasswordForm = () => {
 	return {
 		type: SHOW_PASSWORD_FORM
+	};
+};
+
+export const toggleSwitches = (tab) => {
+	return {
+		type: TOGGLE_SWITCHES,
+		tab
 	};
 };
 

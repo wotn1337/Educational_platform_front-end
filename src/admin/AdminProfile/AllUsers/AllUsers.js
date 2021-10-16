@@ -22,7 +22,7 @@ const AllUsers = (props) => {
 
 	return (
 		<div style={{backgroundColor: 'white'}}>
-			<table className={s.allUsersTable}>
+			<table className="table table-striped">
 				<thead>
 				<tr>
 					<th>Имя</th>

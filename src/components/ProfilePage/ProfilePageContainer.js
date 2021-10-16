@@ -6,7 +6,7 @@ import {
 	changeField,
 	getProfile,
 	showPasswordForm,
-	showProfileForm,
+	showProfileForm, toggleSwitches,
 	updateAvatar,
 	updateProfile
 } from "../../redux/profileReducer";
@@ -14,7 +14,7 @@ import {getUsers} from "../../redux/adminReducer";
 
 class ProfilePageContainer extends React.Component {
 	state = {
-		isAuth: this.props.isAuth
+		isAuth: this.props,
 	}
 
 	componentDidMount() {
@@ -28,6 +28,7 @@ class ProfilePageContainer extends React.Component {
 			});
 		}
 	}
+
 
 	updateProfile = () => {
 		this.props.updateProfile(
@@ -70,7 +71,10 @@ export const mapStateToProps = (state) => {
 		profile: state.profile,
 		isAuth: state.auth.isAuth,
 		token: state.auth.token,
-		users: state.admin.users
+		users: state.admin.users,
+		isMyPage: state.profile.isMyPage,
+		isBlackListUsers: state.profile.isBlackListUsers,
+		isAllUsers: state.profile.isAllUsers
 	};
 };
 
@@ -81,5 +85,6 @@ export default connect(mapStateToProps, {
 	changeField,
 	updateProfile,
 	updateAvatar,
-	getUsers
+	getUsers,
+	toggleSwitches
 })(ProfilePageContainer);

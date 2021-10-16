@@ -53,7 +53,9 @@
     font-size: 1em;
     cursor: pointer;
 }
-
+.switchActive{
+    background-color: white;
+}
 .switch:hover {
     background-color: white;
 }
@@ -89,6 +91,7 @@
 
 .buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
