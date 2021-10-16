@@ -1,12 +1,59 @@
-.allUsersTable {
-    border: 2px solid black;
-    border-collapse: collapse;
-    width: 80%;
+.table {
+    width: 90%;
     margin: 20px auto;
     box-sizing: border-box;
 }
 
-.allUsersTable td,
-.allUsersTable th {
-    border: 2px solid black;
+.btn {
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    width: 10px;
+    background-size: contain;
+    border: none;
+    margin: 0 5px;
+}
+
+.btnSubmit {
+    background-image: url("../../../Stylesheets/check.svg");
+}
+
+.btnBlock {
+    background-image: url("../../../Stylesheets/user-block.svg");
+
+}
+.btnEdit {
+    background-image: url("../../../Stylesheets/edit.svg");
+}
+
+.formControl {
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: 35px;
+    width: 100%;
+    margin: 5px 5px;
+    padding: 5px 30px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 1em;
+    color: #7C7676;
+}
+
+.form {
+    width: 50%;
+    margin: 20px 0;
+}
+
+.btn2 {
+    display: inline-block;
+    margin: 10px 0;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px;
+    width: 100%;
+    background: #F18A93;
+    border-radius: 10px;
+    border-color: transparent;
+    color: #000000;
 }

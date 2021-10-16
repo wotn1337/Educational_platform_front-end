@@ -41,8 +41,7 @@ export const profileAPI = {
 	updateAvatar(token, avatar) {
 		return axios.post('http://localhost/api/user/me/avatar', avatar, {
 			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`,
-				'Content-Type': 'image/jpg'
+				'Authorization': `${TOKEN_TYPE} ${token}`
 			}
 		});
 	}
