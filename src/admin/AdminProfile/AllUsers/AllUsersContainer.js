@@ -28,7 +28,10 @@ const mapStateToProps = (state) => ({
 	currentPage: state.admin.allUsers.currentPage,
 	pageSize: state.admin.allUsers.pageSize,
 	isFetching: state.admin.allUsers.isFetching,
-	token: state.auth.token
+	token: state.auth.token,
+	prevPage: state.admin.allUsers.prevPage,
+	nextPage: state.admin.allUsers.nextPage,
+	lastPage: state.admin.allUsers.lastPage
 });
 
 export default connect(mapStateToProps, {

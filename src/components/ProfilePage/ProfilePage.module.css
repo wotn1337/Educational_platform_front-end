@@ -3,12 +3,11 @@
 }
 
 .user {
-    width: 20%;
     margin: 60px auto;
 }
 
 .userPhoto {
-    filter: invert(100%);
+    /*filter: invert(100%);*/
     display: block;
     width: 127px;
     margin: 0 auto;

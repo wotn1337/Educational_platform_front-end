@@ -19,6 +19,7 @@ const MyPage = (props) => {
         props.updateProfile();
         showProfileForm(e);
     }
+
     let avatar = null;
     const avatarChange = (e) => {
         avatar = e.target.files[0];
@@ -50,8 +51,8 @@ const MyPage = (props) => {
                         {props.profile.showPasswordForm ? 'Подтвердить' : 'Изменить пароль'}
                     </button>
                     <input type="file" onChange={e => avatarChange(e)}/>
-                    <button
-                            onClick={() => props.updateAvatar(avatar)}>Change avatar</button>
+                    <button onClick={() => props.updateAvatar(avatar)}>Сменить аватар</button>
+                    <button onClick={() => props.deleteAvatar()}>Удалить аватар</button>
                 </div>
         </div>
     );
