@@ -93,7 +93,7 @@ export const registerNewUser = (token, newUserData, setStatus) => (dispatch) => 
 			setStatus({summary: res.data.message});
 		})
 		.catch(err => {
-			if (err.code === 500) {
+			if (err.response.status === 500) {
 				setStatus({summary: 'Пользователь успешно создан, но ошибка 500 из-за email-рассылки'});
 			} else {
 				setStatus({
