@@ -1,80 +1,56 @@
-import React from "react";
-import {Form, Formik, Field} from "formik";
+import React, {useState} from "react";
 import s from './AllUsers.module.css';
 import User from "./Users/User";
+import Pagination from "../../../components/Pagination/Pagination";
+import NewUserForm from "./NewUserForm/NewUserForm";
 
 
 const AllUsers = (props) => {
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-    const pages = [];
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(<div onClick={() => props.changePage(i)} key={i} style={{cursor: 'pointer'}}>{i}</div>);
-    }
+	const [creatingNewUser, setCreatingNewUser] = useState(false);
+	const users = props.users.map(user => {
+		return (
+			<User key={user.id} user={user}/>
+		);
+	});
 
-    const users = props.users.map(user => {
-        return (
-            <User user={user}/>
-        );
-    });
-
-    return (
-        <div style={{backgroundColor: 'white'}}>
-            <table className={`table ${s.table}`}>
-                <thead>
-                <tr>
-                    <th>Имя</th>
-                    <th>Email</th>
-                    <th>Роль</th>
-                </tr>
-                </thead>
-                <tbody>
-                {users}
-                </tbody>
-            </table>
-            <div style={{display: 'flex', justifyContent: 'space-between'}}>{pages}</div>
-            <Formik
-                initialValues={{
-                    name: '',
-                    email: '',
-                    password: '',
-                    role: 'admin'
-                }}
-                onSubmit={(values, {setStatus}) => props.registerNewUser(values, setStatus)}
-            >
-                {({status}) => (
-                    <div className={s.form}>
-                        <Form>
-                            <div>
-                                <Field component={'input'} type={'text'} name={'name'} placeholder={'Имя'}
-                                       className={`${s.formControl}`}/>
-                                <div>{status && status.name}</div>
-                            </div>
-                            <div>
-                                <Field component={'input'} type={'email'} name={'email'} placeholder={'Email'}
-                                       className={` ${s.formControl}`}/>
-                                <div>{status && status.email}</div>
-                            </div>
-                            <div>
-                                <Field component={'input'} type={'password'} name={'password'} placeholder={'Пароль'}
-                                       className={`${s.formControl}`}/>
-                                <div>{status && status.password}</div>
-                            </div>
-                            <div>
-                                <Field component={'select'} name={'role'}
-                                       className={`${s.formControl}`}>
-                                    <option value="admin">Админ</option>
-                                    <option value="creator">Учитель</option>
-                                    <option value="student">Ученик</option>
-                                </Field>
-                            </div>
-                            <div>{status && status.summary}</div>
-                            <button className={`${s.btn2}`} type={'submit'}>Добавить нового пользователя</button>
-                        </Form>
-                    </div>
-                )}
-            </Formik>
-        </div>
-    );
+	return (
+		<div style={{backgroundColor: 'white'}}>
+			<table className={`table ${s.table}`}>
+				<thead>
+				<tr>
+					<th>Имя</th>
+					<th>Email</th>
+					<th>Роль</th>
+				</tr>
+				</thead>
+				<tbody>
+				{users}
+				</tbody>
+			</table>
+			<div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start'}}>
+				<Pagination
+					handler={props.changePage}
+					currentPage={props.currentPage}
+					prevPage={props.prevPage}
+					lastPage={props.lastPage}
+					nextPage={props.nextPage}
+				/>
+				{!creatingNewUser
+					? <button
+						className={`${s.btn2}`}
+						onClick={() => setCreatingNewUser(true)}
+					>
+						Добавить нового пользователя
+					</button>
+					: <NewUserForm
+						registerNewUser={props.registerNewUser}
+						setCreatingNewUser={setCreatingNewUser}
+						isFetching={props.isFetching}
+					/>
+				}
+			</div>
+		</div>
+	);
 }
 
 export default AllUsers;

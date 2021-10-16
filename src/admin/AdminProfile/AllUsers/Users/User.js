@@ -17,7 +17,7 @@ class User extends React.Component {
 
     onChangeInput = (type, data) => {
         this.setState({
-            type: data
+            [type]: data
         })
     }
 
@@ -25,39 +25,30 @@ class User extends React.Component {
         return (
             <tr key={this.props.user.id}>
                 <td>
-                    {!this.state.isEdit ? this.state.name :
-                        <input type='text' onChange={event => {
-                            this.onChangeInput('name', event.target.value)
-                        }}/>}
+                    {!this.state.isEdit ? this.props.user.name :
+                        <input
+                            type='text'
+                            onChange={event => this.onChangeInput('name', event.target.value)}
+                            value={this.state.name}
+                        />}
                 </td>
+                <td>{this.props.user.email}</td>
                 <td>
-                    {!this.state.isEdit ? this.state.email :
-                        <input type='email' onChange={event => {
-                            this.onChangeInput('email', event.target.value)
-                        }}/>}
-                </td>
-                <td>
-                    {!this.state.isEdit ? this.state.role :
-                        <select name="role" id="role"
-                                onChange={event => {
-                                    this.onChangeInput('role', event.target.value)
-                                }}>
+                    {!this.state.isEdit ? this.props.user.role :
+                        <select
+                            name="role"
+                            onChange={event => this.onChangeInput('role', event.target.value)}
+                            value={this.state.role}
+                        >
                             <option value="student">Ученик</option>
-                            <option value="teacher">Учитель</option>
+                            <option value="creator">Учитель</option>
                             <option value="admin">Админ</option>
                         </select>}
                 </td>
                 <button className={`${s.btn} ${s.btnBlock}`}> </button>
-                {!this.state.isEdit ? <button
-                        onClick={event => {
-                            event.preventDefault();
-                            this.toggleEditMode()
-                        }} className={`${s.btn} ${s.btnEdit}`}> </button>
-                    : <button onClick={event => {
-                        event.preventDefault();
-                        this.toggleEditMode()
-                    }}
-                              className={`${s.btn} ${s.btnSubmit}`}> </button>
+                {!this.state.isEdit
+                    ? <button onClick={this.toggleEditMode} className={`${s.btn} ${s.btnEdit}`}> </button>
+                    : <button onClick={this.toggleEditMode} className={`${s.btn} ${s.btnSubmit}`}> </button>
                 }
             </tr>
         )

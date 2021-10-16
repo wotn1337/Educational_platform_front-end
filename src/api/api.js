@@ -44,6 +44,14 @@ export const profileAPI = {
 				'Authorization': `${TOKEN_TYPE} ${token}`
 			}
 		});
+	},
+
+	deleteAvatar(token) {
+		return instance.delete('user/me/avatar', {
+			headers: {
+				'Authorization': `${TOKEN_TYPE} ${token}`
+			}
+		});
 	}
 };
 

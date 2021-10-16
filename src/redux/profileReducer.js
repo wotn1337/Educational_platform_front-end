@@ -51,7 +51,8 @@ const profileReducer = (state = initState, action) => {
                 birthday: `${date[2]}-${date[1]}-${date[0]}`,
                 email: action.email,
                 id: action.id,
-                role: action.role
+                role: action.role,
+                avatar: action.avatar
             };
 
         case SET_AVATAR:
@@ -99,14 +100,15 @@ export const changeField = (field, newValue) => {
     }
 };
 
-const setProfile = (name, birthday, email, id, role) => {
+const setProfile = (name, birthday, email, id, role, avatar) => {
     return {
         type: SET_PROFILE,
         name,
         birthday,
         email,
         id,
-        role
+        role,
+        avatar
     };
 };
 
@@ -144,7 +146,9 @@ export const getProfile = (token) => (dispatch) => {
                 res.data.user.birthday,
                 res.data.user.email,
                 res.data.user.id,
-                res.data.user.role));
+                res.data.user.role,
+                res.data.user.avatar
+            ));
         })
         .catch(err => console.log(err.response));
 };
@@ -158,7 +162,8 @@ export const updateProfile = (token, name, birthday) => (dispatch) => {
                 res.data.user.birthday,
                 res.data.user.email,
                 res.data.user.id,
-                res.data.user.role));
+                res.data.user.role
+            ));
         })
         .catch(err => console.log(err.response));
 };
@@ -168,6 +173,16 @@ export const updateAvatar = (token, avatar) => (dispatch) => {
         .then(res => {
             dispatch(setAvatar(res.data.avatar));
         })
+        .catch(err => console.log(err.response));
+};
+
+export const deleteAvatar = (token) => (dispatch) => {
+    profileAPI.deleteAvatar(token)
+        .then(res => {
+            console.log(res);
+            dispatch(setAvatar(null));
+        })
+        .catch(err => console.log(err.response));
 };
 
 export default profileReducer;

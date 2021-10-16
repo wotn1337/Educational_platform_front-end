@@ -11,6 +11,9 @@ const initState = {
 		pageSize: 5,
 		totalUsersCount: 0,
 		currentPage: 1,
+		prevPage: 1,
+		nextPage: 1,
+		lastPage: 1,
 		isFetching: false
 	}
 };
@@ -19,12 +22,14 @@ const initState = {
 const adminReducer = (state = initState, action) => {
 	switch (action.type) {
 		case SET_USERS:
+			const lastPage = Math.ceil(action.totalUsersCount / state.allUsers.pageSize);
 			return {
 				...state,
 				allUsers: {
 					...state.allUsers,
 					users: action.users,
-					totalUsersCount: action.totalUsersCount
+					totalUsersCount: action.totalUsersCount,
+					lastPage: lastPage
 				}
 			};
 
@@ -38,11 +43,15 @@ const adminReducer = (state = initState, action) => {
 			};
 
 		case SET_CURRENT_PAGE:
+			const prevPage = action.page === 1 ? 1 : action.page - 1;
+			const nextPage = action.page === state.allUsers.lastPage ? state.allUsers.lastPage : action.page + 1;
 			return {
 				...state,
 				allUsers: {
 					...state.allUsers,
-					currentPage: action.page
+					currentPage: action.page,
+					nextPage: nextPage,
+					prevPage: prevPage
 				}
 			};
 
@@ -71,7 +80,6 @@ export const getUsers = (token, pageNumber) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
 	adminAPI.getUsers(token, pageNumber)
 		.then(res => {
-			console.log(res);
 			dispatch(setUsers(res.data.users, res.data.meta.total));
 			dispatch(setCurrentPage(pageNumber));
 			dispatch(toggleIsFetching(false));
@@ -91,6 +99,7 @@ export const registerNewUser = (token, newUserData, setStatus) => (dispatch) => 
 	adminAPI.registerNewUser(token, newUserData)
 		.then(res => {
 			setStatus({summary: res.data.message});
+			dispatch(toggleIsFetching(false));
 		})
 		.catch(err => {
 			if (err.response.status === 500) {
@@ -102,6 +111,7 @@ export const registerNewUser = (token, newUserData, setStatus) => (dispatch) => 
 					password: err.response.data.errors.password
 				});
 			}
+			dispatch(toggleIsFetching(false));
 		})
 };
 

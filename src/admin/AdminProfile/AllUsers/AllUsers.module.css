@@ -41,19 +41,20 @@
 
 .form {
     width: 50%;
-    margin: 20px 0;
 }
 
 .btn2 {
-    display: inline-block;
-    margin: 10px 0;
+    display: block;
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
     font-size: 1.1em;
     padding: 8px;
-    width: 100%;
     background: #F18A93;
     border-radius: 10px;
     border-color: transparent;
     color: #000000;
+}
+
+.form .btn2 {
+    margin: 0 auto;
 }
