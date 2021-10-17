@@ -50,9 +50,12 @@ const MyPage = (props) => {
                         }>
                         {props.profile.showPasswordForm ? 'Подтвердить' : 'Изменить пароль'}
                     </button>
-                    <input type="file" onChange={e => avatarChange(e)}/>
-                    <button onClick={() => props.updateAvatar(avatar)}>Сменить аватар</button>
-                    <button onClick={() => props.deleteAvatar()}>Удалить аватар</button>
+                    <input className={s.hide} type='file' id='upload' onChange={e => avatarChange(e)}/>
+                    <label className={s.btn} htmlFor="upload">Загрузить аватар</label>
+                    <button className={`${s.btnAvatar} ${s.btnUpload}`}
+                            onClick={() => props.updateAvatar(avatar)}> </button>
+                    <button className={`${s.btnAvatar} ${s.btnDelete}`}
+                            onClick={() => props.deleteAvatar()}> </button>
                 </div>
         </div>
     );
