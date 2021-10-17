@@ -79,5 +79,29 @@ export const adminAPI = {
 				'Authorization': `${TOKEN_TYPE} ${token}`
 			}
 		});
+	},
+
+	blockUser(token, id) {
+		return instance.patch(`admin/users/${id}/block`, {}, {
+			headers: {
+				'Authorization': `${TOKEN_TYPE} ${token}`
+			}
+		});
+	},
+
+	unblockUser(token, id) {
+		return instance.patch(`admin/users/${id}/unblock`, {}, {
+			headers: {
+				'Authorization': `${TOKEN_TYPE} ${token}`
+			}
+		});
+	},
+
+	getBlockedUsers(token, pageNumber) {
+		return instance.get(`admin/users/blocked?page=${pageNumber}`, {
+			headers: {
+				'Authorization': `${TOKEN_TYPE} ${token}`
+			}
+		});
 	}
 };

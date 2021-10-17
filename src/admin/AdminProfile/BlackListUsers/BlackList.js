@@ -1,15 +1,13 @@
-import React, {useState} from "react";
-import s from './AllUsers.module.css';
-import User from "./Users/User";
+import React from "react";
+import User from "./User/User";
+import s from './BlackList.module.css';
 import Pagination from "../../../components/Pagination/Pagination";
-import NewUserForm from "./NewUserForm/NewUserForm";
 
 
 const AllUsers = (props) => {
-	const [creatingNewUser, setCreatingNewUser] = useState(false);
 	const users = props.users.map(user => {
 		return (
-			<User key={user.id} user={user} blockUser={props.blockUser} unblockUser={props.unblockUser} isFetching={props.isFetching}/>
+			<User key={user.id} user={user} isFetching={props.isFetching} unblockUser={props.unblockUser}/>
 		);
 	});
 
@@ -35,19 +33,6 @@ const AllUsers = (props) => {
 					lastPage={props.lastPage}
 					nextPage={props.nextPage}
 				/>
-				{!creatingNewUser
-					? <button
-						className={`${s.btn2}`}
-						onClick={() => setCreatingNewUser(true)}
-					>
-						Добавить нового пользователя
-					</button>
-					: <NewUserForm
-						registerNewUser={props.registerNewUser}
-						setCreatingNewUser={setCreatingNewUser}
-						isFetching={props.isFetching}
-					/>
-				}
 			</div>
 		</div>
 	);

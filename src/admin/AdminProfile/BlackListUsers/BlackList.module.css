@@ -1,0 +1,18 @@
+.btn {
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    border: none;
+    margin: 0 5px;
+}
+
+.btnUnblock {
+    background-image: url("../../../Stylesheets/unblock.png");
+}
+
+.unblockedUser {
+    background-color: #4cff79;
+}
