@@ -221,5 +221,11 @@ export const changeBlackListPage = (token, pageNumber) => (dispatch) => {
 	dispatch(getBlockedUsers(token, pageNumber));
 };
 
+export const changeUserData = (token, id, data) => (dispatch) => {
+	adminAPI.changeUserData(token, id, data)
+		.then(res => console.log(res))
+		.catch(err => console.log(err.response))
+};
+
 
 export default adminReducer;

@@ -1,6 +1,11 @@
 import {instance} from "./instance";
 import axios from "axios";
 const TOKEN_TYPE = 'Bearer';
+const authConfig = (token) => ({
+	headers: {
+		'Authorization': `${TOKEN_TYPE} ${token}`
+	}
+});
 
 
 export const authAPI = {
@@ -13,45 +18,26 @@ export const authAPI = {
 	},
 
 	logout(token) {
-		return instance.post('logout', {}, {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return instance.post('logout', {}, authConfig(token));
 	}
 };
 
 export const profileAPI = {
 	getProfile(token) {
-		return instance.get('user/me', {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return instance.get('user/me', authConfig(token));
 	},
 
 	updateProfile(token, name, birthday) {
-		return instance.patch('user/me', JSON.stringify({name, birthday}),{
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return instance.patch('user/me', JSON.stringify({name, birthday}), authConfig(token));
 	},
 
+	//Не использует instance, потому что Content-type - FormData с файлом
 	updateAvatar(token, avatar) {
-		return axios.post('http://localhost/api/user/me/avatar', avatar, {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return axios.post('http://localhost/api/user/me/avatar', avatar, authConfig(token));
 	},
 
 	deleteAvatar(token) {
-		return instance.delete('user/me/avatar', {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return instance.delete('user/me/avatar', authConfig(token));
 	}
 };
 
@@ -61,11 +47,7 @@ export const adminAPI = {
 	},
 
 	getUsers(token, pageNumber) {
-		return instance.get(`admin/users?page=${pageNumber}`, {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return instance.get(`admin/users?page=${pageNumber}`, authConfig(token));
 	},
 
 	registerNewUser(token, newUserData) {
@@ -82,26 +64,18 @@ export const adminAPI = {
 	},
 
 	blockUser(token, id) {
-		return instance.patch(`admin/users/${id}/block`, {}, {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return instance.patch(`admin/users/${id}/block`, {}, authConfig(token));
 	},
 
 	unblockUser(token, id) {
-		return instance.patch(`admin/users/${id}/unblock`, {}, {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return instance.patch(`admin/users/${id}/unblock`, {}, authConfig(token));
 	},
 
 	getBlockedUsers(token, pageNumber) {
-		return instance.get(`admin/users/blocked?page=${pageNumber}`, {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+		return instance.get(`admin/users/blocked?page=${pageNumber}`, authConfig(token));
+	},
+
+	changeUserData(token, id, data) {
+		return instance.patch(`admin/users/${id}`, JSON.stringify(data), authConfig(token));
 	}
 };

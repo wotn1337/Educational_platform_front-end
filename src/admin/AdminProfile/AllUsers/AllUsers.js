@@ -9,7 +9,14 @@ const AllUsers = (props) => {
 	const [creatingNewUser, setCreatingNewUser] = useState(false);
 	const users = props.users.map(user => {
 		return (
-			<User key={user.id} user={user} blockUser={props.blockUser} unblockUser={props.unblockUser} isFetching={props.isFetching}/>
+			<User
+				key={user.id}
+				user={user}
+				blockUser={props.blockUser}
+				unblockUser={props.unblockUser}
+				isFetching={props.isFetching}
+				changeUserData={props.changeUserData}
+			/>
 		);
 	});
 

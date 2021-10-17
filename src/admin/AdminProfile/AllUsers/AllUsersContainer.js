@@ -1,7 +1,14 @@
 import React from "react";
 import {connect} from 'react-redux';
 import AllUsers from "./AllUsers";
-import {blockUser, changeAllUsersPage, getUsers, registerNewUser, unblockUser} from "../../../redux/adminReducer";
+import {
+	blockUser,
+	changeAllUsersPage,
+	changeUserData,
+	getUsers,
+	registerNewUser,
+	unblockUser
+} from "../../../redux/adminReducer";
 
 
 class AllUsersContainer extends React.Component {
@@ -25,6 +32,10 @@ class AllUsersContainer extends React.Component {
 		this.props.unblockUser(this.props.token, id);
 	}
 
+	changeUserData = (id, data) => {
+		this.props.changeUserData(this.props.token, id, data);
+	}
+
 	render() {
 		return <AllUsers
 			{...this.props}
@@ -32,6 +43,7 @@ class AllUsersContainer extends React.Component {
 			registerNewUser={this.registerNewUser}
 			blockUser={this.blockUser}
 			unblockUser={this.unblockUser}
+			changeUserData={this.changeUserData}
 		/>;
 	}
 }
@@ -53,5 +65,6 @@ export default connect(mapStateToProps, {
 	changeAllUsersPage,
 	registerNewUser,
 	blockUser,
-	unblockUser
+	unblockUser,
+	changeUserData
 })(AllUsersContainer);

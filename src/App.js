@@ -9,20 +9,6 @@ import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer"
 import AdminAuthPageContainer from "./admin/AdminAuthPage/AdminAuthPageContainer";
 
 class App extends React.Component {
-    state = {
-        backgroundImage: null
-    }
-
-    // componentDidUpdate(prevProps, prevState, snapshot) {
-    //     if(prevState.backgroundImage != ) {
-    //
-    //     }
-    // }
-
-    // changeBackground = (backgroundImage) => {
-    //     this.setState({backgroundImage: backgroundImage})
-    // }
-
     render() {
         return (
             <div>

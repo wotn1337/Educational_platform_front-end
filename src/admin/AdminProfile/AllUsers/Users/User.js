@@ -36,11 +36,19 @@ class User extends React.Component {
 		})
 	}
 
+	sendNewUserData = () => {
+		this.props.changeUserData(this.props.user.id, {
+			name: this.state.name,
+			role: this.state.role
+		});
+		this.toggleEditMode();
+	}
+
 	render() {
 		return (
 			<tr className={this.state.blocked && s.blockedUser}>
 				<td>
-					{!this.state.isEdit ? this.props.user.name :
+					{!this.state.isEdit ? this.state.name :
 						<input
 							type='text'
 							onChange={event => this.onChangeInput('name', event.target.value)}
@@ -49,7 +57,7 @@ class User extends React.Component {
 				</td>
 				<td>{this.props.user.email}</td>
 				<td>
-					{!this.state.isEdit ? this.props.user.role :
+					{!this.state.isEdit ? this.state.role :
 						<select
 							name="role"
 							onChange={event => this.onChangeInput('role', event.target.value)}
@@ -73,7 +81,7 @@ class User extends React.Component {
 				<td>
 					{!this.state.isEdit
 						? <button onClick={this.toggleEditMode} className={`${s.btn} ${s.btnEdit}`}> </button>
-						: <button onClick={this.toggleEditMode} className={`${s.btn} ${s.btnSubmit}`}> </button>
+						: <button onClick={this.sendNewUserData} className={`${s.btn} ${s.btnSubmit}`}> </button>
 					}
 				</td>
 			</tr>
