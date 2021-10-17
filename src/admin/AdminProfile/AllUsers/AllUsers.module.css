@@ -8,7 +8,8 @@
     background-repeat: no-repeat;
     background-color: transparent;
     background-position: center;
-    width: 10px;
+    width: 20px;
+    height: 20px;
     background-size: contain;
     border: none;
     margin: 0 5px;
@@ -20,8 +21,12 @@
 
 .btnBlock {
     background-image: url("../../../Stylesheets/user-block.svg");
-
 }
+
+.btnUnblock {
+    background-image: url("../../../Stylesheets/unblock.png");
+}
+
 .btnEdit {
     background-image: url("../../../Stylesheets/edit.svg");
 }
@@ -57,4 +62,8 @@
 
 .form .btn2 {
     margin: 0 auto;
+}
+
+.blockedUser {
+    background-color: rgba(170, 170, 170, 0.6);
 }

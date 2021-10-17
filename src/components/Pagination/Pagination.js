@@ -3,7 +3,7 @@ import s from './Pagination.module.css';
 
 const createPagination = (pagesCount, handler, currentPage) => {
 	const pages = [];
-	if (pagesCount > 10) {
+	if (pagesCount > 5) {
 		if (currentPage > 2) {
 			for (let i = currentPage - 2; i <= currentPage + 2; i++) {
 				pages.push(<div key={i} onClick={() => handler(i)}

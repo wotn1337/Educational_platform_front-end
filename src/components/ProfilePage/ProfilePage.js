@@ -2,8 +2,8 @@ import React from "react";
 import s from './ProfilePage.module.css'
 import userPhoto from './../../Stylesheets/user.svg'
 import AllUsersContainer from "../../admin/AdminProfile/AllUsers/AllUsersContainer";
-import BlackList from "../../admin/AdminProfile/BlackListUsers/BlackListUsers";
 import MyPage from "./MyPage/MyPage";
+import BlackListContainer from "../../admin/AdminProfile/BlackListUsers/BlackListContainer";
 
 const ProfilePage = (props) => {
 	return (
@@ -52,7 +52,7 @@ const ProfilePage = (props) => {
 				                                   profile={props.profile}
 				                                   deleteAvatar={props.deleteAvatar}/>}
 				{props.profile.isAllUsers && <AllUsersContainer/>}
-				{/*{this.state.isBlackListUsers && <BlackList/>}*/}
+				{props.profile.isBlackListUsers && <BlackListContainer/>}
 			</div>
 		</div>
 	)

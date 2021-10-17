@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import AllUsers from "./AllUsers";
-import {changePage, getUsers, registerNewUser} from "../../../redux/adminReducer";
+import {blockUser, changeAllUsersPage, getUsers, registerNewUser, unblockUser} from "../../../redux/adminReducer";
 
 
 class AllUsersContainer extends React.Component {
@@ -10,15 +10,29 @@ class AllUsersContainer extends React.Component {
 	}
 
 	changePage = (page) => {
-		this.props.changePage(this.props.token, page);
+		this.props.changeAllUsersPage(this.props.token, page);
 	}
 
 	registerNewUser = (newUserData, setStatus) => {
 		this.props.registerNewUser(this.props.token, newUserData, setStatus);
 	}
 
+	blockUser = (id) => {
+		this.props.blockUser(this.props.token, id);
+	}
+
+	unblockUser = (id) => {
+		this.props.unblockUser(this.props.token, id);
+	}
+
 	render() {
-		return <AllUsers {...this.props} changePage={this.changePage} registerNewUser={this.registerNewUser}/>;
+		return <AllUsers
+			{...this.props}
+			changePage={this.changePage}
+			registerNewUser={this.registerNewUser}
+			blockUser={this.blockUser}
+			unblockUser={this.unblockUser}
+		/>;
 	}
 }
 
@@ -36,6 +50,8 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
 	getUsers,
-	changePage,
-	registerNewUser
+	changeAllUsersPage,
+	registerNewUser,
+	blockUser,
+	unblockUser
 })(AllUsersContainer);
