@@ -42,8 +42,8 @@ export const profileAPI = {
 };
 
 export const adminAPI = {
-	adminLogin(email, password) {
-		return instance.post('admin/login', JSON.stringify({email, password}));
+	adminLogin(data) {
+		return instance.post('admin/login', JSON.stringify(data));
 	},
 
 	getUsers(token, pageNumber) {

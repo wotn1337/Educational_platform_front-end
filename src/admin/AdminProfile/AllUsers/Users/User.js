@@ -45,6 +45,7 @@ class User extends React.Component {
 	}
 
 	render() {
+		const roles = {'admin': 'Админ', 'student': 'Ученик', 'creator': 'Учитель'};
 		return (
 			<tr className={this.state.blocked && s.blockedUser}>
 				<td>
@@ -57,7 +58,7 @@ class User extends React.Component {
 				</td>
 				<td>{this.props.user.email}</td>
 				<td>
-					{!this.state.isEdit ? this.state.role :
+					{!this.state.isEdit ? roles[this.state.role] :
 						<select
 							name="role"
 							onChange={event => this.onChangeInput('role', event.target.value)}

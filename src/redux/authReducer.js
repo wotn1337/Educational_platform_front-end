@@ -125,25 +125,23 @@ export const logout = (token) => (dispatch) => {
 };
 
 
-// export const adminLogin = (email, password) => (dispatch) => {
-// 	dispatch(clearLoginValidationMessages());
-// 	dispatch(toggleLoginFetching(true));
-// 	adminAPI.adminLogin(email, password)
-// 		.then(res => {
-// 			dispatch(setAuth(res.data.token));
-// 			dispatch(clearLoginFields());
-// 			dispatch(toggleLoginFetching(false));
-// 		})
-// 		.catch(err => {
-// 			if (err.response.status === 422 || err.response.status === 401) {
-// 				dispatch(setLoginValidationMessages({
-// 					email: err.response.data.errors.email,
-// 					password: err.response.data.errors.password,
-// 					all: !(err.response.status === 422) && err.response.data.message
-// 				}));
-// 			}
-// 			dispatch(toggleLoginFetching(false));
-// 		});
-// };
+export const adminLogin = (data, setStatus) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	adminAPI.adminLogin(data)
+		.then(res => {
+			dispatch(setAuth(res.data.token));
+			dispatch(toggleIsFetching(false));
+		})
+		.catch(err => {
+			if (err.response.status === 422 || err.response.status === 401) {
+				setStatus({
+					email: err.response.data.errors.email,
+					password: err.response.data.errors.password,
+					summary: !(err.response.status === 422) && err.response.data.message
+				});
+			}
+			dispatch(toggleIsFetching(false));
+		});
+};
 
 export default authReducer;

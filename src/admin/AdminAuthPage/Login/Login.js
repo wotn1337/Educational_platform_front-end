@@ -1,43 +1,42 @@
 import React from "react";
-import EmailInput from "../inputFieldComponents/EmailInput";
-import PasswordInput from "../inputFieldComponents/PasswordInput";
-import s from "./../AuthPage.module.css";
+import s from '../../../components/AuthPage/AuthPage.module.css';
+import {Field, Form, Formik} from "formik";
+
+
+const AdminLoginForm = (props) => {
+	return (
+		<Formik
+			initialValues={{
+				email: '',
+				password: ''
+			}}
+			onSubmit={(values, {setStatus}) => props.login(values, setStatus)}
+		>
+			{({status}) => (
+				<Form className={s.form}>
+					<h1 className={s.text}>Войти в свой кабинет</h1>
+					<div className={`invalid-feedback ${s.invalidFeedback}`}>
+						{status && status.summary}
+					</div>
+					<div className={'mb-3'}>
+						<Field type={'email'} name={'email'} className={`form-control ${s.formControl}`} placeholder={'Email'}/>
+						<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.email}</div>
+					</div>
+					<div className={'mb-3'}>
+						<Field type={'password'} name={'password'} className={`form-control ${s.formControl}`} placeholder={'Пароль'}/>
+						<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.password}</div>
+					</div>
+					<button type={'submit'} disabled={props.isFetching} className={s.btn}>Подтвердить</button>
+				</Form>
+			)}
+		</Formik>
+	);
+};
 
 
 const Login = (props) => {
-	const login = (e) => {
-		e.preventDefault();
-		props.login();
-	}
-
 	return (
-		<div className={`container-sm ${s.form}`}>
-			<div className={s.form}>
-				<form>
-					<h1 className={s.text}>Войти в свой кабинет</h1>
-					<div className={`invalid-feedback ${s.invalidFeedback}`}>
-						{props.validationMessages.all}
-					</div>
-					<EmailInput
-						changeField={props.changeField}
-						email={props.email}
-						validationMessage={props.validationMessages.email}
-					/>
-					<PasswordInput
-						changeField={props.changeField}
-						password={props.password}
-						validationMessage={props.validationMessages.password}
-					/>
-				</form>
-			</div>
-			<button
-				className={`${s.btn}`}
-				onClick={event => login(event)}
-				disabled={props.isFetching}
-			>
-				Подтвердить
-			</button>
-		</div>
+		<AdminLoginForm login={props.login} isFetching={props.isFetching}/>
 	);
 };
 

@@ -2,12 +2,13 @@ import {connect} from 'react-redux';
 import {showRegisterForm} from "../../redux/authPageReducer";
 import AuthPage from "./AuthPage";
 import React from 'react';
+import {Redirect} from "react-router-dom";
 
 class AuthPageContainer extends React.Component {
-	componentDidMount() {
-	}
-
 	render() {
+		if (this.props.isAuth) {
+			return <Redirect to={'/'}/>;
+		}
 		return <AuthPage {...this.props}/>
 	}
 }

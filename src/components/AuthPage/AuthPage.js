@@ -10,10 +10,6 @@ const AuthPage = (props) => {
 		props.showRegisterForm();
 	};
 
-	if (props.isAuth) {
-		return <Redirect to={'/'}/>;
-	}
-
 	return (
 		<div className={`container-md ${s.container_md}`}>
 			{props.authPage.showRegisterForm ? <RegisterContainer/> : <LoginContainer/>}
