@@ -19,6 +19,14 @@ export const authAPI = {
 
 	logout(token) {
 		return instance.post('logout', {}, authConfig(token));
+	},
+
+	forgotPassword(email) {
+		return instance.post('forgot-password', JSON.stringify({email}));
+	},
+
+	resetPassword(email, password, token) {
+		return instance.post(`reset-password?token=${token}`, JSON.stringify({email, password, token}));
 	}
 };
 

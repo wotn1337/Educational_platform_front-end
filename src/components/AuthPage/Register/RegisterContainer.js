@@ -14,7 +14,6 @@ class RegisterContainer extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		isAuth: state.auth.isAuth,
 		isFetching: state.auth.isFetching
 	};
 };

@@ -52,7 +52,7 @@ const profileReducer = (state = initState, action) => {
                 email: action.email,
                 id: action.id,
                 role: action.role,
-                avatar: action.avatar
+                avatar: state.avatar || action.avatar
             };
 
         case SET_AVATAR:

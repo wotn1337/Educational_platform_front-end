@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./../AuthPage.module.css";
 import LoginForm from "./LoginForm/LoginForm";
-import ResetPasswordForm from "./ResetPasswordForm/ResetPasswordForm";
+import ForgotPasswordForm from "./ForgotPasswordForm/ForgotPasswordForm";
 
 
 const Login = (props) => {
@@ -14,7 +14,7 @@ const Login = (props) => {
 		<div>
 			{!props.showResetPasswordForm
 				? <LoginForm login={props.login} isFetching={props.isFetching}/>
-				: <ResetPasswordForm isFetching={props.isFetching}/>}
+				: <ForgotPasswordForm isFetching={props.isFetching} forgotPassword={props.forgotPassword}/>}
 			<a
 				href="#"
 				className={`${s.resetLink}`}

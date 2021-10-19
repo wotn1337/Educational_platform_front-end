@@ -2,13 +2,11 @@ import {connect} from 'react-redux';
 import {showRegisterForm} from "../../redux/authPageReducer";
 import AuthPage from "./AuthPage";
 import React from 'react';
-import {Redirect} from "react-router-dom";
+import {compose} from "redux";
+import {withAuthRedirectToMain} from "../../hoc/withAuthRedirectToMain";
 
 class AuthPageContainer extends React.Component {
 	render() {
-		if (this.props.isAuth) {
-			return <Redirect to={'/'}/>;
-		}
 		return <AuthPage {...this.props}/>
 	}
 }
@@ -19,4 +17,7 @@ const mapStateToProps = (state) => {
 	};
 };;
 
-export default connect(mapStateToProps, {showRegisterForm})(AuthPageContainer);
+export default compose(
+	connect(mapStateToProps, {showRegisterForm}),
+	withAuthRedirectToMain
+)(AuthPageContainer);
