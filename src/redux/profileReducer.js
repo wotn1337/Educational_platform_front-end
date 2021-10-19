@@ -1,48 +1,25 @@
 import {profileAPI} from "../api/api";
 
-const CHANGE_FIELD = 'CHANGE_FIELD';
-const SHOW_EDIT_FORM = 'SHOW_EDIT_FORM';
 const SET_PROFILE = 'SET_PROFILE';
-const SHOW_PASSWORD_FORM = 'SHOW_PASSWORD_FORM';
 const SET_AVATAR = 'SET_AVATAR';
-const TOGGLE_SWITCHES = 'TOGGLE_SWITCHES';
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+
 
 const initState = {
-    showProfileForm: true,
-    showPasswordForm: false,
     name: null,
     birthday: null,
     email: null,
     id: null,
     role: null,
+    isAdmin: false,
     password: null,
     avatar: null,
-    isMyPage: true,
-    isBlackListUsers: false,
-    isAllUsers: false
+    isFetching: false
 };
 
 
 const profileReducer = (state = initState, action) => {
     switch (action.type) {
-        case CHANGE_FIELD:
-            return {
-                ...state,
-                [action.field]: action.newValue
-            };
-
-        case SHOW_EDIT_FORM:
-            return {
-                ...state,
-                showProfileForm: !state.showProfileForm
-            };
-
-        case SHOW_PASSWORD_FORM:
-            return {
-                ...state,
-                showPasswordForm: !state.showPasswordForm
-            };
-
         case SET_PROFILE:
             const date = action.birthday.split('.');
             return {
@@ -52,6 +29,7 @@ const profileReducer = (state = initState, action) => {
                 email: action.email,
                 id: action.id,
                 role: action.role,
+                isAdmin: action.role === 'admin',
                 avatar: state.avatar || action.avatar
             };
 
@@ -61,44 +39,18 @@ const profileReducer = (state = initState, action) => {
                 avatar: action.avatar
             };
 
-        case TOGGLE_SWITCHES:
-            switch (action.tab) {
-                case 'myPage':
-                    return {
-                        ...state,
-                        isMyPage: true,
-                        isAllUsers: false,
-                        isBlackListUsers: false
-                    };
-                case 'allUsers':
-                    return {
-                        ...state,
-                        isMyPage: false,
-                        isAllUsers: true,
-                        isBlackListUsers: false
-                    };
-                case 'blackListUsers':
-                    return {
-                        ...state,
-                        isMyPage: false,
-                        isAllUsers: false,
-                        isBlackListUsers: true
-                    };
-                default:
-                    return state;
-            }
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching};
+
         default:
             return state;
     }
 }
 
-export const changeField = (field, newValue) => {
-    return {
-        type: CHANGE_FIELD,
-        field,
-        newValue
-    }
-};
+const toggleIsFetching = (isFetching) => ({
+    type: TOGGLE_IS_FETCHING,
+    isFetching
+});
 
 const setProfile = (name, birthday, email, id, role, avatar) => {
     return {
@@ -119,28 +71,11 @@ const setAvatar = (avatar) => {
     };
 };
 
-export const showProfileForm = () => {
-    return {
-        type: SHOW_EDIT_FORM
-    };
-};
-export const showPasswordForm = () => {
-    return {
-        type: SHOW_PASSWORD_FORM
-    };
-};
-
-export const toggleSwitches = (tab) => {
-    return {
-        type: TOGGLE_SWITCHES,
-        tab
-    };
-};
 
 export const getProfile = (token) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
     profileAPI.getProfile(token)
         .then(res => {
-            console.log(res);
             dispatch(setProfile(
                 res.data.user.name,
                 res.data.user.birthday,
@@ -149,14 +84,18 @@ export const getProfile = (token) => (dispatch) => {
                 res.data.user.role,
                 res.data.user.avatar
             ));
+            dispatch(toggleIsFetching(false));
         })
-        .catch(err => console.log(err.response));
+        .catch(err => {
+            console.log(err.response);
+            dispatch(toggleIsFetching(false));
+        });
 };
 
 export const updateProfile = (token, name, birthday) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
     profileAPI.updateProfile(token, name, birthday)
         .then(res => {
-            console.log(res);
             dispatch(setProfile(
                 res.data.user.name,
                 res.data.user.birthday,
@@ -164,31 +103,51 @@ export const updateProfile = (token, name, birthday) => (dispatch) => {
                 res.data.user.id,
                 res.data.user.role
             ));
+            dispatch(toggleIsFetching(false));
         })
-        .catch(err => console.log(err.response));
+        .catch(err => {
+            console.log(err.response);
+            dispatch(toggleIsFetching(false));
+        });
 };
 
 export const updateAvatar = (token, avatar) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
     profileAPI.updateAvatar(token, avatar)
         .then(res => {
             dispatch(setAvatar(res.data.avatar));
+            dispatch(toggleIsFetching(false));
         })
-        .catch(err => console.log(err.response));
+        .catch(err => {
+            console.log(err.response);
+            dispatch(toggleIsFetching(false));
+        });
 };
 
 export const deleteAvatar = (token) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
     profileAPI.deleteAvatar(token)
-        .then(res => {
-            console.log(res);
+        .then(() => {
             dispatch(setAvatar(null));
+            dispatch(toggleIsFetching(false));
         })
-        .catch(err => console.log(err.response));
+        .catch(err => {
+            console.log(err.response);
+            dispatch(toggleIsFetching(false));
+        });
 };
 
 export const changePassword = (token, password) => (dispatch) => {
+    dispatch(toggleIsFetching(true));
     profileAPI.changePassword(token, password)
-        .then(res => alert(res.data.message))
-        .catch(err => console.log(err.response))
+        .then(res => {
+            alert(res.data.message);
+            dispatch(toggleIsFetching(false));
+        })
+        .catch(err => {
+            console.log(err.response);
+            dispatch(toggleIsFetching(false));
+        })
 }
 
 export default profileReducer;

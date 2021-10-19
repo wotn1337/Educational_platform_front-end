@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {changeBlackListPage, getBlockedUsers, unblockUser} from "../../../redux/adminReducer";
 import BlackList from "./BlackList";
+import Preloader from "../../../components/Preloader/Preloader";
 
 
 class BlackListContainer extends React.Component {
@@ -18,6 +19,9 @@ class BlackListContainer extends React.Component {
     }
 
     render() {
+        if (this.props.isFetching) {
+            return <Preloader width={'200px'} height={'200px'}/>
+        }
         return <BlackList {...this.props} changePage={this.changePage} unblockUser={this.unblockUser}/>;
     }
 }

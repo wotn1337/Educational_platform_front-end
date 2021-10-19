@@ -1,15 +1,7 @@
 import {connect} from 'react-redux';
 import React from "react";
 import ProfilePage from "./ProfilePage";
-import {
-	changeField, changePassword, deleteAvatar,
-	getProfile,
-	showPasswordForm,
-	showProfileForm, toggleSwitches,
-	updateAvatar,
-	updateProfile
-} from "../../redux/profileReducer";
-import {getUsers} from "../../redux/adminReducer";
+import {getProfile} from "../../redux/profileReducer";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 
@@ -18,37 +10,47 @@ class ProfilePageContainer extends React.Component {
 		this.props.getProfile(this.props.token);
 	}
 
-	updateProfile = () => {
-		this.props.updateProfile(
-			this.props.token,
-			this.props.profile.name,
-			this.props.profile.birthday
-		);
+	state = {
+		myPage: true,
+		allUsers: false,
+		blackList: false
 	}
 
-	updateAvatar = (avatar) => {
-		const data = new FormData();
-		data.append('avatar', avatar);
-		this.props.updateAvatar(
-			this.props.token,
-			data
-		);
-	}
+	toggleSwitches = (tab) => {
+		switch (tab) {
+			case 'myPage':
+				this.setState({
+					myPage: true,
+					allUsers: false,
+					blackList: false
+				});
+				break;
 
-	deleteAvatar = () => {
-		this.props.deleteAvatar(this.props.token);
-	}
+			case 'allUsers':
+				this.setState({
+					myPage: false,
+					allUsers: true,
+					blackList: false
+				});
+				break;
 
-	changePassword = (password) => {
-		this.props.changePassword(this.props.token, password);
+			case 'blackList':
+				this.setState({
+					myPage: false,
+					allUsers: false,
+					blackList: true
+				});
+				break;
+
+			default:
+				break;
+		}
 	}
 
 	render() {
 		return <ProfilePage {...this.props}
-		                    updateProfile={this.updateProfile}
-		                    updateAvatar={this.updateAvatar}
-		                    deleteAvatar={this.deleteAvatar}
-		                    changePassword={this.changePassword}
+		                    {...this.state}
+		                    toggleSwitches={this.toggleSwitches}
 		/>;
 	}
 }
@@ -56,22 +58,17 @@ class ProfilePageContainer extends React.Component {
 
 export const mapStateToProps = (state) => {
 	return {
+		role: state.profile.role,
+		isAdmin: state.profile.isAdmin,
+		avatar: state.profile.avatar,
+		name: state.profile.name,
 		profile: state.profile,
 		token: state.auth.token,
+		isFetching: state.profile.isFetching
 	};
 };
 
 export default compose(
-	connect(mapStateToProps, {
-		showProfileForm,
-		showPasswordForm,
-		getProfile,
-		changeField,
-		updateProfile,
-		updateAvatar,
-		toggleSwitches,
-		deleteAvatar,
-		changePassword
-	}),
+	connect(mapStateToProps, {getProfile}),
 	withoutAuthRedirectToAuthPage
 )(ProfilePageContainer);
