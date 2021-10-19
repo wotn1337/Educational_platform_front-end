@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import Login from "./Login";
-import {login, toggleResetPasswordForm} from "../../../redux/authReducer";
+import {forgotPassword, login, toggleResetPasswordForm} from "../../../redux/authReducer";
 
 class LoginContainer extends React.Component {
 	render() {
@@ -18,5 +18,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
 	toggleResetPasswordForm,
-	login
+	login,
+	forgotPassword
 })(LoginContainer);

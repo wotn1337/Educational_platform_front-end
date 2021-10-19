@@ -144,4 +144,30 @@ export const adminLogin = (data, setStatus) => (dispatch) => {
 		});
 };
 
+export const forgotPassword = (email, setStatus) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	authAPI.forgotPassword(email)
+		.then(res => {
+			setStatus({success: res.data.messages});
+			dispatch(toggleIsFetching(false));
+		})
+		.catch(err => {
+			setStatus({error: err.response.data.message});
+			dispatch(toggleIsFetching(false));
+		})
+};
+
+export const resetPassword = (email, password, token, setStatus) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	authAPI.resetPassword(email, password, token)
+		.then(res => {
+			setStatus({success: res.data.messages});
+			dispatch(toggleIsFetching(false));
+		})
+		.catch(err => {
+			setStatus({error: err.response.data.message});
+			dispatch(toggleIsFetching(false));
+		})
+};
+
 export default authReducer;
