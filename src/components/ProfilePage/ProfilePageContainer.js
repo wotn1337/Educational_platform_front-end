@@ -3,7 +3,7 @@ import React from "react";
 import ProfilePage from "./ProfilePage";
 import {Redirect} from "react-router-dom";
 import {
-    changeField, deleteAvatar,
+    changeField, changePassword, deleteAvatar,
     getProfile,
     showPasswordForm,
     showProfileForm, toggleSwitches,
@@ -57,6 +57,10 @@ class ProfilePageContainer extends React.Component {
         );
     }
 
+    changePassword = (password) => {
+        this.props.changePassword(this.props.token, password);
+    }
+
     render() {
         if (!this.state.isAuth) {
             return <Redirect to={'/auth'}/>
@@ -66,6 +70,7 @@ class ProfilePageContainer extends React.Component {
                             updateAvatar={this.updateAvatar}
                             getUsers={this.getUsers}
                             deleteAvatar={this.deleteAvatar}
+                            changePassword={this.changePassword}
         />;
     }
 }
@@ -89,5 +94,6 @@ export default connect(mapStateToProps, {
     updateAvatar,
     getUsers,
     toggleSwitches,
-    deleteAvatar
+    deleteAvatar,
+    changePassword
 })(ProfilePageContainer);

@@ -38,6 +38,10 @@ export const profileAPI = {
 
 	deleteAvatar(token) {
 		return instance.delete('user/me/avatar', authConfig(token));
+	},
+
+	changePassword(token, password) {
+		return instance.patch('user/me/password', JSON.stringify({password}), authConfig(token));
 	}
 };
 

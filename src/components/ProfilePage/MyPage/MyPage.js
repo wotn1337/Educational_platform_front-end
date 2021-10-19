@@ -20,6 +20,11 @@ const MyPage = (props) => {
         showProfileForm(e);
     }
 
+    const changePassword = () => {
+        props.changePassword(props.profile.password);
+        props.showPasswordForm();
+    }
+
     let avatar = null;
     const avatarChange = (e) => {
         avatar = e.target.files[0];
@@ -29,7 +34,7 @@ const MyPage = (props) => {
         <div>
                 {!props.profile.showPasswordForm
                     ? <ProfileForm profile={props.profile} changeField={props.changeField} updateProfile={props.updateProfile}/>
-                    : <PasswordForm changeField={props.changeField}/>}
+                    : <PasswordForm changeField={props.changeField} changePassword={props.changePassword}/>}
 
                 <div className={s.buttons}>
                     {!props.profile.showPasswordForm &&
@@ -45,8 +50,9 @@ const MyPage = (props) => {
                     }
                     <button
                         className={s.btn}
-                        onClick={
-                            event => showPasswordForm(event)
+                        onClick={props.profile.showPasswordForm
+                            ? changePassword
+                            : event => showPasswordForm(event)
                         }>
                         {props.profile.showPasswordForm ? 'Подтвердить' : 'Изменить пароль'}
                     </button>

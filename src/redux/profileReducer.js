@@ -185,4 +185,10 @@ export const deleteAvatar = (token) => (dispatch) => {
         .catch(err => console.log(err.response));
 };
 
+export const changePassword = (token, password) => (dispatch) => {
+    profileAPI.changePassword(token, password)
+        .then(res => alert(res.data.message))
+        .catch(err => console.log(err.response))
+}
+
 export default profileReducer;

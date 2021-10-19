@@ -51,7 +51,9 @@ const ProfilePage = (props) => {
                                                    updateProfile={props.updateProfile}
                                                    updateAvatar={props.updateAvatar}
                                                    profile={props.profile}
-                                                   deleteAvatar={props.deleteAvatar}/>}
+                                                   deleteAvatar={props.deleteAvatar}
+                                                   changePassword={props.changePassword}
+                />}
                 {props.profile.isAllUsers && <AllUsersContainer/>}
                 {props.profile.isBlackListUsers && <BlackListContainer/>}
             </div>
