@@ -20,12 +20,19 @@
 }
 
 .hide {
-    position: absolute;
-    overflow: hidden;
-    z-index: -1;
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
+    display: none;
+}
+
+.uploadAvatarBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.avatarPreview {
+    display: block;
+    width: 100px;
+    border-radius: 10px;
 }
 
 .uploadAvatar {
@@ -48,9 +55,13 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    width: 25px;
-    height: auto;
+    width: 30px;
+    height: 30px;
     padding: 0;
+}
+
+.btnAvatar:hover {
+    margin-top: -5px;
 }
 
 .btnUpload {
@@ -157,11 +168,12 @@
     font-weight: bold;
     font-size: 1.1em;
     padding: 8px;
-    width: 30%;
+    width: fit-content;
     background: #FBCB84;
     border-radius: 20px;
     border-color: transparent;
     color: black;
+    cursor: pointer;
 }
 
 .btn:hover {

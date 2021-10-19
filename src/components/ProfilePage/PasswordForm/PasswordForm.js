@@ -1,9 +1,8 @@
 import React from "react";
 import s from './../ProfilePage.module.css'
-import PasswordInput from "../../AuthPage/inputFieldComponents/PasswordInput";
 import {Form, Formik, Field} from "formik";
 
-const newForm = (props) => {
+const PasswordForm = (props) => {
     return (
         <Formik
             initialValues={{
@@ -11,7 +10,7 @@ const newForm = (props) => {
             }}
             onSubmit={values => props.changePassword(values.password)}
         >
-            <Form>
+            <Form className={s.form}>
                 <label htmlFor="password" className={`form-label ${s.formLabel}`}>Новый пароль</label>
                 <div className="mb-3">
                     <div className="input-group">
@@ -23,23 +22,10 @@ const newForm = (props) => {
                             name={'password'}
                         />
                     </div>
-                    <div className={`invalid-feedback ${s.invalidFeedback}`}>
-                        {props.validationMessage}
-                    </div>
                 </div>
+                <button type={'submit'} className={s.btn}>Подтвердить</button>
             </Form>
         </Formik>
-    );
-};
-
-const PasswordForm = (props) => {
-    return (
-        <div className={s.wrapper}>
-            <form className={s.form}>
-                <label htmlFor="validationDefaultPassword" className={`form-label ${s.formLabel}`}>Новый пароль</label>
-                <PasswordInput changeField={props.changeField}/>
-            </form>
-        </div>
     );
 };
 

@@ -9,6 +9,7 @@ import {
 	registerNewUser,
 	unblockUser
 } from "../../../redux/adminReducer";
+import Preloader from "../../../components/Preloader/Preloader";
 
 
 class AllUsersContainer extends React.Component {
@@ -37,6 +38,9 @@ class AllUsersContainer extends React.Component {
 	}
 
 	render() {
+		if (this.props.isFetching) {
+			return <Preloader width={'200px'} height={'200px'}/>
+		}
 		return <AllUsers
 			{...this.props}
 			changePage={this.changePage}
