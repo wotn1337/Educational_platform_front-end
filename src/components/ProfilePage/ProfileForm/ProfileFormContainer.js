@@ -13,7 +13,7 @@ class ProfileFormContainer extends React.Component {
 
 	render() {
 		if (this.props.isFetching) {
-			return <Preloader width={'200px'} height={'200px'}/>;
+			return <Preloader size={'200px'}/>;
 		}
 		return <ProfileForm {...this.props} updateProfile={this.updateProfile}/>;
 	}

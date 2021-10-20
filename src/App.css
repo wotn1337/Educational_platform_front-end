@@ -6,6 +6,10 @@ body, html{
     background-color: rgba(83, 104, 113, 0.73);
 }
 
+.content {
+    width: 1200px;
+}
+
 .wrapper {
     /*background-image: url("./Stylesheets/background-img.png");*/
     /*background-size: cover;*/

@@ -1,0 +1,23 @@
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 33px;
+    color: white;
+}
+
+.totalCount {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.inputBlock {
+
+}
+
+.searchInputBlock {
+    border: 1px solid white;
+}
+
+.searchInput {
+    border: none;
+}

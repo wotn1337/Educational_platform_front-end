@@ -15,12 +15,12 @@ class BlackListContainer extends React.Component {
     }
 
     unblockUser = (id) => {
-        this.props.unblockUser(this.props.token, id);
+        return this.props.unblockUser(this.props.token, id);
     }
 
     render() {
         if (this.props.isFetching) {
-            return <Preloader width={'200px'} height={'200px'}/>
+            return <Preloader size={'200px'}/>
         }
         return <BlackList {...this.props} changePage={this.changePage} unblockUser={this.unblockUser}/>;
     }
