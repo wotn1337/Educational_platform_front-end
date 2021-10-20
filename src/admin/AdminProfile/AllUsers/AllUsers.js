@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import s from './AllUsers.module.css';
-import User from "./Users/User";
+import User from "./User/User";
 import Pagination from "../../../components/Pagination/Pagination";
 import NewUserForm from "./NewUserForm/NewUserForm";
 

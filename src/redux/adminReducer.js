@@ -1,4 +1,5 @@
 import {adminAPI} from "../api/api";
+import {successNotification} from "../notifications/notifications";
 
 const SET_ALL_USERS = 'SET_ALL_USERS';
 const TOGGLE_ALL_USERS_IS_FETCHING = 'TOGGLE_ALL_USERS_IS_FETCHING';
@@ -161,30 +162,25 @@ export const changeAllUsersPage = (token, pageNumber) => (dispatch) => {
 	dispatch(getUsers(token, pageNumber));
 };
 
-export const registerNewUser = (token, newUserData, setStatus) => (dispatch) => {
-	dispatch(toggleAllUsersIsFetching(true));
+export const registerNewUser = (token, newUserData, setStatus) => () => {
 	adminAPI.registerNewUser(token, newUserData)
-		.then(res => {
-			setStatus({summary: res.data.message});
-			dispatch(toggleAllUsersIsFetching(false));
-		})
+		.then(res => successNotification(res.data.message))
 		.catch(err => {
 			if (err.response.status === 500) {
 				setStatus({summary: 'Пользователь успешно создан, но ошибка 500 из-за email-рассылки'});
 			} else {
+				console.log(err.response);
 				setStatus({
 					name: err.response.data.errors.name,
 					email: err.response.data.errors.email,
 					password: err.response.data.errors.password
 				});
 			}
-			dispatch(toggleAllUsersIsFetching(false));
 		})
 };
 
-export const blockUser = (token, id) => (dispatch) => {
-	dispatch(toggleAllUsersIsFetching(true));
-	adminAPI.blockUser(token, id)
+export const blockUser = (token, id) => () => {
+	return adminAPI.blockUser(token, id)
 		.then(res => {
 			console.log(res);
 		})
@@ -193,8 +189,8 @@ export const blockUser = (token, id) => (dispatch) => {
 		})
 };
 
-export const unblockUser = (token, id) => (dispatch) => {
-	adminAPI.unblockUser(token, id)
+export const unblockUser = (token, id) => () => {
+	return adminAPI.unblockUser(token, id)
 		.then(res => {
 			console.log(res);
 		})
@@ -221,8 +217,8 @@ export const changeBlackListPage = (token, pageNumber) => (dispatch) => {
 	dispatch(getBlockedUsers(token, pageNumber));
 };
 
-export const changeUserData = (token, id, data) => (dispatch) => {
-	adminAPI.changeUserData(token, id, data)
+export const changeUserData = (token, id, data) => () => {
+	return adminAPI.changeUserData(token, id, data)
 		.then(res => console.log(res))
 		.catch(err => console.log(err.response))
 };

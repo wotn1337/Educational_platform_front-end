@@ -7,8 +7,8 @@ import AuthPageContainer from "./components/AuthPage/AuthPageContainer";
 import CatalogPage from "./components/CatalogPage/CatalogPage";
 import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
 import AdminAuthPageContainer from "./admin/AdminAuthPage/AdminAuthPageContainer";
-import ForgotPasswordContainer from "./components/AuthPage/Login/ResetPassword/ResetPasswordContainer";
 import ResetPasswordContainer from "./components/AuthPage/Login/ResetPassword/ResetPasswordContainer";
+
 
 class App extends React.Component {
     render() {
