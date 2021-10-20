@@ -6,7 +6,7 @@ import Preloader from "../../Preloader/Preloader";
 
 const MainUserInfo = (props) => {
 	if (props.isFetching) {
-		return <Preloader width={'200px'} height={'200px'}/>
+		return <Preloader size={'200px'}/>
 	}
 
 	return (

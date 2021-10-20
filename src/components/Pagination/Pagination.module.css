@@ -1,12 +1,11 @@
 .pagination {
     display: grid;
-    grid-template-columns: 45px 225px 45px;
+    grid-template-columns: 45px 350px 45px;
     column-gap: 4px;
     font-size: 18px;
 }
 
 .pages {
-    width: 225px;
     display: flex;
     justify-content: space-between;
     background-color: #E2E2E2;
@@ -16,12 +15,17 @@
     box-sizing: border-box;
 }
 
-.page:hover,
-.borderPage:hover,
-.nextPage:hover,
-.prevPage:hover {
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.page:not(.current):hover {
     cursor: pointer;
     margin-top: -5px;
+    border-bottom: 3px solid #F56464;
 }
 
 .page.current {
@@ -42,4 +46,11 @@
 
 .nextPage {
     transform: rotate(180deg);
+}
+
+.nextPage:hover,
+.prevPage:hover,
+.page.current:hover {
+    cursor: pointer;
+    margin-top: -5px;
 }

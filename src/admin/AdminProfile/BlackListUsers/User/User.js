@@ -1,23 +1,28 @@
 import React, {useState} from "react";
 import s from '../BlackList.module.css';
+import {roles} from "../../../../common/roles";
+import Preloader from "../../../../components/Preloader/Preloader";
 
 const User = (props) => {
 	const [unblocked, setUnblocked] = useState(false);
+	const [isFetching, setIsFetching] = useState(false);
 	const unblock = () => {
-		setUnblocked(true);
-		props.unblockUser(props.user.id);
+		setIsFetching(true);
+		props.unblockUser(props.user.id)
+			.then(() => {
+				setUnblocked(true);
+				setIsFetching(false);
+			});
 	}
-	const roles = {'admin': 'Админ', 'student': 'Ученик', 'creator': 'Учитель'};
+
 	return (
 		<tr className={unblocked && s.unblockedUser}>
 			<td>{props.user.name}</td>
 			<td>{props.user.email}</td>
 			<td>{roles[props.user.role]}</td>
-			<td>{
-				<button
-					className={`${s.btn} ${s.btnUnblock}`}
-					onClick={unblock}
-				> </button>
+			<td>{isFetching
+				? <Preloader size={'30px'}/>
+				: <button className={`${s.btn} ${s.btnUnblock}`} onClick={unblock}> </button>
 			}
 			</td>
 		</tr>

@@ -9,8 +9,7 @@ const Preloader = (props) => {
 			className={s.preloader}
 			src={preloaderGIF}
 			alt="preloader"
-			width={props.width}
-			height={props.height}
+			width={props.size}
 		/>
 	);
 
