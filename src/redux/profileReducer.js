@@ -1,9 +1,10 @@
 import {profileAPI} from "../api/api";
+import {successNotification} from "../notifications/notifications";
+
 
 const SET_PROFILE = 'SET_PROFILE';
 const SET_AVATAR = 'SET_AVATAR';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-
 
 const initState = {
     name: null,
@@ -104,6 +105,7 @@ export const updateProfile = (token, name, birthday) => (dispatch) => {
                 res.data.user.role
             ));
             dispatch(toggleIsFetching(false));
+            successNotification(res.data.message);
         })
         .catch(err => {
             console.log(err.response);
@@ -117,6 +119,7 @@ export const updateAvatar = (token, avatar) => (dispatch) => {
         .then(res => {
             dispatch(setAvatar(res.data.avatar));
             dispatch(toggleIsFetching(false));
+            successNotification(res.data.message);
         })
         .catch(err => {
             console.log(err.response);
@@ -127,9 +130,10 @@ export const updateAvatar = (token, avatar) => (dispatch) => {
 export const deleteAvatar = (token) => (dispatch) => {
     dispatch(toggleIsFetching(true));
     profileAPI.deleteAvatar(token)
-        .then(() => {
+        .then((res) => {
             dispatch(setAvatar(null));
             dispatch(toggleIsFetching(false));
+            successNotification(res.data.message);
         })
         .catch(err => {
             console.log(err.response);
@@ -141,8 +145,8 @@ export const changePassword = (token, password) => (dispatch) => {
     dispatch(toggleIsFetching(true));
     profileAPI.changePassword(token, password)
         .then(res => {
-            alert(res.data.message);
             dispatch(toggleIsFetching(false));
+            successNotification(res.data.message);
         })
         .catch(err => {
             console.log(err.response);

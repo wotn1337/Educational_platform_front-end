@@ -34,18 +34,18 @@ const NewUserForm = (props) => {
 						<div>
 							<Field component={'input'} type={'text'} name={'name'} placeholder={'Имя'}
 							       className={`${s.formControl}`}/>
-							<div>{status && status.name}</div>
+							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.name}</div>
 						</div>
 						<div>
 							<Field component={'input'} type={'email'} name={'email'} placeholder={'Email'}
 							       className={` ${s.formControl}`}/>
-							<div>{status && status.email}</div>
+							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.email}</div>
 						</div>
 						<div>
 							<Field component={'input'} type={'password'} name={'password'}
 							       placeholder={'Пароль'}
 							       className={`${s.formControl}`}/>
-							<div>{status && status.password}</div>
+							<div className={`invalid-feedback ${s.invalidFeedback}`}>{status && status.password}</div>
 						</div>
 						<div>
 							<Field component={'select'} name={'role'}
@@ -55,7 +55,6 @@ const NewUserForm = (props) => {
 								<option value="student">Ученик</option>
 							</Field>
 						</div>
-						<div>{status && status.summary}</div>
 					</Form>
 				</div>
 			)}

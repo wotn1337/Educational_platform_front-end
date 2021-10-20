@@ -26,15 +26,15 @@ class AllUsersContainer extends React.Component {
 	}
 
 	blockUser = (id) => {
-		this.props.blockUser(this.props.token, id);
+		return this.props.blockUser(this.props.token, id);
 	}
 
 	unblockUser = (id) => {
-		this.props.unblockUser(this.props.token, id);
+		return this.props.unblockUser(this.props.token, id);
 	}
 
 	changeUserData = (id, data) => {
-		this.props.changeUserData(this.props.token, id, data);
+		return this.props.changeUserData(this.props.token, id, data);
 	}
 
 	render() {

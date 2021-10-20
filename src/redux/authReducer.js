@@ -1,4 +1,5 @@
 import {adminAPI, authAPI} from "../api/api";
+import {successNotification} from "../notifications/notifications";
 
 
 const SET_AUTH = 'SET_AUTH';
@@ -81,6 +82,7 @@ export const login = (data, setStatus) => (dispatch) => {
 		.then(res => {
 			dispatch(setAuth(res.data.token));
 			dispatch(toggleIsFetching(false));
+			successNotification('Добро пожаловать!');
 		})
 		.catch(err => {
 			if (err.response.status === 422 || err.response.status === 401) {
@@ -100,6 +102,7 @@ export const register = (data, setStatus) => (dispatch) => {
 		.then(res => {
 			dispatch(setAuth(res.data.token));
 			dispatch(toggleIsFetching(false));
+			successNotification(res.data.message);
 		})
 		.catch(err => {
 			if (err.response.status === 422) {
@@ -117,9 +120,10 @@ export const register = (data, setStatus) => (dispatch) => {
 
 export const logout = (token) => (dispatch) => {
 	authAPI.logout(token)
-		.then(() => {
+		.then((res) => {
 			localStorage.clear();
 			dispatch(logoutAction());
+			successNotification(res.data.message);
 		})
 		.catch(err => console.log(err.response));
 };

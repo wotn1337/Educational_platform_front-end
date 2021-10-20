@@ -67,3 +67,8 @@
 .blockedUser {
     background-color: rgba(170, 170, 170, 0.6);
 }
+
+.invalidFeedback {
+    display: block;
+    text-align: center;
+}
