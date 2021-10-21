@@ -82,7 +82,7 @@ export const login = (data, setStatus) => (dispatch) => {
 		.then(res => {
 			dispatch(setAuth(res.data.token));
 			dispatch(toggleIsFetching(false));
-			successNotification('Добро пожаловать!');
+			successNotification(res.data.message);
 		})
 		.catch(err => {
 			if (err.response.status === 422 || err.response.status === 401) {

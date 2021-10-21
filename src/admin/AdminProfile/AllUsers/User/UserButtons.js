@@ -27,7 +27,7 @@ const UserButtons = (props) => {
 		);
 	}
 
-	return (<td colSpan={2}><Preloader width={'30px'} height={'30px'}/></td>);
+	return (<td colSpan={2}><Preloader size={'30px'}/></td>);
 }
 
 export default UserButtons;

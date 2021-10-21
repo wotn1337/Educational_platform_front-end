@@ -14,7 +14,7 @@ const SearchBlock = (props) => {
 					<button className={s.searchButton}>Поиск</button>
 				</div>
 				<select name="type" id="type">
-					<option disabled style={{display: 'none'}}>Тип фрагмента</option>
+					<option value={'all'}>Все</option>
 					<option value="article">Статья</option>
 					<option value="video">Видео</option>
 					<option value="test">Тест</option>
