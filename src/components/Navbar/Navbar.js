@@ -19,7 +19,14 @@ const Navbar = (props) => {
 				<NavLink className={s.navLink} to="/catalog" activeClassName={s.active}>Каталог</NavLink>
 				{props.isAuth
 					? <>
-						<DropDownMenu/>
+						<DropDownMenu
+							title={'Мои материалы'}
+							links={[{'my-fragments': 'Мои фрагменты'}, {'my-lessons': 'Мои уроки'}, {'favorites': 'Избранное'}]}
+						/>
+						<DropDownMenu
+							title={'Создать'}
+							links={[props.role !== 'student' && {'create-fragment': 'Создать фрагмент'}, {'create-lesson': 'Создать урок'}]}
+						/>
 						<NavLink className={s.navLink} to="/profile" activeClassName={s.active}>Мой профиль</NavLink>
 						<NavLink className={s.navLink} to="/auth" onClick={e => logout(e)}>Выйти</NavLink>
 					</>

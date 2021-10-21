@@ -6,6 +6,7 @@ import navbarReducer from "./navbarReducer";
 import authReducer from "./authReducer";
 import profileReducer from "./profileReducer";
 import adminReducer from "./adminReducer";
+import createFragmentReducer from "./createFragmentReducer";
 
 
 const reducers = combineReducers({
@@ -14,7 +15,8 @@ const reducers = combineReducers({
 	navbar: navbarReducer,
 	auth: authReducer,
 	profile: profileReducer,
-	admin: adminReducer
+	admin: adminReducer,
+	createFragment: createFragmentReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
