@@ -1,9 +1,10 @@
 import React from "react";
+import TextEditor from "../../TextEditor/TextEditor";
 
 
 const CreateArticle = () => {
 	return (
-		<div>Здесь будет редактор текста</div>
+		<TextEditor />
 	);
 }
 

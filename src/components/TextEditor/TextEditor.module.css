@@ -1,0 +1,12 @@
+.toolbar {
+    border-radius: 10px;
+    justify-content: center;
+}
+
+
+.textEditor {
+    background-color: white;
+    min-height: 300px;
+    padding: 0 20px;
+    border-radius: 10px;
+}
