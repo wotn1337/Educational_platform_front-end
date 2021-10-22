@@ -3,20 +3,21 @@ import s from "../Navbar.module.css";
 import {NavLink} from "react-router-dom";
 
 
-const DropDownMenu = () => {
+const DropDownMenu = (props) => {
 	const [open, setOpen] = useState(false);
+	const links = props.links.map(link => (
+		<NavLink to={`/${Object.keys(link)[0]}`} className={s.dropDownItem} key={Object.keys(link)[0]}>{link[Object.keys(link)[0]]}</NavLink>
+	));
 	return (
 		<div
 			className={s.dropDown}
 			onMouseEnter={() => setOpen(true)}
 			onMouseLeave={() => setOpen(false)}
 		>
-			<div className={s.navLink}>Мои материалы</div>
+			<div className={s.navLink}>{props.title}</div>
 			{open &&
 			<div className={s.dropDownMenu}>
-				<NavLink to={'/my-fragments'} className={s.dropDownItem}>Мои фрагменты</NavLink>
-				<NavLink to={'/my-lessons'} className={s.dropDownItem}>Мои уроки</NavLink>
-				<NavLink to={'/favorites'} className={s.dropDownItem}>Избранное</NavLink>
+				{links}
 			</div>
 			}
 		</div>

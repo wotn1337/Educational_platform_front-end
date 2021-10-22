@@ -9,6 +9,7 @@ import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer"
 import AdminAuthPageContainer from "./admin/AdminAuthPage/AdminAuthPageContainer";
 import ResetPasswordContainer from "./components/AuthPage/Login/ResetPassword/ResetPasswordContainer";
 import MyFragments from "./components/MyFragments/MyFragments";
+import CreateFragment from "./components/CreateFragment/CreateFragment";
 
 
 class App extends React.Component {
@@ -31,6 +32,10 @@ class App extends React.Component {
                 <Route
                     exact path='/my-fragments'
                     render={() => <MyFragments/>}
+                />
+                <Route
+                    exact path='/create-fragment'
+                    render={() => <CreateFragment/>}
                 />
                 <Route
                     exact path='/profile'
