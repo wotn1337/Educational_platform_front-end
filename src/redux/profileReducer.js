@@ -7,9 +7,9 @@ const SET_AVATAR = 'SET_AVATAR';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 
 const initState = {
-    name: null,
-    birthday: null,
-    email: null,
+    name: '',
+    birthday: '',
+    email: '',
     id: null,
     role: null,
     isAdmin: false,

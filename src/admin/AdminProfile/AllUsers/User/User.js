@@ -68,7 +68,7 @@ class User extends React.Component {
 
 	render() {
 		return (
-			<tr className={this.state.blocked && s.blockedUser}>
+			<tr className={this.state.blocked ? s.blockedUser : undefined}>
 				<td>
 					{!this.state.isEdit ? this.state.name :
 						<input

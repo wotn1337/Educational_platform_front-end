@@ -151,7 +151,6 @@ export const getUsers = (token, pageNumber) => (dispatch) => {
 			dispatch(toggleAllUsersIsFetching(false));
 		})
 		.catch(err => {
-			console.log(err.response);
 			dispatch(toggleAllUsersIsFetching(false));
 		});
 };
@@ -167,7 +166,6 @@ export const registerNewUser = (token, newUserData, setStatus) => () => {
 			if (err.response.status === 500) {
 				setStatus({summary: 'Пользователь успешно создан, но ошибка 500 из-за email-рассылки'});
 			} else {
-				console.log(err.response);
 				setStatus({
 					name: err.response.data.errors.name,
 					email: err.response.data.errors.email,
@@ -180,20 +178,16 @@ export const registerNewUser = (token, newUserData, setStatus) => () => {
 export const blockUser = (token, id) => () => {
 	return adminAPI.blockUser(token, id)
 		.then(res => {
-			console.log(res);
 		})
 		.catch(err => {
-			console.log(err.response);
 		})
 };
 
 export const unblockUser = (token, id) => () => {
 	return adminAPI.unblockUser(token, id)
 		.then(res => {
-			console.log(res);
 		})
 		.catch(err => {
-			console.log(err.response);
 		})
 };
 
@@ -206,7 +200,6 @@ export const getBlockedUsers = (token, pageNumber) => (dispatch) => {
 			dispatch(toggleBlackListIsFetching(false));
 		})
 		.catch(err => {
-			console.log(err.response);
 			dispatch(toggleBlackListIsFetching(false));
 		})
 };
@@ -217,8 +210,8 @@ export const changeBlackListPage = (token, pageNumber) => (dispatch) => {
 
 export const changeUserData = (token, id, data) => () => {
 	return adminAPI.changeUserData(token, id, data)
-		.then(res => console.log(res))
-		.catch(err => console.log(err.response))
+		.then(res => {})
+		.catch(err => {})
 };
 
 

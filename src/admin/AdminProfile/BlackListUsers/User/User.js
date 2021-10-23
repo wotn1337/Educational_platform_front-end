@@ -16,7 +16,7 @@ const User = (props) => {
 	}
 
 	return (
-		<tr className={unblocked && s.unblockedUser}>
+		<tr className={unblocked ? s.unblockedUser : undefined}>
 			<td>{props.user.name}</td>
 			<td>{props.user.email}</td>
 			<td>{roles[props.user.role]}</td>
