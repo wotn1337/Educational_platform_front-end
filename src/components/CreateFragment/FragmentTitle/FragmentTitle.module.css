@@ -1,0 +1,24 @@
+.fragmentTitleBlock {
+    margin-top: 30px;
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 30px;
+}
+
+.preTitle {
+    font-weight: bold;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.fragmentTitle {
+    display: block;
+    background: rgba(255, 255, 255, 0.69);
+    border-radius: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    margin-bottom: 35px;
+    border: none;
+}

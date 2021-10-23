@@ -1,4 +1,26 @@
 .content {
     width: 1200px;
     margin: 0 auto;
+    padding-bottom: 100px;
+}
+
+.createButton {
+    display: block;
+    margin-left: auto;
+    margin-top: 30px;
+    background-color: #EF5B5B;
+    border-radius: 10px;
+    font-family: Open Sans, sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    color: #FFFFFF;
+    padding: 20px 60px;
+    box-sizing: border-box;
+    border: none;
+}
+
+.createButton:hover {
+    background-color: #F56464;
 }

@@ -1,4 +1,7 @@
 import React from "react";
+import s from './FragmentTitle.module.css';
+import {connect} from "react-redux";
+import {changeFragmentTitle} from "../../../redux/createFragmentReducer";
 
 
 const rightWords = (fragment) => {
@@ -17,10 +20,22 @@ const rightWords = (fragment) => {
 
 const FragmentTitle = (props) => {
 	return (
-		<div>
-			<div>Название {rightWords(props.fragmentType)}</div>
+		<div className={s.fragmentTitleBlock}>
+			<div className={s.preTitle}>Название {rightWords(props.fragmentType)}</div>
+			<input
+				type="text"
+				name={'fragmentTitle'}
+				className={s.fragmentTitle}
+				value={props.title}
+				onChange={e => props.changeFragmentTitle(e.target.value)}
+			/>
 		</div>
 	);
-}
+};
 
-export default FragmentTitle;
+const mapStateToProps = (state) => ({
+	fragmentType: state.createFragment.fragmentType,
+	title: state.createFragment.title
+});
+
+export default connect(mapStateToProps, {changeFragmentTitle})(FragmentTitle);
