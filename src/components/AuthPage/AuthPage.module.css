@@ -35,6 +35,7 @@
 
 .resetLink:hover {
     color: #FBCB84;
+    cursor: pointer;
 }
 
 h1 {

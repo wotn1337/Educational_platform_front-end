@@ -65,11 +65,11 @@
 }
 
 .btnUpload {
-    background-image: url("../../Stylesheets/upload.svg");
+    background-image: url("../../assets/img/profile/upload.svg");
 }
 
 .btnDelete {
-    background-image: url("../../Stylesheets/delete.svg");
+    background-image: url("../../assets/img/profile/delete.svg");
 }
 
 .userName {

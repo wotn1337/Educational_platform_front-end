@@ -1,0 +1,94 @@
+.descriptionBanner {
+    width: 100%;
+    background-color: rgba(54, 54, 54, 0.46);
+    margin: 10px 0 170px 0;
+}
+
+.descriptionWrapper {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+
+.descriptionBlock {
+    display: flex;
+    align-items: center;
+}
+
+.description {
+}
+
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 65px;
+    color: #FFFFFF;
+    margin-bottom: 35px;
+}
+
+.name {
+    font-style: normal;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 76px;
+    color: #EF5B5B;
+    text-transform: uppercase;
+}
+
+.text {
+    font-style: normal;
+    font-size: 39px;
+    line-height: 53px;
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
+
+.descriptionImage {
+    display: block;
+    margin-left: 90px;
+}
+
+.buttonsBlock {
+    margin-top: 70px;
+    display: flex;
+}
+
+.btn {
+    display: block;
+    border-radius: 10px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    padding: 20px 0;
+    box-sizing: border-box;
+    border: none;
+    text-decoration: none;
+    color: black;
+}
+
+.btn:hover {
+    color: white;
+}
+
+.btn.login {
+    padding: 20px 70px;
+    background-color: #EF5B5B;
+    color: white;
+    margin-right: 20px;
+}
+
+.btn.login:hover {
+    background-color: #fc6c7a;
+}
+
+.btn.register {
+    padding: 20px 55px;
+    background-color: #FBE184;
+}
+
+.btn.register:hover {
+    background-color: #ffe8b9;
+    color: black;
+}

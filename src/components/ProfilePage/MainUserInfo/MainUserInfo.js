@@ -1,6 +1,6 @@
 import React from "react";
 import s from "../../../components/ProfilePage/ProfilePage.module.css";
-import generalAvatar from "../../../Stylesheets/user.svg";
+import generalAvatar from "../../../assets/img/profile/user.svg";
 import Preloader from "../../Preloader/Preloader";
 
 

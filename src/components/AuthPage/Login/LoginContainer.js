@@ -2,6 +2,8 @@ import React from "react";
 import {connect} from 'react-redux';
 import Login from "./Login";
 import {forgotPassword, login, toggleResetPasswordForm} from "../../../redux/authReducer";
+import {compose} from "redux";
+import {withAuthRedirectToMain} from "../../../hoc/withAuthRedirectToMain";
 
 class LoginContainer extends React.Component {
 	render() {
@@ -16,8 +18,11 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, {
-	toggleResetPasswordForm,
-	login,
-	forgotPassword
-})(LoginContainer);
+export default compose(
+	connect(mapStateToProps, {
+		toggleResetPasswordForm,
+		login,
+		forgotPassword
+	}),
+	withAuthRedirectToMain
+)(LoginContainer);

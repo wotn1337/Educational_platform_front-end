@@ -1,0 +1,38 @@
+.step {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px 35px;
+    display: grid;
+    grid-template-areas: "image title"
+                         "image text";
+    grid-template-columns: 165px 1fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 70px;
+    row-gap: 10px;
+    width: 750px;
+}
+
+.stepImage {
+    grid-area: image;
+}
+
+.title {
+    grid-area: title;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 49px;
+    color: rgba(0, 0, 0, 0.17);
+    margin: 0;
+}
+
+.text {
+    font-family: Bebas Neue, sans-serif;
+    grid-area: text;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #000000;
+    margin: 0;
+}

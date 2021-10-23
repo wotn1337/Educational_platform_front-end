@@ -39,7 +39,7 @@
 }
 
 .navLink:hover {
-    background-image: url('./../../Stylesheets/menu_hover.svg');
+    background-image: url('../../assets/img/menu_hover.svg');
     background-repeat: no-repeat;
     color: #F56464;
     background-size: 130px;
@@ -98,7 +98,7 @@
 
 a.active {
     color: #F56464;
-    background-image: url('./../../Stylesheets/menu_hover.svg');
+    background-image: url('../../assets/img/menu_hover.svg');
     background-repeat: no-repeat;
     background-size: 130px;
     background-position: center;

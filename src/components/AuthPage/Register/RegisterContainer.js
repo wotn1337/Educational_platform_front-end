@@ -2,6 +2,8 @@ import React from "react";
 import {connect} from 'react-redux';
 import Register from "./Register";
 import {register} from "../../../redux/authReducer";
+import {compose} from "redux";
+import {withAuthRedirectToMain} from "../../../hoc/withAuthRedirectToMain";
 
 class RegisterContainer extends React.Component {
 	render() {
@@ -18,6 +20,9 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default connect(mapStateToProps, {
-	register
-})(RegisterContainer);
+export default compose(
+	connect(mapStateToProps, {
+		register
+	}),
+	withAuthRedirectToMain
+)(RegisterContainer);

@@ -1,7 +1,7 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from './Navbar.module.css'
-import logo from '../../Stylesheets/logo.svg';
+import logo from '../../assets/img/logo.svg';
 import DropDownMenu from "./DropDownMenu/DropDownMenu";
 
 
@@ -30,7 +30,7 @@ const Navbar = (props) => {
 						<NavLink className={s.navLink} to="/profile" activeClassName={s.active}>Мой профиль</NavLink>
 						<NavLink className={s.navLink} to="/auth" onClick={e => logout(e)}>Выйти</NavLink>
 					</>
-					: <NavLink className={s.navLink} to="/auth" activeClassName={s.active}>Войти</NavLink>
+					: <NavLink className={s.navLink} to={'/login'} activeClassName={s.active}>Войти</NavLink>
 				}
 			</div>
 		</div>

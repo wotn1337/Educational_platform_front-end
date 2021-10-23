@@ -13,7 +13,7 @@ const SET_BLACK_LIST_CURRENT_PAGE = 'SET_BLACK_LIST_CURRENT_PAGE';
 const initState = {
 	allUsers: {
 		users: [],
-		pageSize: 5,
+		pageSize: 10,
 		totalUsersCount: 0,
 		currentPage: 1,
 		prevPage: 1,
@@ -23,7 +23,7 @@ const initState = {
 	},
 	blackList: {
 		users: [],
-		pageSize: 5,
+		pageSize: 10,
 		totalUsersCount: 0,
 		currentPage: 1,
 		prevPage: 1,
@@ -37,14 +37,14 @@ const initState = {
 const adminReducer = (state = initState, action) => {
 	switch (action.type) {
 		case SET_ALL_USERS: {
-			const lastPage = Math.ceil(action.totalUsersCount / state.allUsers.pageSize);
 			return {
 				...state,
 				allUsers: {
 					...state.allUsers,
-					users: action.users,
-					totalUsersCount: action.totalUsersCount,
-					lastPage: lastPage
+					users: action.data.users,
+					totalUsersCount: action.data.meta.total,
+					lastPage: action.data.meta.last_page,
+					pageSize: action.data.meta.per_page
 				}
 			};
 		}
@@ -73,14 +73,14 @@ const adminReducer = (state = initState, action) => {
 		}
 
 		case SET_BLACK_LIST_USERS: {
-			const lastPage = Math.ceil(action.totalUsersCount / state.blackList.pageSize);
 			return {
 				...state,
 				blackList: {
 					...state.blackList,
-					users: action.users,
-					totalUsersCount: action.totalUsersCount,
-					lastPage: lastPage
+					users: action.data.users,
+					totalUsersCount: action.data.meta.total,
+					lastPage: action.data.meta.last_page,
+					pageSize: action.data.meta.per_page
 				}
 			};
 		}
@@ -112,10 +112,9 @@ const adminReducer = (state = initState, action) => {
 	}
 };
 
-const setAllUsers = (users, totalUsersCount) => ({
+const setAllUsers = (data) => ({
 	type: SET_ALL_USERS,
-	users,
-	totalUsersCount
+	data
 });
 
 const setAllUsersCurrentPage = (page) => ({
@@ -123,10 +122,9 @@ const setAllUsersCurrentPage = (page) => ({
 	page
 });
 
-const setBlackListUsers = (users, totalUsersCount) => ({
+const setBlackListUsers = (data) => ({
 	type: SET_BLACK_LIST_USERS,
-	users,
-	totalUsersCount
+	data
 });
 
 const setBlackListCurrentPage = (page) => ({
@@ -148,7 +146,7 @@ export const getUsers = (token, pageNumber) => (dispatch) => {
 	dispatch(toggleAllUsersIsFetching(true));
 	adminAPI.getUsers(token, pageNumber)
 		.then(res => {
-			dispatch(setAllUsers(res.data.users, res.data.meta.total));
+			dispatch(setAllUsers(res.data));
 			dispatch(setAllUsersCurrentPage(pageNumber));
 			dispatch(toggleAllUsersIsFetching(false));
 		})
@@ -203,7 +201,7 @@ export const getBlockedUsers = (token, pageNumber) => (dispatch) => {
 	dispatch(toggleBlackListIsFetching(true));
 	adminAPI.getBlockedUsers(token, pageNumber)
 		.then(res => {
-			dispatch(setBlackListUsers(res.data.users, res.data.meta.total));
+			dispatch(setBlackListUsers(res.data));
 			dispatch(setBlackListCurrentPage(pageNumber));
 			dispatch(toggleBlackListIsFetching(false));
 		})
