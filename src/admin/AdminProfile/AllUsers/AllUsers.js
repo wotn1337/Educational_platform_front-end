@@ -42,20 +42,20 @@ const AllUsers = (props) => {
 					lastPage={props.lastPage}
 					nextPage={props.nextPage}
 				/>
-				{!creatingNewUser
-					? <button
-						className={`${s.btn2}`}
-						onClick={() => setCreatingNewUser(true)}
-					>
-						Добавить нового пользователя
-					</button>
-					: <NewUserForm
-						registerNewUser={props.registerNewUser}
-						setCreatingNewUser={setCreatingNewUser}
-						isFetching={props.isFetching}
-					/>
-				}
+				<button
+					className={`${s.btn2}`}
+					onClick={() => setCreatingNewUser(!creatingNewUser)}
+				>
+					{creatingNewUser ? 'Скрыть форму' : 'Добавить нового пользователя'}
+				</button>
 			</div>
+			{creatingNewUser &&
+			<NewUserForm
+				registerNewUser={props.registerNewUser}
+				setCreatingNewUser={setCreatingNewUser}
+				isFetching={props.isFetching}
+			/>
+			}
 		</div>
 	);
 }

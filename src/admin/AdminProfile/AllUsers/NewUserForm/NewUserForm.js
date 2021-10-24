@@ -17,20 +17,6 @@ const NewUserForm = (props) => {
 			{({status}) => (
 				<div className={s.form}>
 					<Form>
-						<div style={{display: 'grid', gridTemplateColumns: '2fr 1fr', gridGap: '5px'}}>
-							<button
-								className={`${s.btn2}`}
-								type={'submit'}
-								disabled={props.isFetching}
-							>Добавить нового пользователя
-							</button>
-							<button
-								className={`${s.btn2}`}
-								disabled={props.isFetching}
-								onClick={() => props.setCreatingNewUser(false)}
-							>Скрыть форму
-							</button>
-						</div>
 						<div>
 							<Field component={'input'} type={'text'} name={'name'} placeholder={'Имя'}
 							       className={`${s.formControl}`}/>
@@ -55,6 +41,12 @@ const NewUserForm = (props) => {
 								<option value="student">Ученик</option>
 							</Field>
 						</div>
+						<button
+							className={`${s.btn2}`}
+							type={'submit'}
+							disabled={props.isFetching}
+						>Добавить нового пользователя
+						</button>
 					</Form>
 				</div>
 			)}

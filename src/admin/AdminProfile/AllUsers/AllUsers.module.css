@@ -39,24 +39,22 @@
     width: 100%;
     margin: 5px 5px;
     padding: 5px 30px;
-    font-family: "Open Sans", sans-serif;
     font-size: 1em;
     color: #7C7676;
 }
 
 .form {
-    width: 50%;
+    width: 60%;
+    margin: 20px auto;
 }
 
 .btn2 {
     display: block;
-    font-family: "Open Sans", sans-serif;
     font-weight: bold;
-    font-size: 1.1em;
     padding: 8px;
     background: #F18A93;
     border-radius: 10px;
-    border-color: transparent;
+    border: none;
     color: #000000;
 }
 

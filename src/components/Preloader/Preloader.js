@@ -10,6 +10,7 @@ const Preloader = (props) => {
 			src={preloaderGIF}
 			alt="preloader"
 			width={props.size}
+			height={props.size}
 		/>
 	);
 

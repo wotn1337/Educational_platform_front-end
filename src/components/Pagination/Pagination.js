@@ -5,11 +5,30 @@ const createPagination = (pagesCount, handler, currentPage) => {
 	const pages = [];
 	if (pagesCount > 10) {
 		if (currentPage > 2) {
-			for (let i = currentPage - 4; i <= currentPage + 4; i++) {
-				pages.push(<div key={i} onClick={() => handler(i)}
-				                className={`${s.page} ${currentPage === i && s.current}`}>{i}</div>);
-				if (i === pagesCount) {
-					break;
+			if (currentPage < 6) {
+				for (let i = 1; i <= currentPage + 5; i++) {
+					pages.push(<div key={i} onClick={() => handler(i)}
+					                className={`${s.page} ${currentPage === i && s.current}`}>{i}</div>);
+					if (i === pagesCount) {
+						break;
+					}
+
+				}
+			} else if (currentPage === pagesCount) {
+				for (let i = currentPage - 9; i <= currentPage; i++) {
+					pages.push(<div key={i} onClick={() => handler(i)}
+					                className={`${s.page} ${currentPage === i && s.current}`}>{i}</div>);
+					if (i === pagesCount) {
+						break;
+					}
+				}
+			} else {
+				for (let i = currentPage - 4; i <= currentPage + 5; i++) {
+					pages.push(<div key={i} onClick={() => handler(i)}
+					                className={`${s.page} ${currentPage === i && s.current}`}>{i}</div>);
+					if (i === pagesCount) {
+						break;
+					}
 				}
 			}
 		} else {

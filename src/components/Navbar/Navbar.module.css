@@ -31,6 +31,7 @@
     font-size: 1.2em;
     transition: all .15s;
     background-position: center;
+    width: max-content;
     min-width: 130px;
 }
 
@@ -55,7 +56,6 @@
 
 .dropDown .navLink {
     background-image: none;
-    width: 210px;
 }
 
 .dropDown:hover {
@@ -67,6 +67,7 @@
 
 .dropDown:hover .navLink {
     color: #F56464 !important;
+    width: 210px;
 }
 
 .dropDownMenu {
