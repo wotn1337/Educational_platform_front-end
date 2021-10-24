@@ -1,18 +1,17 @@
-import React, {useState} from "react";
+import React from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import s from './TextEditor.module.css';
 
 
-const TextEditor = () => {
-	const [editorState, setEditorState] = useState(null);
+const TextEditor = (props) => {
 	return (
 		<Editor
-			editorState={editorState}
+			editorState={props.editorState}
 			toolbarClassName={s.toolbar}
 			wrapperClassName="wrapperClassName"
 			editorClassName={s.textEditor}
-			onEditorStateChange={setEditorState}
+			onEditorStateChange={props.setEditorState}
 		/>
 	);
 }

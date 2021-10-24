@@ -29,13 +29,15 @@ const FragmentTitle = (props) => {
 				value={props.title}
 				onChange={e => props.changeFragmentTitle(e.target.value)}
 			/>
+			{props.titleError && <div className={s.titleError}>{props.titleError}</div>}
 		</div>
 	);
 };
 
 const mapStateToProps = (state) => ({
 	fragmentType: state.createFragment.fragmentType,
-	title: state.createFragment.title
+	title: state.createFragment.title,
+	titleError: state.createFragment.titleError
 });
 
 export default connect(mapStateToProps, {changeFragmentTitle})(FragmentTitle);

@@ -2,9 +2,9 @@ import React from "react";
 import TextEditor from "../../TextEditor/TextEditor";
 
 
-const CreateArticle = () => {
+const CreateArticle = (props) => {
 	return (
-		<TextEditor />
+		<TextEditor editorState={props.editorState} setEditorState={props.setEditorState}/>
 	);
 }
 

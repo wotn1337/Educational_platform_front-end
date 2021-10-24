@@ -91,3 +91,9 @@ export const adminAPI = {
 		return instance.patch(`admin/users/${id}`, JSON.stringify(data), authConfig(token));
 	}
 };
+
+export const fragmentsAPI = {
+	createFragment(token, type, title, content) {
+		return instance.post('fragments', JSON.stringify({type, title, content}), authConfig(token));
+	}
+};
