@@ -95,5 +95,9 @@ export const adminAPI = {
 export const fragmentsAPI = {
 	createFragment(token, type, title, content) {
 		return instance.post('fragments', JSON.stringify({type, title, content}), authConfig(token));
+	},
+
+	getFragments(token, page) {
+		return instance.get(`fragments?page=${page}`, authConfig(token));
 	}
 };
