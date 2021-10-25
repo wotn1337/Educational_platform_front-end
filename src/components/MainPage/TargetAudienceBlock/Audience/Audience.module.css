@@ -1,0 +1,30 @@
+.audience {
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.image {
+    width: 115px;
+    height: 115px;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.text {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
