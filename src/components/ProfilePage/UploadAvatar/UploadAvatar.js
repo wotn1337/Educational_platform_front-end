@@ -18,7 +18,7 @@ const UploadAvatar = (props) => {
 				getImgSrc(e.target.files[0]);
 			}}/>
 			{avatar && <img src={avatarSrc} alt="avatar preview" className={s.avatarPreview}/>}
-			<label className={s.btn} htmlFor="upload">{avatar ? 'Выбрать другое фото' : 'Загрузить аватар'}</label>
+			<label className={`${s.btn} ${s.btnMobile}`} htmlFor="upload">{avatar ? 'Выбрать другое фото' : 'Загрузить аватар'}</label>
 			<button className={`${s.btnAvatar} ${s.btnUpload}`} onClick={() => {
 				props.updateAvatar(avatar);
 				setAvatar(null);

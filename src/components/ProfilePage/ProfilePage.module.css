@@ -60,6 +60,10 @@
     padding: 0;
 }
 
+.btnMobile {
+
+}
+
 .btnAvatar:hover {
     margin-top: -5px;
 }
@@ -201,6 +205,10 @@
     }
     .btn {
         width: 30%;
+        font-size: 1em;
+    }
+    .formLabel {
+        font-size: 1.2em;
     }
     .form {
         margin: 20px 70px;
@@ -209,6 +217,13 @@
 @media all and (max-width: 992px){
     .userInformation {
         width: 75%;
+    }
+    .btn {
+        width: 30%;
+        font-size: 0.9em;
+    }
+    .formLabel {
+        font-size: 1.2em;
     }
     .text {
         font-size: 1.2em;
@@ -224,22 +239,77 @@
         padding: 10px 20px;
     }
     .btn{
-        width: 30%;
+        margin: 5px;
+        width: 250px;
+        font-size: 0.8em;
     }
     .form {
-        margin: 20px 10px;
+        margin: 30px 40px;
+    }
+    .btnMobile {
+        width: 197px;
+    }
+    .formLabel {
+        font-size: 1em;
+    }
+    .formControl {
+        font-size: 1em;
+        height: 40px;
+    }
+    .btnAvatar {
+        width: 20px;
+        margin: 3px;
+        height: 20px;
+    }
+    .user {
+        margin: 20px auto;
+    }
+    .userName {
+        font-size: 1.5em;
+    }
+    .avatar {
+        width: 110px;
+        height: 110px;
     }
 }
 
 @media all and (max-width: 480px) {
     .userInformation {
         width: 100%;
-        padding: 7% 4%;
+        padding: 15px 10px;
     }
     .btn {
-        width: 40%;
-        margin: 10px;
+        width: 250px;
+        margin: 5px;
         padding: 5px;
         font-size: 0.9em;
+    }
+    .form {
+        margin: 2px;
+    }
+    .btnMobile {
+        width: 197px;
+    }
+    .formLabel {
+        font-size: 1em;
+    }
+    .formControl {
+        font-size: 1em;
+        height: 40px;
+    }
+    .btnAvatar {
+        width: 20px;
+        margin: 3px;
+        height: 20px;
+    }
+    .user {
+        margin: 20px auto;
+    }
+    .userName {
+        font-size: 1.5em;
+    }
+    .avatar {
+        width: 110px;
+        height: 110px;
     }
 }
