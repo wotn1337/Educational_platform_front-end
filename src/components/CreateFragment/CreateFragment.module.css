@@ -10,7 +10,7 @@
     margin-top: 30px;
     background-color: #EF5B5B;
     border-radius: 10px;
-    font-family: Open Sans, sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
@@ -19,6 +19,8 @@
     padding: 20px 60px;
     box-sizing: border-box;
     border: none;
+    transition: background-color;
+    transition-duration: 200ms;
 }
 
 .createButton:hover {

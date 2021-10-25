@@ -10,6 +10,7 @@ import MyFragments from "./components/MyFragments/MyFragments";
 import CreateFragment from "./components/CreateFragment/CreateFragment";
 import LoginContainer from "./components/AuthPage/Login/LoginContainer";
 import RegisterContainer from "./components/AuthPage/Register/RegisterContainer";
+import Fragment from "./components/Fragment/Fragment";
 
 
 const App = () => {
@@ -51,6 +52,10 @@ const App = () => {
 			<Route
 				exact path='/reset-password:token?'
 				render={() => <ResetPasswordContainer/>}
+			/>
+			<Route
+				exact path='/fragment:id?'
+				render={() => <Fragment/>}
 			/>
 		</>
 	)

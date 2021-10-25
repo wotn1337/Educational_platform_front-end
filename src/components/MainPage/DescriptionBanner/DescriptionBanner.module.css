@@ -19,8 +19,9 @@
 }
 
 .title {
+    font-family: "Open Sans", sans-serif;
     font-style: normal;
-    font-weight: bold;
+    font-weight: 700;
     font-size: 48px;
     line-height: 65px;
     color: #FFFFFF;
@@ -37,6 +38,8 @@
 }
 
 .text {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
     font-style: normal;
     font-size: 39px;
     line-height: 53px;
