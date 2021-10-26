@@ -6,7 +6,7 @@ import Pagination from "../../Pagination/Pagination";
 
 const FragmentsList = (props) => {
 	const fragmentCards = props.fragments.map(fragment => (
-		<FragmentCard key={fragment.id} fragmentType={fragment.type} title={fragment.title}/>
+		<FragmentCard id={fragment.id} key={fragment.id} fragmentType={fragment.type} title={fragment.title}/>
 	));
 
 	return (

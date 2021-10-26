@@ -2,6 +2,7 @@ import React from "react";
 import FragmentsList from "./FragmentsList";
 import {connect} from "react-redux";
 import {changePage, getFragments} from "../../../redux/myFragmentsReducer";
+import Preloader from "../../Preloader/Preloader";
 
 
 class FragmentsListContainer extends React.Component {
@@ -14,6 +15,10 @@ class FragmentsListContainer extends React.Component {
 	}
 
 	render() {
+		if (this.props.isFetching) {
+			return <Preloader size={400}/>;
+		}
+
 		return <FragmentsList
 			fragments={this.props.fragments}
 			currentPage={this.props.currentPage}
@@ -33,7 +38,8 @@ const mapStateToProps = (state) => ({
 	nextPage: state.myFragments.nextPage,
 	prevPage: state.myFragments.prevPage,
 	lastPage: state.myFragments.lastPage,
-	pageSize: state.myFragments.pageSize
+	pageSize: state.myFragments.pageSize,
+	isFetching: state.myFragments.isFetching
 });
 
 export default connect(mapStateToProps, {getFragments, changePage})(FragmentsListContainer);

@@ -7,6 +7,7 @@ import profileReducer from "./profileReducer";
 import adminReducer from "./adminReducer";
 import createFragmentReducer from "./createFragmentReducer";
 import myFragmentsReducer from "./myFragmentsReducer";
+import fragmentReducer from "./fragmentReducer";
 
 
 const reducers = combineReducers({
@@ -16,7 +17,8 @@ const reducers = combineReducers({
 	profile: profileReducer,
 	admin: adminReducer,
 	createFragment: createFragmentReducer,
-	myFragments: myFragmentsReducer
+	myFragments: myFragmentsReducer,
+	fragment: fragmentReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

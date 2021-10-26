@@ -99,5 +99,9 @@ export const fragmentsAPI = {
 
 	getFragments(token, page) {
 		return instance.get(`fragments?page=${page}`, authConfig(token));
+	},
+
+	getFragment(token, id) {
+		return instance.get(`fragments/${id}`, authConfig(token));
 	}
 };

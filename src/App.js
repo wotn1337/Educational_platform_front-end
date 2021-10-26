@@ -10,7 +10,7 @@ import MyFragments from "./components/MyFragments/MyFragments";
 import CreateFragment from "./components/CreateFragment/CreateFragment";
 import LoginContainer from "./components/AuthPage/Login/LoginContainer";
 import RegisterContainer from "./components/AuthPage/Register/RegisterContainer";
-import Fragment from "./components/Fragment/Fragment";
+import FragmentContainer from "./components/Fragment/FragmentContainer";
 
 
 const App = () => {
@@ -55,7 +55,7 @@ const App = () => {
 			/>
 			<Route
 				exact path='/fragment:id?'
-				render={() => <Fragment/>}
+				render={() => <FragmentContainer/>}
 			/>
 		</>
 	)

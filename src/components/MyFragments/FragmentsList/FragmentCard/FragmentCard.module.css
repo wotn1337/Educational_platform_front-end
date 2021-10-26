@@ -5,6 +5,11 @@
     padding: 20px 25px;
     box-sizing: border-box;
     width: fit-content;
+    text-decoration: none;
+}
+
+.fragmentCard:hover {
+    margin-top: -10px;
 }
 
 .preview {
