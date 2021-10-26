@@ -18,7 +18,7 @@ const fragmentReducer = (state = initState, action) => {
 			return {
 				...state,
 				title: action.fragment.title,
-				content: action.fragment.content,
+				content: JSON.parse(action.fragment.content),
 				type: action.fragment.type,
 				creatorId: action.fragment.user_id,
 				creator: action.fragment.user_name,
