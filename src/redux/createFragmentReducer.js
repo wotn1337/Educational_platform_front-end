@@ -11,7 +11,7 @@ const SET_TITLE_ERROR = 'SET_TITLE_ERROR';
 const initState = {
 	fragmentType: '',
 	title: '',
-	content: JSON.stringify(''),
+	content: '',
 	isFetching: false,
 	titleError: ''
 };
@@ -70,7 +70,7 @@ export const createFragment = (token, fragmentType, title, content) => (dispatch
 			successNotification(res.data.message);
 			dispatch(setTitleError(''));
 			dispatch(changeFragmentTitle(''));
-			dispatch(setContent(''));
+			//dispatch(setContent(''));
 			dispatch(setIsFetching(false));
 		})
 		.catch(err => {
