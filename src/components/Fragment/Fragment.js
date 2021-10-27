@@ -1,29 +1,52 @@
-import React from "react";
+import React, {useState} from "react";
 import s from './Fragment.module.css'
+import TextEditor from "../TextEditor/TextEditor";
+import htmlToDraft from 'html-to-draftjs';
+import {ContentState, convertToRaw, EditorState} from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 const Fragment = (props) => {
-    return (
-        <div className={s.fragmentWrapper}>
-            <div className={s.name}>
-                {props.title}
-            </div>
+	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
-            <div className={s.fragmentBlock} dangerouslySetInnerHTML={{__html: props.content}}>
-            </div>
+	const setContent = (editorState) => {
+		props.setContent(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+		setEditorState(editorState);
+	}
 
-            <div className={s.buttonsBlock}>
-                <button className={s.btn}>
-                    Редактировать
-                </button>
-                <button className={s.btn}>
-                    Удалить
-                </button>
-                <button className={s.btn}>
-                    Добавить в избранное
-                </button>
-            </div>
-        </div>
-    )
+	const convertToDraft = () => {
+		const contentBlock = htmlToDraft(props.content);
+		const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks, contentBlock.entityMap);
+		setEditorState(EditorState.createWithContent(contentState));
+	}
+
+	return (
+		<div className={s.fragmentWrapper}>
+			<div className={s.name}>
+				{props.title}
+			</div>
+
+			{!props.isEdit
+				? <div className={s.fragmentBlock} dangerouslySetInnerHTML={{__html: props.content}}/>
+				: <TextEditor editorState={editorState} setEditorState={setContent}/>
+			}
+
+			<div className={s.buttonsBlock}>
+				{!props.isEdit
+				? <button className={s.btn} onClick={() => {
+						props.toggleIsEdit();
+						convertToDraft();
+					}}>Редактировать</button>
+				: <button className={s.btn} onClick={() => props.editFragment(props.title, props.content)}>Сохранить изменения</button>
+				}
+				<button className={s.btn} onClick={props.deleteFragment}>
+					Удалить
+				</button>
+				<button className={s.btn}>
+					Добавить в избранное
+				</button>
+			</div>
+		</div>
+	)
 }
 
 

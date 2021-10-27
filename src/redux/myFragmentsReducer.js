@@ -3,6 +3,8 @@ import {fragmentsAPI} from "../api/api";
 const SET_FRAGMENTS = 'SET_FRAGMENTS';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const SET_IS_FETCHING = 'SET_IS_FETCHING';
+const SET_SEARCH_TITLE = 'SET_SEARCH_TITLE';
+const SET_SEARCH_TYPE = 'SET_SEARCH_TYPE';
 
 
 const initState = {
@@ -10,10 +12,13 @@ const initState = {
 	currentPage: 1,
 	pageSize: 6,
 	totalFragmentsCount: 0,
+	filterFragmentsCount: 0,
 	prevPage: 1,
 	nextPage: 1,
 	lastPage: 1,
-	isFetching: false
+	isFetching: false,
+	searchTitle : '',
+	searchType: ''
 };
 
 const myFragmentsReducer = (state = initState, action) => {
@@ -23,6 +28,7 @@ const myFragmentsReducer = (state = initState, action) => {
 				...state,
 				fragments: action.data.fragments,
 				totalFragmentsCount: action.data.meta.total,
+				filterFragmentsCount: action.data.meta.total,
 				lastPage: action.data.meta.last_page,
 				pageSize: action.data.meta.per_page
 			};
@@ -39,6 +45,18 @@ const myFragmentsReducer = (state = initState, action) => {
 
 		case SET_IS_FETCHING:
 			return {...state, isFetching: action.isFetching};
+
+		case SET_SEARCH_TITLE:
+			return {
+				...state,
+				searchTitle: action.searchTitle
+			};
+
+		case SET_SEARCH_TYPE:
+			return {
+				...state,
+				searchType: action.searchType
+			};
 
 		default:
 			return state;
@@ -60,9 +78,19 @@ const setCurrentPage = (page) => ({
 	page
 });
 
-export const getFragments = (token, page) => (dispatch) => {
+export const setSearchTitle = (searchTitle) => ({
+	type: SET_SEARCH_TITLE,
+	searchTitle
+});
+
+export const setSearchType = (searchType) => ({
+	type: SET_SEARCH_TYPE,
+	searchType
+});
+
+export const getFragments = (token, page, title, type) => (dispatch) => {
 	dispatch(setIsFetching(true));
-	fragmentsAPI.getFragments(token, page)
+	fragmentsAPI.getFragments(token, page, title, type)
 		.then(res => {
 			console.log(res);
 			dispatch(setFragments(res.data));
@@ -75,8 +103,8 @@ export const getFragments = (token, page) => (dispatch) => {
 		})
 };
 
-export const changePage = (token, page) => (dispatch) => {
-	dispatch(getFragments(token, page));
+export const changePage = (token, page, title, type) => (dispatch) => {
+	dispatch(getFragments(token, page, title, type));
 };
 
 export default myFragmentsReducer;

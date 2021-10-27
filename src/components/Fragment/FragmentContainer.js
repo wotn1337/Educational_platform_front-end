@@ -3,18 +3,52 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 import Fragment from "./Fragment";
-import {withRouter} from "react-router-dom";
-import {getFragment} from "../../redux/fragmentReducer";
+import {Redirect, withRouter} from "react-router-dom";
+import {deleteFragment, editFragment, getFragment, setContent, setTitle} from "../../redux/fragmentReducer";
 
 
 class FragmentContainer extends React.Component {
+	state = {
+		id: this.props.match.params.id.substr(1),
+		isEdit: false
+	}
+
 	componentDidMount() {
-		const id = this.props.match.params.id.substr(1);
-		this.props.getFragment(this.props.token, id);
+		this.props.getFragment(this.props.token, this.state.id);
+	}
+
+	toggleIsEdit = () => {
+		this.setState({isEdit : !this.state.isEdit});
+	}
+
+	deleteFragment = () => {
+		this.props.deleteFragment(this.props.token, this.state.id);
+		this.setState({id: ''});
+	}
+
+	editFragment = (newTitle, newContent) => {
+		this.props.editFragment(
+			this.props.token,
+			this.state.id,
+			newTitle,
+			newContent
+		)
+			.then(() => this.props.setContent(JSON.parse(this.props.content)));
+		this.toggleIsEdit();
 	}
 
 	render() {
-		return <Fragment {...this.props}/>;
+		if (!this.state.id) {
+			return <Redirect to={'/my-fragments'} />;
+		}
+
+		return <Fragment
+			{...this.props}
+			{...this.state}
+			deleteFragment={this.deleteFragment}
+			toggleIsEdit={this.toggleIsEdit}
+			editFragment={this.editFragment}
+		/>;
 	}
 }
 
@@ -28,7 +62,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-	connect(mapStateToProps, {getFragment}),
+	connect(mapStateToProps, {getFragment, deleteFragment, editFragment, setTitle, setContent}),
 	withRouter,
 	withoutAuthRedirectToAuthPage
 )(FragmentContainer);

@@ -8,7 +8,7 @@ import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuth
 const MyFragments = () => {
 	return (
 		<div className={s.content}>
-			<SearchBlock fragments={1000} totalFragmentsCount={1000}/>
+			<SearchBlock/>
 			<FragmentsListContainer />
 		</div>
 	);
