@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import s from './CreateFragment.module.css';
 import SelectType from "./SelectType/SelectType";
 import FragmentTitle from "./FragmentTitle/FragmentTitle";
@@ -9,11 +9,21 @@ import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuth
 import {createFragment, setContent} from "../../redux/createFragmentReducer";
 import Preloader from "../Preloader/Preloader";
 import TextEditor from "../TextEditor/TextEditor";
+import {convertToRaw, EditorState} from "draft-js";
+import draftToHtml from "draftjs-to-html";
 
 
 const CreateFragment = (props) => {
+	const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+	const setContent = (editorState) => {
+		setEditorState(editorState);
+		props.setContent(draftToHtml(convertToRaw(editorState.getCurrentContent())));
+	};
+
 	const createFragment = () => {
-		props.createFragment(props.token, props.fragmentType, props.title, props.content);
+		props.createFragment(props.token, props.fragmentType, props.title, props.content)
+			.then(() => setEditorState(EditorState.createEmpty()));
 	};
 
 	if (props.isFetching) {
@@ -25,7 +35,7 @@ const CreateFragment = (props) => {
 			<SelectType/>
 			<FragmentTitle/>
 			{props.fragmentType === fragmentTypes.article &&
-			<TextEditor/>
+			<TextEditor editorState={editorState} setEditorState={setContent}/>
 			}
 			<button className={s.createButton} onClick={createFragment} disabled={props.isFetching}>Создать</button>
 		</div>

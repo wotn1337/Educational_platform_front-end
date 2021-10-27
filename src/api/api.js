@@ -97,11 +97,19 @@ export const fragmentsAPI = {
 		return instance.post('fragments', JSON.stringify({type, title, content}), authConfig(token));
 	},
 
-	getFragments(token, page) {
-		return instance.get(`fragments?page=${page}`, authConfig(token));
+	getFragments(token, page, title = null, type = null) {
+		return instance.get(`fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig(token));
 	},
 
 	getFragment(token, id) {
 		return instance.get(`fragments/${id}`, authConfig(token));
+	},
+
+	deleteFragment(token, id) {
+		return instance.delete(`fragments/${id}`, authConfig(token))
+	},
+
+	editFragment(token, id, title, content) {
+		return instance.patch(`fragments/${id}`, JSON.stringify({title, content}), authConfig(token));
 	}
 };

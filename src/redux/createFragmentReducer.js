@@ -65,12 +65,12 @@ const setTitleError = (error) => ({
 
 export const createFragment = (token, fragmentType, title, content) => (dispatch) => {
 	dispatch(setIsFetching(true));
-	fragmentsAPI.createFragment(token, fragmentType, title, content)
+	return fragmentsAPI.createFragment(token, fragmentType, title, content)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(setTitleError(''));
 			dispatch(changeFragmentTitle(''));
-			//dispatch(setContent(''));
+			dispatch(setContent(''));
 			dispatch(setIsFetching(false));
 		})
 		.catch(err => {

@@ -7,11 +7,19 @@ import Preloader from "../../Preloader/Preloader";
 
 class FragmentsListContainer extends React.Component {
 	componentDidMount() {
-		this.props.getFragments(this.props.token, this.props.currentPage);
+		this.props.getFragments(
+			this.props.token,
+			this.props.currentPage
+		);
 	}
 
 	changePage = (page) => {
-		this.props.changePage(this.props.token, page);
+		this.props.changePage(
+			this.props.token,
+			page,
+			this.props.searchTitle,
+			this.props.searchType
+		);
 	}
 
 	render() {
@@ -39,7 +47,9 @@ const mapStateToProps = (state) => ({
 	prevPage: state.myFragments.prevPage,
 	lastPage: state.myFragments.lastPage,
 	pageSize: state.myFragments.pageSize,
-	isFetching: state.myFragments.isFetching
+	isFetching: state.myFragments.isFetching,
+	searchTitle: state.myFragments.searchTitle,
+	searchType: state.myFragments.searchType
 });
 
 export default connect(mapStateToProps, {getFragments, changePage})(FragmentsListContainer);

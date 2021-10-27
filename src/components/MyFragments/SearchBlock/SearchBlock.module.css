@@ -17,13 +17,11 @@
 
 .inputBlock {
     display: flex;
+    align-items: center;
 }
 
-/*.searchInputBlock {*/
-/*    border: 1px solid white;*/
-/*}*/
-
 .searchInput {
+    display: block;
     border: none;
     background: #C4C4C4;
     border-radius: 10px;
@@ -58,4 +56,21 @@
     box-sizing: border-box;
     color: white;
     min-width: 250px;
+}
+
+.searchButton {
+    margin-left: 35px;
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    background-image: url("../../../assets/img/search.png");
+    background-repeat: no-repeat;
+    transition: 0.3s;
+}
+
+.searchButton:hover {
+    transform: translateY(-10px);
+    border-bottom: 3px solid #F56464;
 }
