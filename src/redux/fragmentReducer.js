@@ -21,7 +21,7 @@ const fragmentReducer = (state = initState, action) => {
 			return {
 				...state,
 				title: action.fragment.title,
-				content: JSON.parse(action.fragment.content),
+				content: action.fragment.content,
 				type: action.fragment.type,
 				creatorId: action.fragment.user_id,
 				creator: action.fragment.user_name,
@@ -31,7 +31,7 @@ const fragmentReducer = (state = initState, action) => {
 			return {...state, title: action.title}
 
 		case SET_CONTENT:
-			return {...state, content: JSON.stringify(action.content)}
+			return {...state, content: action.content}
 
 		default:
 			return state;

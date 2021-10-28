@@ -12,7 +12,6 @@ const initState = {
 	currentPage: 1,
 	pageSize: 6,
 	totalFragmentsCount: 0,
-	filterFragmentsCount: 0,
 	prevPage: 1,
 	nextPage: 1,
 	lastPage: 1,
@@ -28,7 +27,6 @@ const myFragmentsReducer = (state = initState, action) => {
 				...state,
 				fragments: action.data.fragments,
 				totalFragmentsCount: action.data.meta.total,
-				filterFragmentsCount: action.data.meta.total,
 				lastPage: action.data.meta.last_page,
 				pageSize: action.data.meta.per_page
 			};

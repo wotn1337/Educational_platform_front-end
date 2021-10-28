@@ -21,9 +21,16 @@ const Fragment = (props) => {
 
 	return (
 		<div className={s.fragmentWrapper}>
-			<div className={s.name}>
-				{props.title}
-			</div>
+			{!props.isEdit
+				? <div className={s.name}>{props.title}</div>
+				: <input
+					type="text"
+					name={'fragmentTitle'}
+					className={s.fragmentTitle}
+					value={props.title}
+					onChange={event => props.setTitle(event.target.value)}
+				/>
+			}
 
 			{!props.isEdit
 				? <div className={s.fragmentBlock} dangerouslySetInnerHTML={{__html: props.content}}/>
@@ -32,11 +39,12 @@ const Fragment = (props) => {
 
 			<div className={s.buttonsBlock}>
 				{!props.isEdit
-				? <button className={s.btn} onClick={() => {
+					? <button className={s.btn} onClick={() => {
 						props.toggleIsEdit();
 						convertToDraft();
 					}}>Редактировать</button>
-				: <button className={s.btn} onClick={() => props.editFragment(props.title, props.content)}>Сохранить изменения</button>
+					: <button className={s.btn} onClick={() => props.editFragment(props.title, props.content)}>Сохранить
+						изменения</button>
 				}
 				<button className={s.btn} onClick={props.deleteFragment}>
 					Удалить

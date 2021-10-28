@@ -3,3 +3,9 @@ export const fragmentTypes = {
 	test: 'test',
 	video: 'video'
 }
+
+export const russianFragmentTypes = {
+	'article': 'Статья',
+	'test': 'Тест',
+	'video': 'Видео'
+};

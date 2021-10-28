@@ -33,7 +33,7 @@ class FragmentContainer extends React.Component {
 			newTitle,
 			newContent
 		)
-			.then(() => this.props.setContent(JSON.parse(this.props.content)));
+			.then(() => this.props.setContent(this.props.content));
 		this.toggleIsEdit();
 	}
 

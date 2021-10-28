@@ -9,13 +9,11 @@ import typeArticle from "../assets/img/fragments/typeArticle.png";
 export const previewImg = {
 	[fragmentTypes.video]: videoPreview,
 	[fragmentTypes.article]: articlePreview,
-	[fragmentTypes.test]: testPreview,
-	'Article': articlePreview
+	[fragmentTypes.test]: testPreview
 };
 
 export const fragmentTypeImg = {
 	[fragmentTypes.video]: typeVideo,
-	[fragmentTypes.article]: typeTest,
-	[fragmentTypes.test]: typeArticle,
-	'Article': typeArticle
+	[fragmentTypes.article]: typeArticle,
+	[fragmentTypes.test]: typeTest
 };
