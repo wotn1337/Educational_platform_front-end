@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {changeFragmentType} from "../../../redux/createFragmentReducer";
+import {changeFragmentType} from "../../../redux/createArticleReducer";
 import s from './SelectType.module.css';
 
 

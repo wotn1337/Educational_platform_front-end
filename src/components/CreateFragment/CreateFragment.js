@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import {fragmentTypes} from "../../common/fragmentTypes";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
-import {createFragment, setContent} from "../../redux/createFragmentReducer";
+import {createFragment, setContent} from "../../redux/createArticleReducer";
 import Preloader from "../Preloader/Preloader";
 import TextEditor from "../TextEditor/TextEditor";
 import {convertToRaw, EditorState} from "draft-js";

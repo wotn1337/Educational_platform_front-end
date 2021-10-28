@@ -90,7 +90,6 @@ export const getFragments = (token, page, title, type) => (dispatch) => {
 	dispatch(setIsFetching(true));
 	fragmentsAPI.getFragments(token, page, title, type)
 		.then(res => {
-			console.log(res);
 			dispatch(setFragments(res.data));
 			dispatch(setCurrentPage(page));
 			dispatch(setIsFetching(false));
