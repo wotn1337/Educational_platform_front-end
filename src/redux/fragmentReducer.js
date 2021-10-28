@@ -5,6 +5,7 @@ import {successNotification} from "../notifications/notifications";
 const SET_FRAGMENT = 'SET_FRAGMENT';
 const SET_TITLE = 'SET_TITLE';
 const SET_CONTENT = 'SET_CONTENT';
+const SET_IS_FETCHING = 'SET_IS_FETCHING';
 
 
 const initState = {
@@ -12,7 +13,8 @@ const initState = {
 	content: '',
 	type: '',
 	creator: '',
-	creatorId: ''
+	creatorId: '',
+	isFetching: false
 };
 
 const fragmentReducer = (state = initState, action) => {
@@ -32,6 +34,9 @@ const fragmentReducer = (state = initState, action) => {
 
 		case SET_CONTENT:
 			return {...state, content: action.content}
+
+		case SET_IS_FETCHING:
+			return {...state, isFetching: action.isFetching}
 
 		default:
 			return state;
@@ -53,13 +58,23 @@ export const setContent = (content) => ({
 	content
 });
 
+const toggleIsFetching = (isFetching) => ({
+	type: SET_IS_FETCHING,
+	isFetching
+})
+
+
 export const getFragment = (token, id) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
 	fragmentsAPI.getFragment(token, id)
 		.then(res => {
-			console.log(res);
+			dispatch(toggleIsFetching(false));
 			dispatch(setFragment(res.data.fragment));
 		})
-		.catch(err => console.log(err.response))
+		.catch(err => {
+			console.log(err.response);
+			dispatch(toggleIsFetching(false));
+		})
 };
 
 export const deleteFragment = (token, id) => () => {
@@ -68,12 +83,17 @@ export const deleteFragment = (token, id) => () => {
 		.catch(err => console.log(err.response));
 };
 
-export const editFragment = (token, id, title, content) => () => {
+export const editFragment = (token, id, title, content) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
 	return fragmentsAPI.editFragment(token, id, title, content)
 		.then(res => {
 			successNotification(res.data.message);
+			dispatch(toggleIsFetching(false));
 		})
-		.catch(err => console.log(err.response));
+		.catch(err => {
+			console.log(err.response);
+			dispatch(toggleIsFetching(false));
+		});
 }
 
 export default fragmentReducer;

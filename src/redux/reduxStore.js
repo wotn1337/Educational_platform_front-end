@@ -1,24 +1,24 @@
 import thunkMiddleware from 'redux-thunk';
 import {combineReducers, createStore, applyMiddleware} from "redux";
-import mainPageReducer from "./mainPageReducer";
 import navbarReducer from "./navbarReducer";
 import authReducer from "./authReducer";
 import profileReducer from "./profileReducer";
 import adminReducer from "./adminReducer";
-import createFragmentReducer from "./createFragmentReducer";
+import createArticleReducer from "./createArticleReducer";
 import myFragmentsReducer from "./myFragmentsReducer";
 import fragmentReducer from "./fragmentReducer";
+import createTestReducer from "./createTestReducer";
 
 
 const reducers = combineReducers({
-	mainPage: mainPageReducer,
 	navbar: navbarReducer,
 	auth: authReducer,
 	profile: profileReducer,
 	admin: adminReducer,
-	createFragment: createFragmentReducer,
+	createFragment: createArticleReducer,
 	myFragments: myFragmentsReducer,
 	fragment: fragmentReducer,
+	createTest: createTestReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

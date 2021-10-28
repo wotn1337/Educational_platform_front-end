@@ -16,7 +16,7 @@ const initState = {
 	titleError: ''
 };
 
-const createFragmentReducer = (state = initState, action) => {
+const createArticleReducer = (state = initState, action) => {
 	switch (action.type) {
 		case CHANGE_FRAGMENT_TYPE:
 			return {...state, fragmentType: action.fragmentType};
@@ -79,4 +79,4 @@ export const createFragment = (token, fragmentType, title, content) => (dispatch
 		});
 };
 
-export default createFragmentReducer;
+export default createArticleReducer;

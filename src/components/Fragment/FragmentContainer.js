@@ -5,6 +5,7 @@ import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuth
 import Fragment from "./Fragment";
 import {Redirect, withRouter} from "react-router-dom";
 import {deleteFragment, editFragment, getFragment, setContent, setTitle} from "../../redux/fragmentReducer";
+import Preloader from "../Preloader/Preloader";
 
 
 class FragmentContainer extends React.Component {
@@ -42,6 +43,10 @@ class FragmentContainer extends React.Component {
 			return <Redirect to={'/my-fragments'} />;
 		}
 
+		if (this.props.isFetching) {
+			return <Preloader size={400}/>
+		}
+
 		return <Fragment
 			{...this.props}
 			{...this.state}
@@ -59,6 +64,7 @@ const mapStateToProps = (state) => ({
 	type: state.fragment.type,
 	creator: state.fragment.creator,
 	creatorId: state.fragment.creatorId,
+	isFetching: state.fragment.isFetching,
 });
 
 export default compose(
