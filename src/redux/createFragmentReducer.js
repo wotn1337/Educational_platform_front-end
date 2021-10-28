@@ -28,7 +28,7 @@ const createFragmentReducer = (state = initState, action) => {
 			return {...state, isFetching: action.isFetching};
 
 		case SET_CONTENT:
-			return {...state, content: JSON.stringify(action.content)};
+			return {...state, content: action.content};
 
 		case SET_TITLE_ERROR:
 			return {...state, titleError: action.error};
