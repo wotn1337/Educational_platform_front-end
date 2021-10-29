@@ -65,7 +65,7 @@
     padding: 0;
     background-color: transparent;
     border: none;
-    background-image: url("../../../assets/img/search.png");
+    background-image: url("../../../assets/img/fragments/search.png");
     background-repeat: no-repeat;
     transition: 0.3s;
 }

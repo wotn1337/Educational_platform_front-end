@@ -28,7 +28,7 @@ const CreateFragment = (props) => {
 	};
 
 	if (props.isFetching) {
-		return <Preloader size={600}/>;
+		return <Preloader size={400}/>;
 	}
 
 	return (
