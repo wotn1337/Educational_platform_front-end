@@ -11,7 +11,7 @@ import Preloader from "../Preloader/Preloader";
 import TextEditor from "../TextEditor/TextEditor";
 import {convertToRaw, EditorState} from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import CreateTest from "../CreateTest/CreateTest";
+import CreateTestContainer from "../CreateTest/CreateTestContainer";
 
 
 const CreateFragment = (props) => {
@@ -39,7 +39,7 @@ const CreateFragment = (props) => {
 				<TextEditor editorState={editorState} setEditorState={setContent}/>
 			}
 			{props.fragmentType === fragmentTypes.test &&
-				<CreateTest />
+				<CreateTestContainer />
 			}
 			<button className={s.createButton} onClick={createFragment} disabled={props.isFetching}>Создать</button>
 		</div>
