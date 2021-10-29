@@ -1,9 +1,19 @@
 import React from 'react';
+import s from "./Task/Task.module.css";
 
 
-const CreateTest = () => {
+const CreateTest = (props) => {
 	return (
-		<div>Creating test</div>
+		<>
+			{props.children}
+			<button
+				className={s.button}
+				onClick={event => {
+					event.preventDefault();
+					props.addTask();
+				}}
+			/>
+		</>
 	);
 };
 
