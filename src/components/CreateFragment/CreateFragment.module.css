@@ -1,6 +1,6 @@
 .content {
     width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto;
     padding-bottom: 100px;
 }
 
@@ -25,4 +25,46 @@
 
 .createButton:hover {
     background-color: #F56464;
+}
+
+@media all and (max-width: 1500px) {
+
+}
+
+@media all and (max-width: 1200px) {
+    .content {
+        width: 900px;
+    }
+    .createButton {
+
+    }
+}
+
+@media all and (max-width: 992px) {
+    .content {
+        width: 80%;
+    }
+    .createButton {
+        font-size: 20px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .content {
+        width: 90%;
+    }
+    .createButton {
+        font-size: 15px;
+        padding: 15px 50px;
+    }
+}
+
+@media all and (max-width: 520px) {
+    .content {
+        width: 90%;
+    }
+    .createButton {
+        font-size: 15px;
+        padding: 10px 40px;
+    }
 }

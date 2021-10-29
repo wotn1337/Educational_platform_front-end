@@ -8,6 +8,7 @@
 .headerWrapper {
     width: 1400px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
 }
@@ -130,7 +131,7 @@ a.active {
 
 @media all and (max-width: 480px) {
     .navLink {
-        font-size: 1.2em;
+        font-size: 1em;
     }
     .nav {
         margin: 4% auto;
