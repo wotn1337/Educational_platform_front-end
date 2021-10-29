@@ -95,3 +95,40 @@
     background-color: #ffe8b9;
     color: black;
 }
+
+@media all and (max-width: 1024px) {
+    .descriptionBanner {
+        margin: 0 0 100px 0;
+    }
+
+    .descriptionWrapper {
+        width: inherit;
+        padding: 45px 45px;
+    }
+
+    .descriptionImage {
+        height: 150px;
+        width: 150px;
+    }
+
+    .title {
+        font-size: 18px;
+        line-height: inherit;
+    }
+
+    .name {
+        font-size: 22px;
+        line-height: inherit;
+    }
+
+    .text {
+        font-size: 16px;
+        line-height: inherit;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .descriptionImage {
+        display: none;
+    }
+}

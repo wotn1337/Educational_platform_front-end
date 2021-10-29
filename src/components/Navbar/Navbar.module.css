@@ -41,7 +41,7 @@
 }
 
 .navLink:hover {
-    background-image: url('../../assets/img/menu_hover.svg');
+    background-image: url('../../assets/img/navbar/menu_hover.svg');
     background-repeat: no-repeat;
     color: #F56464;
     background-size: 130px;
@@ -100,40 +100,45 @@
 
 a.active {
     color: #F56464;
-    background-image: url('../../assets/img/menu_hover.svg');
+    background-image: url('../../assets/img/navbar/menu_hover.svg');
     background-repeat: no-repeat;
     background-size: 130px;
     background-position: center;
 }
 
-@media all and (max-width: 1500px){
-    .navLink {
-        font-size: 1.1em;
-    }
 
-}
-@media all and (max-width: 1200px){
+@media all and (max-width: 1500px) {
     .navLink {
         font-size: 1.1em;
     }
 }
-@media all and (max-width: 992px){
+
+@media all and (max-width: 1200px) {
     .navLink {
-        font-size: 1.2em;
+        font-size: 1.1em;
     }
 }
 
-@media all and (max-width: 768px) {
-    .navLink {
-        font-size: 1.2em;
-    }
-}
-
-@media all and (max-width: 480px) {
-    .navLink {
-        font-size: 1em;
-    }
+@media all and (max-width: 1024px) {
     .nav {
-        margin: 4% auto;
+        margin-top: 0;
+    }
+
+    .headerWrapper {
+        display: none;
     }
 }
+
+/*@media all and (max-width: 992px){*/
+/*    .nav {*/
+/*        margin-top: 0;*/
+/*    }*/
+
+/*    .logo {*/
+/*        margin-top: 0;*/
+/*        height: 60px;*/
+/*    }*/
+/*    .navLink {*/
+/*        font-size: 1.2em;*/
+/*    }*/
+/*}*/

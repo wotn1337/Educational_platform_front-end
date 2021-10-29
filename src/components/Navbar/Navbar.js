@@ -1,8 +1,9 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 import s from './Navbar.module.css'
-import logo from '../../assets/img/logo.svg';
+import logo from '../../assets/img/navbar/logo.svg';
 import DropDownMenu from "./DropDownMenu/DropDownMenu";
+import MobileNavbar from "./MobileNavbar/MobileNavbar";
 
 
 const Navbar = (props) => {
@@ -33,6 +34,7 @@ const Navbar = (props) => {
 					: <NavLink className={s.navLink} to={'/login'} activeClassName={s.active}>Войти</NavLink>
 				}
 			</div>
+			<MobileNavbar />
 		</div>
 	);
 };
