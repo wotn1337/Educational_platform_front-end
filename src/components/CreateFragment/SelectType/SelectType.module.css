@@ -23,3 +23,9 @@
     width: 220px;
     color: #FFFFFF;
 }
+
+@media all and (max-width: 520px) {
+    .selectTypeBlock {
+        flex-wrap: wrap;
+    }
+}

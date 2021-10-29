@@ -60,10 +60,6 @@
     padding: 0;
 }
 
-.btnMobile {
-
-}
-
 .btnAvatar:hover {
     margin-top: -5px;
 }
@@ -125,7 +121,7 @@
 }
 
 .form {
-    margin: 40px 120px;
+    margin: 40px 180px;
 }
 
 .formLabel {
@@ -172,7 +168,7 @@
     font-weight: bold;
     font-size: 1.1em;
     padding: 8px;
-    width: fit-content;
+    width: 280px;
     background: #FBCB84;
     border-radius: 20px;
     border-color: transparent;
@@ -192,7 +188,7 @@
         width: 60%;
     }
     .btn {
-        width: 30%;
+        width: 280px;
     }
     .form {
         margin: 30px 90px;
@@ -204,7 +200,7 @@
         width: 65%;
     }
     .btn {
-        width: 30%;
+        width: 280px;
         font-size: 1em;
     }
     .formLabel {
@@ -219,7 +215,7 @@
         width: 75%;
     }
     .btn {
-        width: 30%;
+        width: 190px;
         font-size: 0.9em;
     }
     .formLabel {
@@ -235,12 +231,12 @@
 
 @media all and (max-width: 768px) {
     .userInformation {
-        width: 80%;
+        width: 90%;
         padding: 10px 20px;
     }
     .btn{
         margin: 5px;
-        width: 250px;
+        width: 180px;
         font-size: 0.8em;
     }
     .form {
@@ -255,6 +251,14 @@
     .formControl {
         font-size: 1em;
         height: 40px;
+    }
+    .uploadAvatarBlock {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .buttons {
+        width: 390px;
+        margin: 0 auto;
     }
     .btnAvatar {
         width: 20px;
@@ -311,5 +315,13 @@
     .avatar {
         width: 110px;
         height: 110px;
+    }
+    .uploadAvatarBlock {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .buttons {
+        width: 280px;
+        margin: 0 auto;
     }
 }

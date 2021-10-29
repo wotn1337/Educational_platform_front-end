@@ -24,7 +24,7 @@
 }
 
 .fragmentBlock {
-    width: 900px;
+    width: 100%;
     padding: 40px 70px;
     background-color: white;
     border-radius: 9px;
@@ -34,12 +34,12 @@
 .buttonsBlock {
     display: flex;
     justify-content: space-around;
-    width: 900px;
+    width: 100%;
     margin: 50px auto 0;
 }
 
 .btn {
-    font-family: "Open Sans",sans-serif;
+    font-family: "Open Sans", sans-serif;
     font-weight: 700;
     font-size: 20px;
     color: white;
@@ -54,4 +54,71 @@
 
 .btn:hover {
     background: #F56464;
+}
+
+@media all and (max-width: 1500px) {
+
+}
+
+@media all and (max-width: 1200px) {
+
+
+}
+
+@media all and (max-width: 992px) {
+    .name {
+        font-size: 25px;
+    }
+
+    .fragmentWrapper {
+        width: 750px;
+    }
+
+    .btn {
+        width: 190px;
+        height: 55px;
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .fragmentWrapper {
+        width: 90%;
+    }
+
+    .btn {
+        padding: 10px;
+        margin: 5px;
+        width: fit-content;
+        height: 45px;
+        font-size: 15px;
+    }
+}
+
+@media all and (max-width: 520px) {
+    .name {
+        padding-left: 20px;
+    }
+
+    .fragmentWrapper {
+        width: 100%;
+    }
+
+    .fragmentTitle {
+        font-size: 20px;
+        margin: 30px 0;
+    }
+
+    .btn {
+        padding: 10px;
+        margin: 5px;
+        width: 200px;
+        height: auto;
+        font-size: 15px;
+    }
+
+    .buttonsBlock {
+        width: 230px;
+        flex-wrap: wrap;
+    }
 }
