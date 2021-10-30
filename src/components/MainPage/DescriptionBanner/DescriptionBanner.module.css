@@ -1,7 +1,7 @@
 .descriptionBanner {
     width: 100%;
     background-color: rgba(0, 0, 0, 0.41);
-    margin: 10px 0 170px 0;
+    margin: 10px 0 110px 0;
 }
 
 .descriptionWrapper {
@@ -98,37 +98,71 @@
 
 @media all and (max-width: 1024px) {
     .descriptionBanner {
-        margin: 0 0 100px 0;
+        margin: 0 0 50px 0;
     }
 
     .descriptionWrapper {
         width: inherit;
-        padding: 45px 45px;
+        padding: 45px;
     }
 
     .descriptionImage {
-        height: 150px;
-        width: 150px;
+        height: 200px;
     }
 
     .title {
-        font-size: 18px;
+        font-size: 30px;
         line-height: inherit;
+        margin-bottom: 20px;
     }
 
     .name {
-        font-size: 22px;
+        font-size: 38px;
         line-height: inherit;
     }
 
     .text {
-        font-size: 16px;
+        font-size: 20px;
         line-height: inherit;
     }
 }
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 768px) {
     .descriptionImage {
         display: none;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .title {
+        font-size: 18px;
+        line-height: 25px
+    }
+
+    .name {
+        font-size: 22px;
+        line-height: 30px;
+    }
+
+    .text {
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    .buttonsBlock {
+        margin-top: 10px;
+    }
+
+    .btn {
+        font-size: 18px;
+        line-height: 25px;
+    }
+
+    .btn.login {
+        padding: 8px 22px;
+    }
+
+    .btn.register {
+        padding: 10px 20px;
     }
 }

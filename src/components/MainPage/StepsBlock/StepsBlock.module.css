@@ -4,11 +4,10 @@
 }
 
 .title {
-    font-family: "Open Sans", sans-serif;
     font-weight: 800;
     font-size: 30px;
     line-height: 41px;
-    color: #FBCB84;
+    color: #F34B50;
     text-transform: uppercase;
     margin-bottom: 35px;
 }
@@ -17,4 +16,37 @@
     display: grid;
     grid-gap: 45px;
     justify-content: center;
+}
+
+
+@media all and (max-width: 1024px) {
+    .stepsBlockWrapper {
+        width: auto;
+    }
+
+    .title {
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .stepsBlockWrapper {
+        padding: 0 50px;
+    }
+
+    .title {
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .stepsBlockWrapper {
+        padding: 0 25px;
+        margin-bottom: 50px;
+    }
+
+    .title {
+        font-size: 15px;
+        line-height: 20px;
+    }
 }

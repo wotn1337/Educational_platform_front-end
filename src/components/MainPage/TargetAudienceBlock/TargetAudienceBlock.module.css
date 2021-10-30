@@ -6,4 +6,13 @@
 .audience {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+}
+
+
+@media all and (max-width: 1024px) {
+    .targetBlock {
+        width: auto;
+        padding: 0 50px;
+    }
 }

@@ -1,0 +1,12 @@
+.main {
+    background-color: #E0EFDF;
+    padding-top: 70px;
+}
+
+.audienceAndQuestions {
+    background-image: url("../../assets/img/mainPage/targetAudience/audience_background.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 200px 0 100px;
+    margin-top: -100px;
+}

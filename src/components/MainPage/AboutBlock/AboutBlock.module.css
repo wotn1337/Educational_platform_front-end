@@ -4,7 +4,6 @@
 }
 
 .title {
-    font-family: "Open Sans", sans-serif;
     font-weight: 800;
     font-size: 30px;
     line-height: 41px;
@@ -15,7 +14,32 @@
 
 .text {
     padding: 0 30px;
-    font-family: "Open Sans", sans-serif;
     font-size: 20px;
     color: black;
+}
+
+
+@media all and (max-width: 1024px) {
+    .aboutBlock {
+        width: auto;
+        padding: 0 50px;
+    }
+
+    .title {
+        text-align: center;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .title {
+        font-size: 15px;
+        line-height: 20px;
+        margin-bottom: 20px;
+    }
+
+    .text {
+        padding: 0;
+        font-size: 15px;
+        line-height: 20px;
+    }
 }

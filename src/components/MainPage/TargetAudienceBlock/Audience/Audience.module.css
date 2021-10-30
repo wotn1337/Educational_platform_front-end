@@ -13,7 +13,6 @@
 }
 
 .title {
-    font-family: "Open Sans", sans-serif;
     font-weight: 600;
     font-size: 20px;
     color: white;
@@ -22,9 +21,47 @@
 }
 
 .text {
-    font-family: "Open Sans", sans-serif;
     font-weight: 600;
     font-size: 20px;
     color: white;
     text-align: center;
+}
+
+
+@media all and (max-width: 768px) {
+    .audience {
+        width: 200px;
+    }
+
+    .image {
+        width: 90px;
+        height: 90px;
+        margin-bottom: 30px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .audience {
+        width: 120px;
+    }
+
+    .image {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 5px;
+    }
+
+    .title {
+        font-size: 13px;
+        line-height: 18px;
+    }
+
+    .text {
+        font-size: 10px;
+        line-height: 14px;
+    }
 }
