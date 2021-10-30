@@ -2,3 +2,19 @@
     width: 1200px;
     margin: 0 auto;
 }
+
+
+@media all and (max-width: 1024px) {
+    .questionWrapper {
+        width: auto;
+        padding: 0 50px;
+    }
+}
+
+@media all and (max-width: 500px) {
+    .questionWrapper {
+        width: auto;
+        padding: 0 15px;
+        margin-bottom: 40px;
+    }
+}

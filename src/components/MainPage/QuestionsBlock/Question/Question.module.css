@@ -1,5 +1,5 @@
 .questionBlock {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
 
 .image {
@@ -11,7 +11,6 @@
 
 .question {
     display: inline-block;
-    font-family: "Open Sans", sans-serif;
     font-style: italic;
     font-weight: 600;
     font-size: 20px;
@@ -20,7 +19,25 @@
 
 .answer {
     padding-left: 120px;
-    font-family: "Open Sans", sans-serif;
     font-size: 20px;
     color: black;
+}
+
+
+@media all and (max-width: 500px) {
+    .image {
+        width: 40px;
+        height: 20px;
+    }
+
+    .question {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .answer {
+        font-size: 11px;
+        line-height: 15px;
+        padding-left: 70px;
+    }
 }
