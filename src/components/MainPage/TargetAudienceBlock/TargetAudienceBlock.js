@@ -8,6 +8,7 @@ import child from '../../../assets/img/mainPage/targetAudience/child.png'
 const TargetAudienceBlock = () => {
     return (
         <div className={s.targetBlock}>
+            <h2 className={s.title}>Подходит всем!</h2>
             <div className={s.audience}>
                 <Audience
                     image={child}
