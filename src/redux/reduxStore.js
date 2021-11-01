@@ -4,10 +4,9 @@ import navbarReducer from "./navbarReducer";
 import authReducer from "./authReducer";
 import profileReducer from "./profileReducer";
 import adminReducer from "./adminReducer";
-import createArticleReducer from "./createArticleReducer";
 import myFragmentsReducer from "./myFragmentsReducer";
 import fragmentReducer from "./fragmentReducer";
-import createTestReducer from "./createTestReducer";
+import createFragmentReducer from "./createFragmentReducer";
 
 
 const reducers = combineReducers({
@@ -15,10 +14,9 @@ const reducers = combineReducers({
 	auth: authReducer,
 	profile: profileReducer,
 	admin: adminReducer,
-	createFragment: createArticleReducer,
+	createFragment: createFragmentReducer,
 	myFragments: myFragmentsReducer,
 	fragment: fragmentReducer,
-	createTest: createTestReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

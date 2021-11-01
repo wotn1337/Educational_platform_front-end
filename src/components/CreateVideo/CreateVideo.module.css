@@ -1,0 +1,32 @@
+.createVideo {
+    background-color: white;
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hide {
+    display: none;
+}
+
+.btn {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px;
+    width: 280px;
+    background-color: #FBCB84;
+    border-radius: 20px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    outline: none;
+    background-color: #F18A93;
+    box-shadow: 0 0 5px rgba(78, 78, 78, 0.5);
+}

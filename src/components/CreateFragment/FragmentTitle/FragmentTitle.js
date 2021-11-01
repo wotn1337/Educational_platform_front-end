@@ -1,7 +1,7 @@
 import React from "react";
 import s from './FragmentTitle.module.css';
 import {connect} from "react-redux";
-import {changeFragmentTitle} from "../../../redux/createArticleReducer";
+import {changeFragmentTitle} from "../../../redux/createFragmentReducer";
 
 
 const rightWords = (fragment) => {

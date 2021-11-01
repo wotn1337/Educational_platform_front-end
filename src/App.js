@@ -7,10 +7,10 @@ import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer"
 import AdminAuthPageContainer from "./admin/AdminAuthPage/AdminAuthPageContainer";
 import ResetPasswordContainer from "./components/AuthPage/Login/ResetPassword/ResetPasswordContainer";
 import MyFragments from "./components/MyFragments/MyFragments";
-import CreateFragment from "./components/CreateFragment/CreateFragment";
 import LoginContainer from "./components/AuthPage/Login/LoginContainer";
 import RegisterContainer from "./components/AuthPage/Register/RegisterContainer";
 import FragmentContainer from "./components/Fragment/FragmentContainer";
+import CreateFragmentContainer from "./components/CreateFragment/CreateFragmentContainer";
 
 
 const App = () => {
@@ -39,7 +39,7 @@ const App = () => {
 			/>
 			<Route
 				exact path='/create-fragment'
-				render={() => <CreateFragment/>}
+				render={() => <CreateFragmentContainer/>}
 			/>
 			<Route
 				exact path='/profile'

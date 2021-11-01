@@ -2,7 +2,7 @@ import {fragmentTypes} from "./fragmentTypes";
 import videoPreview from "../assets/img/fragments/videoPreview.png";
 import articlePreview from "../assets/img/fragments/articlePreview.png";
 import testPreview from "../assets/img/fragments/testPreview.png";
-import typeVideo from "../assets/img/fragments/typeVideo.png";
+import typeVideo from "../assets/img/fragments/typeVideo.svg";
 import typeTest from "../assets/img/fragments/typeTest.png";
 import typeArticle from "../assets/img/fragments/typeArticle.png";
 
