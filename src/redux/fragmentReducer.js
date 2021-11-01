@@ -10,7 +10,7 @@ const SET_IS_FETCHING = 'fragment/SET_IS_FETCHING';
 
 const initState = {
 	title: '',
-	content: '',
+	content: undefined,
 	type: '',
 	creator: '',
 	creatorId: '',

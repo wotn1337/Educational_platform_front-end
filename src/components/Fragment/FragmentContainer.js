@@ -6,6 +6,7 @@ import Fragment from "./Fragment";
 import {Redirect, withRouter} from "react-router-dom";
 import {deleteFragment, editFragment, getFragment, setContent, setTitle} from "../../redux/fragmentReducer";
 import Preloader from "../Preloader/Preloader";
+import {fragmentTypes} from "../../common/fragmentTypes";
 
 
 class FragmentContainer extends React.Component {
@@ -27,12 +28,12 @@ class FragmentContainer extends React.Component {
 		this.setState({id: ''});
 	}
 
-	editFragment = (newTitle, newContent) => {
+	editFragment = () => {
 		this.props.editFragment(
 			this.props.token,
 			this.state.id,
-			newTitle,
-			newContent
+			this.props.title,
+			this.props.type !== fragmentTypes.video && this.props.content
 		)
 			.then(() => this.props.setContent(this.props.content));
 		this.toggleIsEdit();

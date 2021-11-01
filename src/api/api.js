@@ -118,6 +118,7 @@ export const fragmentsAPI = {
 	},
 
 	editFragment(token, id, title, content) {
-		return instance.patch(`fragments/${id}`, JSON.stringify({title, content}), authConfig(token));
+		const data = content ? {title, content} : {title, content: null};
+		return instance.patch(`fragments/${id}`, JSON.stringify(data), authConfig(token));
 	}
 };
