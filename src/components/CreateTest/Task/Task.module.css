@@ -11,26 +11,35 @@
     height: 240px;
     background-color: white;
     border-radius: 9px;
-    padding: 20px 40px;
+    padding: 30px 50px;
     margin-bottom: 20px;
 }
 
 .task {
     grid-area: task;
-    padding: 5px;
+    padding-left: 20px;
 }
 
 .task::-webkit-input-placeholder {
-    color: black;
+    color: #585858;
+}
+
+.task:focus {
+    background-color: #eeeeee;
 }
 
 .selector {
     grid-area: select;
     display: inline-block;
+    border: none;
+    background-color: transparent;
+    height: 40px;
+    padding-left: 20px;
 }
 
 .answer {
     grid-area: answer;
+    margin-top: 10px;
 }
 
 .task, .dropdown {
@@ -40,17 +49,15 @@
     border-radius: 4px;
 }
 
-.selector {
-    border: none;
-    background-color: transparent;
-    padding: 5px;
-    height: 40px;
-}
-
 .dropdown {
     position: relative;
     display: inline-block;
     cursor: pointer;
+}
+
+.dropdown img {
+    display: inline-block;
+    width: 15px;
 }
 
 .dropdownList {
@@ -73,18 +80,9 @@
     display: block;
 }
 
-.dropdownList p {
-    color: black;
-    padding: 5px;
-    display: block;
-}
-
-.dropdownList p:hover {
-    background-color: rgba(146, 146, 146, 0.6);
-}
-
 .button {
-
+    display: block;
+    margin-left: auto;
     border: none;
     background-color: white;
     width: 40px;
@@ -92,7 +90,12 @@
     border-radius: 50%;
     background-repeat: no-repeat;
     background-size: cover;
+    transition: background-color 100ms;
     background-image: url("./../../../assets/img/fragments/plus.svg");
+}
+
+.button:hover {
+    background-color: #ef6a6a;
 }
 
 @media all and (max-width: 992px) {

@@ -1,0 +1,16 @@
+.option {
+    color: black;
+    padding: 10px 20px;
+    display: block;
+    transition: background-color 200ms;
+}
+
+.option:hover {
+    background-color: rgba(191, 191, 191, 0.6);
+}
+
+.text {
+    display: inline-block;
+    margin: 0;
+    padding-left: 20px;
+}

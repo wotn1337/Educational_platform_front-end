@@ -1,0 +1,10 @@
+label {
+    margin: 5px 10px;
+}
+
+.textAnswer {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #a3a3a3;
+}
