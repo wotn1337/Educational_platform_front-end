@@ -1,5 +1,4 @@
 import React from 'react';
-import Task from "./Task/Task";
 import CreateTest from "./CreateTest";
 import {connect} from "react-redux";
 import {changeOption, changeQuestion, setQuestion} from "../../redux/createTestReducer";
@@ -21,8 +20,6 @@ class CreateTestContainer extends React.Component {
     changeQuestion = (id, question) => {
         this.props.changeQuestion(id, question);
     }
-
-
 
     render() {
         return (
