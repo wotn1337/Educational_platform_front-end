@@ -4,23 +4,22 @@ import Task from "./Task/Task";
 
 
 const CreateTest = (props) => {
-    const questions = props.questions.map(question => {
+    const tasks = props.questions.map(question => {
         return (
             <Task
-                id={question.id}
-                question={question.question}
-                option={question.option}
-                answers={question.answers}
+                question={question}
                 changeOption={props.changeOption}
                 changeQuestion={props.changeQuestion}
+                addAnswer={props.addAnswer}
+                changeAnswer={props.changeAnswer}
+                deleteQuestion={props.deleteQuestion}
             />
         )
-
     });
 
     return (
         <>
-            {questions}
+            {tasks}
             <button
                 className={s.button}
                 onClick={event => {

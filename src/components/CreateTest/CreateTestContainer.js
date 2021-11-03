@@ -1,24 +1,24 @@
 import React from 'react';
 import CreateTest from "./CreateTest";
 import {connect} from "react-redux";
-import {changeOption, changeQuestion, setQuestion} from "../../redux/createTestReducer";
+import {
+    changeAnswer,
+    changeOption,
+    changeQuestion, deleteQuestion,
+    addAnswer,
+    addQuestion
+} from "../../redux/createTestReducer";
 
 class CreateTestContainer extends React.Component {
+
     addQuestion = () => {
         let question = {
             question: '',
             option: 'Один вариант',
-            answers: ['Вариант 1', 'Вариант 2']
+            answersCount: 1,
+            answers: {id: 1, content: 'Вариант 1', isEdit: false, isSelected: false}
         }
-        this.props.setQuestion(question)
-    }
-
-    changeOption = (id, option) => {
-        this.props.changeOption(id, option);
-    }
-
-    changeQuestion = (id, question) => {
-        this.props.changeQuestion(id, question);
+        this.props.addQuestion(question)
     }
 
     render() {
@@ -26,10 +26,7 @@ class CreateTestContainer extends React.Component {
             <>
                 <CreateTest
                     {...this.props}
-                    addQuestion={this.addQuestion}
-                    changeOption={this.changeOption}
-                    changeQuestion={this.changeQuestion}
-                />
+                    addQuestion={this.addQuestion}/>
             </>
         )
     }
@@ -41,6 +38,9 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
     changeOption,
-    setQuestion,
-    changeQuestion
+    addQuestion,
+    changeQuestion,
+    addAnswer,
+    changeAnswer,
+    deleteQuestion
 })(CreateTestContainer);

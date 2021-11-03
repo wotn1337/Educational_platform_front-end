@@ -5,9 +5,16 @@ const TextAnswerBlock = (props) => {
     return (
         <div>
             <p>Ответ:</p>
-            <input className={s.textAnswer} type="text" id="answer" name="answer"/>
+            <input type="text"
+                   className={s.textAnswer}
+                   value={props.answer[0].content}
+                   onChange={event => {
+                       let content = event.target.value
+                       props.changeAnswer(props.id, props.answer[0].id, content)
+                   }}
+                   id="answer"
+                   name="answer"/>
         </div>
     )
 }
-
 export default TextAnswerBlock;

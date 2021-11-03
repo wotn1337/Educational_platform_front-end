@@ -15,27 +15,46 @@ const Task = (props) => {
             <input type="text"
                    className={s.task}
                    placeholder={'Введите ваш вопрос'}
+                   value={props.question.question}
                    onChange={event => {
                        let text = event.target.value;
                        event.preventDefault();
-                       props.changeQuestion(props.id, text)
+                       props.changeQuestion(props.question.id, text)
                    }}
             />
 
             <div className={s.dropdown}>
-                <button className={s.selector}>{props.option}</button>
-                <img src={arrow} alt="arrow"/>
+                <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <button className={s.selector}>{props.question.option}</button>
+                    <img src={arrow} alt="arrow" style={{marginRight: '20px'}}/>
+                </div>
                 <div className={s.dropdownList}>
-                    <Option changeOption={props.changeOption} id={props.id} text={'Один вариант'} img={single}/>
-                    <Option changeOption={props.changeOption} id={props.id} text={'Несколько'} img={few}/>
-                    <Option changeOption={props.changeOption} id={props.id} text={'Текст'} img={text}/>
+                    <Option changeOption={props.changeOption} id={props.question.id} text={'Один вариант'} img={single}/>
+                    <Option changeOption={props.changeOption} id={props.question.id} text={'Несколько'} img={few}/>
+                    <Option changeOption={props.changeOption} id={props.question.id} text={'Текст'} img={text}/>
                 </div>
             </div>
 
+            <button className={s.deleteQuestionButton}
+                    onClick={event => {
+                        event.preventDefault();
+                        props.deleteQuestion(props.question.id);
+                    }}/>
+
             <div className={s.answer}>
-                {props.option === 'Один вариант' && <SingleAnswerBlock/>}
-                {props.option === 'Несколько' && <FewAnswerBlock/>}
-                {props.option === 'Текст' && <TextAnswerBlock/>}
+                {props.question.option === 'Один вариант' && <SingleAnswerBlock answers={props.question.answers}
+                                                                       addAnswer={props.addAnswer}
+                                                                       id={props.question.id}
+                                                                       changeAnswer={props.changeAnswer}
+                />}
+                {props.question.option === 'Несколько' && <FewAnswerBlock answers={props.question.answers}
+                                                                 addAnswer={props.addAnswer}
+                                                                 id={props.question.id}
+                                                                 changeAnswer={props.changeAnswer}
+                />}
+                {props.question.option === 'Текст' && <TextAnswerBlock changeAnswer={props.changeAnswer}
+                                                              answer={props.question.answers}
+                                                              id={props.question.id}/>}
             </div>
 
         </div>
