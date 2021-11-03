@@ -1,0 +1,73 @@
+label {
+    margin: 5px 10px;
+}
+
+.textAnswer {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 2px solid #a3a3a3;
+}
+
+.answer {
+    cursor: pointer;
+}
+
+.answerWrapper {
+    display: flex;
+    margin: 5px 0;
+    padding: 5px 0;
+    border-bottom: 1px solid transparent;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-bottom-color ease-in-out .3s;;
+}
+
+.answerWrapper:hover {
+    border-bottom-color: gray;
+}
+
+.addButton {
+    padding: 5px;
+    margin-left: 10px;
+    display: inline-block;
+    margin-top: 5px;
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid transparent;
+    color: #a3a3a3;
+    transition: border-bottom-color, color ease-in-out 0.2s;
+}
+
+.addButton:hover {
+    border-bottom-color: #929292;
+    color: #6d6d6d;
+}
+
+.deleteButton {
+    display: inline-block;
+    background-image: url("./../../../../assets/img/fragments/minus.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    border-radius: 50%;
+    height: 34px;
+    width: 34px;
+    border-color: transparent;
+    background-color: transparent;
+    transition: background-color 200ms;
+}
+
+.deleteButton:hover {
+    background-color: #f56464;
+}
+
+.inputField {
+    padding: 5px;
+    margin-left: 5px;
+    border-color: transparent;
+    border-radius: 4px;
+    background-color: #e2e2e2;
+}

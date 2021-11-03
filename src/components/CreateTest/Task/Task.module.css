@@ -1,50 +1,52 @@
 .testWrapper {
     display: grid;
     grid-template-areas:
-    "task select"
-    "answer answer";
-    grid-template-columns: 70% 30%;
-    grid-template-rows: 30px 1fr;
+    "task select question"
+    "answer answer question";
+    grid-template-columns: 730px 290px 40px;
+    grid-template-rows: 30px auto;
     justify-content: center;
     grid-gap: 30px;
     width: 100%;
-    height: 240px;
+    min-height: 240px;
     background-color: white;
     border-radius: 9px;
-    padding: 20px 40px;
+    padding: 30px 50px;
     margin-bottom: 20px;
 }
 
 .task {
     grid-area: task;
-    padding: 5px;
+    padding-left: 20px;
 }
 
 .task::-webkit-input-placeholder {
-    color: black;
+    color: #585858;
+}
+
+.task:focus {
+    background-color: #eeeeee;
 }
 
 .selector {
     grid-area: select;
     display: inline-block;
+    border: none;
+    background-color: transparent;
+    height: 40px;
+    padding-left: 20px;
 }
 
 .answer {
     grid-area: answer;
+    margin-top: 10px;
 }
 
 .task, .dropdown {
     height: 40px;
     border: none;
-    background: rgba(196, 196, 196, 0.6);
+    background: #d9d9d9;
     border-radius: 4px;
-}
-
-.selector {
-    border: none;
-    background-color: transparent;
-    padding: 5px;
-    height: 40px;
 }
 
 .dropdown {
@@ -53,10 +55,15 @@
     cursor: pointer;
 }
 
+.dropdown img {
+    display: inline-block;
+    width: 15px;
+}
+
 .dropdownList {
     display: none;
     position: absolute;
-    background-color: rgba(196, 196, 196, 0.6);
+    background-color: #d9d9d9;
     width: 100%;
     min-width: 160px;
     z-index: 1;
@@ -73,18 +80,9 @@
     display: block;
 }
 
-.dropdownList p {
-    color: black;
-    padding: 5px;
-    display: block;
-}
-
-.dropdownList p:hover {
-    background-color: rgba(146, 146, 146, 0.6);
-}
-
 .button {
-
+    display: block;
+    margin-left: auto;
     border: none;
     background-color: white;
     width: 40px;
@@ -92,7 +90,22 @@
     border-radius: 50%;
     background-repeat: no-repeat;
     background-size: cover;
+    transition: background-color 100ms;
     background-image: url("./../../../assets/img/fragments/plus.svg");
+}
+
+.button:hover {
+    background-color: #ef6a6a;
+}
+
+.deleteQuestionButton {
+    grid-area: question;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: url("./../../../assets/img/fragments/cross.svg") center no-repeat;
+    background-size: 25px;
+    padding: 0;
 }
 
 @media all and (max-width: 992px) {

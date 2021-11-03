@@ -1,34 +1,46 @@
 import React from 'react';
-import Task from "./Task/Task";
 import CreateTest from "./CreateTest";
+import {connect} from "react-redux";
+import {
+    changeAnswer,
+    changeOption,
+    changeQuestion, deleteQuestion,
+    addAnswer,
+    addQuestion
+} from "../../redux/createTestReducer";
 
 class CreateTestContainer extends React.Component {
-    state = {
-        taskCount: 1
-    }
 
-    onAddTask = () => {
-        this.setState({
-            taskCount: this.state.taskCount + 1
-        });
+    addQuestion = () => {
+        let question = {
+            question: '',
+            option: 'Один вариант',
+            answersCount: 1,
+            answers: {id: 1, content: 'Вариант 1', isEdit: false, isSelected: false}
+        }
+        this.props.addQuestion(question)
     }
 
     render() {
-        const children = [];
-        for (let i = 0; i < this.state.taskCount; i += 1) {
-            children.push(
-                <Task/>
-            );
-        }
-
         return (
             <>
-                <CreateTest children={children}
-                            addTask={this.onAddTask}
-                />
+                <CreateTest
+                    {...this.props}
+                    addQuestion={this.addQuestion}/>
             </>
         )
     }
 }
 
-export default CreateTestContainer;
+const mapStateToProps = (state) => ({
+    questions: state.createTest.questions
+});
+
+export default connect(mapStateToProps, {
+    changeOption,
+    addQuestion,
+    changeQuestion,
+    addAnswer,
+    changeAnswer,
+    deleteQuestion
+})(CreateTestContainer);
