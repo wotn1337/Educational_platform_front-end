@@ -1,5 +1,6 @@
 import {instance} from "./instance";
 import axios from "axios";
+import {fragmentTypes} from "../common/fragmentTypes";
 const TOKEN_TYPE = 'Bearer';
 const authConfig = (token) => ({
 	headers: {
@@ -94,6 +95,13 @@ export const adminAPI = {
 
 export const fragmentsAPI = {
 	createFragment(token, type, title, content) {
+		if (type === fragmentTypes.video) {
+			const data = new FormData();
+			data.append('type', type);
+			data.append('title', title);
+			data.append('content', content);
+			return axios.post('http://localhost/api/fragments', data, authConfig(token));
+		}
 		return instance.post('fragments', JSON.stringify({type, title, content}), authConfig(token));
 	},
 
@@ -110,6 +118,7 @@ export const fragmentsAPI = {
 	},
 
 	editFragment(token, id, title, content) {
-		return instance.patch(`fragments/${id}`, JSON.stringify({title, content}), authConfig(token));
+		const data = content ? {title, content} : {title, content: null};
+		return instance.patch(`fragments/${id}`, JSON.stringify(data), authConfig(token));
 	}
 };

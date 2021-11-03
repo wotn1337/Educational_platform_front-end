@@ -2,15 +2,15 @@ import {fragmentsAPI} from "../api/api";
 import {successNotification} from "../notifications/notifications";
 
 
-const SET_FRAGMENT = 'SET_FRAGMENT';
-const SET_TITLE = 'SET_TITLE';
-const SET_CONTENT = 'SET_CONTENT';
-const SET_IS_FETCHING = 'SET_IS_FETCHING';
+const SET_FRAGMENT = 'fragment/SET_FRAGMENT';
+const SET_TITLE = 'fragment/SET_TITLE';
+const SET_CONTENT = 'fragment/SET_CONTENT';
+const SET_IS_FETCHING = 'fragment/SET_IS_FETCHING';
 
 
 const initState = {
 	title: '',
-	content: '',
+	content: undefined,
 	type: '',
 	creator: '',
 	creatorId: '',
