@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import SearchBlock from "../../../MyFragments/SearchBlock/SearchBlock";
-import {getFragments} from "../../../../redux/catalogFragmentsReducer";
+import {getFragments, setSearchTitle, setSearchType} from "../../../../redux/catalogFragmentsReducer";
 
 
 class SearchBlockContainer extends React.Component {
@@ -30,5 +30,9 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-	connect(mapStateToProps, {getFragments}),
+	connect(mapStateToProps, {
+		getFragments,
+		setSearchTitle,
+		setSearchType
+	}),
 )(SearchBlockContainer)
