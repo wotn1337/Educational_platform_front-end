@@ -17,9 +17,12 @@ const Navbar = (props) => {
 			<div className={s.headerWrapper}>
 				<img src={logo} alt="Logo" className={s.logo}/>
 				<NavLink className={s.navLink} exact to="/" activeClassName={s.active}>Главная</NavLink>
-				<NavLink className={s.navLink} to="/catalog" activeClassName={s.active}>Каталог</NavLink>
 				{props.isAuth
 					? <>
+						<DropDownMenu
+							title={'Каталог'}
+							links={[{'catalog-fragments': 'Каталог фрагментов'}, {'lessons-catalog': 'Каталог уроков'}]}
+						/>
 						<DropDownMenu
 							title={'Мои материалы'}
 							links={[{'my-fragments': 'Мои фрагменты'}, {'my-lessons': 'Мои уроки'}, {'favorites': 'Избранное'}]}

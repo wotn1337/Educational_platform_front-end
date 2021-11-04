@@ -1,13 +1,13 @@
 import React from "react";
 import FragmentsList from "./FragmentsList";
 import {connect} from "react-redux";
-import {changePage, getFragments} from "../../../redux/myFragmentsReducer";
+import {changePage, getMyFragments} from "../../../redux/myFragmentsReducer";
 import Preloader from "../../Preloader/Preloader";
 
 
 class FragmentsListContainer extends React.Component {
 	componentDidMount() {
-		this.props.getFragments(
+		this.props.getMyFragments(
 			this.props.token,
 			this.props.currentPage
 		);
@@ -52,4 +52,4 @@ const mapStateToProps = (state) => ({
 	searchType: state.myFragments.searchType
 });
 
-export default connect(mapStateToProps, {getFragments, changePage})(FragmentsListContainer);
+export default connect(mapStateToProps, {getMyFragments, changePage})(FragmentsListContainer);

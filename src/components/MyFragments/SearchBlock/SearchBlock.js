@@ -1,7 +1,5 @@
 import React from "react";
 import s from './SearchBlock.module.css'
-import {connect} from "react-redux";
-import {getFragments, setSearchTitle, setSearchType} from "../../../redux/myFragmentsReducer";
 
 const rightWord = (count) => {
 	const twoLastNumbers = count % 100;
@@ -16,20 +14,9 @@ const rightWord = (count) => {
 
 
 const SearchBlock = (props) => {
-	const searchFragments = () => {
-		props.getFragments(
-			props.token,
-			1,
-			props.searchTitle,
-			props.searchType
-		);
-	}
-
-
 	return (
 		<div className={s.searchBlock}>
 			<div className={s.title}>
-				{/*Всего {props.filterFragmentsCount} фрагментов <span className={s.totalCount}>из {props.totalFragmentsCount}</span>*/}
 				Всего {props.totalFragmentsCount} {rightWord(props.totalFragmentsCount)}
 			</div>
 			<div className={s.inputBlock}>
@@ -52,22 +39,11 @@ const SearchBlock = (props) => {
 					<option value="video">Видео</option>
 					<option value="test">Тест</option>
 				</select>
-				<button onClick={searchFragments} className={s.searchButton}/>
+				<button onClick={props.searchFragments} className={s.searchButton}/>
 			</div>
 		</div>
 	);
 }
 
-const mapStateToProps = (state) => ({
-	token: state.auth.token,
-	searchTitle: state.myFragments.searchTitle,
-	searchType: state.myFragments.searchType,
-	totalFragmentsCount: state.myFragments.totalFragmentsCount
-})
 
-
-export default connect(mapStateToProps, {
-	getFragments,
-	setSearchTitle,
-	setSearchType
-})(SearchBlock);
+export default SearchBlock;
