@@ -11,6 +11,7 @@ import LoginContainer from "./components/AuthPage/Login/LoginContainer";
 import RegisterContainer from "./components/AuthPage/Register/RegisterContainer";
 import FragmentContainer from "./components/Fragment/FragmentContainer";
 import CreateFragmentContainer from "./components/CreateFragment/CreateFragmentContainer";
+import FragmentsCatalog from "./components/CatalogPage/fragmentsCatalog/FragmentsCatalog";
 
 
 const App = () => {
@@ -32,6 +33,10 @@ const App = () => {
 			<Route
 				exact path='/catalog'
 				render={() => <CatalogPage/>}
+			/>
+			<Route
+				exact path='/catalog-fragments'
+				render={() => <FragmentsCatalog/>}
 			/>
 			<Route
 				exact path='/my-fragments'

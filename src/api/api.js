@@ -109,6 +109,10 @@ export const fragmentsAPI = {
 		return instance.get(`fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig(token));
 	},
 
+	geMyFragments(token, page, title = null, type = null) {
+		return instance.get(`my-fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig(token));
+	},
+
 	getFragment(token, id) {
 		return instance.get(`fragments/${id}`, authConfig(token));
 	},

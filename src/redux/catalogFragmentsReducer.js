@@ -1,10 +1,10 @@
 import {fragmentsAPI} from "../api/api";
 
-const SET_FRAGMENTS = 'myFragments/SET_FRAGMENTS';
-const SET_CURRENT_PAGE = 'myFragments/SET_CURRENT_PAGE';
-const SET_IS_FETCHING = 'myFragments/SET_IS_FETCHING';
-const SET_SEARCH_TITLE = 'myFragments/SET_SEARCH_TITLE';
-const SET_SEARCH_TYPE = 'myFragments/SET_SEARCH_TYPE';
+const SET_FRAGMENTS = 'catalogFragments/SET_FRAGMENTS';
+const SET_CURRENT_PAGE = 'catalogFragments/SET_CURRENT_PAGE';
+const SET_IS_FETCHING = 'catalogFragments/SET_IS_FETCHING';
+const SET_SEARCH_TITLE = 'catalogFragments/SET_SEARCH_TITLE';
+const SET_SEARCH_TYPE = 'catalogFragments/SET_SEARCH_TYPE';
 
 
 const initState = {
@@ -86,9 +86,9 @@ export const setSearchType = (searchType) => ({
 	searchType
 });
 
-export const getMyFragments = (token, page, title, type) => (dispatch) => {
+export const getFragments = (token, page, title, type) => (dispatch) => {
 	dispatch(setIsFetching(true));
-	fragmentsAPI.geMyFragments(token, page, title, type)
+	fragmentsAPI.getFragments(token, page, title, type)
 		.then(res => {
 			dispatch(setFragments(res.data));
 			dispatch(setCurrentPage(page));
@@ -101,7 +101,7 @@ export const getMyFragments = (token, page, title, type) => (dispatch) => {
 };
 
 export const changePage = (token, page, title, type) => (dispatch) => {
-	dispatch(getMyFragments(token, page, title, type));
+	dispatch(getFragments(token, page, title, type));
 };
 
 export default myFragmentsReducer;

@@ -7,6 +7,7 @@ import adminReducer from "./adminReducer";
 import myFragmentsReducer from "./myFragmentsReducer";
 import fragmentReducer from "./fragmentReducer";
 import createFragmentReducer from "./createFragmentReducer";
+import catalogFragmentsReducer from "./catalogFragmentsReducer";
 
 
 const reducers = combineReducers({
@@ -16,6 +17,7 @@ const reducers = combineReducers({
 	admin: adminReducer,
 	createFragment: createFragmentReducer,
 	myFragments: myFragmentsReducer,
+	catalogFragments: catalogFragmentsReducer,
 	fragment: fragmentReducer,
 });
 
