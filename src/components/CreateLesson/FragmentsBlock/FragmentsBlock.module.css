@@ -1,0 +1,64 @@
+.fragmentsList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: max-content;
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+    align-items: baseline;
+    justify-items: center;
+    margin: 0 auto 65px;
+}
+
+.cards {
+    grid-area: cards;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-auto-rows: max-content;
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+    align-items: baseline;
+    margin: 0 auto 65px;
+}
+
+.addButton {
+    grid-area: button;
+    display: inline-block;
+    position: absolute;
+    margin-left: 390px;
+    border: none;
+    background-color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 35px;
+    transition: background-color 100ms;
+    background-image: url("./../../../assets/img/fragments/plus.svg");
+}
+
+.addButton:hover {
+    background-color: #F56464;
+}
+
+
+.noFragments {
+    background-color: white;
+    color: #F56464;
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+    padding: 50px 100px;
+    border-radius: 10px;
+    font-size: 32px;
+}
+
+.sadSmile {
+    cursor: default;
+    transform: rotate(90deg);
+}
+
+.lastCard {
+    display: flex;
+    align-items: center;
+}

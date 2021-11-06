@@ -12,6 +12,8 @@ const rightWords = (fragment) => {
 			return 'вашего теста';
 		case 'video':
 			return 'вашего видеоролика';
+		case 'lesson':
+			return 'вашего урока';
 
 		default:
 			return '';

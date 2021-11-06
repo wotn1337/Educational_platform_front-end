@@ -1,0 +1,70 @@
+.content {
+    width: 1200px;
+    margin: 20px auto;
+    padding-bottom: 100px;
+}
+
+.createButton {
+    display: block;
+    margin-left: auto;
+    margin-top: 30px;
+    background-color: #EF5B5B;
+    border-radius: 10px;
+    font-family: "Open Sans", sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 27px;
+    color: #FFFFFF;
+    padding: 20px 60px;
+    box-sizing: border-box;
+    border: none;
+    transition: background-color;
+    transition-duration: 200ms;
+}
+
+.createButton:hover {
+    background-color: #F56464;
+}
+
+@media all and (max-width: 1500px) {
+
+}
+
+@media all and (max-width: 1200px) {
+    .content {
+        width: 900px;
+    }
+    .createButton {
+
+    }
+}
+
+@media all and (max-width: 992px) {
+    .content {
+        width: 80%;
+    }
+    .createButton {
+        font-size: 20px;
+    }
+}
+
+@media all and (max-width: 768px) {
+    .content {
+        width: 90%;
+    }
+    .createButton {
+        font-size: 15px;
+        padding: 15px 50px;
+    }
+}
+
+@media all and (max-width: 520px) {
+    .content {
+        width: 90%;
+    }
+    .createButton {
+        font-size: 15px;
+        padding: 10px 40px;
+    }
+}
