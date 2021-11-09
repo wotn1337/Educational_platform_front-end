@@ -1,0 +1,35 @@
+.nature {
+    background-color: #1da439;
+}
+
+.tech {
+    background-color: #6c05af;
+}
+
+.informatics {
+    background-color: #0a76af;
+}
+
+.math {
+    background-color: #060daf;
+}
+
+.physics {
+    background-color: #d8661b;
+}
+
+.brawlStars {
+    background: linear-gradient(to right, #a9e30b, #24b9dc);
+}
+
+.spiderMan {
+    background: linear-gradient(to right, #0140dc, #c70000);
+}
+
+.memes {
+    background: linear-gradient(to right, #ab45c2, #fa8322);
+}
+
+.read {
+    background-color: #d82f51;
+}

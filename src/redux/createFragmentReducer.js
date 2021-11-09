@@ -6,6 +6,8 @@ const CHANGE_FRAGMENT_TITLE = 'createFragment/CHANGE_FRAGMENT_TITLE';
 const SET_IS_FETCHING = 'createFragment/SET_IS_FETCHING';
 const SET_CONTENT = 'createFragment/SET_CONTENT';
 const SET_TITLE_ERROR = 'createFragment/SET_TITLE_ERROR';
+const ADD_TAG = 'createFragment/ADD_TAG';
+const DELETE_TAG = 'createFragment/DELETE_TAG';
 
 
 const initState = {
@@ -13,7 +15,8 @@ const initState = {
 	title: '',
 	content: undefined,
 	isFetching: false,
-	titleError: ''
+	titleError: '',
+	tags: []
 };
 
 const createFragmentReducer = (state = initState, action) => {
@@ -33,6 +36,18 @@ const createFragmentReducer = (state = initState, action) => {
 		case SET_TITLE_ERROR:
 			return {...state, titleError: action.error};
 
+		case ADD_TAG:
+			return {
+				...state,
+				tags: state.tags.indexOf(action.tag) === -1 ? [...state.tags, action.tag] : state.tags
+			};
+
+		case DELETE_TAG:
+			return {
+				...state,
+				tags: state.tags.filter(tag => tag !== action.tag)
+			};
+
 		default:
 			return state;
 	}
@@ -41,6 +56,8 @@ const createFragmentReducer = (state = initState, action) => {
 export const changeFragmentType = (fragmentType) => ({type: CHANGE_FRAGMENT_TYPE, fragmentType});
 export const changeFragmentTitle = (fragmentTitle) => ({type: CHANGE_FRAGMENT_TITLE, fragmentTitle});
 export const setContent = (content) => ({type: SET_CONTENT, content});
+export const addTag = (tag) => ({type: ADD_TAG, tag});
+export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 const setTitleError = (error) => ({type: SET_TITLE_ERROR, error});
 
