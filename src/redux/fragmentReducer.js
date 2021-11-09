@@ -14,7 +14,8 @@ const initState = {
 	type: '',
 	creator: '',
 	creatorId: '',
-	isFetching: false
+	isFetching: false,
+	tags: []
 };
 
 const fragmentReducer = (state = initState, action) => {
@@ -27,6 +28,7 @@ const fragmentReducer = (state = initState, action) => {
 				type: action.fragment.type,
 				creatorId: action.fragment.user_id,
 				creator: action.fragment.user_name,
+				tags: action.fragment.tags.data
 			};
 
 		case SET_TITLE:

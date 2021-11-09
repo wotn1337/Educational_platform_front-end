@@ -66,6 +66,7 @@ const mapStateToProps = (state) => ({
 	creator: state.fragment.creator,
 	creatorId: state.fragment.creatorId,
 	isFetching: state.fragment.isFetching,
+	tags: state.fragment.tags
 });
 
 export default compose(

@@ -5,6 +5,7 @@ import htmlToDraft from 'html-to-draftjs';
 import {ContentState, convertToRaw, EditorState} from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import {fragmentTypes} from "../../common/fragmentTypes";
+import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 
 const Fragment = (props) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -45,6 +46,8 @@ const Fragment = (props) => {
 					<video src={props.content} controls={'controls'} className={s.video}/>
 				</div>
 			}
+
+			<ThisTags tags={props.tags} disabled={true} deleteTag={props.deleteTag}/>
 
 			<div className={s.buttonsBlock}>
 				{!props.isEdit

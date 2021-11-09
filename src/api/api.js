@@ -94,15 +94,16 @@ export const adminAPI = {
 };
 
 export const fragmentsAPI = {
-	createFragment(token, type, title, content) {
+	createFragment(token, type, title, content, tagsIds) {
 		if (type === fragmentTypes.video) {
 			const data = new FormData();
 			data.append('type', type);
 			data.append('title', title);
 			data.append('content', content);
+			data.append('tags', tagsIds)
 			return axios.post('http://localhost/api/fragments', data, authConfig(token));
 		}
-		return instance.post('fragments', JSON.stringify({type, title, content}), authConfig(token));
+		return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig(token));
 	},
 
 	getFragments(token, page, title = null, type = null) {
@@ -124,5 +125,9 @@ export const fragmentsAPI = {
 	editFragment(token, id, title, content) {
 		const data = content ? {title, content} : {title, content: null};
 		return instance.patch(`fragments/${id}`, JSON.stringify(data), authConfig(token));
+	},
+
+	getTags(token) {
+		return instance.get('tags', authConfig(token));
 	}
 };

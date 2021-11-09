@@ -6,17 +6,12 @@ import {fragmentTypes} from "../../common/fragmentTypes";
 import CreateTestContainer from "../CreateTest/CreateTestContainer";
 import CreateVideo from "../CreateVideo/CreateVideo";
 import CreateArticle from "../CreateArticle/CreateArticle";
-import TagsList from "./TagsList/TagsList";
-import {tags} from "../../common/tags";
-import './TagsList/tagsColors.css';
+import TagsListContainer from "./TagsList/TagsListContainer";
+import ThisTags from "./ThisTags/ThisTags";
 
 
 const CreateFragment = (props) => {
 	const [showTagsList, setShowTagsList] = useState(false);
-
-	const tagsList = props.tags.map((tag, index) => {
-		return <div className={`${s.tag} ${tag}`} key={index} onClick={() => props.deleteTag(tag)}>{tags[tag]}</div>;
-	});
 
 	return (
 		<div className={s.content}>
@@ -31,11 +26,7 @@ const CreateFragment = (props) => {
 			{props.fragmentType === fragmentTypes.video &&
 			<CreateVideo/>
 			}
-			{!!tagsList.length &&
-			<div className={s.tags}>
-				{tagsList}
-			</div>
-			}
+			{!!props.tags.length && <ThisTags tags={props.tags} disabled={false} deleteTag={props.deleteTag}/>}
 			<div className={s.buttonsBlock}>
 				<button
 					className={`${s.btn} ${s.addTags}`}
@@ -43,7 +34,6 @@ const CreateFragment = (props) => {
 				>
 					Добавить теги
 				</button>
-				{showTagsList && <TagsList/>}
 				<button
 					className={s.btn}
 					onClick={props.createFragment}
@@ -52,6 +42,7 @@ const CreateFragment = (props) => {
 					Создать
 				</button>
 			</div>
+			{showTagsList && <TagsListContainer/>}
 		</div>
 	);
 }
