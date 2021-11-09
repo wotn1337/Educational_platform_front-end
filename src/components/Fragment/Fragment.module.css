@@ -22,9 +22,10 @@
     margin: 60px 0;
 }
 
-.video {
+video {
     display: block;
     margin: 0 auto;
+    max-width: 90%;
 }
 
 .fragmentBlock {
