@@ -4,13 +4,17 @@
     padding-bottom: 100px;
 }
 
-.createButton {
-    display: block;
-    margin-left: auto;
+.buttonsBlock {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-top: 30px;
+}
+
+.btn {
+    display: block;
     background-color: #EF5B5B;
     border-radius: 10px;
-    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
@@ -23,8 +27,39 @@
     transition-duration: 200ms;
 }
 
-.createButton:hover {
+.btn.addTags {
+    background-color: #FBCB84;
+    margin-right: 10px;
+}
+
+.btn:hover {
     background-color: #F56464;
+}
+
+.btn.addTags:hover {
+    background-color: #ffe8b3;
+}
+
+.tags {
+    background-color: white;
+    border-radius: 10px;
+    display: grid;
+    align-items: center;
+    grid-gap: 10px;
+    justify-content: space-around;
+    padding: 20px;
+    width: 60%;
+    grid-template-columns: repeat(auto-fit, 200px);
+    margin-top: 20px;
+}
+
+.tag {
+    background-color: #7C7676;
+    padding: 7px 20px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
 }
 
 @media all and (max-width: 1500px) {
@@ -35,16 +70,13 @@
     .content {
         width: 900px;
     }
-    .createButton {
-
-    }
 }
 
 @media all and (max-width: 992px) {
     .content {
         width: 80%;
     }
-    .createButton {
+    .btn {
         font-size: 20px;
     }
 }
@@ -53,7 +85,7 @@
     .content {
         width: 90%;
     }
-    .createButton {
+    .btn {
         font-size: 15px;
         padding: 15px 50px;
     }
@@ -63,7 +95,7 @@
     .content {
         width: 90%;
     }
-    .createButton {
+    .btn {
         font-size: 15px;
         padding: 10px 40px;
     }

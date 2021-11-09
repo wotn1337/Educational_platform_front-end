@@ -1,5 +1,5 @@
 import React from "react";
-import {createFragment, setContent} from "../../redux/createFragmentReducer";
+import {createFragment, deleteTag, setContent} from "../../redux/createFragmentReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
@@ -30,10 +30,11 @@ const mapStateToProps = (state) => ({
 	fragmentType: state.createFragment.fragmentType,
 	title: state.createFragment.title,
 	content: state.createFragment.content,
-	isFetching: state.createFragment.isFetching
+	isFetching: state.createFragment.isFetching,
+	tags: state.createFragment.tags
 });
 
 export default compose(
-	connect(mapStateToProps, {setContent, createFragment}),
+	connect(mapStateToProps, {setContent, createFragment, deleteTag}),
 	withoutAuthRedirectToAuthPage
 )(CreateFragmentContainer);

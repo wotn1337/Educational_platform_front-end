@@ -1,0 +1,17 @@
+.tag {
+    padding: 7px 20px;
+    border-radius: 20px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tagsList {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-right: auto;
+}
