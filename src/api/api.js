@@ -100,7 +100,9 @@ export const fragmentsAPI = {
 			data.append('type', type);
 			data.append('title', title);
 			data.append('content', content);
-			data.append('tags', JSON.stringify(tagsIds));
+			for (const id of tagsIds) {
+				data.append('tags[]', id);
+			}
 			return axios.post('http://localhost/api/fragments', data, authConfig(token));
 		}
 		return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig(token));
