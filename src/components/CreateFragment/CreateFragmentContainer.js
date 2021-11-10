@@ -1,10 +1,11 @@
 import React from "react";
-import {createFragment, deleteTag, setContent} from "../../redux/createFragmentReducer";
+import {addTag, createFragment, deleteTag, setContent} from "../../redux/createFragmentReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 import Preloader from "../Preloader/Preloader";
 import CreateFragment from "./CreateFragment";
+import {returnTag} from "../../redux/allTagsReducer";
 
 
 class CreateFragmentContainer extends React.Component {
@@ -37,6 +38,12 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-	connect(mapStateToProps, {setContent, createFragment, deleteTag}),
+	connect(mapStateToProps, {
+		setContent,
+		createFragment,
+		deleteTag,
+		addTag,
+		returnTag
+	}),
 	withoutAuthRedirectToAuthPage
 )(CreateFragmentContainer);

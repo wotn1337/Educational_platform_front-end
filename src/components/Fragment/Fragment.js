@@ -6,9 +6,11 @@ import {ContentState, convertToRaw, EditorState} from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import {fragmentTypes} from "../../common/fragmentTypes";
 import ThisTags from "../CreateFragment/ThisTags/ThisTags";
+import TagsListContainer from "../CreateFragment/TagsList/TagsListContainer";
 
 const Fragment = (props) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
+	const [showTags, setShowTags] = useState(false);
 
 	const setContent = (editorState) => {
 		props.setContent(draftToHtml(convertToRaw(editorState.getCurrentContent())));
@@ -42,14 +44,20 @@ const Fragment = (props) => {
 			</>
 			}
 			{props.type === fragmentTypes.video &&
-				<div className={s.fragmentBlock}>
-					<video src={props.content} controls={'controls'} className={s.video}/>
-				</div>
+			<div className={s.fragmentBlock}>
+				<video src={props.content} controls={'controls'} className={s.video}/>
+			</div>
 			}
 
-			<ThisTags tags={props.tags} disabled={true} deleteTag={props.deleteTag}/>
+			<ThisTags
+				tags={props.tags}
+				edit={props.isEdit}
+				deleteTag={props.deleteTag}
+				returnTag={props.returnTag}
+			/>
 
 			<div className={s.buttonsBlock}>
+				{props.isEdit && <button onClick={() => setShowTags(!showTags)} className={s.btn}>Добавить теги</button>}
 				{!props.isEdit
 					? <button className={s.btn} onClick={() => {
 						props.toggleIsEdit();
@@ -58,13 +66,18 @@ const Fragment = (props) => {
 					: <button className={s.btn} onClick={props.editFragment}>Сохранить
 						изменения</button>
 				}
-				<button className={s.btn} onClick={props.deleteFragment}>
-					Удалить
-				</button>
-				<button className={s.btn}>
-					Добавить в избранное
-				</button>
+				{!props.isEdit &&
+					<>
+						<button className={s.btn} onClick={props.deleteFragment}>
+							Удалить
+						</button>
+						<button className={s.btn}>
+							Добавить в избранное
+						</button>
+					</>
+				}
 			</div>
+			{showTags && <TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}/>}
 		</div>
 	)
 }

@@ -26,7 +26,14 @@ const CreateFragment = (props) => {
 			{props.fragmentType === fragmentTypes.video &&
 			<CreateVideo/>
 			}
-			{!!props.tags.length && <ThisTags tags={props.tags} disabled={false} deleteTag={props.deleteTag}/>}
+			{!!props.tags.length &&
+			<ThisTags
+				tags={props.tags}
+				edit={true}
+				returnTag={props.returnTag}
+				deleteTag={props.deleteTag}
+			/>
+			}
 			<div className={s.buttonsBlock}>
 				<button
 					className={`${s.btn} ${s.addTags}`}
@@ -42,7 +49,7 @@ const CreateFragment = (props) => {
 					Создать
 				</button>
 			</div>
-			{showTagsList && <TagsListContainer/>}
+			{showTagsList && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}
 		</div>
 	);
 }

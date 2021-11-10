@@ -1,7 +1,5 @@
 import React from 'react';
 import s from './TagsList.module.css';
-import {addTag} from "../../../redux/createFragmentReducer";
-import {connect} from "react-redux";
 import Preloader from "../../Preloader/Preloader";
 
 
@@ -11,7 +9,10 @@ const TagsList = (props) => {
 			className={s.tag}
 			key={tag.id}
 			id={tag.id}
-			onClick={() => props.addTag(tag)}
+			onClick={() => {
+				props.addTag(tag);
+				props.externalAddTag(tag);
+			}}
 		>
 			{tag.value}
 		</div>
@@ -19,7 +20,7 @@ const TagsList = (props) => {
 
 	return (
 		<div className={s.tagsList}>
-			{props.tagsFetching
+			{props.isFetching
 				? <Preloader size={50}/>
 				: tags
 			}
@@ -27,4 +28,4 @@ const TagsList = (props) => {
 	);
 };
 
-export default connect(null, {addTag})(TagsList);
+export default TagsList;

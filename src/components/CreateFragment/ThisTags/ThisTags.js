@@ -8,8 +8,11 @@ const ThisTags = (props) => {
 			className={s.tag}
 			key={tag.id}
 			id={tag.id}
-			onClick={!props.disabled && (() => props.deleteTag(tag))}
-			style={{cursor: `${props.disabled ? 'default' : 'pointer'}`}}
+			onClick={props.edit ? (() => {
+				props.deleteTag(tag);
+				props.returnTag(tag);
+			}) : undefined}
+			style={{cursor: `${!props.edit ? 'default' : 'pointer'}`}}
 		>
 			{tag.value}
 		</div>;

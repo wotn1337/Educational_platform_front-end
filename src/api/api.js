@@ -100,7 +100,7 @@ export const fragmentsAPI = {
 			data.append('type', type);
 			data.append('title', title);
 			data.append('content', content);
-			data.append('tags', tagsIds)
+			data.append('tags', JSON.stringify(tagsIds));
 			return axios.post('http://localhost/api/fragments', data, authConfig(token));
 		}
 		return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig(token));
@@ -122,8 +122,8 @@ export const fragmentsAPI = {
 		return instance.delete(`fragments/${id}`, authConfig(token))
 	},
 
-	editFragment(token, id, title, content) {
-		const data = content ? {title, content} : {title, content: null};
+	editFragment(token, id, title, content, tagsIds) {
+		const data = content ? {title, content, tags: tagsIds} : {title, content: null, tags: tagsIds};
 		return instance.patch(`fragments/${id}`, JSON.stringify(data), authConfig(token));
 	},
 
