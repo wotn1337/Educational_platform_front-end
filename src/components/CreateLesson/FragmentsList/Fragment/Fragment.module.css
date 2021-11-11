@@ -1,0 +1,21 @@
+.fragmentBlock {
+    padding: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.45);;
+}
+
+.title {
+    display: inline-block;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
+}
+
+.checkbox {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.fragmentType {
+    width: 26px;
+    height: 26px;
+    margin-right: 20px;
+}

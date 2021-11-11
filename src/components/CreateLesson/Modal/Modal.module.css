@@ -19,9 +19,9 @@
 }
 
 .modalContent {
-    padding: 20px;
+    padding: 40px;
     border-radius: 12px;
     background-color: white;
-    width: 700px;
-    height: 200px;
+    width: 900px;
+    height: auto;
 }

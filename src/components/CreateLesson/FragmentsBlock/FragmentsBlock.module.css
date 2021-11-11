@@ -20,11 +20,7 @@
     margin: 0 auto 65px;
 }
 
-.addButton {
-    grid-area: button;
-    display: inline-block;
-    position: absolute;
-    margin-left: 390px;
+.button {
     border: none;
     background-color: white;
     width: 55px;
@@ -37,7 +33,18 @@
     background-image: url("./../../../assets/img/fragments/plus.svg");
 }
 
-.addButton:hover {
+.addButton {
+    grid-area: button;
+    display: inline-block;
+    position: absolute;
+    margin-left: 390px;
+}
+
+.addButtonWithoutCard {
+    justify-self: start;
+}
+
+.button:hover {
     background-color: #F56464;
 }
 

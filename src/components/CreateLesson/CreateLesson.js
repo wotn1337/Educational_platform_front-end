@@ -5,14 +5,15 @@ import FragmentsBlock from "./FragmentsBlock/FragmentsBlock";
 
 
 const CreateLesson = (props) => {
-	return (
-		<div className={s.content}>
-			<LessonTitle/>
-			<FragmentsBlock fragments={props.fragments} addFragment={props.addFragment}/>
-			<button className={s.createButton}>Создать
-			</button>
-		</div>
-	);
+    return (
+        <div className={s.content}>
+            <LessonTitle/>
+            <FragmentsBlock
+                fragments={props.lessonFragments}
+            />
+            <button className={s.createButton}>Создать</button>
+        </div>
+    );
 }
 
 export default CreateLesson;
