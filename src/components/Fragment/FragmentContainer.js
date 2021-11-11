@@ -69,6 +69,8 @@ class FragmentContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
 	token: state.auth.token,
+	userId: state.auth.userId,
+	role: state.auth.role,
 	title: state.fragment.title,
 	content: state.fragment.content,
 	type: state.fragment.type,
