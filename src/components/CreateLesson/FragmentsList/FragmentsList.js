@@ -5,13 +5,12 @@ import Pagination from "../../Pagination/Pagination";
 
 const FragmentsList = (props) => {
     let fragmentCards = [];
-    props.myFragments.map(fragment => (
-            fragmentCards.push(
-                <Fragment id={fragment.id} key={fragment.id} fragmentType={fragment.type} title={fragment.title}
-                          setFragmentData={props.setFragmentData}
-                />)
-        )
-    );
+    props.myFragments.map(fragment => {
+        fragmentCards.push(
+            <Fragment id={fragment.id} key={fragment.id} fragmentType={fragment.type} title={fragment.title}
+                      setFragmentData={props.setFragmentData}
+            />)
+    });
 
     return (
         <div>

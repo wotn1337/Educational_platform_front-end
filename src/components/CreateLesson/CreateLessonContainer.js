@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import CreateLesson from "./CreateLesson";
-import {addFragment, changeFragmentTitle, changeSelectedMode} from "../../redux/createLessonReducer";
+import {addFragment, changeFragmentTitle} from "../../redux/createLessonReducer";
 import {changePage, getMyFragments} from "../../redux/myFragmentsReducer";
 
 
@@ -23,6 +23,5 @@ export default connect(mapStateToProps, {
     changeFragmentTitle,
     addFragment,
     getMyFragments,
-    changePage,
-    changeSelectedMode
+    changePage
 })(CreateLessonContainer);

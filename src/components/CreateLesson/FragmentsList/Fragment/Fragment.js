@@ -11,7 +11,12 @@ const Fragment = (props) => {
             </div>
             <input className={s.checkbox}
                    type="checkbox"
-                   onChange={() => props.setFragmentData({id: props.id, title: props.title, type: props.fragmentType})}
+                   onChange={() => props.setFragmentData(
+                       {
+                           id: props.id,
+                           title: props.title,
+                           type: props.fragmentType
+                       })}
             />
         </div>
     )

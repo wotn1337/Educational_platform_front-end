@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {addFragment, changeSelectedMode} from "../../../redux/createLessonReducer";
+import {addFragment} from "../../../redux/createLessonReducer";
 import FragmentsList from "./FragmentsList";
 import {changePage, getMyFragments} from "../../../redux/myFragmentsReducer";
 import Preloader from "../../Preloader/Preloader";
@@ -12,12 +12,18 @@ class FragmentListContainer extends React.Component {
     }
 
     setFragmentData = (fragment) => {
-        this.setState({
-            fragments: [
-                ...this.state.fragments,
-                fragment
-            ]
-        })
+        if (this.props.lessonFragments.some(f => f.id === fragment.id)) {
+            this.setState({
+                fragments: this.state.fragments.filter(f => f.id !== fragment.id)
+            })
+        } else {
+            this.setState({
+                fragments: [
+                    ...this.state.fragments,
+                    fragment
+                ]
+            })
+        }
     }
 
     addFragment = () => {
@@ -56,6 +62,7 @@ class FragmentListContainer extends React.Component {
 const mapStateToProps = (state) => ({
     token: state.auth.token,
     myFragments: state.myFragments.fragments,
+    lessonFragments: state.createLesson.fragments,
     currentPage: state.myFragments.currentPage,
     nextPage: state.myFragments.nextPage,
     prevPage: state.myFragments.prevPage,
@@ -70,6 +77,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     getMyFragments,
     changePage,
-    addFragment,
-    changeSelectedMode
+    addFragment
 })(FragmentListContainer);
