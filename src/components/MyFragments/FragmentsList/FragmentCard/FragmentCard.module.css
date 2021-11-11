@@ -38,6 +38,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .title {
@@ -58,4 +59,25 @@
 
 .fragmentType {
     margin-left: 5px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    background: linear-gradient(265.72deg, #F36A76 13.2%, #F8B480 93.71%), #C4C4C4;
+    border-radius: 15px;
+    padding: 1px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    min-width: 25px;
+    min-height: 25px;
 }

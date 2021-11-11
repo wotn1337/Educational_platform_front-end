@@ -9,6 +9,7 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-top: 30px;
+    margin-bottom: 22px;
 }
 
 .btn {
@@ -41,25 +42,29 @@
 }
 
 .tags {
-    background-color: white;
-    border-radius: 10px;
-    display: grid;
-    align-items: center;
-    grid-gap: 10px;
-    justify-content: space-around;
-    padding: 20px;
-    width: 60%;
-    grid-template-columns: repeat(auto-fit, 200px);
     margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    width: fit-content;
+    max-width: 60%;
 }
 
 .tag {
-    background-color: #7C7676;
-    padding: 7px 20px;
-    border-radius: 20px;
+    padding: 6px 11px;
+    border-radius: 100px;
     color: white;
     text-align: center;
     cursor: pointer;
+    background: linear-gradient(87.42deg, #F7B380 17.31%, #F36A76 71.5%), #C4C4C4;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 12px;
+    margin-right: 6px;
+    height: fit-content;
 }
 
 @media all and (max-width: 1500px) {

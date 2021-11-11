@@ -1,10 +1,11 @@
 import React from "react";
-import {createFragment, deleteTag, setContent} from "../../redux/createFragmentReducer";
+import {addTag, createFragment, deleteTag, setContent} from "../../redux/createFragmentReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 import Preloader from "../Preloader/Preloader";
 import CreateFragment from "./CreateFragment";
+import {returnTag} from "../../redux/allTagsReducer";
 
 
 class CreateFragmentContainer extends React.Component {
@@ -13,7 +14,8 @@ class CreateFragmentContainer extends React.Component {
 			this.props.token,
 			this.props.fragmentType,
 			this.props.title,
-			this.props.content
+			this.props.content,
+			this.props.tagsIds
 		);
 	}
 	render() {
@@ -31,10 +33,17 @@ const mapStateToProps = (state) => ({
 	title: state.createFragment.title,
 	content: state.createFragment.content,
 	isFetching: state.createFragment.isFetching,
-	tags: state.createFragment.tags
+	tags: state.createFragment.tags,
+	tagsIds: state.createFragment.tagsIds
 });
 
 export default compose(
-	connect(mapStateToProps, {setContent, createFragment, deleteTag}),
+	connect(mapStateToProps, {
+		setContent,
+		createFragment,
+		deleteTag,
+		addTag,
+		returnTag
+	}),
 	withoutAuthRedirectToAuthPage
 )(CreateFragmentContainer);

@@ -10,6 +10,7 @@ import createFragmentReducer from "./createFragmentReducer";
 import catalogFragmentsReducer from "./catalogFragmentsReducer";
 import createTestReducer from "./createTestReducer";
 import createLessonReducer from "./createLessonReducer";
+import allTagsReducer from "./allTagsReducer";
 
 
 const reducers = combineReducers({
@@ -23,6 +24,7 @@ const reducers = combineReducers({
 	fragment: fragmentReducer,
 	createTest: createTestReducer,
 	createLesson: createLessonReducer,
+	allTags: allTagsReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

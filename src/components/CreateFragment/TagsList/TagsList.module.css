@@ -1,17 +1,33 @@
 .tag {
-    padding: 7px 20px;
-    border-radius: 20px;
+    padding: 6px 11px;
+    border-radius: 100px;
     color: white;
     text-align: center;
     cursor: pointer;
+    background: linear-gradient(87.42deg, #F7B380 17.31%, #F36A76 71.5%), #C4C4C4;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 12px;
+    margin-right: 6px;
+    flex: auto;
+    height: fit-content;
+}
+
+.tag:last-child {
+    margin-bottom: 0;
 }
 
 .tagsList {
     background-color: white;
-    padding: 20px;
+    padding: 20px 14px 20px 20px;
     border-radius: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
-    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    width: fit-content;
+    max-width: 300px;
+    min-width: 300px;
 }

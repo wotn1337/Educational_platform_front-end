@@ -4,9 +4,18 @@ import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 import Fragment from "./Fragment";
 import {Redirect, withRouter} from "react-router-dom";
-import {deleteFragment, editFragment, getFragment, setContent, setTitle} from "../../redux/fragmentReducer";
+import {
+	addTag,
+	deleteFragment,
+	deleteTag,
+	editFragment,
+	getFragment,
+	setContent,
+	setTitle
+} from "../../redux/fragmentReducer";
 import Preloader from "../Preloader/Preloader";
 import {fragmentTypes} from "../../common/fragmentTypes";
+import {returnTag} from "../../redux/allTagsReducer";
 
 
 class FragmentContainer extends React.Component {
@@ -66,10 +75,20 @@ const mapStateToProps = (state) => ({
 	creator: state.fragment.creator,
 	creatorId: state.fragment.creatorId,
 	isFetching: state.fragment.isFetching,
+	tags: state.fragment.tags
 });
 
 export default compose(
-	connect(mapStateToProps, {getFragment, deleteFragment, editFragment, setTitle, setContent}),
+	connect(mapStateToProps, {
+		getFragment,
+		deleteFragment,
+		editFragment,
+		setTitle,
+		setContent,
+		deleteTag,
+		addTag,
+		returnTag
+	}),
 	withRouter,
 	withoutAuthRedirectToAuthPage
 )(FragmentContainer);
