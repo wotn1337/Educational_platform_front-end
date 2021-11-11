@@ -1,10 +1,9 @@
 .fragmentsList {
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: auto auto;
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 20px;
     grid-row-gap: 50px;
-    align-items: baseline;
     margin: 0 auto 65px;
     width: fit-content;
 }

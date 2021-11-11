@@ -59,7 +59,7 @@ export const getTags = (token) => (dispatch) => {
 	dispatch(setIsFetching(true));
 	fragmentsAPI.getTags(token)
 		.then(res => {
-			dispatch(setAllTags(res.data.data))
+			dispatch(setAllTags(res.data.tags.data))
 			dispatch(setIsFetching(false))
 		})
 		.catch(() => dispatch(setIsFetching(false)))
