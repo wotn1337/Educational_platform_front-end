@@ -13,6 +13,7 @@ import FragmentContainer from "./components/Fragment/FragmentContainer";
 import CreateFragmentContainer from "./components/CreateFragment/CreateFragmentContainer";
 import FragmentsCatalog from "./components/CatalogPage/fragmentsCatalog/FragmentsCatalog";
 import CreateLessonContainer from "./components/CreateLesson/CreateLessonContainer";
+import TeacherProfileContainer from "./components/TeacherProfile/TeacherProfileContainer";
 
 
 const App = () => {
@@ -52,8 +53,12 @@ const App = () => {
 				render={() => <CreateLessonContainer/>}
 			/>
 			<Route
-				exact path='/profile'
+				exact path='/profile/me'
 				render={() => <ProfilePageContainer/>}
+			/>
+			<Route
+				exact path='/profile:id?'
+				render={() => <TeacherProfileContainer/>}
 			/>
 			<Route
 				exact path='/admin/login'

@@ -11,6 +11,7 @@ import catalogFragmentsReducer from "./catalogFragmentsReducer";
 import createTestReducer from "./createTestReducer";
 import createLessonReducer from "./createLessonReducer";
 import allTagsReducer from "./allTagsReducer";
+import teacherProfileReducer from "./teacherProfileReducer";
 
 
 const reducers = combineReducers({
@@ -24,7 +25,8 @@ const reducers = combineReducers({
 	fragment: fragmentReducer,
 	createTest: createTestReducer,
 	createLesson: createLessonReducer,
-	allTags: allTagsReducer
+	allTags: allTagsReducer,
+	teacherProfile: teacherProfileReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

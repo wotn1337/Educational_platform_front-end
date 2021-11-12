@@ -31,7 +31,7 @@ const Navbar = (props) => {
 							title={'Создать'}
 							links={[props.role !== 'student' && {'create-fragment': 'Создать фрагмент'}, {'create-lesson': 'Создать урок'}]}
 						/>
-						<NavLink className={s.navLink} to="/profile" activeClassName={s.active}>Мой профиль</NavLink>
+						<NavLink className={s.navLink} to="/profile/me" activeClassName={s.active}>Мой профиль</NavLink>
 						<NavLink className={s.navLink} to="/auth" onClick={e => logout(e)}>Выйти</NavLink>
 					</>
 					: <NavLink className={s.navLink} to={'/login'} activeClassName={s.active}>Войти</NavLink>
