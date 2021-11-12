@@ -1,5 +1,6 @@
 import React from 'react';
 import s from "../CreateFragment.module.css";
+import cross from '../../../assets/img/fragments/cross_white.png';
 
 
 const ThisTags = (props) => {
@@ -8,13 +9,19 @@ const ThisTags = (props) => {
 			className={s.tag}
 			key={tag.id}
 			id={tag.id}
-			onClick={props.edit ? (() => {
-				props.deleteTag(tag);
-				props.returnTag(tag);
-			}) : undefined}
-			style={{cursor: `${!props.edit ? 'default' : 'pointer'}`}}
 		>
 			{tag.value}
+			{props.edit &&
+			<img
+				src={cross}
+				alt="cross"
+				className={s.cross}
+				onClick={() => {
+					props.deleteTag(tag);
+					props.returnTag(tag);
+				}}
+			/>
+			}
 		</div>;
 	});
 

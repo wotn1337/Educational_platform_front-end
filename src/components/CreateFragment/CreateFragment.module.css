@@ -55,7 +55,6 @@
     border-radius: 100px;
     color: white;
     text-align: center;
-    cursor: pointer;
     background: linear-gradient(87.42deg, #F7B380 17.31%, #F36A76 71.5%), #C4C4C4;
     font-family: Montserrat, sans-serif;
     font-style: normal;
@@ -65,6 +64,11 @@
     margin-bottom: 12px;
     margin-right: 6px;
     height: fit-content;
+}
+
+.cross {
+    margin-left: 10px;
+    cursor: pointer;
 }
 
 @media all and (max-width: 1500px) {
