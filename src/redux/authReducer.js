@@ -11,6 +11,8 @@ const TOGGLE_RESET_PASSWORD_FORM = 'SHOW_RESET_PASSWORD_FORM';
 const initState = {
 	token: localStorage.getItem('token'),
 	isAuth: !!localStorage.getItem('token'),
+	userId: localStorage.getItem('userId'),
+	role: localStorage.getItem('role'),
 	isFetching: false,
 	showResetPasswordForm: false
 };
@@ -22,14 +24,18 @@ const authReducer = (state = initState, action) => {
 			return {
 				...state,
 				token: action.token,
-				isAuth: true
+				isAuth: true,
+				userId: action.id,
+				role: action.role
 			};
 
 		case LOGOUT:
 			return {
 				...state,
 				token: null,
-				isAuth: false
+				isAuth: false,
+				userId: null,
+				role: null
 			}
 
 		case TOGGLE_IS_FETCHING:
@@ -49,38 +55,28 @@ const authReducer = (state = initState, action) => {
 	}
 };
 
-const toggleIsFetching = (isFetching) => {
-	return {
-		type: TOGGLE_IS_FETCHING,
-		isFetching
-	};
-};
-
-export const toggleResetPasswordForm = () => {
-	return {
-		type: TOGGLE_RESET_PASSWORD_FORM
-	};
-};
-
-const setAuth = (token) => {
+const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+const setAuth = (token, id, role) => {
 	localStorage.setItem('token', token);
+	localStorage.setItem('id', id);
+	localStorage.setItem('role', role);
 	return {
 		type: SET_AUTH,
 		token,
+		id,
+		role
 	};
 };
 
-export const logoutAction = () => {
-	return {
-		type: LOGOUT
-	};
-};
+export const toggleResetPasswordForm = () => ({type: TOGGLE_RESET_PASSWORD_FORM});
+export const logoutAction = () => ({type: LOGOUT});
+
 
 export const login = (data, setStatus) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
 	authAPI.login(data)
 		.then(res => {
-			dispatch(setAuth(res.data.token));
+			dispatch(setAuth(res.data.token, res.data.user_id, res.data.user_role));
 			dispatch(toggleIsFetching(false));
 			successNotification(res.data.message);
 		})
@@ -100,7 +96,7 @@ export const register = (data, setStatus) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
 	authAPI.register(data)
 		.then(res => {
-			dispatch(setAuth(res.data.token));
+			dispatch(setAuth(res.data.token, res.data.user_id, res.data.user_role));
 			dispatch(toggleIsFetching(false));
 			successNotification(res.data.message);
 		})
@@ -133,7 +129,7 @@ export const adminLogin = (data, setStatus) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
 	adminAPI.adminLogin(data)
 		.then(res => {
-			dispatch(setAuth(res.data.token));
+			dispatch(setAuth(res.data.token, res.data.user_id, res.data.user_role));
 			dispatch(toggleIsFetching(false));
 		})
 		.catch(err => {

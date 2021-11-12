@@ -38,12 +38,12 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
+	withoutAuthRedirectToAuthPage,
 	connect(mapStateToProps, {
 		setContent,
 		createFragment,
 		deleteTag,
 		addTag,
 		returnTag
-	}),
-	withoutAuthRedirectToAuthPage
+	})
 )(CreateFragmentContainer);

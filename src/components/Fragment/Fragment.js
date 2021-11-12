@@ -57,24 +57,29 @@ const Fragment = (props) => {
 			/>
 
 			<div className={s.buttonsBlock}>
-				{props.isEdit && <button onClick={() => setShowTags(!showTags)} className={s.btn}>Добавить теги</button>}
-				{!props.isEdit
-					? <button className={s.btn} onClick={() => {
-						props.toggleIsEdit();
-						convertToDraft();
-					}}>Редактировать</button>
-					: <button className={s.btn} onClick={props.editFragment}>Сохранить
-						изменения</button>
+				{props.isEdit &&
+				<button onClick={() => setShowTags(!showTags)} className={s.btn}>Добавить теги</button>}
+				{(props.userId === props.creatorId || props.role === 'admin') &&
+				<>
+					{!props.isEdit
+						? <button className={s.btn} onClick={() => {
+							props.toggleIsEdit();
+							convertToDraft();
+						}}>Редактировать</button>
+						: <button className={s.btn} onClick={props.editFragment}>Сохранить
+							изменения</button>
+					}
+				</>
 				}
 				{!props.isEdit &&
-					<>
-						<button className={s.btn} onClick={props.deleteFragment}>
-							Удалить
-						</button>
-						<button className={s.btn}>
-							Добавить в избранное
-						</button>
-					</>
+				<>
+					{(props.userId === props.creatorId || props.role === 'admin') &&
+					<button className={`${s.btn} ${s.deleteButton}`} onClick={props.deleteFragment}>Удалить</button>
+					}
+					<button className={`${s.btn} ${s.addToFavorite}`}>
+						Добавить в избранное
+					</button>
+				</>
 				}
 			</div>
 			{showTags && <TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}/>}
