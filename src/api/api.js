@@ -10,47 +10,62 @@ const authConfig = (token) => ({
 
 
 export const authAPI = {
+	// Авторизует ранее зарегистрированного пользователя
 	login(data) {
 		return instance.post('login', JSON.stringify(data));
 	},
 
+	// Регистрирует пользователя
 	register(data) {
 		return instance.post('register', JSON.stringify(data));
 	},
 
+	// Для выхода авторизованного пользователя из системы
 	logout(token) {
 		return instance.post('logout', {}, authConfig(token));
 	},
 
+	// Получить на email ссылку для сброса пароля
 	forgotPassword(email) {
 		return instance.post('forgot-password', JSON.stringify({email}));
 	},
 
+	// Сбросить пароль
 	resetPassword(email, password, token) {
 		return instance.post(`reset-password?token=${token}`, JSON.stringify({email, password, token}));
 	}
 };
 
 export const profileAPI = {
+	// Получить данные для своего профиля
 	getProfile(token) {
 		return instance.get('user/me', authConfig(token));
 	},
 
+	// Изменить данные своего профиля
 	updateProfile(token, name, birthday) {
 		return instance.patch('user/me', JSON.stringify({name, birthday}), authConfig(token));
 	},
 
+	// Обновить свой аватар
 	//Не использует instance, потому что Content-type - FormData с файлом
 	updateAvatar(token, avatar) {
 		return axios.post('http://localhost/api/user/me/avatar', avatar, authConfig(token));
 	},
 
+	// Удалить свой аватар
 	deleteAvatar(token) {
 		return instance.delete('user/me/avatar', authConfig(token));
 	},
 
+	// Смена пароля из профиля для авторизованного пользователя
 	changePassword(token, password) {
 		return instance.patch('user/me/password', JSON.stringify({password}), authConfig(token));
+	},
+
+	// Получить данные для профиля конкретного учителя
+	getTeacherProfile(token, id) {
+		return instance.get(`teachers/${id}`, authConfig(token));
 	}
 };
 

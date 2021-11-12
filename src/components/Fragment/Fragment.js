@@ -7,6 +7,7 @@ import draftToHtml from "draftjs-to-html";
 import {fragmentTypes} from "../../common/fragmentTypes";
 import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 import TagsListContainer from "../CreateFragment/TagsList/TagsListContainer";
+import {NavLink} from "react-router-dom";
 
 const Fragment = (props) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -35,6 +36,7 @@ const Fragment = (props) => {
 					onChange={event => props.setTitle(event.target.value)}
 				/>
 			}
+			<span className={s.author}>Автор: <NavLink className={s.creatorName} to={`/profile:${props.creatorId}`}>{props.creator}</NavLink></span>
 			{props.type === fragmentTypes.article &&
 			<>
 				{!props.isEdit

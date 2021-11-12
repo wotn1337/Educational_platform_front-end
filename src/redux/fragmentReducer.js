@@ -75,6 +75,7 @@ export const getFragment = (token, id) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
 	fragmentsAPI.getFragment(token, id)
 		.then(res => {
+			console.log(res);
 			dispatch(toggleIsFetching(false));
 			dispatch(setFragment(res.data.fragment));
 		})
