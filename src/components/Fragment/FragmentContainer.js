@@ -13,7 +13,7 @@ import {
 	setContent,
 	setTitle
 } from "../../redux/fragmentReducer";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import {fragmentTypes} from "../../common/fragmentTypes";
 import {returnTag} from "../../redux/allTagsReducer";
 

@@ -1,0 +1,32 @@
+.switches {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0 auto;
+    padding-bottom: 0;
+    border-color: transparent;
+}
+
+.switch {
+    display: inline-block;
+    background-color: #D9D9D9;
+    border-color: transparent;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    min-width: 210px;
+    margin: 0 10px;
+    padding: 10px 5px;
+    text-align: center;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.switchActive {
+    background-color: white;
+}
+
+.switch:hover {
+    background-color: white;
+}

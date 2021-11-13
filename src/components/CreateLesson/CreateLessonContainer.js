@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import CreateLesson from "./CreateLesson";
 import {addFragment, changeFragmentTitle} from "../../redux/createLessonReducer";
 

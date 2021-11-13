@@ -45,6 +45,7 @@ export const getTeacherProfile = (token, id) => (dispatch) => {
 	profileAPI.getTeacherProfile(token, id)
 		.then(res => {
 			console.log(res);
+			dispatch(setTeacherProfile(res.data.user));
 			dispatch(setProfileFetching(false));
 		})
 		.catch(err => {

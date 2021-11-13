@@ -10,47 +10,9 @@ class ProfilePageContainer extends React.Component {
 		this.props.getProfile(this.props.token);
 	}
 
-	state = {
-		myPage: true,
-		allUsers: false,
-		blackList: false
-	}
-
-	toggleSwitches = (tab) => {
-		switch (tab) {
-			case 'myPage':
-				this.setState({
-					myPage: true,
-					allUsers: false,
-					blackList: false
-				});
-				break;
-
-			case 'allUsers':
-				this.setState({
-					myPage: false,
-					allUsers: true,
-					blackList: false
-				});
-				break;
-
-			case 'blackList':
-				this.setState({
-					myPage: false,
-					allUsers: false,
-					blackList: true
-				});
-				break;
-
-			default:
-				break;
-		}
-	}
-
 	render() {
 		return <ProfilePage {...this.props}
 		                    {...this.state}
-		                    toggleSwitches={this.toggleSwitches}
 		/>;
 	}
 }
