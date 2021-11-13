@@ -1,18 +1,19 @@
 import React from "react";
 import s from './CreateLesson.module.css';
 import LessonTitle from "./LessonTitle/LessonTitle";
-import FragmentsBlock from "./FragmentsBlock/FragmentsBlock";
+import ConstructorBlock from "./СonstructorBlock/СonstructorBlock";
 
 
 const CreateLesson = (props) => {
-	return (
-		<div className={s.content}>
-			<LessonTitle/>
-			<FragmentsBlock fragments={props.fragments} addFragment={props.addFragment}/>
-			<button className={s.createButton}>Создать
-			</button>
-		</div>
-	);
+    return (
+        <div className={s.content}>
+            <LessonTitle/>
+            <ConstructorBlock
+                fragments={props.lessonFragments}
+            />
+            <button className={s.createButton}>Создать</button>
+        </div>
+    );
 }
 
 export default CreateLesson;
