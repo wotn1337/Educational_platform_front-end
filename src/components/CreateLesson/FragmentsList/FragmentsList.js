@@ -4,35 +4,36 @@ import s from './FragmentsList.module.css'
 import Pagination from "../../Pagination/Pagination";
 
 const FragmentsList = (props) => {
-    let fragmentCards = [];
-    props.myFragments.map(fragment => {
-        fragmentCards.push(
-            <Fragment id={fragment.id} key={fragment.id} fragmentType={fragment.type} title={fragment.title}
-                      setFragmentData={props.setFragmentData}
+    const fragmentCards = props.myFragments.map(fragment => {
+        return (
+            <Fragment fragment={fragment} key={fragment.id} addFragment={props.addFragment}
+                      isFragmentChosen={props.isFragmentChosen}
+                      deleteFragment={props.deleteFragment}
+                      setFragment={props.setFragment}
+                      getFragmentNumber={props.getFragmentNumber}
             />)
     });
 
     return (
-        <div>
+        <div className={s.fragmentsWrapper}>
             <h3 className={s.title}>Мои фрагменты</h3>
             <div className={s.fragmentsList}>
                 {fragmentCards}
             </div>
-            <div style={{width: '30%'}}>
-                <Pagination
-                    handler={props.changePage}
-                    currentPage={props.currentPage}
-                    prevPage={props.prevPage}
-                    lastPage={props.lastPage}
-                    nextPage={props.nextPage}
-                />
+            <div className={s.actionBlock}>
+                <div style={{width: '30%'}}>
+                    <Pagination handler={props.changePage} currentPage={props.currentPage} prevPage={props.prevPage}
+                                lastPage={props.lastPage}
+                                nextPage={props.nextPage}
+                    />
+                </div>
+                <button className={s.addButton} onClick={() => {
+                    props.setFragment();
+                    props.setModalActive(false)
+                }}>
+                    Добавить
+                </button>
             </div>
-            <button className={s.addButton} onClick={() => {
-                props.addFragment();
-                props.setModalActive(false)
-            }}>
-                Добавить
-            </button>
         </div>
     )
 }

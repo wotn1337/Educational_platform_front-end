@@ -1,7 +1,9 @@
 .fragmentsList {
-    padding: 20px 0;
+    margin: 20px 0 30px 0;
 }
-
+.fragmentsWrapper{
+    padding: 30px 40px;
+}
 .title {
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
@@ -11,7 +13,14 @@
     width: fit-content;
 }
 
+.actionBlock {
+    display: flex;
+    justify-content: space-between;
+}
+
 .addButton {
+    display: inline-block;
+    width: 120px;
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
     color: white;
@@ -23,5 +32,5 @@
 }
 
 .addButton:hover {
-    background-color: #F56464;
+    background-color: #fdc660;
 }

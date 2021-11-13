@@ -1,19 +1,14 @@
 import React, {useState} from "react";
 import FragmentCard from "../../MyFragments/FragmentsList/FragmentCard/FragmentCard";
-import s from "./FragmentsBlock.module.css";
+import s from "./СonstructorBlock.module.css";
 import Modal from "../Modal/Modal";
-import FragmentListContainer from "../FragmentsList/FragmentListContainer";
+import FragmentsListContainer from "../FragmentsList/FragmentsListContainer";
 
-const FragmentsBlock = (props) => {
+const ConstructorBlock = (props) => {
 
     const [modalActive, setModalActive] = useState(false)
 
     let fragmentCards = [];
-    if (props.fragments.length === 0) {
-        fragmentCards.push(
-            <button className={`${s.button} ${s.addButtonWithoutCard}`} onClick={() => setModalActive(true)}/>
-        )
-    }
 
     for (let i = 0; i < props.fragments.length; i++) {
         let fragment = props.fragments[i];
@@ -34,18 +29,23 @@ const FragmentsBlock = (props) => {
     }
 
     return (
-        <>
+        <div>
+            {props.fragments.length === 0 &&
+            <button className={`${s.button} ${s.addButtonWithoutCard}`}
+                    onClick={() => setModalActive(true)}/>
+            }
+
             <div className={s.fragmentsList}>
                 {fragmentCards}
             </div>
 
             <Modal active={modalActive} setActive={setModalActive}>
-                <FragmentListContainer setModalActive={setModalActive}
-                                       changeSelectedMode={props.changeSelectedMode}
-                                       aggFragment={props.addFragment}/>
+                <FragmentsListContainer setModalActive={setModalActive}
+                                        changeSelectedMode={props.changeSelectedMode}
+                                        aggFragment={props.addFragment}/>
             </Modal>
-        </>
+        </div>
     )
 }
 
-export default FragmentsBlock;
+export default ConstructorBlock;

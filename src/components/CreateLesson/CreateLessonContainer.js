@@ -6,7 +6,6 @@ import {changePage, getMyFragments} from "../../redux/myFragmentsReducer";
 
 
 class CreateLessonContainer extends React.Component {
-
     render() {
         return <CreateLesson
             {...this.props}

@@ -1,4 +1,10 @@
 .fragmentBlock {
+    display: grid;
+    margin-left: 24px;
+    grid-template-columns: 30px 1fr 15px;
+    align-items: center;
+    grid-gap: 10px;
+    justify-items: start;
     padding: 5px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.45);;
 }
@@ -8,14 +14,31 @@
     font-family: "Open Sans", sans-serif;
     font-weight: 600;
 }
+.fragmentWrapper {
+    display: grid;
+    grid-template-columns: 24px 1fr;
+    align-items: center;
+}
 
 .checkbox {
+    cursor: pointer;
+}
+
+.number {
     display: inline-block;
-    margin-left: 10px;
+    position: absolute;
+    top: 5px;
+    background-color: #EF5B5B;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    color: white;
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 600;
 }
 
 .fragmentType {
     width: 26px;
     height: 26px;
-    margin-right: 20px;
 }

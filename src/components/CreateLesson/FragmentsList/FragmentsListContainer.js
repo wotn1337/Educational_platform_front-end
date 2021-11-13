@@ -5,28 +5,52 @@ import FragmentsList from "./FragmentsList";
 import {changePage, getMyFragments} from "../../../redux/myFragmentsReducer";
 import Preloader from "../../Preloader/Preloader";
 
-class FragmentListContainer extends React.Component {
+class FragmentsListContainer extends React.Component {
 
     state = {
-        fragments: []
+        fragments: this.props.lessonFragments
     }
 
-    setFragmentData = (fragment) => {
-        if (this.props.lessonFragments.some(f => f.id === fragment.id)) {
-            this.setState({
-                fragments: this.state.fragments.filter(f => f.id !== fragment.id)
-            })
-        } else {
+    isFragmentChosen = (id) => {
+        return this.state.fragments.some(elem => elem.id === id);
+    }
+
+    getFragmentNumber = (id) => {
+        let index = this.state.fragments.findIndex(elem => elem.id === id);
+        return this.state.fragments[index].number;
+    }
+
+    addFragment = (fragment) => {
+        if (!this.state.fragments.some(f => f.id === fragment.id)) {
             this.setState({
                 fragments: [
                     ...this.state.fragments,
-                    fragment
+                    {
+                        id: fragment.id,
+                        title: fragment.title,
+                        type: fragment.type,
+                        number: this.state.fragments.length + 1
+                    }
                 ]
             })
         }
     }
 
-    addFragment = () => {
+    deleteFragment = (fragmentId) => {
+        const deleteNumber = this.getFragmentNumber(fragmentId)
+        let newState = this.state.fragments;
+        if (this.state.fragments.length !== deleteNumber) {
+            newState = this.state.fragments.map(f => {
+                return (f.number > deleteNumber ? {...f, number: f.number - 1} : f)
+            });
+        }
+        this.setState({
+            fragments: newState.filter(f => f.id !== fragmentId)
+        })
+    }
+
+
+    setFragment = () => {
         this.props.addFragment(this.state.fragments);
     }
 
@@ -53,8 +77,11 @@ class FragmentListContainer extends React.Component {
         return <FragmentsList {...this.props}
                               setModalActive={this.props.setModalActive}
                               changePage={this.changePage}
-                              setFragmentData={this.setFragmentData}
                               addFragment={this.addFragment}
+                              deleteFragment={this.deleteFragment}
+                              isFragmentChosen={this.isFragmentChosen}
+                              setFragment={this.setFragment}
+                              getFragmentNumber={this.getFragmentNumber}
         />
     }
 }
@@ -78,4 +105,4 @@ export default connect(mapStateToProps, {
     getMyFragments,
     changePage,
     addFragment
-})(FragmentListContainer);
+})(FragmentsListContainer);
