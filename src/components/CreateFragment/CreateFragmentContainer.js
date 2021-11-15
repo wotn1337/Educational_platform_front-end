@@ -3,7 +3,7 @@ import {addTag, createFragment, deleteTag, setContent} from "../../redux/createF
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import CreateFragment from "./CreateFragment";
 import {returnTag} from "../../redux/allTagsReducer";
 
