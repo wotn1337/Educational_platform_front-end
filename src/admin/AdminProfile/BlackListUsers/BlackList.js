@@ -1,7 +1,7 @@
 import React from "react";
 import User from "./User/User";
 import s from './BlackList.module.css';
-import Pagination from "../../../components/Pagination/Pagination";
+import Pagination from "../../../common/Pagination/Pagination";
 
 
 const AllUsers = (props) => {

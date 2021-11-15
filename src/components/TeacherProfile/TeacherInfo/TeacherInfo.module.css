@@ -1,0 +1,21 @@
+.teacherInfo {
+    display: grid;
+    grid-gap: 10px;
+    margin: 0 auto;
+    width: fit-content;
+    justify-content: center;
+    text-align: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    color: #FFFFFF;
+    padding-bottom: 30px;
+}
+
+.teacherAvatar {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    margin: auto;
+}

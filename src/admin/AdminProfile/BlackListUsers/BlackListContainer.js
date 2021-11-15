@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from 'react-redux';
 import {changeBlackListPage, getBlockedUsers, unblockUser} from "../../../redux/adminReducer";
 import BlackList from "./BlackList";
-import Preloader from "../../../components/Preloader/Preloader";
+import Preloader from "../../../common/Preloader/Preloader";
 
 
 class BlackListContainer extends React.Component {
