@@ -61,30 +61,12 @@ const myFragmentsReducer = (state = initState, action) => {
 	}
 };
 
-const setFragments = (data) => ({
-	type: SET_FRAGMENTS,
-	data
-});
+const setFragments = (data) => ({type: SET_FRAGMENTS, data});
+const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
+const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 
-const setIsFetching = (isFetching) => ({
-	type: SET_IS_FETCHING,
-	isFetching
-});
-
-const setCurrentPage = (page) => ({
-	type: SET_CURRENT_PAGE,
-	page
-});
-
-export const setSearchTitle = (searchTitle) => ({
-	type: SET_SEARCH_TITLE,
-	searchTitle
-});
-
-export const setSearchType = (searchType) => ({
-	type: SET_SEARCH_TYPE,
-	searchType
-});
+export const setSearchTitle = (searchTitle) => ({type: SET_SEARCH_TITLE, searchTitle});
+export const setSearchType = (searchType) => ({type: SET_SEARCH_TYPE, searchType});
 
 export const getFragments = (token, page, title, type) => (dispatch) => {
 	dispatch(setIsFetching(true));

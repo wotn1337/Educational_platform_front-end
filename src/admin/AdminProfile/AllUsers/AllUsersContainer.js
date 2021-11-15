@@ -9,7 +9,7 @@ import {
 	registerNewUser,
 	unblockUser
 } from "../../../redux/adminReducer";
-import Preloader from "../../../components/Preloader/Preloader";
+import Preloader from "../../../common/Preloader/Preloader";
 
 
 class AllUsersContainer extends React.Component {

@@ -1,8 +1,7 @@
 import React from 'react';
 import FragmentCard from "./FragmentCard/FragmentCard";
 import s from './FragmentsList.module.css';
-import Pagination from "../../Pagination/Pagination";
-import FragmentCardContainer from "./FragmentCard/FragmentCardContainer";
+
 
 
 const FragmentsList = (props) => {
