@@ -60,7 +60,7 @@ a {
 .typeBlock {
     display: flex;
     align-items: center;
-    color: #000000;
+    color: rgba(0, 0, 0, 0.51);
 }
 
 .fragmentType {

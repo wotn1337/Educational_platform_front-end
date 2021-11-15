@@ -6,35 +6,37 @@ import {russianFragmentTypes} from "../../../../common/fragmentTypes";
 import Tags from "./Tags/Tags";
 
 const getShortTitle = (title, length) => {
-	if (title.length > length) {
-		return title.substr(0, length) + '…';
-	}
-	return title;
+    if (title.length > length) {
+        return title.substr(0, length) + '…';
+    }
+    return title;
 }
 
 
 const FragmentCard = (props) => {
-	return (
-		<div className={s.fragmentCard}>
-			<div className={s.preview}>
-				<img src={previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
+    return (
+        <NavLink to={`/fragment:${props.id}`} className={s.fragmentCard}>
+            <div className={s.preview}>
+                <img src={previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
                 <button className={s.addToFavorite}
-                        onClick={() =>
-                            props.changeFavorite(props.id)}
+                        onClick={event => {
+                            event.preventDefault();
+                            props.changeFavorite(props.id)
+                        }}
                 />
-			</div>
-			<div>
-				<NavLink to={`/fragment:${props.id}`} className={s.description}>
+            </div>
+            <div>
+                <div className={s.description}>
                     <div className={s.title}>{getShortTitle(props.title, 10)}</div>
                     <div className={s.typeBlock}>
                         {russianFragmentTypes[props.fragmentType]}
                         <img src={fragmentTypeImg[props.fragmentType]} alt="type" className={s.fragmentType}/>
                     </div>
-                </NavLink>
-			</div>
-			<Tags tags={props.tags}/>
-		</div>
-	);
+                </div>
+            </div>
+            <Tags tags={props.tags}/>
+        </NavLink>
+    );
 };
 
 export default FragmentCard;

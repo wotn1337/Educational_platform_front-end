@@ -5,6 +5,7 @@ const SET_IS_FETCHING = 'favorite/SET_IS_FETCHING';
 const SET_CURRENT_PAGE = 'favorite/SET_CURRENT_PAGE';
 const SET_SEARCH_TITLE = 'favorite/SET_SEARCH_TITLE';
 const SET_SEARCH_TYPE = 'favorite/SET_SEARCH_TYPE';
+const DELETE_FRAGMENT = 'favorite/DELETE_FRAGMENT';
 
 const initState = {
     favorites: [],
@@ -14,7 +15,7 @@ const initState = {
     nextPage: 1,
     lastPage: 1,
     isFetching: false,
-    searchTitle : '',
+    searchTitle: '',
     searchType: '',
     totalFragmentsCount: 0
 };
@@ -51,26 +52,27 @@ const favoritesReducer = (state = initState, action) => {
                 ...state,
                 searchType: action.searchType
             };
+        case DELETE_FRAGMENT:
+            return {
+                ...state,
+                favorites: state.favorites.filter(f => f.id !== action.id)
+            };
         default:
             return state;
     }
 }
 
-const setFragments = (data) => ({
-    type: SET_FRAGMENTS,
-    data
-});
+const setFragments = (data) => ({type: SET_FRAGMENTS, data});
 
-const setIsFetching = (isFetching) => ({
-    type: SET_IS_FETCHING,
-    isFetching
-});
+const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 
-const setCurrentPage = (page) => ({
-    type: SET_CURRENT_PAGE,
-    page
-});
+const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 
+export const setSearchTitle = (searchTitle) => ({type: SET_SEARCH_TITLE, searchTitle});
+
+export const setSearchType = (searchType) => ({type: SET_SEARCH_TYPE, searchType});
+
+export const deleteFragment = (id) => ({type: DELETE_FRAGMENT, id});
 
 export const getFavorites = (token, page, title, type) => (dispatch) => {
     dispatch(setIsFetching(true));
@@ -90,19 +92,10 @@ export const changePage = (token, page, title, type) => (dispatch) => {
     dispatch(getFavorites(token, page, title, type));
 };
 
-export const setSearchTitle = (searchTitle) => ({
-    type: SET_SEARCH_TITLE,
-    searchTitle
-});
-
-export const setSearchType = (searchType) => ({
-    type: SET_SEARCH_TYPE,
-    searchType
-});
-
-export const changeFavorite = (token, id) => () => {
+export const changeFavorite = (token, id) => (dispatch) => {
     return fragmentsAPI.changeFavorite(token, id)
         .then(() => {
+            dispatch(deleteFragment(id));
         })
         .catch(() => {
         })
