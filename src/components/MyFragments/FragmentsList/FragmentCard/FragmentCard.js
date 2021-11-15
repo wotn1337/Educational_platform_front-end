@@ -3,7 +3,7 @@ import s from './FragmentCard.module.css';
 import {fragmentTypeImg, previewImg} from "../../../../common/fragmentsPreview";
 import {NavLink} from "react-router-dom";
 import {russianFragmentTypes} from "../../../../common/fragmentTypes";
-import Tag from "./Tag/Tag";
+import Tags from "./Tags/Tags";
 
 const getShortTitle = (title, length) => {
     if (title.length > length) {
@@ -14,10 +14,6 @@ const getShortTitle = (title, length) => {
 
 
 const FragmentCard = (props) => {
-    const tags = props.tags
-        ? props.tags.data.map((tag, index) => (<Tag key={tag.id} tag={tag} index={index}/>))
-        : undefined;
-
     return (
         <NavLink to={`/fragment:${props.id}`} className={s.fragmentCard}>
             <div className={s.preview}>
@@ -38,7 +34,7 @@ const FragmentCard = (props) => {
                     </div>
                 </div>
             </div>
-            <div className={s.tags}>{tags}</div>
+            <Tags tags={props.tags}/>
         </NavLink>
     );
 };
