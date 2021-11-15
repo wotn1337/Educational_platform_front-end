@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import FragmentsList from "../../MyFragments/FragmentsList/FragmentsList";
 import {changePage, getFavorites} from "../../../redux/favoritesReducer";
-import Preloader from "../../Preloader/Preloader";
+import Preloader from "../../../common/Preloader/Preloader";
 
 class FavoriteListContainer extends React.Component {
 
