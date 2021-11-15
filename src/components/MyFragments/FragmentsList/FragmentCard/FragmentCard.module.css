@@ -34,6 +34,10 @@
     border: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 .description {
     display: flex;
     justify-content: space-between;
@@ -50,11 +54,13 @@
     color: #000000;
     max-width: 200px;
     word-wrap: break-word;
+    text-decoration: none;
 }
 
 .typeBlock {
     display: flex;
     align-items: center;
+    color: #000000;
 }
 
 .fragmentType {

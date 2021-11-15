@@ -1,17 +1,18 @@
 import React from 'react';
 import FragmentCard from "./FragmentCard/FragmentCard";
 import s from './FragmentsList.module.css';
-import Pagination from "../../../common/Pagination/Pagination";
+
 
 
 const FragmentsList = (props) => {
 	const fragmentCards = props.fragments.map(fragment => (
-		<FragmentCard
+		<FragmentCardContainer
 			id={fragment.id}
 			key={fragment.id}
 			fragmentType={fragment.type}
 			title={fragment.title}
 			tags={fragment.tags}
+			// changeFavorite={props.changeFavorite}
 		/>
 	));
 

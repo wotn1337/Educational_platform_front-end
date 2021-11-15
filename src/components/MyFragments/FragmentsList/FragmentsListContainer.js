@@ -22,6 +22,14 @@ class FragmentsListContainer extends React.Component {
 		);
 	}
 
+	// changeFavorite = (id) => {
+	// 	this.props.changeFavorite(this.props.token, id);
+	// }
+	//
+	// isFavorite = (id) => {
+	// 	return this.props.favorites.some(f => f.id===id);
+	// }
+
 	render() {
 		if (this.props.isFetching) {
 			return <Preloader size={400}/>;
@@ -35,6 +43,8 @@ class FragmentsListContainer extends React.Component {
 			lastPage={this.props.lastPage}
 			pageSize={this.props.pageSize}
 			changePage={this.changePage}
+			// isFavorite={this.isFavorite}
+			// changeFavorite={this.changeFavorite}
 		/>;
 	}
 }
@@ -52,4 +62,6 @@ const mapStateToProps = (state) => ({
 	searchType: state.myFragments.searchType
 });
 
-export default connect(mapStateToProps, {getMyFragments, changePage})(FragmentsListContainer);
+export default connect(mapStateToProps, {
+	getMyFragments,
+	changePage})(FragmentsListContainer);

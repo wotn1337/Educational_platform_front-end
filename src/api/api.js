@@ -146,5 +146,13 @@ export const fragmentsAPI = {
 
 	getTags(token) {
 		return instance.get('tags', authConfig(token));
-	}
+	},
+
+	getFavorites(token, page, title = null, type = null) {
+		return instance.get(`fragments/like?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig(token));
+	},
+
+	changeFavorite(token, id) {
+		return instance.put(`fragments/${id}`, '', authConfig(token));
+	},
 };
