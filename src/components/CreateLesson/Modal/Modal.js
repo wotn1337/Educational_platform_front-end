@@ -6,9 +6,6 @@ const Modal = ({active, setActive, children}) => {
         <div className={active ? `${s.modal} ${s.active}` : s.modal} onClick={() => setActive(false)}>
             <div className={s.modalContent} onClick={event => event.stopPropagation()}>
                 {children}
-                <button onClick={() => setActive(false)}>
-                    Добавить
-                </button>
             </div>
         </div>
     )

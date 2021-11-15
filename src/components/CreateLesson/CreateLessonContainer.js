@@ -1,27 +1,26 @@
 import React from "react";
 import {connect} from "react-redux";
-import Preloader from "../../common/Preloader/Preloader";
 import CreateLesson from "./CreateLesson";
 import {addFragment, changeFragmentTitle} from "../../redux/createLessonReducer";
+import {changePage, getMyFragments} from "../../redux/myFragmentsReducer";
 
 
 class CreateLessonContainer extends React.Component {
-
-	render() {
-		if (this.props.isFetching) {
-			return <Preloader size={400}/>;
-		}
-
-		return <CreateLesson {...this.props}/>;
-	}
+    render() {
+        return <CreateLesson
+            {...this.props}
+        />;
+    }
 }
 
 const mapStateToProps = (state) => ({
     title: state.createLesson.title,
-	fragments: state.createLesson.fragments
+    lessonFragments: state.createLesson.fragments
 });
 
 export default connect(mapStateToProps, {
-	changeFragmentTitle,
-	addFragment
+    changeFragmentTitle,
+    addFragment,
+    getMyFragments,
+    changePage
 })(CreateLessonContainer);
