@@ -8,7 +8,6 @@ const initState = {
 	id: '',
 	name: '',
 	birthday: '',
-	email: '',
 	avatar: '',
 	fragments: [],
 	profileFetching: false
@@ -22,7 +21,6 @@ const teacherProfileReducer = (state = initState, action) => {
 				id: action.teacher.id,
 				name: action.teacher.name,
 				birthday: action.teacher.birthday,
-				email: action.teacher.email,
 				avatar: action.teacher.avatar,
 			};
 

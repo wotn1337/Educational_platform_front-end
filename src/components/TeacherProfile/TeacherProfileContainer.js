@@ -29,7 +29,6 @@ const mapStateToProps = (state) => ({
 	token: state.auth.token,
 	id: state.teacherProfile.id,
 	name: state.teacherProfile.name,
-	email: state.teacherProfile.email,
 	avatar: state.teacherProfile.avatar,
 	profileFetching: state.teacherProfile.profileFetching,
 });

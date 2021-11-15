@@ -14,7 +14,6 @@ const TeacherProfile = (props) => {
 				avatar={props.avatar}
 				name={props.name}
 				role={props.role}
-				email={props.email}
 			/>
 			<Switches
 				switches={{
@@ -23,8 +22,8 @@ const TeacherProfile = (props) => {
 				}}
 			/>
 			<main>
-				{lessons && <div>lessons</div>}
-				{fragments && <div>fragments</div>}
+				{lessons && <h1>lessons</h1>}
+				{fragments && <h1>fragments</h1>}
 			</main>
 		</>
 	);
