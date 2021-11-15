@@ -18,7 +18,7 @@ class NavbarContainer extends React.Component {
 export const mapStateToProps = (state) => {
 	return {
 		isAuth: state.auth.isAuth,
-		role: state.profile.role,
+		role: state.auth.role,
 		token: state.auth.token
 	};
 };

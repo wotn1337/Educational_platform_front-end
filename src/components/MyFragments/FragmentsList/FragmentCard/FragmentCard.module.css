@@ -87,3 +87,7 @@ a {
     min-width: 25px;
     min-height: 25px;
 }
+
+.lastTag {
+    background: linear-gradient(265.72deg, #3390ff 13.2%, #8cff24 93.71%), #C4C4C4;
+}
