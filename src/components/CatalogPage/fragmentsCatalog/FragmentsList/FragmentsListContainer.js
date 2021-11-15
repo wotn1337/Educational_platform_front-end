@@ -6,6 +6,7 @@ import FragmentsList from "../../../MyFragments/FragmentsList/FragmentsList";
 import {changePage, getFragments} from "../../../../redux/catalogFragmentsReducer";
 
 
+
 class FragmentsListContainer extends React.Component {
 	componentDidMount() {
 		this.props.getFragments(
@@ -23,6 +24,10 @@ class FragmentsListContainer extends React.Component {
 		);
 	}
 
+	// changeFavorite = (id) => {
+	// 	this.props.changeFavorite(this.props.token, id);
+	// }
+
 	render() {
 		if (this.props.isFetching) {
 			return <Preloader size={400}/>;
@@ -36,6 +41,7 @@ class FragmentsListContainer extends React.Component {
 			lastPage={this.props.lastPage}
 			pageSize={this.props.pageSize}
 			changePage={this.changePage}
+			// changeFavorite={this.changeFavorite}
 		/>;
 	}
 }

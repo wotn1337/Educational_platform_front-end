@@ -19,20 +19,25 @@ const FragmentCard = (props) => {
 		: undefined;
 
 	return (
-		<NavLink to={`/fragment:${props.id}`} className={s.fragmentCard}>
+		<div className={s.fragmentCard}>
 			<div className={s.preview}>
 				<img src={previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
-				<button className={s.addToFavorite}/>
+                <button className={s.addToFavorite}
+                        onClick={() =>
+                            props.changeFavorite(props.id)}
+                />
 			</div>
-			<div className={s.description}>
-				<div className={s.title}>{getShortTitle(props.title, 10)}</div>
-				<div className={s.typeBlock}>
-					{russianFragmentTypes[props.fragmentType]}
-					<img src={fragmentTypeImg[props.fragmentType]} alt="type" className={s.fragmentType}/>
-				</div>
+			<div>
+				<NavLink to={`/fragment:${props.id}`} className={s.description}>
+                    <div className={s.title}>{getShortTitle(props.title, 10)}</div>
+                    <div className={s.typeBlock}>
+                        {russianFragmentTypes[props.fragmentType]}
+                        <img src={fragmentTypeImg[props.fragmentType]} alt="type" className={s.fragmentType}/>
+                    </div>
+                </NavLink>
 			</div>
 			<div className={s.tags}>{tags}</div>
-		</NavLink>
+		</div>
 	);
 };
 

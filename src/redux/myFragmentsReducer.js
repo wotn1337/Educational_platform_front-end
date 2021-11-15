@@ -25,7 +25,7 @@ const myFragmentsReducer = (state = initState, action) => {
 		case SET_FRAGMENTS:
 			return {
 				...state,
-				fragments: action.data.fragments,
+				fragments: action.data.fragments.data,
 				totalFragmentsCount: action.data.meta.total,
 				lastPage: action.data.meta.last_page,
 				pageSize: action.data.meta.per_page

@@ -12,6 +12,7 @@ import createTestReducer from "./createTestReducer";
 import createLessonReducer from "./createLessonReducer";
 import allTagsReducer from "./allTagsReducer";
 import teacherProfileReducer from "./teacherProfileReducer";
+import favoritesReducer from "./favoritesReducer";
 
 
 const reducers = combineReducers({
@@ -26,7 +27,8 @@ const reducers = combineReducers({
 	createTest: createTestReducer,
 	createLesson: createLessonReducer,
 	allTags: allTagsReducer,
-	teacherProfile: teacherProfileReducer
+	teacherProfile: teacherProfileReducer,
+	favorites: favoritesReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
