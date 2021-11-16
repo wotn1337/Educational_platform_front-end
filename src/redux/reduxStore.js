@@ -13,6 +13,7 @@ import createLessonReducer from "./createLessonReducer";
 import allTagsReducer from "./allTagsReducer";
 import teacherProfileReducer from "./teacherProfileReducer";
 import favoritesReducer from "./favoritesReducer";
+import teachersReducer from "./teachersReducer";
 
 
 const reducers = combineReducers({
@@ -28,7 +29,8 @@ const reducers = combineReducers({
 	createLesson: createLessonReducer,
 	allTags: allTagsReducer,
 	teacherProfile: teacherProfileReducer,
-	favorites: favoritesReducer
+	favorites: favoritesReducer,
+	teachers: teachersReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

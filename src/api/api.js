@@ -66,6 +66,11 @@ export const profileAPI = {
 	// Получить данные для профиля конкретного учителя
 	getTeacherProfile(token, id) {
 		return instance.get(`user/teachers/${id}`, authConfig(token));
+	},
+
+	// Получить список всех преподавателей
+	getTeachers(token, page, name = null) {
+		return instance.get(`user/teachers?page=${page}${name ? `&name=${name}` : ''}`, authConfig(token));
 	}
 };
 

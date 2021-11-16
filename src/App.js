@@ -15,6 +15,7 @@ import FragmentsCatalog from "./components/CatalogPage/fragmentsCatalog/Fragment
 import CreateLessonContainer from "./components/CreateLesson/CreateLessonContainer";
 import TeacherProfileContainer from "./components/TeacherProfile/TeacherProfileContainer";
 import Favorite from "./components/Favorite/Favorite";
+import TeachersContainer from "./components/Teachers/TeachersContainer";
 
 
 const App = () => {
@@ -40,6 +41,10 @@ const App = () => {
 			<Route
 				exact path='/catalog-fragments'
 				render={() => <FragmentsCatalog/>}
+			/>
+			<Route
+				exact path='/teachers'
+				render={() => <TeachersContainer/>}
 			/>
 			<Route
 				exact path='/my-fragments'

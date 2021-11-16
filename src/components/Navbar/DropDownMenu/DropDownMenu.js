@@ -6,7 +6,14 @@ import {NavLink} from "react-router-dom";
 const DropDownMenu = (props) => {
 	const [open, setOpen] = useState(false);
 	const links = props.links.map(link => (
-		<NavLink to={`/${Object.keys(link)[0]}`} className={s.dropDownItem} key={Object.keys(link)[0]}>{link[Object.keys(link)[0]]}</NavLink>
+		<NavLink
+			to={`/${Object.keys(link)[0]}`}
+			className={s.dropDownItem}
+			activeClassName={s.dropDownActiveLink}
+			key={Object.keys(link)[0]}
+		>
+			{link[Object.keys(link)[0]]}
+		</NavLink>
 	));
 	return (
 		<div

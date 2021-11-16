@@ -21,7 +21,11 @@ const Navbar = (props) => {
 					? <>
 						<DropDownMenu
 							title={'Каталог'}
-							links={[{'catalog-fragments': 'Каталог фрагментов'}, {'lessons-catalog': 'Каталог уроков'}]}
+							links={[
+								{'catalog-fragments': 'Каталог фрагментов'},
+								{'lessons-catalog': 'Каталог уроков'},
+								{'teachers': 'Преподаватели'}
+							]}
 						/>
 						<DropDownMenu
 							title={'Мои материалы'}
