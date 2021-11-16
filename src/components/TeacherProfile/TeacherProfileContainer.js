@@ -30,7 +30,7 @@ const mapStateToProps = (state) => ({
 	id: state.teacherProfile.id,
 	name: state.teacherProfile.name,
 	avatar: state.teacherProfile.avatar,
-	profileFetching: state.teacherProfile.profileFetching,
+	profileFetching: state.teacherProfile.profileFetching
 });
 
 export default compose(

@@ -1,5 +1,6 @@
 import React from 'react';
 import s from "../FragmentCard.module.css";
+import uuid from "draft-js";
 
 //Возвращает массив из трех первых тегов пришедших в функцию
 const getFirstThreeTags = (tags) => {
@@ -17,7 +18,7 @@ const getFirstThreeTags = (tags) => {
 //Возвращает тег с оставшимся кол-вом тегов (без учета первых трех)
 const getLastTagWithTagsCount = (tags) => {
 	return (
-		<div className={`${s.tag} ${s.lastTag}`}>+ {tags.length - 3}</div>
+		<div className={`${s.tag} ${s.lastTag}`} key={uuid}>+ {tags.length - 3}</div>
 	);
 }
 
