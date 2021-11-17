@@ -34,10 +34,18 @@ a.creatorName {
     font-weight: 700;
     color: #FBCB84;
     text-decoration: none;
+    margin-right: 5px;
 }
 
 a.creatorName:hover {
     text-decoration: underline;
+}
+
+.creatorAvatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    box-sizing: border-box;
 }
 
 video {

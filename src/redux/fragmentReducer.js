@@ -16,6 +16,7 @@ const initState = {
 	type: '',
 	creator: '',
 	creatorId: '',
+	creatorAvatar: undefined,
 	isFetching: false,
 	tags: [],
 	tagsIds: [],
@@ -31,6 +32,7 @@ const fragmentReducer = (state = initState, action) => {
 				type: action.fragment.type,
 				creatorId: action.fragment.user_id,
 				creator: action.fragment.user_name,
+				creatorAvatar: action.fragment.avatar,
 				tags: action.fragment.tags.data,
 				tagsIds: action.fragment.tags.data.map(tag => tag.id)
 			};

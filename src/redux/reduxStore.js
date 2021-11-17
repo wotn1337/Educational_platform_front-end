@@ -1,6 +1,5 @@
 import thunkMiddleware from 'redux-thunk';
 import {combineReducers, createStore, applyMiddleware} from "redux";
-import navbarReducer from "./navbarReducer";
 import authReducer from "./authReducer";
 import profileReducer from "./profileReducer";
 import adminReducer from "./adminReducer";
@@ -17,7 +16,6 @@ import teachersReducer from "./teachersReducer";
 
 
 const reducers = combineReducers({
-	navbar: navbarReducer,
 	auth: authReducer,
 	profile: profileReducer,
 	admin: adminReducer,

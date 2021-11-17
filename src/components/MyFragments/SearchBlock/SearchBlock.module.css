@@ -18,6 +18,7 @@
 .inputBlock {
     display: flex;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .searchInput {
@@ -73,4 +74,20 @@
 .searchButton:hover {
     transform: translateY(-10px);
     border-bottom: 3px solid #F56464;
+}
+
+.searchTags {
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+    position: relative;
+}
+
+.addTagButton {
+    background: #C4C4C4;
+    border-radius: 14px;
+    border: none;
+    width: 45px;
+    color: white;
+    font-size: 22px;
 }

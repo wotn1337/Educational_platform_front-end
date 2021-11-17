@@ -76,6 +76,7 @@ const mapStateToProps = (state) => ({
 	type: state.fragment.type,
 	creator: state.fragment.creator,
 	creatorId: state.fragment.creatorId,
+	creatorAvatar: state.fragment.creatorAvatar,
 	isFetching: state.fragment.isFetching,
 	tags: state.fragment.tags
 });
