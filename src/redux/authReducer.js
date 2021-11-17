@@ -11,7 +11,7 @@ const TOGGLE_RESET_PASSWORD_FORM = 'SHOW_RESET_PASSWORD_FORM';
 const initState = {
 	token: localStorage.getItem('token'),
 	isAuth: !!localStorage.getItem('token'),
-	userId: localStorage.getItem('userId'),
+	userId: Number(localStorage.getItem('id')),
 	role: localStorage.getItem('role'),
 	isFetching: false,
 	showResetPasswordForm: false

@@ -22,7 +22,7 @@ const FragmentsList = (props) => {
 			{fragmentCards.length > 0
 				? <>
 					<div className={s.fragmentsList}>{fragmentCards}</div>
-					<div style={{width: '50%'}}>
+					<div style={{width: 'fit-content'}}>
 						<Pagination
 							handler={props.changePage}
 							currentPage={props.currentPage}

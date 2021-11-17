@@ -21,21 +21,22 @@ const Teachers = (props) => {
 	));
 
 	return (
-		<section className={s.teachersWrapper}>
-			{props.isFetching
-				? <Preloader size={200}/>
-				: <div className={s.teachers}>{teachersCards}</div>
-			}
-			<div style={{width: '40%'}}>
-				<Pagination
-					handler={props.changePage}
-					currentPage={props.currentPage}
-					prevPage={props.prevPage}
-					lastPage={props.lastPage}
-					nextPage={props.nextPage}
-				/>
-			</div>
-		</section>
+			<section className={s.teachersWrapper}>
+				<h1>Преподаватели</h1>
+				{props.isFetching
+					? <Preloader size={200}/>
+					: <div className={s.teachers}>{teachersCards}</div>
+				}
+				<div style={{width: '40%'}}>
+					<Pagination
+						handler={props.changePage}
+						currentPage={props.currentPage}
+						prevPage={props.prevPage}
+						lastPage={props.lastPage}
+						nextPage={props.nextPage}
+					/>
+				</div>
+			</section>
 	);
 };
 

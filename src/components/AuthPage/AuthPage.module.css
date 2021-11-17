@@ -38,18 +38,14 @@
     cursor: pointer;
 }
 
-h1 {
-    margin-bottom: 7%;
-    text-transform: uppercase;
-}
-
 .text {
-    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 1.4em;
     color: #000000;
     text-align: center;
+    margin-bottom: 7%;
+    text-transform: uppercase;
 }
 
 .caption {

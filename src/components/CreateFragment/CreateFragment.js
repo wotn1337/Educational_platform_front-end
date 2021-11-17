@@ -15,6 +15,7 @@ const CreateFragment = (props) => {
 
 	return (
 		<div className={s.content}>
+			<h1>Создать фрагмент</h1>
 			<SelectType/>
 			<FragmentTitle/>
 			{props.fragmentType === fragmentTypes.article &&

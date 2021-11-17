@@ -1,15 +1,15 @@
 .teachersWrapper {
     width: 1200px;
-    margin: 0 auto 50px;
+    margin: 70px auto 80px;
 }
 
 .teachers {
-    margin: 100px 0 80px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr 1fr;
     row-gap: 45px;
     column-gap: 50px;
+    margin-bottom: 80px;
 }
 
 .teacherCard {

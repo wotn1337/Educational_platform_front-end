@@ -8,5 +8,6 @@ main .content {
     border-radius: 10px;
     padding: 50px 90px;
     width: fit-content;
+    min-width: 1200px;
     margin: 0 auto;
 }
