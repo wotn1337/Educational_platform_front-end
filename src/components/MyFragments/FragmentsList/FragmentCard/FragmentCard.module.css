@@ -23,15 +23,34 @@
     margin-bottom: 15px;
 }
 
-.addToFavorite {
+.addToFavoriteButton {
     position: absolute;
-    top: 0;
-    right: 0;
-    background-image: url("../../../../assets/img/fragments/addToFavorite.png");
-    width: 50px;
-    height: 50px;
-    background-color: transparent;
+    top: 5px;
+    right: 5px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: white;
+    border-radius: 50%;
     border: none;
+    transition: background-image 0.2s ease-in-out;
+}
+
+.addToFavorite {
+    background-image: url("../../../../assets/img/fragments/addToFavorite.svg");
+}
+
+.addToFavorite:hover {
+    /*-webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);*/
+    /*-moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);*/
+    /*box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);*/
+    background-image: url("../../../../assets/img/fragments/full-heart.svg");
+}
+
+.alreadyFavorite {
+    background-image: url("../../../../assets/img/fragments/full-heart.svg");
 }
 
 a {

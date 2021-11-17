@@ -12,8 +12,8 @@ const FragmentsList = (props) => {
 			key={fragment.id}
 			fragmentType={fragment.type}
 			title={fragment.title}
+			isFavorite={fragment.favourite}
 			tags={fragment.tags}
-			// changeFavorite={props.changeFavorite}
 		/>
 	));
 

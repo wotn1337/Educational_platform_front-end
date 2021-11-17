@@ -18,7 +18,7 @@ const FragmentCard = (props) => {
         <NavLink to={`/fragment:${props.id}`} className={s.fragmentCard}>
             <div className={s.preview}>
                 <img src={previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
-                <button className={s.addToFavorite}
+                <button className={`${s.addToFavoriteButton} ${props.isFavorite? s.alreadyFavorite: s.addToFavorite}`}
                         onClick={event => {
                             event.preventDefault();
                             props.changeFavorite(props.id)

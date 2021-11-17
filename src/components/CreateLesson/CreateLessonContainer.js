@@ -4,8 +4,8 @@ import CreateLesson from "./CreateLesson";
 import {addFragment, changeFragmentTitle} from "../../redux/createLessonReducer";
 import {changePage, getMyFragments} from "../../redux/myFragmentsReducer";
 import {compose} from "redux";
-import {withAuthRedirectToMain} from "../../hoc/withAuthRedirectToMain";
 import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
+import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 
 
 class CreateLessonContainer extends React.Component {
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-	withAuthRedirectToMain,
+	withoutAuthRedirectToAuthPage,
 	redirectAdminToMain,
 	connect(mapStateToProps, {
 		changeFragmentTitle,
