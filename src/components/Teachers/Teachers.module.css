@@ -3,10 +3,62 @@
     margin: 70px auto 80px;
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.search {
+    display: flex;
+    background: rgba(245, 245, 245, 0.4);
+    border-radius: 5px;
+    width: fit-content;
+    padding-right: 2px;
+}
+
+.searchName {
+    background-color: transparent;
+    border: none;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 33px;
+    color: white;
+    padding: 8px 15px;
+}
+
+.searchName:focus {
+    outline: none;
+}
+
+.searchName:focus ~ .search {
+    border-bottom: 2px solid rgb(248, 180, 128);
+}
+
+.searchName::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.searchButton {
+    display: block;
+    border: none;
+    background-color: transparent;
+    background-image: url("../../assets/img/fragments/search.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 50px;
+    width: 40px;
+    transition: all 0.5s;
+}
+
+.searchButton:hover {
+    transform: translateY(-5px);
+}
+
 .teachers {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 1fr 1fr;
     row-gap: 45px;
     column-gap: 50px;
     margin-bottom: 80px;
@@ -53,4 +105,20 @@
 
 .count {
     color: #EF5B5B;
+}
+
+.noTeachers {
+    background-color: white;
+    color: #F56464;
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+    padding: 50px 100px;
+    border-radius: 10px;
+    font-size: 32px;
+}
+
+.sadSmile {
+    cursor: default;
+    transform: rotate(90deg);
 }

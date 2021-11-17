@@ -21,22 +21,47 @@ const Teachers = (props) => {
 	));
 
 	return (
-			<section className={s.teachersWrapper}>
+		<section className={s.teachersWrapper}>
+			<div className={s.header}>
 				<h1>Преподаватели</h1>
-				{props.isFetching
-					? <Preloader size={200}/>
-					: <div className={s.teachers}>{teachersCards}</div>
-				}
-				<div style={{width: '40%'}}>
-					<Pagination
-						handler={props.changePage}
-						currentPage={props.currentPage}
-						prevPage={props.prevPage}
-						lastPage={props.lastPage}
-						nextPage={props.nextPage}
+				<div className={s.search}>
+					<input
+						className={s.searchName}
+						type="text"
+						value={props.searchName}
+						onChange={e => props.setSearchName(e.target.value)}
+						placeholder={'Имя преподавателя'}
+						onKeyUp={e => {
+							if (e.code === 'Enter') {
+								props.search();
+							}
+						}}
 					/>
+					<button className={s.searchButton} onClick={props.search}/>
 				</div>
-			</section>
+			</div>
+			{props.teachers.length === 0 &&
+			<div className={s.noTeachers}>
+				С таким именем преподавателей не найдено
+				<div className={s.sadSmile}>: (</div>
+			</div>
+			}
+			{props.isFetching
+				? <Preloader size={200}/>
+				: <div className={s.teachers}>{teachersCards}</div>
+			}
+			{props.lastPage > 1 &&
+			<div style={{width: 'fit-content'}}>
+				<Pagination
+					handler={props.changePage}
+					currentPage={props.currentPage}
+					prevPage={props.prevPage}
+					lastPage={props.lastPage}
+					nextPage={props.nextPage}
+				/>
+			</div>
+			}
+		</section>
 	);
 };
 
