@@ -3,22 +3,26 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Teachers from "./Teachers";
 import {getTeachers, changePage, setSearchName} from "../../redux/teachersReducer";
+import Preloader from "../../common/Preloader/Preloader";
 
 
 class TeachersContainer extends React.Component {
 	componentDidMount() {
-		this.props.getTeachers(this.props.token, 1, this.props.searchName);
+		this.props.getTeachers(1, this.props.searchName);
 	}
 
 	changePage = (page) => {
-		this.props.getTeachers(this.props.token, page, this.props.searchName);
+		this.props.changePage(page, this.props.searchName);
 	}
 
 	search = () => {
-		this.props.getTeachers(this.props.token, 1, this.props.searchName);
+		this.props.getTeachers(1, this.props.searchName);
 	}
 
 	render() {
+		if (this.props.isFetching) {
+			return <Preloader size={200}/>;
+		}
 		return (
 			<Teachers {...this.props} changePage={this.changePage} search={this.search}/>
 		);
@@ -26,7 +30,6 @@ class TeachersContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	teachers: state.teachers.teachers,
 	currentPage: state.teachers.currentPage,
 	pageSize: state.teachers.pageSize,

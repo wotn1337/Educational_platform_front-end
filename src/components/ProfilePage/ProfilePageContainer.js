@@ -7,7 +7,7 @@ import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuth
 
 class ProfilePageContainer extends React.Component {
 	componentDidMount() {
-		this.props.getProfile(this.props.token);
+		this.props.getProfile();
 	}
 
 	render() {
@@ -25,7 +25,6 @@ export const mapStateToProps = (state) => {
 		avatar: state.profile.avatar,
 		name: state.profile.name,
 		profile: state.profile,
-		token: state.auth.token,
 		isFetching: state.profile.isFetching
 	};
 };

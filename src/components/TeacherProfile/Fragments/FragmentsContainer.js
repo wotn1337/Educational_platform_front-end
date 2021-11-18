@@ -8,11 +8,11 @@ import Preloader from "../../../common/Preloader/Preloader";
 
 class FragmentsContainer extends React.Component {
 	componentDidMount() {
-		this.props.getTeacherFragments(this.props.token, this.props.id, 1);
+		this.props.getTeacherFragments(this.props.id, this.props.currentPage);
 	}
 
 	changePage = (page) => {
-		this.props.getTeacherFragments(this.props.token, this.props.id, page);
+		this.props.getTeacherFragments(this.props.id, page);
 	}
 
 	render() {
@@ -32,7 +32,6 @@ class FragmentsContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	id: state.teacherProfile.id,
 	fragments: state.teacherProfile.fragmentsPage.fragments,
 	currentPage: state.teacherProfile.fragmentsPage.currentPage,

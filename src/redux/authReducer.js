@@ -81,6 +81,7 @@ export const login = (data, setStatus) => (dispatch) => {
 			successNotification(res.data.message);
 		})
 		.catch(err => {
+			console.log(err.response);
 			if (err.response.status === 422 || err.response.status === 401) {
 				setStatus({
 					email: err.response.data.errors.email,

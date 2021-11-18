@@ -84,9 +84,9 @@ const setFragments = (data) => ({type: SET_FRAGMENTS, data});
 const toggleFragmentsFetching = (fragmentsFetching) => ({type: TOGGLE_FRAGMENTS_FETCHING, fragmentsFetching});
 const setFragmentsCurrentPage = (page) => ({type: SET_FRAGMENTS_CURRENT_PAGE, page});
 
-export const getTeacherProfile = (token, id) => (dispatch) => {
+export const getTeacherProfile = (id) => (dispatch) => {
 	dispatch(setProfileFetching(true));
-	profileAPI.getTeacherProfile(token, id)
+	profileAPI.getTeacherProfile(id)
 		.then(res => {
 			dispatch(setTeacherProfile(res.data.creator));
 			dispatch(setProfileFetching(false));
@@ -97,9 +97,9 @@ export const getTeacherProfile = (token, id) => (dispatch) => {
 		});
 };
 
-export const getTeacherFragments = (token, id, page) => (dispatch) => {
+export const getTeacherFragments = (id, page) => (dispatch) => {
 	dispatch(toggleFragmentsFetching(true));
-	fragmentsAPI.getTeacherFragments(token, id, page)
+	fragmentsAPI.getTeacherFragments(id, page)
 		.then(res => {
 			console.log(res.data);
 			dispatch(setFragments(res.data));
@@ -112,8 +112,8 @@ export const getTeacherFragments = (token, id, page) => (dispatch) => {
 		});
 };
 
-export const changeFragmentsPage = (token, id, page) => (dispatch) => {
-	dispatch(getTeacherFragments(token, id, page));
+export const changeFragmentsPage = (id, page) => (dispatch) => {
+	dispatch(getTeacherFragments(id, page));
 }
 
 export default teacherProfileReducer;

@@ -61,9 +61,9 @@ const setCurrentPage = (page) => ({type: SET_CURRENT_PAGE, page});
 const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 export const setSearchName = (name) => ({type: SET_SEARCH_NAME, name});
 
-export const getTeachers = (token, page, name) => (dispatch) => {
+export const getTeachers = (page, name) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	profileAPI.getTeachers(token, page, name)
+	profileAPI.getTeachers(page, name)
 		.then(res => {
 			console.log(res);
 			dispatch(setTeachers(res.data));
@@ -76,8 +76,8 @@ export const getTeachers = (token, page, name) => (dispatch) => {
 		})
 };
 
-export const changePage = (token, page, name) => (dispatch) => {
-	dispatch(getTeachers(token, page, name));
+export const changePage = (page, name) => (dispatch) => {
+	dispatch(getTeachers(page, name));
 };
 
 export default teachersReducer;

@@ -12,10 +12,7 @@ class TeacherProfileContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.getTeacherProfile(
-			this.props.token,
-			this.state.id
-		);
+		this.props.getTeacherProfile(this.state.id);
 	}
 
 	render() {
@@ -26,7 +23,6 @@ class TeacherProfileContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	id: state.teacherProfile.id,
 	name: state.teacherProfile.name,
 	avatar: state.teacherProfile.avatar,

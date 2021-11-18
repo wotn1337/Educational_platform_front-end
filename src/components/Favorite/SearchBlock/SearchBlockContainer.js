@@ -8,7 +8,6 @@ import {getFavorites, setSearchTitle, setSearchType} from "../../../redux/favori
 class SearchBlockContainer extends React.Component {
     searchFragments = () => {
         this.props.getFavorites(
-            this.props.token,
             1,
             this.props.searchTitle,
             this.props.searchType
@@ -23,7 +22,6 @@ class SearchBlockContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    token: state.auth.token,
     searchTitle: state.favorites.searchTitle,
     searchType: state.favorites.searchType,
     totalFragmentsCount: state.favorites.totalFragmentsCount

@@ -7,7 +7,7 @@ import FragmentCard from "./FragmentCard";
 class FragmentCardContainer extends React.Component {
 
     changeFavorite = (id) => {
-        this.props.changeFavorite(this.props.token, id);
+        this.props.changeFavorite(id);
     }
 
     render() {
@@ -25,7 +25,6 @@ class FragmentCardContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    token: state.auth.token,
     fragments: state.myFragments.fragments,
     currentPage: state.myFragments.currentPage,
     nextPage: state.myFragments.nextPage,

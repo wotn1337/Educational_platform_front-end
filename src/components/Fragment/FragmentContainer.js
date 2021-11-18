@@ -25,7 +25,7 @@ class FragmentContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.getFragment(this.props.token, this.state.id);
+		this.props.getFragment(this.state.id);
 	}
 
 	toggleIsEdit = () => {
@@ -33,13 +33,12 @@ class FragmentContainer extends React.Component {
 	}
 
 	deleteFragment = () => {
-		this.props.deleteFragment(this.props.token, this.state.id);
+		this.props.deleteFragment(this.state.id);
 		this.setState({id: ''});
 	}
 
 	editFragment = () => {
 		this.props.editFragment(
-			this.props.token,
 			this.state.id,
 			this.props.title,
 			this.props.type !== fragmentTypes.video && this.props.content
@@ -68,7 +67,6 @@ class FragmentContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	userId: state.auth.userId,
 	role: state.auth.role,
 	title: state.fragment.title,

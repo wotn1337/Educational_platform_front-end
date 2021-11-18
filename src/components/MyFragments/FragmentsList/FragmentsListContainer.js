@@ -8,14 +8,14 @@ import Preloader from "../../../common/Preloader/Preloader";
 class FragmentsListContainer extends React.Component {
 	componentDidMount() {
 		this.props.getMyFragments(
-			this.props.token,
-			this.props.currentPage
+			this.props.currentPage,
+			this.props.searchTitle,
+			this.props.searchType
 		);
 	}
 
 	changePage = (page) => {
 		this.props.changePage(
-			this.props.token,
 			page,
 			this.props.searchTitle,
 			this.props.searchType
@@ -35,14 +35,7 @@ class FragmentsListContainer extends React.Component {
 			return <Preloader size={400}/>;
 		}
 
-		return <FragmentsList
-			fragments={this.props.fragments}
-			currentPage={this.props.currentPage}
-			nextPage={this.props.nextPage}
-			prevPage={this.props.prevPage}
-			lastPage={this.props.lastPage}
-			pageSize={this.props.pageSize}
-			changePage={this.changePage}
+		return <FragmentsList {...this.props} changePage={this.changePage}
 			// isFavorite={this.isFavorite}
 			// changeFavorite={this.changeFavorite}
 		/>;
@@ -50,7 +43,6 @@ class FragmentsListContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	fragments: state.myFragments.fragments,
 	currentPage: state.myFragments.currentPage,
 	nextPage: state.myFragments.nextPage,
@@ -64,4 +56,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
 	getMyFragments,
-	changePage})(FragmentsListContainer);
+	changePage
+})(FragmentsListContainer);

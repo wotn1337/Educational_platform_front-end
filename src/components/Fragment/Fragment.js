@@ -41,19 +41,21 @@ const Fragment = (props) => {
 				Автор: <NavLink className={s.creatorName} to={`/profile:${props.creatorId}`}>{props.creator}</NavLink>
 				<img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
 			</div>
-			{props.type === fragmentTypes.article &&
-			<>
-				{!props.isEdit
-					? <div className={s.fragmentBlock} dangerouslySetInnerHTML={{__html: props.content}}/>
-					: <TextEditor editorState={editorState} setEditorState={setContent}/>
+			<div style={{marginBottom: '20px'}}>
+				{props.type === fragmentTypes.article &&
+				<>
+					{!props.isEdit
+						? <div className={s.fragmentBlock} dangerouslySetInnerHTML={{__html: props.content}}/>
+						: <TextEditor editorState={editorState} setEditorState={setContent}/>
+					}
+				</>
 				}
-			</>
-			}
-			{props.type === fragmentTypes.video &&
-			<div className={s.fragmentBlock}>
-				<video src={props.content} controls={'controls'} className={s.video}/>
+				{props.type === fragmentTypes.video &&
+				<div className={s.fragmentBlock}>
+					<video src={props.content} controls={'controls'} className={s.video}/>
+				</div>
+				}
 			</div>
-			}
 
 			<ThisTags
 				tags={props.tags}

@@ -12,7 +12,6 @@ import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
 class CreateFragmentContainer extends React.Component {
 	createFragment = () => {
 		this.props.createFragment(
-			this.props.token,
 			this.props.fragmentType,
 			this.props.title,
 			this.props.content,
@@ -29,7 +28,6 @@ class CreateFragmentContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	fragmentType: state.createFragment.fragmentType,
 	title: state.createFragment.title,
 	content: state.createFragment.content,

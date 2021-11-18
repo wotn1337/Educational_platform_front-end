@@ -2,9 +2,10 @@ import {instance} from "./instance";
 import axios from "axios";
 import {fragmentTypes} from "../common/fragmentTypes";
 const TOKEN_TYPE = 'Bearer';
-const authConfig = (token) => ({
+let TOKEN = localStorage.getItem('token');
+const authConfig = () => ({
 	headers: {
-		'Authorization': `${TOKEN_TYPE} ${token}`
+		'Authorization': `${TOKEN_TYPE} ${TOKEN}`
 	}
 });
 
@@ -12,17 +13,27 @@ const authConfig = (token) => ({
 export const authAPI = {
 	// Авторизует ранее зарегистрированного пользователя
 	login(data) {
-		return instance.post('login', JSON.stringify(data));
+		const promise = instance.post('login', JSON.stringify(data));
+		promise.then(res => {
+				TOKEN = res.data.token;
+				localStorage.setItem('token', res.data.token);
+			});
+		return promise;
 	},
 
 	// Регистрирует нового пользователя
 	register(data) {
-		return instance.post('register', JSON.stringify(data));
+		const promise = instance.post('register', JSON.stringify(data));
+		promise.then(res => {
+				TOKEN = res.data.token;
+				localStorage.setItem('token', res.data.token);
+			});
+		return promise;
 	},
 
 	// Для выхода авторизованного пользователя из системы
-	logout(token) {
-		return instance.post('logout', {}, authConfig(token));
+	logout() {
+		return instance.post('logout', {}, authConfig());
 	},
 
 	// Получить на email ссылку для сброса пароля
@@ -38,39 +49,39 @@ export const authAPI = {
 
 export const profileAPI = {
 	// Получить данные для своего профиля
-	getProfile(token) {
-		return instance.get('user/me', authConfig(token));
+	getProfile() {
+		return instance.get('user/me', authConfig());
 	},
 
 	// Изменить данные своего профиля
-	updateProfile(token, name, birthday) {
-		return instance.patch('user/me', JSON.stringify({name, birthday}), authConfig(token));
+	updateProfile(name, birthday) {
+		return instance.patch('user/me', JSON.stringify({name, birthday}), authConfig());
 	},
 
 	// Обновить свой аватар
 	//Не использует instance, потому что Content-type - FormData с файлом
-	updateAvatar(token, avatar) {
-		return axios.post('http://localhost/api/user/me/avatar', avatar, authConfig(token));
+	updateAvatar(avatar) {
+		return axios.post('http://localhost/api/user/me/avatar', avatar, authConfig());
 	},
 
 	// Удалить свой аватар
-	deleteAvatar(token) {
-		return instance.delete('user/me/avatar', authConfig(token));
+	deleteAvatar() {
+		return instance.delete('user/me/avatar', authConfig());
 	},
 
 	// Смена пароля из профиля для авторизованного пользователя
-	changePassword(token, password) {
-		return instance.patch('user/me/password', JSON.stringify({password}), authConfig(token));
+	changePassword(password) {
+		return instance.patch('user/me/password', JSON.stringify({password}), authConfig());
 	},
 
 	// Получить данные для профиля конкретного учителя
-	getTeacherProfile(token, id) {
-		return instance.get(`user/teachers/${id}`, authConfig(token));
+	getTeacherProfile(id) {
+		return instance.get(`user/teachers/${id}`, authConfig());
 	},
 
 	// Получить список всех преподавателей
-	getTeachers(token, page, name = null) {
-		return instance.get(`user/teachers?page=${page}${name ? `&name=${name}` : ''}`, authConfig(token));
+	getTeachers(page, name = null) {
+		return instance.get(`user/teachers?page=${page}${name ? `&name=${name}` : ''}`, authConfig());
 	}
 };
 
@@ -122,7 +133,7 @@ export const adminAPI = {
 
 export const fragmentsAPI = {
 	// Создать новый фрагмент
-	createFragment(token, type, title, content, tagsIds) {
+	createFragment(type, title, content, tagsIds) {
 		if (type === fragmentTypes.video) {
 			const data = new FormData();
 			data.append('type', type);
@@ -131,54 +142,54 @@ export const fragmentsAPI = {
 			for (const id of tagsIds) {
 				data.append('tags[]', id);
 			}
-			return axios.post('http://localhost/api/fragments', data, authConfig(token));
+			return axios.post('http://localhost/api/fragments', data, authConfig());
 		}
-		return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig(token));
+		return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig());
 	},
 
 	// Получить список всех фрагментов
-	getFragments(token, page, title = null, type = null) {
-		return instance.get(`fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig(token));
+	getFragments(page, title = null, type = null, tags = null) {
+		return instance.get(`fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig());
 	},
 
 	// Получить список фрагментов текущего пользователя (только для учителя)
-	geMyFragments(token, page, title = null, type = null) {
-		return instance.get(`my-fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig(token));
+	geMyFragments(page, title = null, type = null) {
+		return instance.get(`my-fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig());
 	},
 
 	// Получить данные конкретного фрагмента
-	getFragment(token, id) {
-		return instance.get(`fragments/${id}`, authConfig(token));
+	getFragment(id) {
+		return instance.get(`fragments/${id}`, authConfig());
 	},
 
 	// Удалить фрагмент (только для админа или владельца фрагмента)
-	deleteFragment(token, id) {
-		return instance.delete(`fragments/${id}`, authConfig(token))
+	deleteFragment(id) {
+		return instance.delete(`fragments/${id}`, authConfig())
 	},
 
 	// Редактировать фрагмент (только для админа или владельца фрагмента)
-	editFragment(token, id, title, content, tagsIds) {
+	editFragment(id, title, content, tagsIds) {
 		const data = content ? {title, content, tags: tagsIds} : {title, content: null, tags: tagsIds};
-		return instance.patch(`fragments/${id}`, JSON.stringify(data), authConfig(token));
+		return instance.patch(`fragments/${id}`, JSON.stringify(data), authConfig());
 	},
 
 	// Получить список всех возможных тегов
-	getTags(token) {
-		return instance.get('tags', authConfig(token));
+	getTags() {
+		return instance.get('tags', authConfig());
 	},
 
 	// Получить список избранного для конкретного пользователя
-	getFavorites(token, page, title = null, type = null) {
-		return instance.get(`fragments/like?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig(token));
+	getFavorites(page, title = null, type = null) {
+		return instance.get(`fragments/like?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig());
 	},
 
 	// Добавить/удалить фрагмент в избранное
-	changeFavorite(token, id) {
-		return instance.put(`fragments/${id}`, '', authConfig(token));
+	changeFavorite(id) {
+		return instance.put(`fragments/${id}`, '', authConfig());
 	},
 
 	// Получить список фрагментов конкретного преподавателя
-	getTeacherFragments(token, id, page) {
-		return instance.get(`teacher/fragments/${id}?page=${page}`, authConfig(token));
+	getTeacherFragments(id, page) {
+		return instance.get(`teacher/fragments/${id}?page=${page}`, authConfig());
 	}
 };

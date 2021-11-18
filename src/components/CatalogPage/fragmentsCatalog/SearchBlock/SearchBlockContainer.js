@@ -15,7 +15,6 @@ import {returnTag} from "../../../../redux/allTagsReducer";
 class SearchBlockContainer extends React.Component {
 	searchFragments = () => {
 		this.props.getFragments(
-			this.props.token,
 			1,
 			this.props.searchTitle,
 			this.props.searchType
@@ -30,7 +29,6 @@ class SearchBlockContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	tags: state.allTags.tags,
 	searchTitle: state.catalogFragments.searchTitle,
 	searchType: state.catalogFragments.searchType,

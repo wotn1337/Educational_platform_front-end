@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Teachers.module.css';
 import Pagination from "../../common/Pagination/Pagination";
 import avatarPlaceholder from '../../assets/img/profile/teacherAvatarPlaceholder.png';
-import Preloader from "../../common/Preloader/Preloader";
 import {NavLink} from "react-router-dom";
 
 
@@ -46,10 +45,7 @@ const Teachers = (props) => {
 				<div className={s.sadSmile}>: (</div>
 			</div>
 			}
-			{props.isFetching
-				? <Preloader size={200}/>
-				: <div className={s.teachers}>{teachersCards}</div>
-			}
+			<div className={s.teachers}>{teachersCards}</div>
 			{props.lastPage > 1 &&
 			<div style={{width: 'fit-content'}}>
 				<Pagination
