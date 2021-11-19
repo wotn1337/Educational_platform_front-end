@@ -1,5 +1,6 @@
 import React from "react";
 import s from './Pagination.module.css';
+import MobilePagination from "./MobilePagination/MobilePagination";
 
 const createPagination = (pagesCount, handler, currentPage) => {
 	const pages = [];
@@ -52,15 +53,23 @@ const createPagination = (pagesCount, handler, currentPage) => {
 
 const Pagination = (props) => {
 	return (
-		<div className={s.pagination}>
-			<div className={s.prevPage} onClick={() => props.handler(props.prevPage)}> </div>
-			<div className={s.pages}>
-				<div className={s.page} onClick={() => props.handler(1)}>...</div>
-				{createPagination(props.lastPage, props.handler, props.currentPage)}
-				<div className={s.page} onClick={() => props.handler(props.lastPage)}>...</div>
+		<>
+			<div className={s.pagination}>
+				<div className={s.prevPage} onClick={() => props.handler(props.prevPage)}> </div>
+				<div className={s.pages}>
+					<div className={s.page} onClick={() => props.handler(1)}>...</div>
+					{createPagination(props.lastPage, props.handler, props.currentPage)}
+					<div className={s.page} onClick={() => props.handler(props.lastPage)}>...</div>
+				</div>
+				<div className={s.nextPage} onClick={() => props.handler(props.nextPage)}> </div>
 			</div>
-			<div className={s.nextPage} onClick={() => props.handler(props.nextPage)}> </div>
-		</div>
+			<MobilePagination
+				handler={props.handler}
+				currentPage={props.currentPage}
+				prevPage={props.prevPage}
+				lastPage={props.lastPage}
+				nextPage={props.nextPage}/>
+		</>
 	);
 };
 

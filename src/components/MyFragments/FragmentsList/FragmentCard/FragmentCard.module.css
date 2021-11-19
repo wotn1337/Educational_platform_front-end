@@ -110,3 +110,35 @@ a {
 .lastTag {
     background: linear-gradient(265.72deg, #3390ff 13.2%, #8cff24 93.71%), #C4C4C4;
 }
+
+
+@media all and (max-width: 900px) {
+    .fragmentCard {
+        width: 330px;
+    }
+    .previewImg {
+        width: 280px;
+        height: auto;
+    }
+}
+
+@media all and (max-width: 710px) {
+    .fragmentCard {
+        width: 400px;
+    }
+    .previewImg {
+        width: 314px;
+        height: auto;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .fragmentCard {
+        width: 310px;
+        padding: 15px 15px;
+    }
+    .previewImg {
+        width: 280px;
+        height: auto;
+    }
+}
