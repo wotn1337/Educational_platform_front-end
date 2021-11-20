@@ -9,7 +9,7 @@
 }
 
 .pagination {
-    width: 50%;
+    width: fit-content;
 }
 
 .noFragments {
