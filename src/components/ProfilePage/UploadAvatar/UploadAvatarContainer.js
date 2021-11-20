@@ -8,24 +8,17 @@ class ProfileFormContainer extends React.Component {
 	updateAvatar = (avatar) => {
 		const data = new FormData();
 		data.append('avatar', avatar);
-		this.props.updateAvatar(this.props.token, data);
-	}
-
-	deleteAvatar = () => {
-		this.props.deleteAvatar(this.props.token);
+		this.props.updateAvatar(data);
 	}
 
 	render() {
-		return <UploadAvatar {...this.props} updateAvatar={this.updateAvatar} deleteAvatar={this.deleteAvatar}/>;
+		return <UploadAvatar {...this.props} updateAvatar={this.updateAvatar}/>;
 	}
 }
 
 
-export const mapStateToProps = (state) => {
-	return {
-		token: state.auth.token,
-		isFetching: state.profile.isFetching
-	};
-};
+export const mapStateToProps = (state) => ({
+	isFetching: state.profile.isFetching
+});
 
 export default connect(mapStateToProps, {updateAvatar, deleteAvatar})(ProfileFormContainer);

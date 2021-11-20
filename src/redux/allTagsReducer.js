@@ -55,9 +55,9 @@ export const returnTag = (tag) => ({type: RETURN_TAG, tag});
 const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 const setAllTags = (tags) => ({type: SET_ALL_TAGS, tags});
 
-export const getTags = (token) => (dispatch) => {
+export const getTags = () => (dispatch) => {
 	dispatch(setIsFetching(true));
-	fragmentsAPI.getTags(token)
+	fragmentsAPI.getTags()
 		.then(res => {
 			dispatch(setAllTags(res.data.tags.data))
 			dispatch(setIsFetching(false))

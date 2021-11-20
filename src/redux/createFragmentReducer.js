@@ -74,9 +74,9 @@ const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 const setTitleError = (error) => ({type: SET_TITLE_ERROR, error});
 const clearTags = () => ({type: CLEAR_TAGS});
 
-export const createFragment = (token, fragmentType, title, content, tagsIds) => (dispatch) => {
+export const createFragment = (fragmentType, title, content, tagsIds) => (dispatch) => {
 	dispatch(setIsFetching(true));
-	return fragmentsAPI.createFragment(token, fragmentType, title, content, tagsIds)
+	return fragmentsAPI.createFragment(fragmentType, title, content, tagsIds)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(setTitleError(''));

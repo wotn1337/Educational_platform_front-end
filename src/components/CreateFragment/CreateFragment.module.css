@@ -1,6 +1,6 @@
 .content {
     width: 1200px;
-    margin: 20px auto;
+    margin: 70px auto 80px;
     padding-bottom: 100px;
 }
 
@@ -42,12 +42,12 @@
 }
 
 .tags {
-    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
     flex-flow: row wrap;
     width: fit-content;
     max-width: 60%;
+    gap: 6px 12px;
 }
 
 .tag {
@@ -61,8 +61,8 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    margin-bottom: 12px;
-    margin-right: 6px;
+    /*margin-bottom: 12px;*/
+    /*margin-right: 6px;*/
     height: fit-content;
 }
 

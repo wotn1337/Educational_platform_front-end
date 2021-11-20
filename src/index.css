@@ -9,3 +9,13 @@ body {
     background-repeat: no-repeat;
     background-color: rgba(83, 104, 113, 0.73);
 }
+
+h1 {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 54px;
+    color: white;
+    text-decoration: underline #F56464;
+    margin-bottom: 30px;
+}

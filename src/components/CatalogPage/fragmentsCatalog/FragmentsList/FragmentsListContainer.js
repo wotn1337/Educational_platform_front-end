@@ -6,21 +6,22 @@ import FragmentsList from "../../../MyFragments/FragmentsList/FragmentsList";
 import {changePage, getFragments} from "../../../../redux/catalogFragmentsReducer";
 
 
-
 class FragmentsListContainer extends React.Component {
 	componentDidMount() {
 		this.props.getFragments(
-			this.props.token,
-			this.props.currentPage
+			this.props.currentPage,
+			this.props.searchTitle,
+			this.props.searchType,
+			this.props.searchTagsIds
 		);
 	}
 
 	changePage = (page) => {
 		this.props.changePage(
-			this.props.token,
 			page,
 			this.props.searchTitle,
-			this.props.searchType
+			this.props.searchType,
+			this.props.searchTagsIds
 		);
 	}
 
@@ -33,21 +34,13 @@ class FragmentsListContainer extends React.Component {
 			return <Preloader size={400}/>;
 		}
 
-		return <FragmentsList
-			fragments={this.props.fragments}
-			currentPage={this.props.currentPage}
-			nextPage={this.props.nextPage}
-			prevPage={this.props.prevPage}
-			lastPage={this.props.lastPage}
-			pageSize={this.props.pageSize}
-			changePage={this.changePage}
+		return <FragmentsList {...this.props} changePage={this.changePage}
 			// changeFavorite={this.changeFavorite}
 		/>;
 	}
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	fragments: state.catalogFragments.fragments,
 	currentPage: state.catalogFragments.currentPage,
 	nextPage: state.catalogFragments.nextPage,
@@ -56,7 +49,8 @@ const mapStateToProps = (state) => ({
 	pageSize: state.catalogFragments.pageSize,
 	isFetching: state.catalogFragments.isFetching,
 	searchTitle: state.catalogFragments.searchTitle,
-	searchType: state.catalogFragments.searchType
+	searchType: state.catalogFragments.searchType,
+	searchTagsIds: state.catalogFragments.searchTagsIds
 });
 
 export default compose(

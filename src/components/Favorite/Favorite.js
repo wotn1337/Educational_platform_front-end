@@ -6,6 +6,7 @@ import SearchBlockContainer from "./SearchBlock/SearchBlockContainer";
 const Favorite = () => {
     return (
         <div className={s.content}>
+            <h1>Избранное</h1>
             <SearchBlockContainer/>
             <FavoriteListContainer/>
         </div>

@@ -7,7 +7,7 @@ import Preloader from "../../../common/Preloader/Preloader";
 
 class ProfileFormContainer extends React.Component {
 	updateProfile = (name, birthday) => {
-		this.props.updateProfile(this.props.token, name, birthday);
+		this.props.updateProfile(name, birthday);
 		this.props.toggleIsEditProfileForm();
 	}
 
@@ -26,7 +26,6 @@ export const mapStateToProps = (state) => {
 		name: state.profile.name,
 		birthday: state.profile.birthday,
 		email: state.profile.email,
-		token: state.auth.token,
 		isFetching: state.profile.isFetching
 	};
 };

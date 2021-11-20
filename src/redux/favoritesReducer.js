@@ -74,9 +74,9 @@ export const setSearchType = (searchType) => ({type: SET_SEARCH_TYPE, searchType
 
 export const deleteFragment = (id) => ({type: DELETE_FRAGMENT, id});
 
-export const getFavorites = (token, page, title, type) => (dispatch) => {
+export const getFavorites = (page, title, type) => (dispatch) => {
     dispatch(setIsFetching(true));
-    fragmentsAPI.getFavorites(token, page, title, type)
+    fragmentsAPI.getFavorites(page, title, type)
         .then(res => {
             dispatch(setFragments(res.data));
             dispatch(setCurrentPage(page));
@@ -88,12 +88,12 @@ export const getFavorites = (token, page, title, type) => (dispatch) => {
         })
 };
 
-export const changePage = (token, page, title, type) => (dispatch) => {
-    dispatch(getFavorites(token, page, title, type));
+export const changePage = (page, title, type) => (dispatch) => {
+    dispatch(getFavorites(page, title, type));
 };
 
-export const changeFavorite = (token, id) => (dispatch) => {
-    return fragmentsAPI.changeFavorite(token, id)
+export const changeFavorite = (id) => (dispatch) => {
+    return fragmentsAPI.changeFavorite(id)
         .then(() => {
             dispatch(deleteFragment(id));
         })
