@@ -1,5 +1,5 @@
 import thunkMiddleware from 'redux-thunk';
-import {combineReducers, createStore, applyMiddleware} from "redux";
+import {combineReducers, createStore, applyMiddleware, compose} from "redux";
 import authReducer from "./authReducer";
 import profileReducer from "./profileReducer";
 import adminReducer from "./adminReducer";
@@ -31,6 +31,9 @@ const reducers = combineReducers({
 	teachers: teachersReducer
 });
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+// const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 export default store;

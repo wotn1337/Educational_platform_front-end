@@ -33,8 +33,8 @@ const fragmentReducer = (state = initState, action) => {
 				creatorId: action.fragment.user_id,
 				creator: action.fragment.user_name,
 				creatorAvatar: action.fragment.avatar,
-				tags: action.fragment.tags.data,
-				tagsIds: action.fragment.tags.data.map(tag => tag.id)
+				tags: action.fragment.tags ? action.fragment.tags.data : [],
+				tagsIds: action.fragment.tags ? action.fragment.tags.data.map(tag => tag.id) : []
 			};
 
 		case SET_TITLE:
@@ -73,29 +73,30 @@ export const setContent = (content) => ({type: SET_CONTENT, content});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 
-export const getFragment = (token, id) => (dispatch) => {
+export const getFragment = (id) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	fragmentsAPI.getFragment(token, id)
+	return fragmentsAPI.getFragment(id)
 		.then(res => {
-			console.log(res);
-			dispatch(toggleIsFetching(false));
+			console.log(res.data);
 			dispatch(setFragment(res.data.fragment));
+			dispatch(toggleIsFetching(false));
 		})
 		.catch(() => {
 			dispatch(toggleIsFetching(false));
 		})
 };
 
-export const deleteFragment = (token, id) => () => {
-	fragmentsAPI.deleteFragment(token, id)
+export const deleteFragment = (id) => () => {
+	fragmentsAPI.deleteFragment(id)
 		.then(res => successNotification(res.data.message))
 		.catch(err => console.log(err.response));
 };
 
-export const editFragment = (token, id, title, content, tagsIds) => (dispatch) => {
+export const editFragment = (id, title, content, tagsIds) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	return fragmentsAPI.editFragment(token, id, title, content, tagsIds)
+	return fragmentsAPI.editFragment(id, title, content, tagsIds)
 		.then(res => {
+			console.log({id, title, content, tagsIds});
 			successNotification(res.data.message);
 			dispatch(toggleIsFetching(false));
 		})

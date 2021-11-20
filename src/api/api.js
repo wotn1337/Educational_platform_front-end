@@ -149,7 +149,13 @@ export const fragmentsAPI = {
 
 	// Получить список всех фрагментов
 	getFragments(page, title = null, type = null, tags = null) {
-		return instance.get(`fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig());
+		let tagsString = '';
+		if (tags) {
+			for (const tag of tags) {
+				tagsString += `&tags[]=${tag}`;
+			}
+		}
+		return instance.get(`fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}${tagsString}`, authConfig());
 	},
 
 	// Получить список фрагментов текущего пользователя (только для учителя)

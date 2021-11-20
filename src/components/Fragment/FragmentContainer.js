@@ -41,7 +41,8 @@ class FragmentContainer extends React.Component {
 		this.props.editFragment(
 			this.state.id,
 			this.props.title,
-			this.props.type !== fragmentTypes.video && this.props.content
+			this.props.type !== fragmentTypes.video && this.props.content,
+			this.props.tagsIds
 		)
 			.then(() => this.props.setContent(this.props.content));
 		this.toggleIsEdit();
@@ -76,7 +77,8 @@ const mapStateToProps = (state) => ({
 	creatorId: state.fragment.creatorId,
 	creatorAvatar: state.fragment.creatorAvatar,
 	isFetching: state.fragment.isFetching,
-	tags: state.fragment.tags
+	tags: state.fragment.tags,
+	tagsIds: state.fragment.tagsIds,
 });
 
 export default compose(

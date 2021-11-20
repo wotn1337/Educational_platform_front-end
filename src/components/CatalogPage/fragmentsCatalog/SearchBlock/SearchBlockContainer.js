@@ -17,7 +17,8 @@ class SearchBlockContainer extends React.Component {
 		this.props.getFragments(
 			1,
 			this.props.searchTitle,
-			this.props.searchType
+			this.props.searchType,
+			this.props.searchTagsIds
 		);
 	}
 

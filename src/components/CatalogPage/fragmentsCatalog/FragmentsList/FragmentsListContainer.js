@@ -11,7 +11,8 @@ class FragmentsListContainer extends React.Component {
 		this.props.getFragments(
 			this.props.currentPage,
 			this.props.searchTitle,
-			this.props.searchType
+			this.props.searchType,
+			this.props.searchTagsIds
 		);
 	}
 
@@ -19,7 +20,8 @@ class FragmentsListContainer extends React.Component {
 		this.props.changePage(
 			page,
 			this.props.searchTitle,
-			this.props.searchType
+			this.props.searchType,
+			this.props.searchTagsIds
 		);
 	}
 
@@ -32,7 +34,7 @@ class FragmentsListContainer extends React.Component {
 			return <Preloader size={400}/>;
 		}
 
-		return <FragmentsList{...this.props} changePage={this.changePage}
+		return <FragmentsList {...this.props} changePage={this.changePage}
 			// changeFavorite={this.changeFavorite}
 		/>;
 	}
@@ -47,7 +49,8 @@ const mapStateToProps = (state) => ({
 	pageSize: state.catalogFragments.pageSize,
 	isFetching: state.catalogFragments.isFetching,
 	searchTitle: state.catalogFragments.searchTitle,
-	searchType: state.catalogFragments.searchType
+	searchType: state.catalogFragments.searchType,
+	searchTagsIds: state.catalogFragments.searchTagsIds
 });
 
 export default compose(

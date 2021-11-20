@@ -88,9 +88,9 @@ export const setSearchType = (searchType) => ({type: SET_SEARCH_TYPE, searchType
 export const addSearchTag = (tag) => ({type: ADD_SEARCH_TAG, tag});
 export const deleteSearchTag = (tag) => ({type: DELETE_SEARCH_TAG, tag});
 
-export const getFragments = (page, title, type) => (dispatch) => {
+export const getFragments = (page, title, type, tags) => (dispatch) => {
 	dispatch(setIsFetching(true));
-	fragmentsAPI.getFragments(page, title, type)
+	fragmentsAPI.getFragments(page, title, type, tags)
 		.then(res => {
 			dispatch(setFragments(res.data));
 			dispatch(setCurrentPage(page));
@@ -102,8 +102,8 @@ export const getFragments = (page, title, type) => (dispatch) => {
 		})
 };
 
-export const changePage = (page, title, type) => (dispatch) => {
-	dispatch(getFragments(page, title, type));
+export const changePage = (page, title, type, tags) => (dispatch) => {
+	dispatch(getFragments(page, title, type, tags));
 };
 
 export default myFragmentsReducer;

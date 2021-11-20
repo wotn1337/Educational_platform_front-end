@@ -2,9 +2,9 @@ import {profileAPI} from "../api/api";
 import {successNotification} from "../notifications/notifications";
 
 
-const SET_PROFILE = 'SET_PROFILE';
-const SET_AVATAR = 'SET_AVATAR';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
+const SET_PROFILE = 'profile/SET_PROFILE';
+const SET_AVATAR = 'profile/SET_AVATAR';
+const TOGGLE_IS_FETCHING = 'profile/TOGGLE_IS_FETCHING';
 
 const initState = {
 	name: '',
