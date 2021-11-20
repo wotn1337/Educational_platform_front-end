@@ -7,7 +7,7 @@ import PasswordForm from "./PasswordForm";
 
 class ProfileFormContainer extends React.Component {
 	changePassword = (password) => {
-		this.props.changePassword(this.props.token, password);
+		this.props.changePassword(password);
 		this.props.togglePasswordForm();
 	}
 
@@ -20,11 +20,8 @@ class ProfileFormContainer extends React.Component {
 }
 
 
-export const mapStateToProps = (state) => {
-	return {
-		token: state.auth.token,
-		isFetching: state.profile.isFetching
-	};
-};
+export const mapStateToProps = (state) => ({
+	isFetching: state.profile.isFetching
+});
 
 export default connect(mapStateToProps, {changePassword})(ProfileFormContainer);

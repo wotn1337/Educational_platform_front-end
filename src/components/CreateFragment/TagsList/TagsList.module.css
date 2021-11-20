@@ -10,8 +10,8 @@
     font-weight: normal;
     font-size: 18px;
     line-height: 22px;
-    margin-bottom: 12px;
-    margin-right: 6px;
+    /*margin-bottom: 12px;*/
+    /*margin-right: 6px;*/
     flex: auto;
     height: fit-content;
 }
@@ -22,12 +22,18 @@
 
 .tagsList {
     background-color: white;
-    padding: 20px 14px 20px 20px;
+    padding: 20px;
     border-radius: 10px;
     display: flex;
+    gap: 12px 6px;
     flex-wrap: wrap;
     flex-flow: row wrap;
     width: fit-content;
     max-width: 300px;
     min-width: 300px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    position: relative;
+    top: 0;
+    margin-bottom: -450px;
+    z-index: 10;
 }

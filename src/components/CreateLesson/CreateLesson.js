@@ -7,6 +7,7 @@ import ConstructorBlock from "./СonstructorBlock/СonstructorBlock";
 const CreateLesson = (props) => {
     return (
         <div className={s.content}>
+            <h1>Создать урок</h1>
             <LessonTitle/>
             <ConstructorBlock
                 fragments={props.lessonFragments}

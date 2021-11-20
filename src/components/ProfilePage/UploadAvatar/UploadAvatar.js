@@ -19,12 +19,12 @@ const UploadAvatar = (props) => {
 			}}/>
 			{avatar && <img src={avatarSrc} alt="avatar preview" className={s.avatarPreview}/>}
 			<label className={`${s.btn} ${s.btnMobile}`} htmlFor="upload">{avatar ? 'Выбрать другое фото' : 'Загрузить аватар'}</label>
-			<button className={`${s.btnAvatar} ${s.btnUpload}`} onClick={() => {
+			{avatar && <button className={`${s.btnAvatar} ${s.btnUpload}`} onClick={() => {
 				props.updateAvatar(avatar);
 				setAvatar(null);
 				setAvatarSrc(null);
-			}}> </button>
-			<button className={`${s.btnAvatar} ${s.btnDelete}`} onClick={() => props.deleteAvatar()}> </button>
+			}}/>}
+			<button className={`${s.btnAvatar} ${s.btnDelete}`} onClick={() => props.deleteAvatar()}/>
 		</div>
 	);
 };

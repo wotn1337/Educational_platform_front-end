@@ -26,7 +26,7 @@ const ThisTags = (props) => {
 	});
 
 	return (
-		<div className={s.tags}>
+		<div className={s.tags} id={'thisTags'}>
 			{thisTags}
 		</div>
 	);

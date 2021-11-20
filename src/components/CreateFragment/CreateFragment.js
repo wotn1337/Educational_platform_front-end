@@ -15,17 +15,20 @@ const CreateFragment = (props) => {
 
 	return (
 		<div className={s.content}>
+			<h1>Создать фрагмент</h1>
 			<SelectType/>
 			<FragmentTitle/>
-			{props.fragmentType === fragmentTypes.article &&
-			<CreateArticle/>
-			}
-			{props.fragmentType === fragmentTypes.test &&
-			<CreateTestContainer/>
-			}
-			{props.fragmentType === fragmentTypes.video &&
-			<CreateVideo/>
-			}
+			<div style={{marginBottom: '20px'}}>
+				{props.fragmentType === fragmentTypes.article &&
+				<CreateArticle/>
+				}
+				{props.fragmentType === fragmentTypes.test &&
+				<CreateTestContainer/>
+				}
+				{props.fragmentType === fragmentTypes.video &&
+				<CreateVideo/>
+				}
+			</div>
 			{!!props.tags.length &&
 			<ThisTags
 				tags={props.tags}

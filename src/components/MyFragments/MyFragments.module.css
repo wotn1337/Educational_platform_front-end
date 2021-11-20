@@ -1,6 +1,6 @@
 .content {
     width: 1200px;
-    margin: 100px auto 0;
+    margin: 70px auto 80px;
 }
 
 @media all and (max-width: 1200px) {

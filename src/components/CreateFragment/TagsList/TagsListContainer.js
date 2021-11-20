@@ -8,7 +8,7 @@ import {addTag, getTags, returnTag, setTagsIds} from "../../../redux/allTagsRedu
 class TagsListContainer extends React.Component {
 	componentDidMount() {
 		this.props.setTagsIds(this.props.currentTags);
-		this.props.getTags(this.props.token);
+		this.props.getTags();
 	}
 
 	render() {
@@ -19,7 +19,6 @@ class TagsListContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
 	allTags: state.allTags.allTags,
 	isFetching: state.allTags.isFetching,
 	currentTagsIds: state.allTags.currentTagsIds

@@ -1,6 +1,5 @@
 import thunkMiddleware from 'redux-thunk';
-import {combineReducers, createStore, applyMiddleware} from "redux";
-import navbarReducer from "./navbarReducer";
+import {combineReducers, createStore, applyMiddleware, compose} from "redux";
 import authReducer from "./authReducer";
 import profileReducer from "./profileReducer";
 import adminReducer from "./adminReducer";
@@ -13,10 +12,10 @@ import createLessonReducer from "./createLessonReducer";
 import allTagsReducer from "./allTagsReducer";
 import teacherProfileReducer from "./teacherProfileReducer";
 import favoritesReducer from "./favoritesReducer";
+import teachersReducer from "./teachersReducer";
 
 
 const reducers = combineReducers({
-	navbar: navbarReducer,
 	auth: authReducer,
 	profile: profileReducer,
 	admin: adminReducer,
@@ -28,9 +27,13 @@ const reducers = combineReducers({
 	createLesson: createLessonReducer,
 	allTags: allTagsReducer,
 	teacherProfile: teacherProfileReducer,
-	favorites: favoritesReducer
+	favorites: favoritesReducer,
+	teachers: teachersReducer
 });
 
-const store = createStore(reducers, applyMiddleware(thunkMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+
+// const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 export default store;

@@ -8,6 +8,7 @@ import {fragmentTypes} from "../../common/fragmentTypes";
 import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 import TagsListContainer from "../CreateFragment/TagsList/TagsListContainer";
 import {NavLink} from "react-router-dom";
+import avatarPlaceholder from '../../assets/img/profile/user.svg';
 
 const Fragment = (props) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -36,20 +37,25 @@ const Fragment = (props) => {
 					onChange={event => props.setTitle(event.target.value)}
 				/>
 			}
-			<span className={s.author}>Автор: <NavLink className={s.creatorName} to={`/profile:${props.creatorId}`}>{props.creator}</NavLink></span>
-			{props.type === fragmentTypes.article &&
-			<>
-				{!props.isEdit
-					? <div className={s.fragmentBlock} dangerouslySetInnerHTML={{__html: props.content}}/>
-					: <TextEditor editorState={editorState} setEditorState={setContent}/>
-				}
-			</>
-			}
-			{props.type === fragmentTypes.video &&
-			<div className={s.fragmentBlock}>
-				<video src={props.content} controls={'controls'} className={s.video}/>
+			<div className={s.author}>
+				Автор: <NavLink className={s.creatorName} to={`/profile:${props.creatorId}`}>{props.creator}</NavLink>
+				<img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
 			</div>
-			}
+			<div style={{marginBottom: '20px'}}>
+				{props.type === fragmentTypes.article &&
+				<>
+					{!props.isEdit
+						? <div className={s.fragmentBlock} dangerouslySetInnerHTML={{__html: props.content}}/>
+						: <TextEditor editorState={editorState} setEditorState={setContent}/>
+					}
+				</>
+				}
+				{props.type === fragmentTypes.video &&
+				<div className={s.fragmentBlock}>
+					<video src={props.content} controls={'controls'} className={s.video}/>
+				</div>
+				}
+			</div>
 
 			<ThisTags
 				tags={props.tags}

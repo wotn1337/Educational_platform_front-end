@@ -11,7 +11,7 @@ const TOGGLE_RESET_PASSWORD_FORM = 'SHOW_RESET_PASSWORD_FORM';
 const initState = {
 	token: localStorage.getItem('token'),
 	isAuth: !!localStorage.getItem('token'),
-	userId: localStorage.getItem('userId'),
+	userId: Number(localStorage.getItem('id')),
 	role: localStorage.getItem('role'),
 	isFetching: false,
 	showResetPasswordForm: false
@@ -81,6 +81,7 @@ export const login = (data, setStatus) => (dispatch) => {
 			successNotification(res.data.message);
 		})
 		.catch(err => {
+			console.log(err.response);
 			if (err.response.status === 422 || err.response.status === 401) {
 				setStatus({
 					email: err.response.data.errors.email,

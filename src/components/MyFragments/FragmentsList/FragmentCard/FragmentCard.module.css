@@ -15,7 +15,7 @@
 .fragmentCard:hover {
     color: black;
     transform: translateY(-10px);
-    box-shadow: 0 10px 10px 0 #F56464;
+    box-shadow: 0 10px 10px 0 rgb(248, 180, 128);
 }
 
 .preview {

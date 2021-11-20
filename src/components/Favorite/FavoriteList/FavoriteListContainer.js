@@ -8,14 +8,12 @@ class FavoriteListContainer extends React.Component {
 
     componentDidMount() {
         this.props.getFavorites(
-            this.props.token,
             this.props.currentPage
         );
     }
 
     changePage = (page) => {
         this.props.changePage(
-            this.props.token,
             page,
             this.props.searchTitle,
             this.props.searchType
@@ -40,7 +38,6 @@ class FavoriteListContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    token: state.auth.token,
     fragments: state.favorites.favorites,
     currentPage: state.favorites.currentPage,
     nextPage: state.favorites.nextPage,

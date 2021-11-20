@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import TeacherInfo from "./TeacherInfo/TeacherInfo";
 import Switches from "../../common/Switches/Switches";
 import s from './TeacherProfile.module.css';
+import FragmentsContainer from "./Fragments/FragmentsContainer";
+import Preloader from "../../common/Preloader/Preloader";
 
 
 const TeacherProfile = (props) => {
@@ -10,11 +12,14 @@ const TeacherProfile = (props) => {
 
 	return (
 		<>
-			<TeacherInfo
-				avatar={props.avatar}
-				name={props.name}
-				role={props.role}
-			/>
+			{props.profileFetching
+				? <Preloader size={200}/>
+				: <TeacherInfo
+					avatar={props.avatar}
+					name={props.name}
+					role={props.role}
+				/>
+			}
 			<Switches
 				switches={{
 					'Уроки пользователя': [lessons, setLessons],
@@ -22,8 +27,10 @@ const TeacherProfile = (props) => {
 				}}
 			/>
 			<main>
-				{lessons && <h1>lessons</h1>}
-				{fragments && <h1>fragments</h1>}
+				<section className={s.content}>
+					{lessons && <h1>lessons</h1>}
+					{fragments && <FragmentsContainer/>}
+				</section>
 			</main>
 		</>
 	);
