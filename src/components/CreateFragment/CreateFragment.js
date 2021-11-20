@@ -15,7 +15,7 @@ const CreateFragment = (props) => {
 
 	return (
 		<div className={s.content}>
-			<h1>Создать фрагмент</h1>
+			<h1 className={'pageTitle'}>Создать фрагмент</h1>
 			<SelectType/>
 			<FragmentTitle/>
 			<div style={{marginBottom: '20px'}}>

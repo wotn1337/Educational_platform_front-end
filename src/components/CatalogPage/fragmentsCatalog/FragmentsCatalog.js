@@ -7,7 +7,7 @@ import FragmentsListContainer from "./FragmentsList/FragmentsListContainer";
 const FragmentsCatalog = () => {
 	return (
 		<div className={s.content}>
-			<h1>Каталог фрагментов</h1>
+			<h1 className={'pageTitle'}>Каталог фрагментов</h1>
 			<SearchBlockContainer/>
 			<FragmentsListContainer />
 		</div>
