@@ -64,16 +64,17 @@
     width: 42px;
     height: 42px;
     padding: 0;
+    background-size: 35px;
     background-color: transparent;
+    background-position: center;
     border: none;
-    background-image: url("../../../assets/img/fragments/search.png");
+    background-image: url("../../../assets/img/fragments/search.svg");
     background-repeat: no-repeat;
     transition: 0.3s;
 }
 
 .searchButton:hover {
-    transform: translateY(-10px);
-    border-bottom: 3px solid #F56464;
+    transform: translateY(-5px);
 }
 
 .searchTags {
@@ -91,3 +92,48 @@
     color: white;
     font-size: 22px;
 }
+
+@media all and (max-width: 1200px) {
+    .searchBlock {
+        /*width: 900px;*/
+        /*margin: 0 auto 40px;*/
+    }
+}
+
+@media all and (max-width: 992px) {
+    .searchButton {
+        margin-left: 20px;
+    }
+}
+
+@media all and (max-width: 720px) {
+    .searchBlock {
+        padding: 0 20px;
+    }
+    .searchInput {
+        min-width: 280px;
+        margin-bottom: 10px;
+        font-size: 20px;
+    }
+    .searchInput::placeholder {
+        font-size: 20px;
+    }
+    .typeSelect {
+        min-width: 210px;
+        font-size: 20px;
+    }
+    .inputBlock{
+        flex-wrap: wrap;
+    }
+    .searchButton {
+        margin-left: 15px;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .typeSelect {
+        max-width: 180px;
+    }
+    .searchButton {
+        margin-left: 10px;
+    }

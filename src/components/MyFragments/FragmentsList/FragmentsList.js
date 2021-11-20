@@ -12,8 +12,8 @@ const FragmentsList = (props) => {
 			key={fragment.id}
 			fragmentType={fragment.type}
 			title={fragment.title}
+			isFavorite={fragment.favourite}
 			tags={fragment.tags}
-			// changeFavorite={props.changeFavorite}
 		/>
 	));
 
@@ -22,7 +22,7 @@ const FragmentsList = (props) => {
 			{fragmentCards.length > 0
 				? <>
 					<div className={s.fragmentsList}>{fragmentCards}</div>
-					<div style={{width: 'fit-content'}}>
+					<div className={s.pagination}>
 						<Pagination
 							handler={props.changePage}
 							currentPage={props.currentPage}
