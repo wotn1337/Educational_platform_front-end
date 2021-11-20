@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Teachers from "./Teachers";
 import {getTeachers, changePage, setSearchName} from "../../redux/teachersReducer";
-import Preloader from "../../common/Preloader/Preloader";
 
 
 class TeachersContainer extends React.Component {
@@ -20,9 +19,6 @@ class TeachersContainer extends React.Component {
 	}
 
 	render() {
-		if (this.props.isFetching) {
-			return <Preloader size={200}/>;
-		}
 		return (
 			<Teachers {...this.props} changePage={this.changePage} search={this.search}/>
 		);

@@ -3,6 +3,7 @@ import s from './Teachers.module.css';
 import Pagination from "../../common/Pagination/Pagination";
 import avatarPlaceholder from '../../assets/img/profile/teacherProfile.svg';
 import {NavLink} from "react-router-dom";
+import Preloader from "../../common/Preloader/Preloader";
 
 
 const Teachers = (props) => {
@@ -39,7 +40,8 @@ const Teachers = (props) => {
 					<button className={s.searchButton} onClick={props.search}/>
 				</div>
 			</div>
-			{props.teachers.length === 0 &&
+			{props.isFetching && <Preloader size={300}/>}
+			{(props.teachers.length === 0 && !props.isFetching) &&
 			<div className={s.noTeachers}>
 				С таким именем преподавателей не найдено
 				<div className={s.sadSmile}>: (</div>
