@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Teachers.module.css';
 import Pagination from "../../common/Pagination/Pagination";
-import avatarPlaceholder from '../../assets/img/profile/teacherAvatarPlaceholder.png';
+import avatarPlaceholder from '../../assets/img/profile/teacherProfile.svg';
 import {NavLink} from "react-router-dom";
 
 
@@ -12,7 +12,7 @@ const Teachers = (props) => {
 			<span className={s.name}>{teacher.name}</span>
 			<div>
 				<span className={s.countTitle}>Фрагменты: <span
-					className={s.count}>{Math.floor(Math.random() * 1000)}</span></span>
+					className={s.count}>{teacher.fragments_count}</span></span>
 				<span className={s.countTitle}>Уроки: <span
 					className={s.count}>{Math.floor(Math.random() * 1000)}</span></span>
 			</div>
@@ -22,7 +22,7 @@ const Teachers = (props) => {
 	return (
 		<section className={s.teachersWrapper}>
 			<div className={s.header}>
-				<h1>Преподаватели</h1>
+				<h1 className={'pageTitle'}>Преподаватели</h1>
 				<div className={s.search}>
 					<input
 						className={s.searchName}

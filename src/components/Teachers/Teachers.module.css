@@ -71,18 +71,20 @@
     padding: 25px 20px;
     display: grid;
     grid-gap: 10px;
-    max-width: 200px;
     transition: 0.5s;
 }
 
 .teacherCard:hover {
      color: black;
      transform: translateY(-10px);
-     box-shadow: 0 10px 10px 0 #F56464;
+     box-shadow: 0 10px 10px 0 rgb(248, 180, 128);
  }
 
 .avatar {
-    max-width: 160px;
+    max-width: 100px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%;
 }
 
 .name {

@@ -10,7 +10,7 @@ body {
     background-color: rgba(83, 104, 113, 0.73);
 }
 
-h1 {
+h1.pageTitle {
     font-style: normal;
     font-weight: bold;
     font-size: 40px;
