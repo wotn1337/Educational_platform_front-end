@@ -199,3 +199,9 @@ export const fragmentsAPI = {
 		return instance.get(`teacher/fragments/${id}?page=${page}`, authConfig());
 	}
 };
+
+export const lessonsAPI = {
+	createLesson(title, annotation, fragments, tags) {
+		return instance.post('lessons', JSON.stringify({title, annotation, fragments, tags}), authConfig());
+	}
+};
