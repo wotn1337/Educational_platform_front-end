@@ -15,7 +15,7 @@ const getShortTitle = (title, length) => {
 
 const FragmentCard = (props) => {
     return (
-        <NavLink to={`/fragment:${props.id}`} className={s.fragmentCard}>
+        <NavLink to={`/fragment/${props.id}`} className={s.fragmentCard}>
             <div className={s.preview}>
                 <img src={previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
                 <button className={`${s.addToFavoriteButton} ${props.isFavorite? s.alreadyFavorite: s.addToFavorite}`}

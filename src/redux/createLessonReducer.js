@@ -7,6 +7,8 @@ const TOGGLE_IS_FETCHING = 'createLesson/TOGGLE_IS_FETCHING';
 const CLEAR_FRAGMENTS = 'createLesson/CLEAR_FRAGMENTS';
 const ADD_TAG = 'createLesson/ADD_TAG';
 const DELETE_TAG = 'createLesson/DELETE_TAG';
+const CLEAR_TAGS = 'createLesson/CLEAR_TAGS';
+const CHANGE_ANNOTATION = 'createLesson/CHANGE_ANNOTATION';
 
 
 const initState = {
@@ -15,6 +17,7 @@ const initState = {
     isFetching: false,
     tags: [],
     fragments: [],
+    annotation: ''
 };
 
 const createLessonReducer = (state = initState, action) => {
@@ -47,6 +50,26 @@ const createLessonReducer = (state = initState, action) => {
             };
         }
 
+        case DELETE_TAG: {
+            return {
+                ...state,
+                tags: state.tags.filter(tag => tag.id !== action.tag.id)
+            };
+        }
+
+        case CLEAR_TAGS: {
+            return {
+                ...state,
+                tags: []
+            };
+        }
+
+        case CHANGE_ANNOTATION:
+            return {
+                ...state,
+                annotation: action.annotation
+            };
+
         default:
             return state;
     }
@@ -54,16 +77,22 @@ const createLessonReducer = (state = initState, action) => {
 
 const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
 const clearFragments = () => ({type: CLEAR_FRAGMENTS});
+const clearTags = () => ({type: CLEAR_TAGS});
 
 export const changeFragmentTitle = (lessonTitle) => ({type: CHANGE_FRAGMENT_TITLE, lessonTitle});
 export const addFragment = (fragments) => ({type: ADD_FRAGMENT, fragments});
+export const addTag = (tag) => ({type: ADD_TAG, tag});
+export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
+export const changeAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});
 
 export const createLesson = (title, annotation, fragments, tags) => (dispatch) => {
     dispatch(toggleIsFetching(true));
     lessonsAPI.createLesson(title, annotation, fragments, tags)
         .then(res => {
             dispatch(clearFragments());
+            dispatch(clearTags());
             dispatch(changeFragmentTitle(''));
+            dispatch(changeAnnotation(''));
             dispatch(toggleIsFetching(false));
             successNotification(res.data.messages);
         })

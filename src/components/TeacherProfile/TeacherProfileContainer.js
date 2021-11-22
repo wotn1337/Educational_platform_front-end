@@ -8,7 +8,7 @@ import TeacherProfile from "./TeacherProfile";
 
 class TeacherProfileContainer extends React.Component {
 	state = {
-		id: this.props.match.params.id.substr(1)
+		id: this.props.match.params.id
 	}
 
 	componentDidMount() {

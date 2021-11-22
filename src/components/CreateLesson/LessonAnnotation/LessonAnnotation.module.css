@@ -1,0 +1,25 @@
+.annotationBlock {
+    margin-bottom: 30px;
+}
+
+.annotationTitle {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.annotation {
+    background: rgba(255, 255, 255, 0.69);
+    border-radius: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    height: 200px;
+    resize: none;
+}
+
+.annotation:focus {
+    outline: none;
+}

@@ -3,7 +3,6 @@ import FragmentCard from "../../MyFragments/FragmentsList/FragmentCard/FragmentC
 import s from "./СonstructorBlock.module.css";
 import Modal from "../Modal/Modal";
 import FragmentsListContainer from "../FragmentsList/FragmentsListContainer";
-import Preloader from "../../../common/Preloader/Preloader";
 
 const ConstructorBlock = (props) => {
 
@@ -36,12 +35,7 @@ const ConstructorBlock = (props) => {
 			        onClick={() => setModalActive(true)}/>
 			}
 
-			{props.isFetching
-				? <Preloader size={200}/>
-				: <div className={s.fragmentsList}>
-					{fragmentCards}
-				</div>
-			}
+			<div className={s.fragmentsList}>{fragmentCards}</div>
 
 			<Modal active={modalActive} setActive={setModalActive}>
 				<FragmentsListContainer setModalActive={setModalActive}

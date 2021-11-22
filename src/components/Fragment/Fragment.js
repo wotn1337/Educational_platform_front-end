@@ -38,7 +38,7 @@ const Fragment = (props) => {
 				/>
 			}
 			<div className={s.author}>
-				<span>Автор: <NavLink className={s.creatorName} to={`/profile:${props.creatorId}`}>{props.creator}</NavLink></span>
+				<span>Автор: <NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink></span>
 				<img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
 			</div>
 			<div style={{marginBottom: '20px'}}>
