@@ -16,6 +16,7 @@ import TeacherProfileContainer from "./components/TeacherProfile/TeacherProfileC
 import Favorite from "./components/Favorite/Favorite";
 import TeachersContainer from "./components/Teachers/TeachersContainer";
 import LessonsCatalog from "./components/CatalogPage/lessonsCatalog/LessonsCatalog";
+import LessonContainer from "./components/Lesson/LessonContainer";
 
 
 const App = () => {
@@ -81,6 +82,10 @@ const App = () => {
 			<Route
 				exact path='/fragment/:id?'
 				render={() => <FragmentContainer/>}
+			/>
+			<Route
+				exact path='/lesson/:id?'
+				render={() => <LessonContainer/>}
 			/>
 		</>
 	)
