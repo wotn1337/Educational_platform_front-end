@@ -12,6 +12,8 @@
 .search {
     display: flex;
     background: rgba(245, 245, 245, 0.4);
+    align-items: center;
+    justify-content: space-between;
     border-radius: 5px;
     width: fit-content;
     padding-right: 2px;
@@ -49,7 +51,7 @@
     background-repeat: no-repeat;
     background-position: center center;
     height: 50px;
-    width: 40px;
+    width: 50px;
     transition: all 0.5s;
 }
 
@@ -75,10 +77,10 @@
 }
 
 .teacherCard:hover {
-     color: black;
-     transform: translateY(-10px);
-     box-shadow: 0 10px 10px 0 rgb(248, 180, 128);
- }
+    color: black;
+    transform: translateY(-10px);
+    box-shadow: 0 10px 10px 0 rgb(248, 180, 128);
+}
 
 .avatar {
     max-width: 100px;
@@ -124,4 +126,61 @@
 .sadSmile {
     cursor: default;
     transform: rotate(90deg);
+}
+
+.pagination {
+    width: fit-content;
+}
+
+@media all and (max-width: 1200px) {
+    .teachersWrapper {
+        width: 900px;
+    }
+
+    .teachers {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media all and (max-width: 900px) {
+    .teachersWrapper {
+        width: 80%;
+    }
+
+    .header {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .pagination {
+        margin: 0 auto;
+        width: fit-content;
+    }
+}
+
+@media all and (max-width: 720px) {
+    .teachersWrapper {
+        width: 90%;
+    }
+
+    .searchName {
+        font-size: 19px;
+        width: 238px;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .searchButton {
+        background-size: 30px;
+    }
+
+    .teachers {
+        grid-template-columns: 1fr;
+        row-gap: 30px;
+        margin-bottom: 50px;
+    }
 }

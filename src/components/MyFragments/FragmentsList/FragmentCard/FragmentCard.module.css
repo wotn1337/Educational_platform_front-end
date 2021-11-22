@@ -42,7 +42,7 @@
     background-image: url("../../../../assets/img/fragments/addToFavorite.svg");
 }
 
-.addToFavorite:hover, .alreadyFavorite  {
+.addToFavorite:hover, .alreadyFavorite {
     background-image: url("../../../../assets/img/fragments/full-heart.svg");
 }
 
@@ -109,6 +109,7 @@ a {
     .fragmentCard {
         width: 330px;
     }
+
     .previewImg {
         width: 280px;
         height: auto;
@@ -119,6 +120,7 @@ a {
     .fragmentCard {
         width: 400px;
     }
+
     .previewImg {
         width: 314px;
         height: auto;
@@ -127,11 +129,12 @@ a {
 
 @media all and (max-width: 480px) {
     .fragmentCard {
-        width: 310px;
+        width: 304px;
         padding: 15px 15px;
     }
+
     .previewImg {
-        width: 280px;
+        width: 274px;
         height: auto;
     }
 }
