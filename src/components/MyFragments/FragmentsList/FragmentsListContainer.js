@@ -22,23 +22,12 @@ class FragmentsListContainer extends React.Component {
 		);
 	}
 
-	// changeFavorite = (id) => {
-	// 	this.props.changeFavorite(this.props.token, id);
-	// }
-	//
-	// isFavorite = (id) => {
-	// 	return this.props.favorites.some(f => f.id===id);
-	// }
-
 	render() {
 		if (this.props.isFetching) {
 			return <Preloader size={400}/>;
 		}
 
-		return <FragmentsList {...this.props} changePage={this.changePage}
-			// isFavorite={this.isFavorite}
-			// changeFavorite={this.changeFavorite}
-		/>;
+		return <FragmentsList {...this.props} changePage={this.changePage}/>;
 	}
 }
 
