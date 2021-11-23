@@ -214,5 +214,17 @@ export const lessonsAPI = {
 	getLessons(page, title = null, tags = null) {
 		let tagsString = createTagsString(tags);
 		return instance.get(`lessons?page=${page}${title ? `&title=${title}` : ''}${tagsString}`, authConfig());
+	},
+
+	getLesson(id, page) {
+		return instance.get(`lessons/${id}?page=${page}`, authConfig())
+	},
+
+	deleteLesson(id) {
+		return instance.delete(`lessons/${id}`, authConfig());
+	},
+
+	toggleFavorite(id) {
+		return instance.put(`lessons/${id}`, {}, authConfig());
 	}
 };

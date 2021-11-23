@@ -19,3 +19,25 @@ h1.pageTitle {
     text-decoration: underline #F56464;
     margin-bottom: 30px;
 }
+
+.btn {
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    width: 210px;
+    background-color: #EF5B5B;
+    border-radius: 10px;
+    border: none;
+    transition: background-color;
+    transition-duration: 200ms;
+}
+
+.btn:hover {
+    background-color: #FBCB84;
+    color: white;
+}
+
+.btn:disabled {
+    background-color: #7C7676;
+    opacity: 1;
+}

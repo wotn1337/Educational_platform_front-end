@@ -3,17 +3,16 @@ import s from './Preloader.module.css';
 import preloaderGIF from '../../assets/img/preloader.gif';
 
 
-const Preloader = (props) => {
+const Preloader = ({size}) => {
 	return (
 		<img
 			className={s.preloader}
 			src={preloaderGIF}
 			alt="preloader"
-			width={props.size}
-			height={props.size}
+			width={size}
+			height={size}
 		/>
 	);
-
 };
 
 export default Preloader;

@@ -84,7 +84,7 @@ const App = () => {
 				render={() => <FragmentContainer/>}
 			/>
 			<Route
-				exact path='/lesson/:id?'
+				path='/lesson/:id?'
 				render={() => <LessonContainer/>}
 			/>
 		</>

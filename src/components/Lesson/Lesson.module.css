@@ -2,3 +2,15 @@
     width: 1200px;
     margin: 70px auto 80px;
 }
+
+.lesson {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 375px 1fr;
+    border-radius: 10px;
+}
+
+.buttonsBlock {
+    display: flex;
+    justify-content: space-between;
+}

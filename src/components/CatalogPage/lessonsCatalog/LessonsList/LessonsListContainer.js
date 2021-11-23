@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {getLessons, changePage} from "../../../../redux/lessonsCatalogReducer";
 import LessonsList from "./LessonsList";
+import Preloader from "../../../../common/Preloader/Preloader";
 
 
 class LessonsListContainer extends React.Component {
@@ -15,6 +16,10 @@ class LessonsListContainer extends React.Component {
 	}
 
 	render() {
+		if (this.props.isFetching) {
+			return <Preloader size={200}/>
+		}
+
 		return (
 			<LessonsList {...this.props} changePage={this.changePage}/>
 		);
