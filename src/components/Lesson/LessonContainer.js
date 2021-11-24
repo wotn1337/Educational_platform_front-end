@@ -36,6 +36,8 @@ class LessonContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+	role: state.auth.role,
+	userId: state.auth.userId,
 	currentFragment: state.lesson.currentFragment,
 	fragmentsTitles: state.lesson.fragmentsTitles,
 	favorite: state.lesson.favorite,

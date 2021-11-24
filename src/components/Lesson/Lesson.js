@@ -20,9 +20,11 @@ const Lesson = ({id, deleteLesson, toggleFavorite, favorite, favoriteFetching, f
 			<div className={s.buttonsBlock}>
 				<button className={'btn'} disabled>Редактировать</button>
 				<button className={'btn'} onClick={() => deleteLesson(id)}>Удалить</button>
+				{props.role !== 'admin' &&
 				<button className={'btn'} onClick={() => toggleFavorite(id)} disabled={favoriteFetching}>
 					{favorite ? 'Удалить из избранного' : 'Добавить в избранное'}
 				</button>
+				}
 			</div>
 		</section>
 	);

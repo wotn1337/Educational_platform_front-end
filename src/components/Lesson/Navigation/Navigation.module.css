@@ -47,6 +47,7 @@
     grid-area: title;
     font-weight: bold;
     word-wrap: break-word;
+    max-width: 75%;
 }
 
 .fragmentType {
