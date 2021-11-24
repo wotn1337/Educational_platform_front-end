@@ -49,7 +49,7 @@ a.creatorName:hover {
     box-sizing: border-box;
 }
 
-video {
+.video {
     display: block;
     margin: 0 auto;
     max-width: 90%;

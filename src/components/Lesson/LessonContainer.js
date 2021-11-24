@@ -13,6 +13,7 @@ class LessonContainer extends React.Component {
 
 	componentDidMount() {
 		this.props.getLesson(this.state.id, 1);
+		this.props.history.push(`/lesson/${this.state.id}`);
 	}
 
 	changeFragment = (fragmentOrderNumber) => {

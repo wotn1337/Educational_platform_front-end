@@ -1,14 +1,14 @@
 .navigation {
-
+    min-width: 300px;
 }
 
 .fragmentLink {
     display: grid;
     grid-template-areas: 'img title'
                          'img type';
-    grid-template-columns: 115px 1fr;
+    grid-template-columns: 85px 1fr;
     align-items: center;
-    padding: 10px 50px 10px 0;
+    padding: 10px 25px 10px 0;
     font-style: normal;
     font-size: 20px;
     color: #000000;

@@ -6,11 +6,13 @@
 .lesson {
     background-color: white;
     display: grid;
-    grid-template-columns: 375px 1fr;
+    grid-template-columns: 1fr 5fr;
     border-radius: 10px;
+    min-height: 400px;
 }
 
 .buttonsBlock {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
 }
