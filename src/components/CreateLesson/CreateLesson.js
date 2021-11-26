@@ -13,14 +13,12 @@ const CreateLesson = ({isFetching, ...props}) => {
 	return (
 		<div className={s.content}>
 			<h1 className={'pageTitle'}>Создать урок</h1>
-			<LessonTitle/>
+			<LessonTitle title={props.title} changeLessonTitle={props.changeLessonTitle}/>
 			<LessonAnnotation annotation={props.annotation} changeAnnotation={props.changeAnnotation}/>
 			{isFetching
 				? <Preloader size={200}/>
 				: <>
-					<ConstructorBlock
-						fragments={props.lessonFragments}
-					/>
+					<ConstructorBlock fragments={props.lessonFragments}/>
 					<ThisTags
 						tags={props.tags}
 						edit={true}
@@ -30,8 +28,9 @@ const CreateLesson = ({isFetching, ...props}) => {
 				</>
 			}
 			<div className={s.buttonsBlock}>
-				<button className={s.createButton} onClick={() => setTags(!tags)}>Добавить теги</button>
-				<button className={s.createButton} onClick={props.createLesson}>Создать</button>
+				<button className={'btn'} onClick={() => setTags(!tags)}>Добавить теги</button>
+				<button className={'btn'} onClick={props.createLesson}
+				        disabled={props.annotation.length > 255 || props.title.length === 0 || props.lessonFragments.length === 0}>Создать</button>
 			</div>
 			{tags && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}
 		</div>

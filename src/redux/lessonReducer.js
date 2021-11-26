@@ -7,14 +7,19 @@ const TOGGLE_FAVORITE = 'lesson/TOGGLE_FAVORITE';
 const TOGGLE_FAVORITE_FETCHING = 'lesson/TOGGLE_FAVORITE_FETCHING';
 const SET_LESSON = 'lesson/SET_LESSON';
 const TOGGLE_IS_FETCHING = 'lesson/TOGGLE_IS_FETCHING';
+const CHANGE_TITLE = 'lesson/CHANGE_TITLE';
+const CHANGE_ANNOTATION = 'lesson/CHANGE_ANNOTATION';
 
 
 const initState = {
 	currentFragment: undefined,
+	lessonTitle: undefined,
+	lessonAnnotation: undefined,
 	fragmentsTitles: [],
 	favorite: false,
 	favoriteFetching: false,
-	isFetching: false
+	isFetching: false,
+	creatorId: undefined
 };
 
 const lessonReducer = (state = initState, action) => {
@@ -23,7 +28,11 @@ const lessonReducer = (state = initState, action) => {
 			return {
 				...state,
 				currentFragment: action.data.fragments.data[0],
-				fragmentsTitles: action.data.fragments.fragments_title
+				lessonTitle: action.data.fragments.lesson_title,
+				lessonAnnotation: action.data.fragments.lesson_annotation,
+				fragmentsTitles: action.data.fragments.fragments_title,
+				creatorId: action.data.fragments.user_id,
+				favorite: action.data.fragments.lesson_favourite,
 			};
 
 		case TOGGLE_FAVORITE:
@@ -35,6 +44,12 @@ const lessonReducer = (state = initState, action) => {
 		case TOGGLE_IS_FETCHING:
 			return {...state, isFetching: action.isFetching};
 
+		case CHANGE_TITLE:
+			return {...state, lessonTitle: action.title};
+
+		case CHANGE_ANNOTATION:
+			return {...state, lessonAnnotation: action.annotation};
+
 		default:
 			return state;
 	}
@@ -43,6 +58,9 @@ const lessonReducer = (state = initState, action) => {
 const toggleStateFavorite = () => ({type: TOGGLE_FAVORITE});
 const toggleFavoriteFetching = (isFetching) => ({type: TOGGLE_FAVORITE_FETCHING, isFetching});
 const setLesson = (data) => ({type: SET_LESSON, data});
+
+export const changeLessonTitle = (title) => ({type: CHANGE_TITLE, title});
+export const changeLessonAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});
 
 export const getLesson = (id, fragmentOrderNumber) => (dispatch) => {
 	dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));

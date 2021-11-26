@@ -38,9 +38,11 @@ const ConstructorBlock = (props) => {
 			<div className={s.fragmentsList}>{fragmentCards}</div>
 
 			<Modal active={modalActive} setActive={setModalActive}>
-				<FragmentsListContainer setModalActive={setModalActive}
-				                        changeSelectedMode={props.changeSelectedMode}
-				                        aggFragment={props.addFragment}/>
+				<FragmentsListContainer
+					fragments={props.fragments}
+					setModalActive={setModalActive}
+					changeSelectedMode={props.changeSelectedMode}
+					aggFragment={props.addFragment}/>
 			</Modal>
 		</div>
 	)
