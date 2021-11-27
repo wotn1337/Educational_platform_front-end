@@ -13,7 +13,6 @@ const CHANGE_ANNOTATION = 'createLesson/CHANGE_ANNOTATION';
 
 const initState = {
     title: '',
-    content: undefined,
     isFetching: false,
     tags: [],
     fragments: [],

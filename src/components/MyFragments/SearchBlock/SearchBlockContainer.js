@@ -7,7 +7,6 @@ import SearchBlock from "./SearchBlock";
 class SearchBlockContainer extends React.Component {
 	searchFragments = () => {
 		this.props.geMyFragments(
-			this.props.token,
 			1,
 			this.props.searchTitle,
 			this.props.searchType
@@ -24,7 +23,8 @@ const mapStateToProps = (state) => ({
 	token: state.auth.token,
 	searchTitle: state.myFragments.searchTitle,
 	searchType: state.myFragments.searchType,
-	totalFragmentsCount: state.myFragments.totalFragmentsCount
+	totalFragmentsCount: state.myFragments.totalFragmentsCount,
+	currentFragmentsCount: state.myFragments.currentFragmentsCount
 });
 
 export default connect(mapStateToProps, {
