@@ -1,0 +1,22 @@
+.content {
+    width: 1200px;
+    margin: 70px auto 80px;
+}
+
+.lesson {
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    border-radius: 10px;
+    min-height: 400px;
+}
+
+.buttonsBlock {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.addToFavorite {
+    margin-left: auto;
+}

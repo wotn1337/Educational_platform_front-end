@@ -1,0 +1,1 @@
+export const toggleIsFetching = (type, isFetching) => ({type, isFetching});

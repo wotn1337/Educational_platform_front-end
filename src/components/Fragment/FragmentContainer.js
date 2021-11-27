@@ -20,7 +20,7 @@ import {returnTag} from "../../redux/allTagsReducer";
 
 class FragmentContainer extends React.Component {
 	state = {
-		id: this.props.match.params.id.substr(1),
+		id: this.props.match.params.id,
 		isEdit: false
 	}
 

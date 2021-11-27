@@ -15,70 +15,80 @@ import CreateLessonContainer from "./components/CreateLesson/CreateLessonContain
 import TeacherProfileContainer from "./components/TeacherProfile/TeacherProfileContainer";
 import Favorite from "./components/Favorite/Favorite";
 import TeachersContainer from "./components/Teachers/TeachersContainer";
+import LessonsCatalog from "./components/CatalogPage/lessonsCatalog/LessonsCatalog";
+import LessonContainer from "./components/Lesson/LessonContainer";
 
 
 const App = () => {
-    return (
-        <>
-            <NavbarContainer/>
-            <Route
-                exact path='/'
-                render={() => <MainPage/>}
-            />
-            <Route
-                exact path='/login'
-                render={() => <LoginContainer/>}
-            />
-            <Route
-                exact path='/register'
-                render={() => <RegisterContainer/>}
-            />
-            <Route
-                exact path='/catalog-fragments'
-                render={() => <FragmentsCatalog/>}
-            />
-            <Route
-                exact path='/teachers'
-                render={() => <TeachersContainer/>}
-            />
-            <Route
-                exact path='/my-fragments'
-                render={() => <MyFragments/>}
-            />
-            <Route
-                exact path='/favorites'
-                render={() => <Favorite/>}
-            />
-            <Route
-                exact path='/create-fragment'
-                render={() => <CreateFragmentContainer/>}
-            />
-            <Route
-                exact path='/create-lesson'
-                render={() => <CreateLessonContainer/>}
-            />
-            <Route
-                exact path='/profile/me'
-                render={() => <ProfilePageContainer/>}
-            />
-            <Route
-                exact path='/profile:id?'
-                render={() => <TeacherProfileContainer/>}
-            />
-            <Route
-                exact path='/admin/login'
-                render={() => <AdminAuthPageContainer/>}
-            />
-            <Route
-                exact path='/reset-password:token?'
-                render={() => <ResetPasswordContainer/>}
-            />
-            <Route
-                exact path='/fragment:id?'
-                render={() => <FragmentContainer/>}
-            />
-        </>
-    )
+	return (
+		<>
+			<NavbarContainer/>
+			<Route
+				exact path='/'
+				render={() => <MainPage/>}
+			/>
+			<Route
+				exact path='/login'
+				render={() => <LoginContainer/>}
+			/>
+			<Route
+				exact path='/register'
+				render={() => <RegisterContainer/>}
+			/>
+			<Route
+				exact path='/catalog-fragments'
+				render={() => <FragmentsCatalog/>}
+			/>
+			<Route
+				exact path='/lessons-catalog'
+				render={() => <LessonsCatalog/>}
+			/>
+			<Route
+				exact path='/teachers'
+				render={() => <TeachersContainer/>}
+			/>
+			<Route
+				exact path='/my-fragments'
+				render={() => <MyFragments/>}
+			/>
+			<Route
+				exact path='/favorites'
+				render={() => <Favorite/>}
+			/>
+			<Route
+				exact path='/create-fragment'
+				render={() => <CreateFragmentContainer/>}
+			/>
+			<Route
+				exact path='/create-lesson'
+				render={() => <CreateLessonContainer/>}
+			/>
+			<Route
+				exact path='/me'
+				render={() => <ProfilePageContainer/>}
+			/>
+			<Route
+				exact path='/profile/:id?'
+				render={() => <TeacherProfileContainer/>}
+			/>
+			<Route
+				exact path='/admin/login'
+				render={() => <AdminAuthPageContainer/>}
+			/>
+			<Route
+				exact path='/reset-password/:token?'
+				render={() => <ResetPasswordContainer/>}
+			/>
+			<Route
+				exact path='/fragment/:id?'
+				render={() => <FragmentContainer/>}
+			/>
+			<Route
+				path='/lesson/:id?'
+				render={() => <LessonContainer/>}
+			/>
+		</>
+	)
 }
 
 export default App;

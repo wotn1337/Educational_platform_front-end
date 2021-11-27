@@ -6,7 +6,7 @@ import DropDownMenu from "./DropDownMenu/DropDownMenu";
 import MobileNavbar from "./MobileNavbar/MobileNavbar";
 
 
-const Navbar = (props) => {
+const Navbar = ({role, ...props}) => {
 	const logout = (e) => {
 		e.preventDefault();
 		props.logout();
@@ -27,17 +27,19 @@ const Navbar = (props) => {
 								{'teachers': 'Преподаватели'}
 							]}
 						/>
-						<DropDownMenu
-							title={'Мои материалы'}
-							links={[{'my-fragments': 'Мои фрагменты'}, {'my-lessons': 'Мои уроки'}, {'favorites': 'Избранное'}]}
-						/>
-						{props.role !== 'admin' &&
-						<DropDownMenu
-							title={'Создать'}
-							links={[props.role !== 'student' && {'create-fragment': 'Создать фрагмент'}, {'create-lesson': 'Создать урок'}]}
-						/>
+						{role !== 'admin' &&
+						<>
+							<DropDownMenu
+								title={'Мои материалы'}
+								links={[{'my-fragments': 'Мои фрагменты'}, {'my-lessons': 'Мои уроки'}, {'favorites': 'Избранное'}]}
+							/>
+							<DropDownMenu
+								title={'Создать'}
+								links={[props.role !== 'student' && {'create-fragment': 'Создать фрагмент'}, {'create-lesson': 'Создать урок'}]}
+							/>
+						</>
 						}
-						<NavLink className={s.navLink} to="/profile/me" activeClassName={s.active}>Мой профиль</NavLink>
+						<NavLink className={s.navLink} to="/me" activeClassName={s.active}>Мой профиль</NavLink>
 						<NavLink className={s.navLink} to="/auth" onClick={e => logout(e)}>Выйти</NavLink>
 					</>
 					: <NavLink className={s.navLink} to={'/login'} activeClassName={s.active}>Войти</NavLink>

@@ -18,6 +18,7 @@ class FragmentCardContainer extends React.Component {
     render() {
         return (
             <FragmentCard
+                {...this.props}
                 id={this.props.id}
                 key={this.props.id}
                 fragmentType={this.props.fragmentType}
@@ -31,6 +32,7 @@ class FragmentCardContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    role: state.auth.role,
     fragments: state.myFragments.fragments,
     currentPage: state.myFragments.currentPage,
     nextPage: state.myFragments.nextPage,
