@@ -35,14 +35,21 @@
     background-color: white;
     border-radius: 50%;
     border: none;
-    transition: background-image 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 
-.addToFavorite, .alreadyFavorite:hover {
+.addToFavorite {
     background-image: url("../../../../assets/img/fragments/addToFavorite.svg");
 }
 
-.addToFavorite:hover, .alreadyFavorite  {
+.addToFavorite:hover {
+    box-shadow: 0 0 13px 0 rgba(250, 234, 237, 0.84);
+}
+.alreadyFavorite:hover {
+    box-shadow: 0 0 23px 0 rgba(250, 234, 237, 0.84);
+}
+
+.alreadyFavorite {
     background-image: url("../../../../assets/img/fragments/full-heart.svg");
 }
 
@@ -110,6 +117,7 @@ a {
     .fragmentCard {
         width: 330px;
     }
+
     .previewImg {
         width: 280px;
         height: auto;
@@ -120,6 +128,7 @@ a {
     .fragmentCard {
         width: 400px;
     }
+
     .previewImg {
         width: 314px;
         height: auto;
@@ -128,11 +137,12 @@ a {
 
 @media all and (max-width: 480px) {
     .fragmentCard {
-        width: 310px;
+        width: 304px;
         padding: 15px 15px;
     }
+
     .previewImg {
-        width: 280px;
+        width: 274px;
         height: auto;
     }
 }

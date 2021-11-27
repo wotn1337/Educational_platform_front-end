@@ -7,52 +7,47 @@ import {changePage, getFragments} from "../../../../redux/catalogFragmentsReduce
 
 
 class FragmentsListContainer extends React.Component {
-	componentDidMount() {
-		this.props.getFragments(
-			this.props.currentPage,
-			this.props.searchTitle,
-			this.props.searchType,
-			this.props.searchTagsIds
-		);
-	}
+    componentDidMount() {
+        this.props.getFragments(
+            this.props.currentPage,
+            this.props.searchTitle,
+            this.props.searchType,
+            this.props.searchTagsIds
+        );
+    }
 
-	changePage = (page) => {
-		this.props.changePage(
-			page,
-			this.props.searchTitle,
-			this.props.searchType,
-			this.props.searchTagsIds
-		);
-	}
+    changePage = (page) => {
+        this.props.changePage(
+            page,
+            this.props.searchTitle,
+            this.props.searchType,
+            this.props.searchTagsIds
+        );
+    }
 
-	// changeFavorite = (id) => {
-	// 	this.props.changeFavorite(this.props.token, id);
-	// }
+    render() {
+        if (this.props.isFetching) {
+            return <Preloader size={400}/>;
+        }
 
-	render() {
-		if (this.props.isFetching) {
-			return <Preloader size={400}/>;
-		}
-
-		return <FragmentsList {...this.props} changePage={this.changePage}
-			// changeFavorite={this.changeFavorite}
-		/>;
-	}
+        return <FragmentsList {...this.props} changePage={this.changePage}
+        />;
+    }
 }
 
 const mapStateToProps = (state) => ({
-	fragments: state.catalogFragments.fragments,
-	currentPage: state.catalogFragments.currentPage,
-	nextPage: state.catalogFragments.nextPage,
-	prevPage: state.catalogFragments.prevPage,
-	lastPage: state.catalogFragments.lastPage,
-	pageSize: state.catalogFragments.pageSize,
-	isFetching: state.catalogFragments.isFetching,
-	searchTitle: state.catalogFragments.searchTitle,
-	searchType: state.catalogFragments.searchType,
-	searchTagsIds: state.catalogFragments.searchTagsIds
+    fragments: state.catalogFragments.fragments,
+    currentPage: state.catalogFragments.currentPage,
+    nextPage: state.catalogFragments.nextPage,
+    prevPage: state.catalogFragments.prevPage,
+    lastPage: state.catalogFragments.lastPage,
+    pageSize: state.catalogFragments.pageSize,
+    isFetching: state.catalogFragments.isFetching,
+    searchTitle: state.catalogFragments.searchTitle,
+    searchType: state.catalogFragments.searchType,
+    searchTagsIds: state.catalogFragments.searchTagsIds
 });
 
 export default compose(
-	connect(mapStateToProps, {getFragments, changePage}),
+    connect(mapStateToProps, {getFragments, changePage}),
 )(FragmentsListContainer)

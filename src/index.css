@@ -18,6 +18,19 @@ h1.pageTitle {
     color: white;
     text-decoration: underline #F56464;
     margin-bottom: 30px;
+    width: fit-content;
+}
+
+
+@media all and (max-width: 720px) {
+}
+
+@media all and (max-width: 480px) {
+    h1.pageTitle {
+        font-size: 30px;
+        line-height: 40px;
+    }
+}
 }
 
 .btn {

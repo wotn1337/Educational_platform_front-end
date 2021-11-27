@@ -3,13 +3,13 @@
     margin: 70px auto 80px;
 }
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1220px) {
     .content {
         width: 900px;
     }
 }
 
-@media all and (max-width: 900px) {
+@media all and (max-width: 920px) {
     .content {
         width: 700px;
     }
@@ -17,13 +17,7 @@
 
 @media all and (max-width: 720px) {
     .content {
-        width: 100%;
+        width: 95%;
         margin: 40px auto 0;
-    }
-}
-
-@media all and (max-width: 480px) {
-    .content {
-
     }
 }
