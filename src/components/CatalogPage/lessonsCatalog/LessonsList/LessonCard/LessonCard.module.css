@@ -10,7 +10,7 @@
                          "preview annotation annotation heart"
                          "preview count button heart"
                          "tags count button heart";
-    grid-template-columns: 1fr 1fr 1fr 50px;
+    grid-template-columns: 325px 1fr 1fr 50px;
     grid-template-rows: auto 1fr auto auto;
     margin-bottom: 15px;
 }
@@ -34,6 +34,9 @@
     line-height: 33px;
     color: #000000;
     border-bottom: 2px solid #EF5B5B;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    margin-left: 50px;
 }
 
 .annotation {
@@ -44,13 +47,14 @@
     font-size: 22px;
     line-height: 26px;
     color: #000000;
+    margin-left: 50px;
 }
 
 .fragmentsCount {
     grid-area: count;
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin-left: 50px;
 }
 
 .fragmentsCountTitle {
@@ -80,6 +84,7 @@
     justify-content: center;
     max-width: 280px;
     margin-left: auto;
+    align-self: center;
 }
 
 .favorite {
@@ -108,7 +113,7 @@
 }
 
 .addToFavorite:hover {
-    transform: rotate(360deg);
+    transform: scale(1.5);
 }
 
 .author {
