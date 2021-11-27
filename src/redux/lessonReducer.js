@@ -80,7 +80,7 @@ export const deleteLesson = (id) => () => {
 
 export const toggleFavorite = (id) => (dispatch) => {
 	dispatch(toggleFavoriteFetching(true));
-	lessonsAPI.toggleFavorite(id)
+	return lessonsAPI.toggleFavorite(id)
 		.then(() => {
 			dispatch(toggleStateFavorite());
 			dispatch(toggleFavoriteFetching(false));

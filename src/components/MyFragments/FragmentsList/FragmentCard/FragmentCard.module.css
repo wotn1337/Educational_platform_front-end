@@ -90,6 +90,7 @@ a {
     display: flex;
     flex-wrap: wrap;
     margin-top: 15px;
+    gap: 5px;
 }
 
 .tag {
@@ -102,8 +103,6 @@ a {
     background: linear-gradient(265.72deg, #F36A76 13.2%, #F8B480 93.71%), #C4C4C4;
     border-radius: 15px;
     padding: 1px 10px;
-    margin-right: 5px;
-    margin-bottom: 5px;
     min-width: 25px;
     min-height: 25px;
 }
