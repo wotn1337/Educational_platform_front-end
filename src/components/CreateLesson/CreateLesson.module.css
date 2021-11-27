@@ -3,10 +3,14 @@
     margin: 70px auto 80px;
 }
 
+.buttonsBlock {
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 10px;
+}
+
 .createButton {
     display: block;
-    margin-left: auto;
-    margin-top: 30px;
     background-color: #EF5B5B;
     border-radius: 10px;
     font-style: normal;

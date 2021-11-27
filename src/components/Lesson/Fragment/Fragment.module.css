@@ -1,0 +1,47 @@
+.fragment {
+    padding: 50px;
+}
+
+.title {
+    font-style: normal;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.article p {
+    font-family: Bebas Neue, sans-serif !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.video {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.tagsAndAuthor {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 3fr auto;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.authorName {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.authorAvatar {
+    display: block;
+    width: 55px;
+    border-radius: 50%;
+}

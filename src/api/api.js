@@ -3,11 +3,22 @@ import axios from "axios";
 import {fragmentTypes} from "../common/fragmentTypes";
 const TOKEN_TYPE = 'Bearer';
 let TOKEN = localStorage.getItem('token');
+
 const authConfig = () => ({
 	headers: {
 		'Authorization': `${TOKEN_TYPE} ${TOKEN}`
 	}
 });
+
+const createTagsString = (tags) => {
+	let tagsString = '';
+	if (tags) {
+		for (const tag of tags) {
+			tagsString += `&tags[]=${tag}`;
+		}
+	}
+	return tagsString;
+}
 
 
 export const authAPI = {
@@ -149,12 +160,7 @@ export const fragmentsAPI = {
 
 	// Получить список всех фрагментов
 	getFragments(page, title = null, type = null, tags = null) {
-		let tagsString = '';
-		if (tags) {
-			for (const tag of tags) {
-				tagsString += `&tags[]=${tag}`;
-			}
-		}
+		let tagsString = createTagsString(tags);
 		return instance.get(`fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}${tagsString}`, authConfig());
 	},
 
@@ -197,5 +203,28 @@ export const fragmentsAPI = {
 	// Получить список фрагментов конкретного преподавателя
 	getTeacherFragments(id, page) {
 		return instance.get(`teacher/fragments/${id}?page=${page}`, authConfig());
+	}
+};
+
+export const lessonsAPI = {
+	createLesson(title, annotation, fragments, tags) {
+		return instance.post('lessons', JSON.stringify({title, annotation, fragments, tags}), authConfig());
+	},
+
+	getLessons(page, title = null, tags = null) {
+		let tagsString = createTagsString(tags);
+		return instance.get(`lessons?page=${page}${title ? `&title=${title}` : ''}${tagsString}`, authConfig());
+	},
+
+	getLesson(id, page) {
+		return instance.get(`lessons/${id}?page=${page}`, authConfig())
+	},
+
+	deleteLesson(id) {
+		return instance.delete(`lessons/${id}`, authConfig());
+	},
+
+	toggleFavorite(id) {
+		return instance.put(`lessons/${id}`, {}, authConfig());
 	}
 };

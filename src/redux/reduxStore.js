@@ -13,6 +13,8 @@ import allTagsReducer from "./allTagsReducer";
 import teacherProfileReducer from "./teacherProfileReducer";
 import favoritesReducer from "./favoritesReducer";
 import teachersReducer from "./teachersReducer";
+import lessonsCatalogReducer from "./lessonsCatalogReducer";
+import lessonReducer from "./lessonReducer";
 
 
 const reducers = combineReducers({
@@ -28,7 +30,9 @@ const reducers = combineReducers({
 	allTags: allTagsReducer,
 	teacherProfile: teacherProfileReducer,
 	favorites: favoritesReducer,
-	teachers: teachersReducer
+	teachers: teachersReducer,
+	lessonsCatalog: lessonsCatalogReducer,
+	lesson: lessonReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

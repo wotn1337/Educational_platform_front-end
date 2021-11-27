@@ -6,7 +6,7 @@ import {logout} from "../../redux/authReducer";
 
 class NavbarContainer extends React.Component {
 	logout = () => {
-		this.props.logout(this.props.token);
+		this.props.logout();
 	}
 
 	render() {
@@ -15,13 +15,10 @@ class NavbarContainer extends React.Component {
 }
 
 
-export const mapStateToProps = (state) => {
-	return {
-		isAuth: state.auth.isAuth,
-		role: state.auth.role,
-		token: state.auth.token
-	};
-};
+export const mapStateToProps = (state) => ({
+	isAuth: state.auth.isAuth,
+	role: state.auth.role,
+});
 
 export default connect(mapStateToProps, {
 	logout

@@ -1,0 +1,57 @@
+.navigation {
+    min-width: 300px;
+}
+
+.fragmentLink {
+    display: grid;
+    grid-template-areas: 'img title'
+                         'img type';
+    grid-template-columns: 85px 1fr;
+    align-items: center;
+    padding: 10px 25px 10px 0;
+    font-style: normal;
+    font-size: 20px;
+    color: #000000;
+}
+
+.fragmentLink:hover {
+    background: rgba(243, 106, 118, 0.7);
+    color: black;
+}
+
+.fragmentLink:first-child {
+    border-top-left-radius: 10px;
+}
+
+.fragmentLink:last-child {
+    border-bottom-left-radius: 10px;
+}
+
+.fragmentLink.activeFragment {
+    background: rgba(243, 106, 118, 0.7);
+}
+
+.fragmentTypeImg {
+    grid-area: img;
+    align-self: flex-start;
+    padding-top: 10px;
+}
+
+.fragmentTypeImg img {
+    display: block;
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+.fragmentTitle {
+    grid-area: title;
+    font-weight: bold;
+    word-wrap: break-word;
+    max-width: 75%;
+}
+
+.fragmentType {
+    grid-area: type;
+    font-weight: 400;
+    font-size: 16px;
+}

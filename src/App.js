@@ -2,7 +2,6 @@ import React from 'react';
 import {Route} from "react-router-dom";
 import MainPage from "./components/MainPage/MainPage";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
-import CatalogPage from "./components/CatalogPage/CatalogPage";
 import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
 import AdminAuthPageContainer from "./admin/AdminAuthPage/AdminAuthPageContainer";
 import ResetPasswordContainer from "./components/AuthPage/Login/ResetPassword/ResetPasswordContainer";
@@ -16,6 +15,8 @@ import CreateLessonContainer from "./components/CreateLesson/CreateLessonContain
 import TeacherProfileContainer from "./components/TeacherProfile/TeacherProfileContainer";
 import Favorite from "./components/Favorite/Favorite";
 import TeachersContainer from "./components/Teachers/TeachersContainer";
+import LessonsCatalog from "./components/CatalogPage/lessonsCatalog/LessonsCatalog";
+import LessonContainer from "./components/Lesson/LessonContainer";
 
 
 const App = () => {
@@ -35,12 +36,12 @@ const App = () => {
 				render={() => <RegisterContainer/>}
 			/>
 			<Route
-				exact path='/catalog'
-				render={() => <CatalogPage/>}
-			/>
-			<Route
 				exact path='/catalog-fragments'
 				render={() => <FragmentsCatalog/>}
+			/>
+			<Route
+				exact path='/lessons-catalog'
+				render={() => <LessonsCatalog/>}
 			/>
 			<Route
 				exact path='/teachers'
@@ -63,11 +64,11 @@ const App = () => {
 				render={() => <CreateLessonContainer/>}
 			/>
 			<Route
-				exact path='/profile/me'
+				exact path='/me'
 				render={() => <ProfilePageContainer/>}
 			/>
 			<Route
-				exact path='/profile:id?'
+				exact path='/profile/:id?'
 				render={() => <TeacherProfileContainer/>}
 			/>
 			<Route
@@ -75,12 +76,16 @@ const App = () => {
 				render={() => <AdminAuthPageContainer/>}
 			/>
 			<Route
-				exact path='/reset-password:token?'
+				exact path='/reset-password/:token?'
 				render={() => <ResetPasswordContainer/>}
 			/>
 			<Route
-				exact path='/fragment:id?'
+				exact path='/fragment/:id?'
 				render={() => <FragmentContainer/>}
+			/>
+			<Route
+				path='/lesson/:id?'
+				render={() => <LessonContainer/>}
 			/>
 		</>
 	)
