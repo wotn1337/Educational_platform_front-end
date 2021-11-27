@@ -4,6 +4,7 @@ import {compose} from "redux";
 import {getLessons, changePage} from "../../../../redux/lessonsCatalogReducer";
 import LessonsList from "./LessonsList";
 import Preloader from "../../../../common/Preloader/Preloader";
+import {toggleFavorite} from "../../../../redux/lessonReducer";
 
 
 class LessonsListContainer extends React.Component {
@@ -37,5 +38,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-	connect(mapStateToProps, {getLessons, changePage}),
+	connect(mapStateToProps, {getLessons, changePage, toggleFavorite}),
 )(LessonsListContainer)
