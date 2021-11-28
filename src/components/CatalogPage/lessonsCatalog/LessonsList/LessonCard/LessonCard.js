@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 import Tags from "../../../../MyFragments/FragmentsList/FragmentCard/Tags/Tags";
 
 
-const LessonCard = ({lesson, toggleFavorite, ...props}) => {
+const LessonCard = ({lesson, toggleFavorite, role, ...props}) => {
 	const [favorite, setFavorite] = useState(lesson.favourite);
 	return (
 		<div className={s.lessonCard}>
@@ -20,7 +20,10 @@ const LessonCard = ({lesson, toggleFavorite, ...props}) => {
 					<span className={s.fragmentsCountTitle}>Фрагментов в уроке: </span>
 					<span className={s.count}>{lesson.fragments_count}</span>
 				</span>
-				<NavLink to={`/lesson/${lesson.id}`} className={`${s.lessonButton} btn`}>Перейти к материалам урока</NavLink>
+				<NavLink to={`/lesson/${lesson.id}`} className={`${s.lessonButton} btn`}>
+					Перейти к материалам урока
+				</NavLink>
+				{role !== 'admin' &&
 				<div className={s.favorite}>
 					<button
 						className={`${s.addToFavorite} ${favorite ? s.inFavorite : s.notInFavorite}`}
@@ -30,6 +33,7 @@ const LessonCard = ({lesson, toggleFavorite, ...props}) => {
 						}}
 					/>
 				</div>
+				}
 			</div>
 			<div className={s.author}>Автор: <b>{lesson.user_name}</b></div>
 		</div>

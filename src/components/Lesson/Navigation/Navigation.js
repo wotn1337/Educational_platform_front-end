@@ -5,18 +5,18 @@ import {fragmentTypeImg} from "../../../common/fragmentsPreview";
 import {russianFragmentTypes} from "../../../common/fragmentTypes";
 
 
-const Navigation = ({lessonId, fragments, changeFragment, ...props}) => {
+const Navigation = ({lessonId, fragments, setCurrentFragment, ...props}) => {
 	const navLinks = fragments.map(fragment => (
 		<NavLink
-			to={`/lesson/${lessonId}/${fragment.pivot.fragment_id}`}
-			key={fragment.pivot.fragment_id}
+			to={`/lesson/${lessonId}/${fragment.id}`}
+			key={fragment.id}
 			className={s.fragmentLink}
-			onClick={() => changeFragment(fragment.pivot.order)}
+			onClick={() => setCurrentFragment(fragment.order)}
 			activeClassName={s.activeFragment}
 		>
-			<div className={s.fragmentTypeImg}><img src={fragmentTypeImg[fragment.fragmentgable_type]} alt='type'/></div>
+			<div className={s.fragmentTypeImg}><img src={fragmentTypeImg[fragment.type]} alt='type'/></div>
 			<span className={s.fragmentTitle}>{fragment.title}</span>
-			<span className={s.fragmentType}>{russianFragmentTypes[fragment.fragmentgable_type]}</span>
+			<span className={s.fragmentType}>{russianFragmentTypes[fragment.type]}</span>
 		</NavLink>
 	));
 

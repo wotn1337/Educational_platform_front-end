@@ -8,14 +8,14 @@ import ButtonsBlock from "./ButtonsBlock/ButtonsBlock";
 import EditingLesson from "./EditingLesson/EditingLesson";
 
 
-const Lesson = ({id, fragmentsTitles, currentFragment, changeFragment, lessonTitle, isEdit, ...props}) => {
+const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle, isEdit, ...props}) => {
 	return (
 		<section className={s.content}>
 			{!isEdit ?
 				<>
 					<h1 className={'pageTitle'}>{lessonTitle}</h1>
 					<section className={s.lesson}>
-						<Navigation fragments={fragmentsTitles} lessonId={id} changeFragment={changeFragment}/>
+						<Navigation fragments={fragments} lessonId={id} setCurrentFragment={setCurrentFragment}/>
 						{props.isFetching ? <Preloader size={200}/>
 							: <>{currentFragment && <Route path={`/lesson/${id}/:fragmentId`}
 							                               render={() => <Fragment fragment={currentFragment}/>}/>}</>
@@ -39,7 +39,7 @@ const Lesson = ({id, fragmentsTitles, currentFragment, changeFragment, lessonTit
 					changeTitle={props.changeLessonTitle}
 					annotation={props.lessonAnnotation}
 					changeAnnotation={props.changeLessonAnnotation}
-					fragments={fragmentsTitles}
+					fragments={fragments}
 				/>
 			}
 		</section>

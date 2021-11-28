@@ -28,6 +28,7 @@ class LessonsListContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+	role: state.auth.role,
 	lessons: state.lessonsCatalog.lessons,
 	currentPage: state.lessonsCatalog.currentPage,
 	nextPage: state.lessonsCatalog.nextPage,

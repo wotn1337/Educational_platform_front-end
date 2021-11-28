@@ -6,7 +6,7 @@ import LessonCard from "./LessonCard/LessonCard";
 
 const LessonsList = (props) => {
 	const lessons = props.lessons.map(lesson => (
-		<LessonCard key={lesson.id} lesson={lesson} toggleFavorite={props.toggleFavorite}/>
+		<LessonCard key={lesson.id} lesson={lesson} toggleFavorite={props.toggleFavorite} role={props.role}/>
 	));
 
 	return (

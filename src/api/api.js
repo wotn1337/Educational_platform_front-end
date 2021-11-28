@@ -216,8 +216,8 @@ export const lessonsAPI = {
 		return instance.get(`lessons?page=${page}${title ? `&title=${title}` : ''}${tagsString}`, authConfig());
 	},
 
-	getLesson(id, page) {
-		return instance.get(`lessons/${id}?page=${page}`, authConfig())
+	getLesson(id) {
+		return instance.get(`lessons/${id}`, authConfig())
 	},
 
 	deleteLesson(id) {

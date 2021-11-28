@@ -9,13 +9,14 @@ const SET_LESSON = 'lesson/SET_LESSON';
 const TOGGLE_IS_FETCHING = 'lesson/TOGGLE_IS_FETCHING';
 const CHANGE_TITLE = 'lesson/CHANGE_TITLE';
 const CHANGE_ANNOTATION = 'lesson/CHANGE_ANNOTATION';
+const SET_CURRENT_FRAGMENT = 'lesson/SET_CURRENT_FRAGMENT';
 
 
 const initState = {
 	currentFragment: undefined,
+	fragments: [],
 	lessonTitle: undefined,
 	lessonAnnotation: undefined,
-	fragmentsTitles: [],
 	favorite: false,
 	favoriteFetching: false,
 	isFetching: false,
@@ -27,12 +28,11 @@ const lessonReducer = (state = initState, action) => {
 		case SET_LESSON:
 			return {
 				...state,
-				currentFragment: action.data.fragments.data[0],
-				lessonTitle: action.data.fragments.lesson_title,
-				lessonAnnotation: action.data.fragments.lesson_annotation,
-				fragmentsTitles: action.data.fragments.fragments_title,
-				creatorId: action.data.fragments.user_id,
-				favorite: action.data.fragments.lesson_favourite,
+				fragments: action.data.lesson.fragments.data,
+				lessonTitle: action.data.lesson.title,
+				lessonAnnotation: action.data.lesson.annotation,
+				creatorId: action.data.lesson.user_id,
+				favorite: action.data.lesson.favourite,
 			};
 
 		case TOGGLE_FAVORITE:
@@ -50,6 +50,9 @@ const lessonReducer = (state = initState, action) => {
 		case CHANGE_ANNOTATION:
 			return {...state, lessonAnnotation: action.annotation};
 
+		case SET_CURRENT_FRAGMENT:
+			return {...state, currentFragment: state.fragments[action.orderNumber - 1]};
+
 		default:
 			return state;
 	}
@@ -61,10 +64,11 @@ const setLesson = (data) => ({type: SET_LESSON, data});
 
 export const changeLessonTitle = (title) => ({type: CHANGE_TITLE, title});
 export const changeLessonAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});
+export const setCurrentFragment = (orderNumber) => ({type: SET_CURRENT_FRAGMENT, orderNumber});
 
-export const getLesson = (id, fragmentOrderNumber) => (dispatch) => {
+export const getLesson = (id) => (dispatch) => {
 	dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
-	lessonsAPI.getLesson(id, fragmentOrderNumber)
+	lessonsAPI.getLesson(id)
 		.then(res => {
 			console.log(res);
 			dispatch(setLesson(res.data));
@@ -73,7 +77,7 @@ export const getLesson = (id, fragmentOrderNumber) => (dispatch) => {
 }
 
 export const deleteLesson = (id) => () => {
-    lessonsAPI.deleteLesson(id)
+    return lessonsAPI.deleteLesson(id)
 	    .then(res => successNotification(res.data.message))
 	    .catch(err => console.error(err))
 }
