@@ -6,9 +6,8 @@ import {changePage, getMyFragments} from "../../../redux/myFragmentsReducer";
 import Preloader from "../../../common/Preloader/Preloader";
 
 class FragmentsListContainer extends React.Component {
-
 	state = {
-		fragments: this.props.lessonFragments
+		fragments: this.props.fragments
 	}
 
 	isFragmentChosen = (id) => {
@@ -27,10 +26,7 @@ class FragmentsListContainer extends React.Component {
 					...this.state.fragments,
 					{
 						...fragment,
-						// id: fragment.id,
-						// title: fragment.title,
-						// type: fragment.type,
-						// tags: fragment.tags,
+
 						number: this.state.fragments.length + 1
 					}
 				]
@@ -86,7 +82,6 @@ class FragmentsListContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
 	myFragments: state.myFragments.fragments,
-	lessonFragments: state.createLesson.fragments,
 	currentPage: state.myFragments.currentPage,
 	nextPage: state.myFragments.nextPage,
 	prevPage: state.myFragments.prevPage,

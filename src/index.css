@@ -18,6 +18,18 @@ h1.pageTitle {
     color: white;
     text-decoration: underline #F56464;
     margin-bottom: 30px;
+    width: fit-content;
+}
+
+
+@media all and (max-width: 720px) {
+}
+
+@media all and (max-width: 480px) {
+    h1.pageTitle {
+        font-size: 30px;
+        line-height: 40px;
+    }
 }
 
 .btn {
@@ -30,6 +42,7 @@ h1.pageTitle {
     border: none;
     transition: background-color;
     transition-duration: 200ms;
+    min-height: 70px;
 }
 
 .btn:hover {
@@ -40,4 +53,10 @@ h1.pageTitle {
 .btn:disabled {
     background-color: #7C7676;
     opacity: 1;
+}
+.btn:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+    background-color: #FBCB84;
 }

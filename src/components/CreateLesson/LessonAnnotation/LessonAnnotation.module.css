@@ -1,5 +1,6 @@
 .annotationBlock {
     margin-bottom: 30px;
+    position: relative;
 }
 
 .annotationTitle {
@@ -22,4 +23,10 @@
 
 .annotation:focus {
     outline: none;
+}
+
+.symbolCount {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
 }

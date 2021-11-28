@@ -5,7 +5,7 @@ import {
 	addFragment,
 	addTag,
 	changeAnnotation,
-	changeFragmentTitle,
+	changeLessonTitle,
 	createLesson,
 	deleteTag
 } from "../../redux/createLessonReducer";
@@ -47,7 +47,7 @@ export default compose(
 	withoutAuthRedirectToAuthPage,
 	redirectAdminToMain,
 	connect(mapStateToProps, {
-		changeFragmentTitle,
+		changeLessonTitle,
 		addFragment,
 		getMyFragments,
 		changePage,

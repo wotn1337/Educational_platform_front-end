@@ -5,13 +5,13 @@ import FragmentsListContainer from "./FragmentsList/FragmentsListContainer";
 
 
 const FragmentsCatalog = () => {
-	return (
-		<div className={s.content}>
-			<h1 className={'pageTitle'}>Каталог фрагментов</h1>
-			<SearchBlockContainer/>
-			<FragmentsListContainer />
-		</div>
-	);
+    return (
+        <div className={s.content}>
+            <h1 className={'pageTitle'}>Каталог фрагментов</h1>
+            <SearchBlockContainer/>
+            <FragmentsListContainer/>
+        </div>
+    );
 };
 
 export default FragmentsCatalog;

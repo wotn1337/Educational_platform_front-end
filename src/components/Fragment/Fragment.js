@@ -52,12 +52,12 @@ const Fragment = (props) => {
 					<video src={props.content} controls={'controls'} className={s.video}/>
 				</div>
 				}
-                {!props.isEdit &&
-                    <div className={s.author}>
-                        <NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>
-                        <img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
-                    </div>
-                }
+				{!props.isEdit &&
+				<div className={s.author}>
+					<NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>
+					<img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
+				</div>
+				}
 			</div>
 
 			<ThisTags
@@ -87,9 +87,9 @@ const Fragment = (props) => {
 					{(props.userId === props.creatorId || props.role === 'admin') &&
 					<button className={`${s.btn} ${s.deleteButton}`} onClick={props.deleteFragment}>Удалить</button>
 					}
-					<button className={`${s.btn} ${s.addToFavorite}`}>
-						Добавить в избранное
-					</button>
+					{props.role !== 'admin' &&
+					<button className={`${s.btn} ${s.addToFavorite}`}>Добавить в избранное</button>
+					}
 				</>
 				}
 			</div>

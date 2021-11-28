@@ -64,7 +64,7 @@ const App = () => {
 				render={() => <CreateLessonContainer/>}
 			/>
 			<Route
-				exact path='/profile/me'
+				exact path='/me'
 				render={() => <ProfilePageContainer/>}
 			/>
 			<Route
