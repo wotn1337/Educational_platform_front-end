@@ -35,7 +35,8 @@ const mapStateToProps = (state) => ({
 	searchType: state.catalogFragments.searchType,
 	searchTags: state.catalogFragments.searchTags,
 	searchTagsIds: state.catalogFragments.searchTagsIds,
-	totalFragmentsCount: state.catalogFragments.totalFragmentsCount
+	totalFragmentsCount: state.catalogFragments.totalFragmentsCount,
+	currentFragmentsCount: state.catalogFragments.currentFragmentsCount
 });
 
 export default compose(

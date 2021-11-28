@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Fragment.module.css';
 import {withRouter} from "react-router-dom";
 import {fragmentTypes} from "../../../common/fragmentTypes";
+import avatarPlaceholder from "../../../assets/img/profile/teacherProfile.svg";
 
 
 const Fragment = ({fragment}) => {
@@ -18,7 +19,7 @@ const Fragment = ({fragment}) => {
 				<div>Здесь будут теги фрагмента, когда Никита будет возвращать их с бэка</div>
 				<div className={s.author}>
 					<span className={s.authorName}>{fragment.user_name}</span>
-					<img src={fragment.avatar} alt="avatar" className={s.authorAvatar}/>
+					<img src={fragment.avatar || avatarPlaceholder} alt="avatar" className={s.authorAvatar}/>
 				</div>
 			</div>
 		</div>

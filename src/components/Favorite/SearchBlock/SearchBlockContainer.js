@@ -24,7 +24,8 @@ class SearchBlockContainer extends React.Component {
 const mapStateToProps = (state) => ({
     searchTitle: state.favorites.searchTitle,
     searchType: state.favorites.searchType,
-    totalFragmentsCount: state.favorites.totalFragmentsCount
+    totalFragmentsCount: state.favorites.totalFragmentsCount,
+    currentFragmentsCount: state.favorites.currentFragmentsCount
 });
 
 export default compose(

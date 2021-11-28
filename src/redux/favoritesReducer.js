@@ -17,7 +17,8 @@ const initState = {
     isFetching: false,
     searchTitle: '',
     searchType: '',
-    totalFragmentsCount: 0
+    totalFragmentsCount: 0,
+    currentFragmentsCount: 0,
 };
 
 const favoritesReducer = (state = initState, action) => {
@@ -28,7 +29,8 @@ const favoritesReducer = (state = initState, action) => {
                 favorites: action.data.fragments.data,
                 lastPage: action.data.meta.last_page,
                 pageSize: action.data.meta.per_page,
-                totalFragmentsCount: action.data.meta.total
+                currentFragmentsCount: action.data.meta.total,
+                totalFragmentsCount: action.data.fragments.all_count,
             };
         case SET_IS_FETCHING:
             return {...state, isFetching: action.isFetching};
