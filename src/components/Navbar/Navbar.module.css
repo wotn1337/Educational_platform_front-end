@@ -118,12 +118,45 @@ a.active {
 }
 
 @media all and (max-width: 1200px) {
+    .headerWrapper {
+        width: 100%;
+        flex-wrap: nowrap;
+    }
     .navLink {
-        font-size: 1.1em;
+        font-size: 1em;
+        padding: 20px 5px;
+        margin: 0 5px;
+        min-width: 100px;
+    }
+    .dropDown:hover .navLink {
+        padding: 20px 0 10px 0;
+        color: #F56464 !important;
+        min-width: 100px;
+        width: 148px;
+    }
+    .dropDownMenu .dropDownItem {
+        font-size: 1em;
+    }
+    .dropDownMenu {
+        width: 158px;
+        top: 54px;
+    }
+    .nav {
+        margin-top: 0;
+    }
+    .navLink:hover {
+        background-image: none;
+    }
+    a.active {
+        background-image: none;
+    }
+    .logo {
+        margin-top: 0;
+        height: 64px;
     }
 }
 
-@media all and (max-width: 1024px) {
+@media all and (max-width: 900px) {
     .nav {
         margin-top: 0;
     }
@@ -132,17 +165,3 @@ a.active {
         display: none;
     }
 }
-
-/*@media all and (max-width: 992px){*/
-/*    .nav {*/
-/*        margin-top: 0;*/
-/*    }*/
-
-/*    .logo {*/
-/*        margin-top: 0;*/
-/*        height: 60px;*/
-/*    }*/
-/*    .navLink {*/
-/*        font-size: 1.2em;*/
-/*    }*/
-/*}*/

@@ -92,10 +92,7 @@
     margin-right: 10px;
 }
 
-
-
-
-@media all and (max-width: 1024px) {
+@media all and (max-width: 900px) {
     .mobileMenu {
         display: flex;
     }
