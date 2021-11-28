@@ -123,3 +123,13 @@
     padding: 8px 80px;
     text-align: end;
 }
+
+.creatorName {
+    color: white;
+    font-weight: bold;
+}
+
+.creatorName:hover {
+    color: white;
+    text-decoration: underline;
+}

@@ -211,9 +211,12 @@ export const lessonsAPI = {
 		return instance.post('lessons', JSON.stringify({title, annotation, fragments, tags}), authConfig());
 	},
 
-	getLessons(page, title = null, tags = null) {
+	getLessons(page, title, teacherName, tags) {
 		let tagsString = createTagsString(tags);
-		return instance.get(`lessons?page=${page}${title ? `&title=${title}` : ''}${tagsString}`, authConfig());
+		return instance.get(
+			`lessons?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&teacher=${teacherName}` : ''}${tagsString}`,
+			authConfig()
+		);
 	},
 
 	getLesson(id) {

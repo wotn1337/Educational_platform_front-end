@@ -4,7 +4,7 @@ import cross from '../../../assets/img/fragments/cross_white.png';
 
 
 const ThisTags = (props) => {
-	const thisTags = props.tags.map(tag => {
+	const thisTags = props.tags?.map(tag => {
 		return <div
 			className={s.tag}
 			key={tag.id}

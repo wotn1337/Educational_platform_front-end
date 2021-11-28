@@ -35,7 +35,7 @@ const LessonCard = ({lesson, toggleFavorite, role, ...props}) => {
 				</div>
 				}
 			</div>
-			<div className={s.author}>Автор: <b>{lesson.user_name}</b></div>
+			<div className={s.author}>Автор: <NavLink to={`/profile/${lesson.user_id}`} className={s.creatorName}>{lesson.user_name}</NavLink></div>
 		</div>
 	)
 		;
