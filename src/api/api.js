@@ -229,5 +229,9 @@ export const lessonsAPI = {
 
 	toggleFavorite(id) {
 		return instance.put(`lessons/${id}`, {}, authConfig());
+	},
+
+	updateLesson(id, title, annotation, fragments, tags) {
+		return instance.patch(`lessons/${id}`, JSON.stringify({title, annotation, fragments, tags}), authConfig())
 	}
 };

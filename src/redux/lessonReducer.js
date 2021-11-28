@@ -10,6 +10,9 @@ const TOGGLE_IS_FETCHING = 'lesson/TOGGLE_IS_FETCHING';
 const CHANGE_TITLE = 'lesson/CHANGE_TITLE';
 const CHANGE_ANNOTATION = 'lesson/CHANGE_ANNOTATION';
 const SET_CURRENT_FRAGMENT = 'lesson/SET_CURRENT_FRAGMENT';
+const SET_FRAGMENTS = 'lesson/SET_FRAGMENTS';
+const ADD_TAG = 'lesson/ADD_TAG';
+const DELETE_TAG = 'lesson/DELETE_TAG';
 
 
 const initState = {
@@ -20,7 +23,8 @@ const initState = {
 	favorite: false,
 	favoriteFetching: false,
 	isFetching: false,
-	creatorId: undefined
+	creatorId: undefined,
+	tags: []
 };
 
 const lessonReducer = (state = initState, action) => {
@@ -33,6 +37,7 @@ const lessonReducer = (state = initState, action) => {
 				lessonAnnotation: action.data.lesson.annotation,
 				creatorId: action.data.lesson.user_id,
 				favorite: action.data.lesson.favourite,
+				tags: action.data.lesson.tags?.data
 			};
 
 		case TOGGLE_FAVORITE:
@@ -53,6 +58,15 @@ const lessonReducer = (state = initState, action) => {
 		case SET_CURRENT_FRAGMENT:
 			return {...state, currentFragment: state.fragments[action.orderNumber - 1]};
 
+		case SET_FRAGMENTS:
+			return {...state, fragments: action.fragments};
+
+		case ADD_TAG:
+			return {...state, tags: [...state.tags, action.tag]};
+
+		case DELETE_TAG:
+			return {...state, tags: state.tags.filter(tag => tag.id !== action.tag.id)};
+
 		default:
 			return state;
 	}
@@ -65,6 +79,9 @@ const setLesson = (data) => ({type: SET_LESSON, data});
 export const changeLessonTitle = (title) => ({type: CHANGE_TITLE, title});
 export const changeLessonAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});
 export const setCurrentFragment = (orderNumber) => ({type: SET_CURRENT_FRAGMENT, orderNumber});
+export const setFragments = (fragments) => ({type: SET_FRAGMENTS, fragments});
+export const addTag = (tag) => ({type: ADD_TAG, tag});
+export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 
 export const getLesson = (id) => (dispatch) => {
 	dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
@@ -89,6 +106,16 @@ export const toggleFavorite = (id) => (dispatch) => {
 			dispatch(toggleStateFavorite());
 			dispatch(toggleFavoriteFetching(false));
 		})
+}
+
+export const updateLesson = (id, title, annotation, fragments, tags) => (dispatch) => {
+	dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
+	return lessonsAPI.updateLesson(id, title, annotation, fragments, tags)
+		.then(res => {
+			dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
+			successNotification(res.data.messages);
+		})
+		.catch(err => console.log(err.response))
 }
 
 export default lessonReducer;

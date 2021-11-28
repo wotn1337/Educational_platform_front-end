@@ -42,7 +42,7 @@ const ConstructorBlock = (props) => {
 					fragments={props.fragments}
 					setModalActive={setModalActive}
 					changeSelectedMode={props.changeSelectedMode}
-					aggFragment={props.addFragment}/>
+					setFragments={props.setFragments}/>
 			</Modal>
 		</div>
 	)

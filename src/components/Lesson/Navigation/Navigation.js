@@ -12,7 +12,7 @@ const Navigation = ({lessonId, fragments, setCurrentFragment, ...props}) => {
 			key={fragment.id}
 			className={s.fragmentLink}
 			onClick={() => setCurrentFragment(fragment.order)}
-			activeClassName={s.activeFragment}
+			activeClassName={s.active}
 		>
 			<div className={s.fragmentTypeImg}><img src={fragmentTypeImg[fragment.type]} alt='type'/></div>
 			<span className={s.fragmentTitle}>{fragment.title}</span>
@@ -21,7 +21,16 @@ const Navigation = ({lessonId, fragments, setCurrentFragment, ...props}) => {
 	));
 
 	return (
-		<nav className={s.navigation}>{navLinks}</nav>
+		<nav className={s.navigation}>
+			<NavLink
+				exact to={`/lesson/${lessonId}`}
+				className={s.description}
+				activeClassName={s.active}
+			>
+				Описание урока
+			</NavLink>
+			{navLinks}
+		</nav>
 	);
 };
 

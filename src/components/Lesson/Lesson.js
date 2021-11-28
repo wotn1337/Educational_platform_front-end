@@ -40,6 +40,14 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 					annotation={props.lessonAnnotation}
 					changeAnnotation={props.changeLessonAnnotation}
 					fragments={fragments}
+					setFragments={props.setFragments}
+					tags={props.tags}
+					deleteTag={props.deleteTag}
+					addTag={props.addTag}
+					returnTag={props.returnTag}
+					updateLesson={props.updateLesson}
+					toggleIsEdit={props.toggleIsEdit}
+					isFetching={props.isFetching}
 				/>
 			}
 		</section>
