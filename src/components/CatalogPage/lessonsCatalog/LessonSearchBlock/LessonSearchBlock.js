@@ -26,7 +26,7 @@ const LessonSearchBlock = ({searchLessonTitle, changeSearchLessonTitle, searchTe
 			</span>
 			<div className={s.inputBlock}>
 				<Input placeholder={'Название урока'} value={searchLessonTitle} onChange={changeSearchLessonTitle} style={{marginRight: '35px'}}/>
-				<Input placeholder={'Имя преподавателя'} value={searchTeacherName} onChange={changeSearchTeacherName} disabled={true}/>
+				<Input placeholder={'Имя преподавателя'} value={searchTeacherName} onChange={changeSearchTeacherName}/>
 				<button className={s.searchButton} onClick={() => {
 					setTagsList(false);
 					search();

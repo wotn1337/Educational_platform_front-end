@@ -91,6 +91,21 @@ export const getLessons = (page, title, teacherName, tags) => (dispatch) => {
 		})
 };
 
+export const getFavoriteLessons = (page, title, teacherName, tags) => (dispatch) => {
+	dispatch(toggleIsFetching(true));
+	lessonsAPI.getFavoriteLessons(page, title, teacherName, tags)
+		.then(res => {
+			console.log(res);
+			dispatch(setLessons(res.data));
+			dispatch(setCurrentPage(page));
+			dispatch(toggleIsFetching(false));
+		})
+		.catch(err => {
+			console.log(err.response);
+			dispatch(toggleIsFetching(false));
+		})
+};
+
 export const changePage = (page, title, teacherName, tags) => (dispatch) => {
 	dispatch(getLessons(page, title, teacherName, tags));
 };

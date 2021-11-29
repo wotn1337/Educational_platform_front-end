@@ -11,14 +11,21 @@ const LessonsList = (props) => {
 
 	return (
 		<section>
-			<div className={s.lessons}>{lessons}</div>
-			<Pagination
-				handler={props.changePage}
-				currentPage={props.currentPage}
-				prevPage={props.prevPage}
-				lastPage={props.lastPage}
-				nextPage={props.nextPage}
-			/>
+			{lessons.length > 0
+				? <>
+					<div className={s.lessons}>{lessons}</div>
+					<Pagination
+						handler={props.changePage}
+						currentPage={props.currentPage}
+						prevPage={props.prevPage}
+						lastPage={props.lastPage}
+						nextPage={props.nextPage}
+					/>
+				</>
+				: <div className={s.noLessons}>
+					С такими параметрами уроков не найдено
+					<div className={s.sadSmile}>: (</div></div>
+			}
 		</section>
 	);
 };

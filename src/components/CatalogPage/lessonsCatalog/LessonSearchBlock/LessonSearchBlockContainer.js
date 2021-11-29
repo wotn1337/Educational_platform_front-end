@@ -4,7 +4,7 @@ import {compose} from "redux";
 import LessonSearchBlock from "./LessonSearchBlock";
 import {
 	addSearchTag,
-	changeSearchLessonTitle,
+	changeSearchLessonTitle, changeSearchTeacherName,
 	deleteSearchTag,
 	getLessons
 } from "../../../../redux/lessonsCatalogReducer";
@@ -17,7 +17,7 @@ class LessonSearchBlockContainer extends React.Component {
 		this.props.getLessons(
 			1,
 			this.props.searchLessonTitle,
-			undefined,
+			this.props.searchTeacherName,
 			tagsIds
 		);
 	}
@@ -40,6 +40,7 @@ const mapStateToProps = (state) => ({
 export default compose(
 	connect(mapStateToProps, {
 		changeSearchLessonTitle,
+		changeSearchTeacherName,
 		addSearchTag,
 		deleteSearchTag,
 		returnTag,

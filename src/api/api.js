@@ -214,7 +214,15 @@ export const lessonsAPI = {
 	getLessons(page, title, teacherName, tags) {
 		let tagsString = createTagsString(tags);
 		return instance.get(
-			`lessons?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&teacher=${teacherName}` : ''}${tagsString}`,
+			`lessons?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&creator=${teacherName}` : ''}${tagsString}`,
+			authConfig()
+		);
+	},
+
+	getFavoriteLessons(page, title, teacherName, tags) {
+		let tagsString = createTagsString(tags);
+		return instance.get(
+			`lessons/like?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&creator=${teacherName}` : ''}${tagsString}`,
 			authConfig()
 		);
 	},

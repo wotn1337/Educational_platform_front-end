@@ -11,3 +11,19 @@
     border-radius: 10px;
     color: black;
 }
+
+.noLessons {
+    background-color: white;
+    color: #F56464;
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+    padding: 50px 100px;
+    border-radius: 10px;
+    font-size: 32px;
+}
+
+.sadSmile {
+    cursor: default;
+    transform: rotate(90deg);
+}
