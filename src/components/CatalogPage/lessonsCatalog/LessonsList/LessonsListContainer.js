@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {getLessons, changePage} from "../../../../redux/lessonsCatalogReducer";
+import {getLessons} from "../../../../redux/lessonsCatalogReducer";
 import LessonsList from "./LessonsList";
 import Preloader from "../../../../common/Preloader/Preloader";
 import {toggleFavorite} from "../../../../redux/lessonReducer";
@@ -11,6 +11,7 @@ class LessonsListContainer extends React.Component {
 	componentDidMount() {
 		const tagsIds = this.props.searchTags.map(tag => tag.id);
 		this.props.getLessons(
+			this.props.page,
 			1,
 			this.props.searchLessonTitle,
 			this.props.searchTeacherName,
@@ -20,7 +21,8 @@ class LessonsListContainer extends React.Component {
 
 	changePage = (page) => {
 		const tagsIds = this.props.searchTags.map(tag => tag.id);
-		this.props.changePage(
+		this.props.getLessons(
+			this.props.page,
 			page,
 			this.props.searchLessonTitle,
 			this.props.searchTeacherName,
@@ -54,5 +56,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-	connect(mapStateToProps, {getLessons, changePage, toggleFavorite}),
+	connect(mapStateToProps, {getLessons, toggleFavorite}),
 )(LessonsListContainer)

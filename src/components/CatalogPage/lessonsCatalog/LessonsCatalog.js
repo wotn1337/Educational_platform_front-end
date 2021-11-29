@@ -7,8 +7,8 @@ const LessonsCatalog = (props) => {
 	return (
 		<section className={s.content}>
 			<h1 className={'pageTitle'}>Каталог уроков</h1>
-			<LessonSearchBlockContainer />
-			<LessonsListContainer />
+			<LessonSearchBlockContainer page={'catalog'}/>
+			<LessonsListContainer page={'catalog'}/>
 		</section>
 	);
 };

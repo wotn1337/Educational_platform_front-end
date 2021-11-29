@@ -4,7 +4,7 @@ import FavoriteListContainer from "./FavoriteList/FavoriteListContainer";
 import SearchBlockContainer from "./SearchBlock/SearchBlockContainer";
 import selectArrow from "../../assets/img/selectArrow.svg";
 import LessonSearchBlockContainer from "../CatalogPage/lessonsCatalog/LessonSearchBlock/LessonSearchBlockContainer";
-import FavoriteLessonsContainer from "./FavoriteList/FavoriteLessonsContainer";
+import LessonsListContainer from "../CatalogPage/lessonsCatalog/LessonsList/LessonsListContainer";
 
 const Favorite = () => {
 	const [favoriteType, setFavoriteType] = useState('fragments');
@@ -39,8 +39,8 @@ const Favorite = () => {
 			}
 			{favoriteType === 'lessons' &&
 			<>
-				<LessonSearchBlockContainer />
-				<FavoriteLessonsContainer />
+				<LessonSearchBlockContainer page={'favorite'}/>
+				<LessonsListContainer page={'favorite'} />
 			</>
 			}
 		</div>

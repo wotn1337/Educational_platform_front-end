@@ -76,9 +76,23 @@ export const changeSearchTeacherName = (name) => ({type: CHANGE_SEARCH_TEACHER_N
 export const addSearchTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteSearchTag = (tag) => ({type: DELETE_TAG, tag});
 
-export const getLessons = (page, title, teacherName, tags) => (dispatch) => {
+export const getLessons = (page, pageNumber, title, teacherName, tags) => (dispatch) => {
+	let getLessonsFunction;
+	switch (page) {
+		case 'favorite':
+			getLessonsFunction = lessonsAPI.getFavoriteLessons;
+			break;
+
+		case 'catalog':
+			getLessonsFunction = lessonsAPI.getLessons;
+			break;
+
+		default:
+			getLessonsFunction = lessonsAPI.getLessons;
+			break;
+	}
 	dispatch(toggleIsFetching(true));
-	lessonsAPI.getLessons(page, title, teacherName, tags)
+	getLessonsFunction(pageNumber, title, teacherName, tags)
 		.then(res => {
 			console.log(res);
 			dispatch(setLessons(res.data));
@@ -91,23 +105,23 @@ export const getLessons = (page, title, teacherName, tags) => (dispatch) => {
 		})
 };
 
-export const getFavoriteLessons = (page, title, teacherName, tags) => (dispatch) => {
-	dispatch(toggleIsFetching(true));
-	lessonsAPI.getFavoriteLessons(page, title, teacherName, tags)
-		.then(res => {
-			console.log(res);
-			dispatch(setLessons(res.data));
-			dispatch(setCurrentPage(page));
-			dispatch(toggleIsFetching(false));
-		})
-		.catch(err => {
-			console.log(err.response);
-			dispatch(toggleIsFetching(false));
-		})
-};
-
-export const changePage = (page, title, teacherName, tags) => (dispatch) => {
-	dispatch(getLessons(page, title, teacherName, tags));
-};
+// export const getFavoriteLessons = (page, title, teacherName, tags) => (dispatch) => {
+// 	dispatch(toggleIsFetching(true));
+// 	lessonsAPI.getFavoriteLessons(page, title, teacherName, tags)
+// 		.then(res => {
+// 			console.log(res);
+// 			dispatch(setLessons(res.data));
+// 			dispatch(setCurrentPage(page));
+// 			dispatch(toggleIsFetching(false));
+// 		})
+// 		.catch(err => {
+// 			console.log(err.response);
+// 			dispatch(toggleIsFetching(false));
+// 		})
+// };
+//
+// export const changePage = (page, title, teacherName, tags) => (dispatch) => {
+// 	dispatch(getLessons(page, title, teacherName, tags));
+// };
 
 export default lessonsCatalogReducer;

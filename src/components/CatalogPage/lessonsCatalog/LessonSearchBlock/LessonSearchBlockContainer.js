@@ -15,6 +15,7 @@ class LessonSearchBlockContainer extends React.Component {
 	search = () => {
 		const tagsIds = this.props.searchTags.map(tag => tag.id);
 		this.props.getLessons(
+			this.props.page,
 			1,
 			this.props.searchLessonTitle,
 			this.props.searchTeacherName,
