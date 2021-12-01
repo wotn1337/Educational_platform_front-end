@@ -3,6 +3,7 @@ import axios from "axios";
 import {fragmentTypes} from "../common/fragmentTypes";
 const TOKEN_TYPE = 'Bearer';
 let TOKEN = localStorage.getItem('token');
+const fullUrl = 'https://youngeek-test.na4u.ru/back-end/public/api/'
 
 const authConfig = () => ({
 	headers: {
@@ -72,7 +73,7 @@ export const profileAPI = {
 	// Обновить свой аватар
 	//Не использует instance, потому что Content-type - FormData с файлом
 	updateAvatar(avatar) {
-		return axios.post('http://localhost/api/user/me/avatar', avatar, authConfig());
+		return axios.post(`${fullUrl}user/me/avatar`, avatar, authConfig());
 	},
 
 	// Удалить свой аватар
@@ -153,7 +154,7 @@ export const fragmentsAPI = {
 			for (const id of tagsIds) {
 				data.append('tags[]', id);
 			}
-			return axios.post('http://localhost/api/fragments', data, authConfig());
+			return axios.post(`${fullUrl}fragments`, data, authConfig());
 		}
 		return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig());
 	},

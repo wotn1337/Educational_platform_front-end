@@ -8,26 +8,13 @@ const AboutBlock = () => {
 				<p className={s.title}>О нас</p>
 				<ul className={s.text}>
 					<li>
-						Мы знаем, что по исследованиям в дошкольном и школьном
-						возрасте закладывается от 75 до 90% возможностей человека. Поэтому наша платформа старается
-						подготовить
-						ребенка не только к школе, но и заложить хорошую базу для дальнейшего развития и
-						совершенствования
-						его талантов.
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</li>
 					<li>
-						Мы уверены, что все дети с ранних лет имеют склонность спорту, музыке или науке, а при правильно
-						подобранных
-						занятиях каждый может развить в себе талант и достичь высоких результатов, и учёба при этом
-						может
-						приносить радость.
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</li>
 					<li>
-						Мы работаем для того, чтобы качественное образование и подготовка к школе стали доступны каждому
-						ребенку,
-						независимо от места его проживания и от возможности посещать детский сад и различные
-						дополнительные
-						учреждения.
+						Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 					</li>
 				</ul>
 			</div>
