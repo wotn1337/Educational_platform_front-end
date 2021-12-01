@@ -28,7 +28,7 @@ const Fragment = (props) => {
 	return (
 		<div className={s.fragmentWrapper}>
 			{!props.isEdit
-				? <div className={s.name}>{props.title}</div>
+				? <h1 className={'pageTitle'}>{props.title}</h1>
 				: <input
 					type="text"
 					name={'fragmentTitle'}

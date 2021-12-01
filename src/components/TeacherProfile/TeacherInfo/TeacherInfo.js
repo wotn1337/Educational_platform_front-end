@@ -6,7 +6,7 @@ import defaultAvatar from '../../../assets/img/profile/user.svg';
 const TeacherInfo = ({avatar, name}) => {
 	return (
 		<section className={s.teacherInfo}>
-			<img src={avatar || defaultAvatar} alt="avatar" className={s.teacherAvatar} width={130} height={130}/>
+			<div style={{backgroundImage: `url("${avatar || defaultAvatar}")`}} className={s.teacherAvatar}/>
 			<span className={s.teacherName}>{name}</span>
 		</section>
 	);

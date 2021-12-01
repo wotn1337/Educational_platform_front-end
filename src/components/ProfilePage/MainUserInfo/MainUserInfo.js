@@ -11,7 +11,7 @@ const MainUserInfo = (props) => {
 
 	return (
 		<div className={s.user}>
-			<img className={`${s.avatar} ${props.avatar && s.userAvatar}`} src={props.avatar || generalAvatar} alt="generalAvatar"/>
+			<div className={`${s.avatar} ${props.avatar && s.userAvatar}`} style={{backgroundImage: `url("${props.avatar || generalAvatar}")`}}/>
 			<div>
 				<p className={s.userName}>
 					{props.name}

@@ -9,7 +9,7 @@ import Preloader from "../../common/Preloader/Preloader";
 const Teachers = (props) => {
 	const teachersCards = props.teachers.map(teacher => (
 		<NavLink to={`profile/${teacher.id}`} className={s.teacherCard} key={teacher.id}>
-			<img className={s.avatar} src={teacher.avatar || avatarPlaceholder} alt="avatar"/>
+			<div className={s.avatar} style={{backgroundImage: `url("${teacher.avatar || avatarPlaceholder}")`}}/>
 			<span className={s.name}>{teacher.name}</span>
 			<div>
 				<span className={s.countTitle}>Фрагменты: <span

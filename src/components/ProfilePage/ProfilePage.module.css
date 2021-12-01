@@ -11,6 +11,9 @@
     height: 127px;
     margin: 0 auto;
     border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 
 .userAvatar {
