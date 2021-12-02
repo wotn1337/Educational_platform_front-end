@@ -23,16 +23,12 @@
     max-height: 80vh;
 }
 
-.tagsAndAuthor {
-    margin-top: 15px;
-    display: grid;
-    grid-template-columns: 3fr auto;
-}
-
 .author {
+    margin-top: 15px;
     display: flex;
     align-items: center;
     gap: 15px;
+    float: right;
 }
 
 .authorName {
