@@ -4,6 +4,7 @@ import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import {getTeacherProfile} from "../../redux/teacherProfileReducer";
 import TeacherProfile from "./TeacherProfile";
+import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 
 
 class TeacherProfileContainer extends React.Component {
@@ -31,5 +32,6 @@ const mapStateToProps = (state) => ({
 
 export default compose(
 	connect(mapStateToProps, {getTeacherProfile}),
-	withRouter
+	withRouter,
+	withoutAuthRedirectToAuthPage
 )(TeacherProfileContainer)

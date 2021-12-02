@@ -2,6 +2,7 @@ import React from 'react';
 import s from './LessonsCatalog.module.css';
 import LessonsListContainer from "./LessonsList/LessonsListContainer";
 import LessonSearchBlockContainer from "./LessonSearchBlock/LessonSearchBlockContainer";
+import {withoutAuthRedirectToAuthPage} from "../../../hoc/withoutAuthRedirectToAuthPage";
 
 const LessonsCatalog = (props) => {
 	return (
@@ -13,4 +14,4 @@ const LessonsCatalog = (props) => {
 	);
 };
 
-export default LessonsCatalog;
+export default withoutAuthRedirectToAuthPage(LessonsCatalog);

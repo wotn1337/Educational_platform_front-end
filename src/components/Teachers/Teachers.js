@@ -15,7 +15,7 @@ const Teachers = (props) => {
 				<span className={s.countTitle}>Фрагменты: <span
                     className={s.count}>{teacher.fragments_count}</span></span>
                 <span className={s.countTitle}>Уроки: <span
-                    className={s.count}>{Math.floor(Math.random() * 1000)}</span></span>
+                    className={s.count}>{teacher.lessons_count}</span></span>
             </div>
         </NavLink>
     ));

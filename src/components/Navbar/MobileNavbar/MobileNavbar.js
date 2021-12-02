@@ -24,7 +24,7 @@ const MobileNavbar = (props) => {
 			<div className={`${s.mobileNavWrapper} ${showMenu ? s.shownMenu : ''}`} onClick={() => setShowMenu(false)}>
 				<div className={s.mobileNav} onClick={e => e.stopPropagation()}>
 					<NavLink
-						to={'/profile'}
+						to={'/me'}
 						className={s.profileInfo}
 						activeClassName={s.activeProfile}
 						onClick={() => setShowMenu(!showMenu)}
@@ -43,13 +43,22 @@ const MobileNavbar = (props) => {
 							<span className={s.navName}>Главная</span>
 						</NavLink>
 						<NavLink
-							to={'/catalog'}
+							to={'/lessons-catalog'}
 							className={s.navItem}
 							activeClassName={s.active}
 							onClick={() => setShowMenu(!showMenu)}
 						>
 							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Каталог</span>
+							<span className={s.navName}>Каталог уроков</span>
+						</NavLink>
+						<NavLink
+							to={'/catalog-fragments'}
+							className={s.navItem}
+							activeClassName={s.active}
+							onClick={() => setShowMenu(!showMenu)}
+						>
+							<img src={catalog} alt="" className={s.navImg}/>
+							<span className={s.navName}>Каталог фрагментов</span>
 						</NavLink>
 						<NavLink
 							to={'/my-lessons'}
@@ -70,7 +79,7 @@ const MobileNavbar = (props) => {
 							<span className={s.navName}>Мои фрагменты</span>
 						</NavLink>
 						<NavLink
-							to={'/'}
+							to={'/favorites'}
 							className={s.navItem}
 							activeClassName={s.active}
 							onClick={() => setShowMenu(!showMenu)}
@@ -79,7 +88,7 @@ const MobileNavbar = (props) => {
 							<span className={s.navName}>Избранное</span>
 						</NavLink>
 						<NavLink
-							to={'/'}
+							to={'/create-lesson'}
 							className={s.navItem}
 							activeClassName={s.active}
 							onClick={() => setShowMenu(!showMenu)}

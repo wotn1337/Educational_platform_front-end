@@ -5,6 +5,7 @@ import SearchBlockContainer from "./SearchBlock/SearchBlockContainer";
 import selectArrow from "../../assets/img/selectArrow.svg";
 import LessonSearchBlockContainer from "../CatalogPage/lessonsCatalog/LessonSearchBlock/LessonSearchBlockContainer";
 import LessonsListContainer from "../CatalogPage/lessonsCatalog/LessonsList/LessonsListContainer";
+import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 
 const Favorite = () => {
 	const [favoriteType, setFavoriteType] = useState('fragments');
@@ -47,4 +48,4 @@ const Favorite = () => {
 	)
 }
 
-export default Favorite;
+export default withoutAuthRedirectToAuthPage(Favorite);
