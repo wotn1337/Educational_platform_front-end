@@ -2,7 +2,7 @@ import {lessonsAPI} from "../api/api";
 import {successNotification} from "../notifications/notifications";
 
 const CHANGE_LESSON_TITLE = 'createLesson/CHANGE_LESSON_TITLE';
-const ADD_FRAGMENT = 'createLesson/ADD_FRAGMENT';
+const SET_FRAGMENTS = 'createLesson/SET_FRAGMENTS';
 const TOGGLE_IS_FETCHING = 'createLesson/TOGGLE_IS_FETCHING';
 const CLEAR_FRAGMENTS = 'createLesson/CLEAR_FRAGMENTS';
 const ADD_TAG = 'createLesson/ADD_TAG';
@@ -24,7 +24,7 @@ const createLessonReducer = (state = initState, action) => {
         case CHANGE_LESSON_TITLE:
             return {...state, title: action.lessonTitle};
 
-        case ADD_FRAGMENT:
+        case SET_FRAGMENTS:
             return {
                 ...state,
                 fragments: action.fragments
@@ -79,7 +79,7 @@ const clearFragments = () => ({type: CLEAR_FRAGMENTS});
 const clearTags = () => ({type: CLEAR_TAGS});
 
 export const changeLessonTitle = (lessonTitle) => ({type: CHANGE_LESSON_TITLE, lessonTitle});
-export const addFragment = (fragments) => ({type: ADD_FRAGMENT, fragments});
+export const setFragments = (fragments) => ({type: SET_FRAGMENTS, fragments});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const changeAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});

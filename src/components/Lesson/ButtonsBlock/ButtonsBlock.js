@@ -8,7 +8,7 @@ const ButtonsBlock = ({lessonId, creatorId, userId, role, favorite, toggleFavori
 			{(creatorId === userId || role === 'admin') &&
 			<>
 				<button className={'btn'} onClick={props.toggleIsEdit}>Редактировать</button>
-				<button className={'btn'} onClick={() => deleteLesson(lessonId)}>Удалить</button>
+				<button className={'btn'} onClick={() => deleteLesson()}>Удалить</button>
 			</>
 			}
 			{role !== 'admin' &&

@@ -20,18 +20,15 @@
     display: block;
     margin: 0 auto;
     width: 100%;
-}
-
-.tagsAndAuthor {
-    margin-top: 15px;
-    display: grid;
-    grid-template-columns: 3fr auto;
+    max-height: 80vh;
 }
 
 .author {
+    margin-top: 15px;
     display: flex;
     align-items: center;
     gap: 15px;
+    float: right;
 }
 
 .authorName {

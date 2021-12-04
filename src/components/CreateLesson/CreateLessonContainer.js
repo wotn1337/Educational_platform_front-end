@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import CreateLesson from "./CreateLesson";
 import {
-	addFragment,
+	setFragments,
 	addTag,
 	changeAnnotation,
 	changeLessonTitle,
@@ -48,7 +48,7 @@ export default compose(
 	redirectAdminToMain,
 	connect(mapStateToProps, {
 		changeLessonTitle,
-		addFragment,
+		setFragments,
 		getMyFragments,
 		changePage,
 		createLesson,

@@ -1,24 +1,31 @@
 import React from 'react';
 import s from './LessonsList.module.css';
 import Pagination from "../../../../common/Pagination/Pagination";
-import {NavLink} from "react-router-dom";
+import LessonCard from "./LessonCard/LessonCard";
 
 
 const LessonsList = (props) => {
 	const lessons = props.lessons.map(lesson => (
-		<NavLink to={`lesson/${lesson.id}`} key={lesson.id} className={s.lessonCard}>Здесь будет урок <strong>{lesson.title}</strong></NavLink>
+		<LessonCard key={lesson.id} lesson={lesson} toggleFavorite={props.toggleFavorite} role={props.role}/>
 	));
 
 	return (
 		<section>
-			<div className={s.lessons}>{lessons}</div>
-			<Pagination
-				handler={props.changePage}
-				currentPage={props.currentPage}
-				prevPage={props.prevPage}
-				lastPage={props.lastPage}
-				nextPage={props.nextPage}
-			/>
+			{lessons.length > 0
+				? <>
+					<div className={s.lessons}>{lessons}</div>
+					<Pagination
+						handler={props.changePage}
+						currentPage={props.currentPage}
+						prevPage={props.prevPage}
+						lastPage={props.lastPage}
+						nextPage={props.nextPage}
+					/>
+				</>
+				: <div className={s.noLessons}>
+					С такими параметрами уроков не найдено
+					<div className={s.sadSmile}>: (</div></div>
+			}
 		</section>
 	);
 };

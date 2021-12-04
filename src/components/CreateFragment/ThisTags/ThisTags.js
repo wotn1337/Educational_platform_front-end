@@ -3,22 +3,22 @@ import s from "../CreateFragment.module.css";
 import cross from '../../../assets/img/fragments/cross_white.png';
 
 
-const ThisTags = (props) => {
-	const thisTags = props.tags.map(tag => {
+const ThisTags = ({tags, edit, deleteTag, returnTag, ...props}) => {
+	const thisTags = tags?.map(tag => {
 		return <div
 			className={s.tag}
 			key={tag.id}
 			id={tag.id}
 		>
 			{tag.value}
-			{props.edit &&
+			{edit &&
 			<img
 				src={cross}
 				alt="cross"
 				className={s.cross}
 				onClick={() => {
-					props.deleteTag(tag);
-					props.returnTag(tag);
+					deleteTag(tag);
+					returnTag(tag);
 				}}
 			/>
 			}

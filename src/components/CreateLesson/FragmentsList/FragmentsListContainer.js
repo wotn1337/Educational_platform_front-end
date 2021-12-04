@@ -1,6 +1,5 @@
 import React from "react";
 import {connect} from "react-redux";
-import {addFragment} from "../../../redux/createLessonReducer";
 import FragmentsList from "./FragmentsList";
 import {changePage, getMyFragments} from "../../../redux/myFragmentsReducer";
 import Preloader from "../../../common/Preloader/Preloader";
@@ -16,7 +15,7 @@ class FragmentsListContainer extends React.Component {
 
 	getFragmentNumber = (id) => {
 		let index = this.state.fragments.findIndex(elem => elem.id === id);
-		return this.state.fragments[index].number;
+		return this.state.fragments[index].order;
 	}
 
 	addFragment = (fragment) => {
@@ -26,8 +25,7 @@ class FragmentsListContainer extends React.Component {
 					...this.state.fragments,
 					{
 						...fragment,
-
-						number: this.state.fragments.length + 1
+						order: this.state.fragments.length + 1
 					}
 				]
 			})
@@ -39,7 +37,7 @@ class FragmentsListContainer extends React.Component {
 		let newState = this.state.fragments;
 		if (this.state.fragments.length !== deleteNumber) {
 			newState = this.state.fragments.map(f => {
-				return (f.number > deleteNumber ? {...f, number: f.number - 1} : f)
+				return (f.order > deleteNumber ? {...f, order: f.order - 1} : f)
 			});
 		}
 		this.setState({
@@ -47,9 +45,8 @@ class FragmentsListContainer extends React.Component {
 		})
 	}
 
-
-	setFragment = () => {
-		this.props.addFragment(this.state.fragments);
+	setFragments = () => {
+		this.props.setFragments(this.state.fragments);
 	}
 
 	componentDidMount() {
@@ -74,7 +71,7 @@ class FragmentsListContainer extends React.Component {
 		                      addFragment={this.addFragment}
 		                      deleteFragment={this.deleteFragment}
 		                      isFragmentChosen={this.isFragmentChosen}
-		                      setFragment={this.setFragment}
+		                      setFragments={this.setFragments}
 		                      getFragmentNumber={this.getFragmentNumber}
 		/>
 	}
@@ -95,6 +92,5 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
 	getMyFragments,
-	changePage,
-	addFragment
+	changePage
 })(FragmentsListContainer);

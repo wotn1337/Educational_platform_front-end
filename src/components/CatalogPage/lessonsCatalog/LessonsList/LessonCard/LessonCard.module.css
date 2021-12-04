@@ -1,0 +1,135 @@
+.lessonCard {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.mainInfo {
+    padding: 30px 25px 0;
+    display: grid;
+    grid-template-areas: "preview title title heart"
+                         "preview annotation annotation heart"
+                         "preview count button heart"
+                         "tags count button heart";
+    grid-template-columns: 325px 1fr 1fr 50px;
+    grid-template-rows: auto 1fr auto auto;
+    margin-bottom: 15px;
+}
+
+.preview {
+    grid-area: preview;
+    display: block;
+    width: 325px;
+    height: 200px;
+}
+
+.tags {
+    grid-area: tags;
+}
+
+.title {
+    grid-area: title;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+    border-bottom: 2px solid #EF5B5B;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    margin-left: 50px;
+}
+
+.annotation {
+    grid-area: annotation;
+    font-family: Montserrat, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 26px;
+    color: #000000;
+    margin-left: 50px;
+}
+
+.fragmentsCount {
+    grid-area: count;
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+}
+
+.fragmentsCountTitle {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+    color: #000000;
+    margin-right: 15px;
+}
+
+.count {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+    color: #EF5B5B;
+}
+
+.lessonButton {
+    grid-area: button;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 280px;
+    margin-left: auto;
+    align-self: center;
+}
+
+.favorite {
+    grid-area: heart;
+    margin-left: 3px;
+}
+
+.addToFavorite {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 35px;
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    transition: 500ms;
+    margin: 0 7.5px 0;
+}
+
+.inFavorite {
+    background-image: url("../../../../../assets/img/fragments/full-heart.svg");
+}
+
+.notInFavorite {
+    background-image: url("../../../../../assets/img/fragments/addToFavorite.svg");
+}
+
+.addToFavorite:hover {
+    transform: scale(1.5);
+}
+
+.author {
+    background: rgba(239, 91, 91, 0.9);
+    border-radius: 0 0 10px 10px;
+    color: white;
+    padding: 8px 80px;
+    text-align: end;
+}
+
+.creatorName {
+    color: white;
+    font-weight: bold;
+}
+
+.creatorName:hover {
+    color: white;
+    text-decoration: underline;
+}

@@ -2,6 +2,7 @@ import React from 'react';
 import s from "../../MyFragments/MyFragments.module.css";
 import SearchBlockContainer from "./SearchBlock/SearchBlockContainer";
 import FragmentsListContainer from "./FragmentsList/FragmentsListContainer";
+import {withoutAuthRedirectToAuthPage} from "../../../hoc/withoutAuthRedirectToAuthPage";
 
 
 const FragmentsCatalog = () => {
@@ -14,4 +15,4 @@ const FragmentsCatalog = () => {
     );
 };
 
-export default FragmentsCatalog;
+export default withoutAuthRedirectToAuthPage(FragmentsCatalog);

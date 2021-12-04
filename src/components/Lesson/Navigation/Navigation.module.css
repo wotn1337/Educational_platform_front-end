@@ -1,5 +1,17 @@
 .navigation {
     min-width: 300px;
+    border-right: 2px solid rgba(243, 106, 118, 0.7);
+}
+
+.description {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top-left-radius: 10px;
+    color: black;
+    padding: 25px;
+    font-weight: bold;
+    font-size: 22px;
 }
 
 .fragmentLink {
@@ -14,20 +26,16 @@
     color: #000000;
 }
 
-.fragmentLink:hover {
+.fragmentLink:hover, .description:hover {
     background: rgba(243, 106, 118, 0.7);
     color: black;
-}
-
-.fragmentLink:first-child {
-    border-top-left-radius: 10px;
 }
 
 .fragmentLink:last-child {
     border-bottom-left-radius: 10px;
 }
 
-.fragmentLink.activeFragment {
+.active {
     background: rgba(243, 106, 118, 0.7);
 }
 

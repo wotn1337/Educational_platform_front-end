@@ -22,7 +22,7 @@ class FavoriteListContainer extends React.Component {
 
     render() {
         if (this.props.isFetching) {
-            return <Preloader size={400}/>;
+            return <Preloader size={200}/>;
         }
         return (
             <FragmentsList

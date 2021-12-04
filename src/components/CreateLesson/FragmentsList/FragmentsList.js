@@ -9,7 +9,6 @@ const FragmentsList = (props) => {
             <Fragment fragment={fragment} key={fragment.id} addFragment={props.addFragment}
                       isFragmentChosen={props.isFragmentChosen}
                       deleteFragment={props.deleteFragment}
-                      setFragment={props.setFragment}
                       getFragmentNumber={props.getFragmentNumber}
             />)
     });
@@ -28,7 +27,7 @@ const FragmentsList = (props) => {
                     />
                 </div>
                 <button className={s.addButton} onClick={() => {
-                    props.setFragment();
+                    props.setFragments();
                     props.setModalActive(false)
                 }}>
                     Добавить
