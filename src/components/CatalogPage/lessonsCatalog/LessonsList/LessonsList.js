@@ -14,13 +14,15 @@ const LessonsList = (props) => {
 			{lessons.length > 0
 				? <>
 					<div className={s.lessons}>{lessons}</div>
-					<Pagination
-						handler={props.changePage}
-						currentPage={props.currentPage}
-						prevPage={props.prevPage}
-						lastPage={props.lastPage}
-						nextPage={props.nextPage}
-					/>
+					{props.lastPage > 2 &&
+						<Pagination
+							handler={props.changePage}
+							currentPage={props.currentPage}
+							prevPage={props.prevPage}
+							lastPage={props.lastPage}
+							nextPage={props.nextPage}
+						/>
+					}
 				</>
 				: <div className={s.noLessons}>
 					С такими параметрами уроков не найдено

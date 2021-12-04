@@ -11,8 +11,8 @@
     margin-bottom: 15px;
 }
 
-.totalCount {
-    color: rgba(255, 255, 255, 0.5);
+.total {
+    color: rgba(255, 255, 255, 0.45);
 }
 
 .inputBlock {

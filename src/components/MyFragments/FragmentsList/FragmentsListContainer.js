@@ -1,24 +1,26 @@
 import React from "react";
 import FragmentsList from "./FragmentsList";
 import {connect} from "react-redux";
-import {changePage, getMyFragments} from "../../../redux/myFragmentsReducer";
 import Preloader from "../../../common/Preloader/Preloader";
+import {getFragments} from "../../../redux/catalogFragmentsReducer";
 
 
 class FragmentsListContainer extends React.Component {
 	componentDidMount() {
-		this.props.getMyFragments(
-			this.props.currentPage,
-			this.props.searchTitle,
-			this.props.searchType
+		this.props.getFragments(
+			this.props.page,
+			1
 		);
 	}
 
 	changePage = (page) => {
-		this.props.changePage(
+		const tags = this.props.searchTags.map(tag => tag.id);
+		this.props.getFragments(
+			this.props.page,
 			page,
 			this.props.searchTitle,
-			this.props.searchType
+			this.props.searchType,
+			tags
 		);
 	}
 
@@ -32,18 +34,16 @@ class FragmentsListContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-	fragments: state.myFragments.fragments,
-	currentPage: state.myFragments.currentPage,
-	nextPage: state.myFragments.nextPage,
-	prevPage: state.myFragments.prevPage,
-	lastPage: state.myFragments.lastPage,
-	pageSize: state.myFragments.pageSize,
-	isFetching: state.myFragments.isFetching,
-	searchTitle: state.myFragments.searchTitle,
-	searchType: state.myFragments.searchType
+	fragments: state.catalogFragments.fragments,
+	currentPage: state.catalogFragments.currentPage,
+	nextPage: state.catalogFragments.nextPage,
+	prevPage: state.catalogFragments.prevPage,
+	lastPage: state.catalogFragments.lastPage,
+	pageSize: state.catalogFragments.pageSize,
+	isFetching: state.catalogFragments.isFetching,
+	searchTitle: state.catalogFragments.searchTitle,
+	searchType: state.catalogFragments.searchType,
+	searchTags: state.catalogFragments.searchTags
 });
 
-export default connect(mapStateToProps, {
-	getMyFragments,
-	changePage
-})(FragmentsListContainer);
+export default connect(mapStateToProps, {getFragments})(FragmentsListContainer);

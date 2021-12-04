@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {changeFavorite} from "../../../../redux/favoritesReducer";
 import FragmentCard from "./FragmentCard";
+import {changeFavorite} from "../../../../redux/catalogFragmentsReducer";
 
 class FragmentCardContainer extends React.Component {
     state = {
@@ -9,10 +9,8 @@ class FragmentCardContainer extends React.Component {
     }
 
     changeFavorite = (id) => {
-        this.props.changeFavorite(id);
-        this.setState({
-            isFavorite: !this.state.isFavorite
-        })
+        this.props.changeFavorite(id)
+            .then(() => this.setState({isFavorite: !this.state.isFavorite}));
     }
 
     render() {
@@ -33,15 +31,6 @@ class FragmentCardContainer extends React.Component {
 
 const mapStateToProps = (state) => ({
     role: state.auth.role,
-    fragments: state.myFragments.fragments,
-    currentPage: state.myFragments.currentPage,
-    nextPage: state.myFragments.nextPage,
-    prevPage: state.myFragments.prevPage,
-    lastPage: state.myFragments.lastPage,
-    pageSize: state.myFragments.pageSize,
-    isFetching: state.myFragments.isFetching,
-    searchTitle: state.myFragments.searchTitle,
-    searchType: state.myFragments.searchType
 });
 
 export default connect(mapStateToProps, {changeFavorite})(FragmentCardContainer);

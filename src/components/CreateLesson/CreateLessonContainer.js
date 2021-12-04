@@ -9,11 +9,11 @@ import {
 	createLesson,
 	deleteTag
 } from "../../redux/createLessonReducer";
-import {changePage, getMyFragments} from "../../redux/myFragmentsReducer";
 import {compose} from "redux";
 import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 import {returnTag} from "../../redux/allTagsReducer";
+import {getFragments} from "../../redux/catalogFragmentsReducer";
 
 
 class CreateLessonContainer extends React.Component {
@@ -49,8 +49,7 @@ export default compose(
 	connect(mapStateToProps, {
 		changeLessonTitle,
 		setFragments,
-		getMyFragments,
-		changePage,
+		getFragments,
 		createLesson,
 		addTag,
 		deleteTag,

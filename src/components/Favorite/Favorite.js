@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import s from './Favorite.module.css'
-import FavoriteListContainer from "./FavoriteList/FavoriteListContainer";
-import SearchBlockContainer from "./SearchBlock/SearchBlockContainer";
 import selectArrow from "../../assets/img/selectArrow.svg";
 import LessonSearchBlockContainer from "../CatalogPage/lessonsCatalog/LessonSearchBlock/LessonSearchBlockContainer";
 import LessonsListContainer from "../CatalogPage/lessonsCatalog/LessonsList/LessonsListContainer";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import SearchBlockContainer from "../MyFragments/SearchBlock/SearchBlockContainer";
+import FragmentsListContainer from "../MyFragments/FragmentsList/FragmentsListContainer";
+
 
 const Favorite = () => {
 	const [favoriteType, setFavoriteType] = useState('fragments');
@@ -34,8 +35,8 @@ const Favorite = () => {
 			</div>
 			{favoriteType === 'fragments' &&
 			<>
-				<SearchBlockContainer/>
-				<FavoriteListContainer/>
+				<SearchBlockContainer page={'favorite'}/>
+				<FragmentsListContainer page={'favorite'}/>
 			</>
 			}
 			{favoriteType === 'lessons' &&
