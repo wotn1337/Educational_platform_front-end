@@ -20,7 +20,7 @@ const SearchBlock = (props) => {
 	return (
 		<div className={s.searchBlock}>
 			<div className={s.title}>
-				Всего {props.currentFragmentsCount} {rightWord(props.currentFragmentsCount)} из {props.totalFragmentsCount}
+				Всего {props.currentFragmentsCount} {rightWord(props.currentFragmentsCount)} <span className={s.total}>из {props.totalFragmentsCount}</span>
 			</div>
 			<div className={s.inputBlock}>
 				<input

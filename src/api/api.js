@@ -166,8 +166,9 @@ export const fragmentsAPI = {
 	},
 
 	// Получить список фрагментов текущего пользователя (только для учителя)
-	geMyFragments(page, title = null, type = null) {
-		return instance.get(`my-fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig());
+	geMyFragments(page, title = null, type = null, tags = null) {
+		let tagsString = createTagsString(tags);
+		return instance.get(`my-fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}${tagsString}`, authConfig());
 	},
 
 	// Получить данные конкретного фрагмента
@@ -192,8 +193,12 @@ export const fragmentsAPI = {
 	},
 
 	// Получить список избранного для конкретного пользователя
-	getFavorites(page, title = null, type = null) {
-		return instance.get(`fragments/like?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}`, authConfig());
+	getFavorites(page, title = null, type = null, tags = null) {
+		let tagsString = createTagsString(tags);
+		return instance.get(
+			`fragments/like?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}${tagsString}`,
+			authConfig()
+		);
 	},
 
 	// Добавить/удалить фрагмент в избранное
@@ -208,10 +213,12 @@ export const fragmentsAPI = {
 };
 
 export const lessonsAPI = {
+	// Создать урок
 	createLesson(title, annotation, fragments, tags) {
 		return instance.post('lessons', JSON.stringify({title, annotation, fragments, tags}), authConfig());
 	},
 
+	// Получить список всех уроков
 	getLessons(page, title, teacherName, tags) {
 		let tagsString = createTagsString(tags);
 		return instance.get(
@@ -220,6 +227,7 @@ export const lessonsAPI = {
 		);
 	},
 
+	// Получить список избранных уроков текущего пользователя
 	getFavoriteLessons(page, title, teacherName, tags) {
 		let tagsString = createTagsString(tags);
 		return instance.get(
@@ -228,18 +236,22 @@ export const lessonsAPI = {
 		);
 	},
 
+	// Получить данные конкретного урока
 	getLesson(id) {
 		return instance.get(`lessons/${id}`, authConfig())
 	},
 
+	// Удалить урок
 	deleteLesson(id) {
 		return instance.delete(`lessons/${id}`, authConfig());
 	},
 
+	// Добавить / удалить урок из избранного
 	toggleFavorite(id) {
 		return instance.put(`lessons/${id}`, {}, authConfig());
 	},
 
+	// Редактировать урок
 	updateLesson(id, title, annotation, fragments, tags) {
 		return instance.patch(`lessons/${id}`, JSON.stringify({title, annotation, fragments, tags}), authConfig())
 	}

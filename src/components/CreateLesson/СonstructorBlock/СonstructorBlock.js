@@ -39,6 +39,7 @@ const ConstructorBlock = (props) => {
 
 			<Modal active={modalActive} setActive={setModalActive}>
 				<FragmentsListContainer
+					page={'my-fragments'}
 					fragments={props.fragments}
 					setModalActive={setModalActive}
 					changeSelectedMode={props.changeSelectedMode}

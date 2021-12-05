@@ -1,5 +1,6 @@
 import {fragmentsAPI} from "../api/api";
 
+
 const SET_FRAGMENTS = 'catalogFragments/SET_FRAGMENTS';
 const SET_CURRENT_PAGE = 'catalogFragments/SET_CURRENT_PAGE';
 const SET_IS_FETCHING = 'catalogFragments/SET_IS_FETCHING';
@@ -22,7 +23,6 @@ const initState = {
 	searchTitle : '',
 	searchType: '',
 	searchTags: [],
-	searchTagsIds: []
 };
 
 const myFragmentsReducer = (state = initState, action) => {
@@ -66,14 +66,12 @@ const myFragmentsReducer = (state = initState, action) => {
 			return {
 				...state,
 				searchTags: [...state.searchTags, action.tag],
-				searchTagsIds: [...state.searchTagsIds, action.tag.id]
 			};
 
 		case DELETE_SEARCH_TAG:
 			return {
 				...state,
 				searchTags: state.searchTags.filter(tag => tag.id !== action.tag.id),
-				searchTagsIds: state.searchTagsIds.filter(id => id !== action.tag.id),
 			};
 
 		default:
@@ -90,12 +88,30 @@ export const setSearchType = (searchType) => ({type: SET_SEARCH_TYPE, searchType
 export const addSearchTag = (tag) => ({type: ADD_SEARCH_TAG, tag});
 export const deleteSearchTag = (tag) => ({type: DELETE_SEARCH_TAG, tag});
 
-export const getFragments = (page, title, type, tags) => (dispatch) => {
+export const getFragments = (page, pageNumber, title, type, tags) => (dispatch) => {
+	let getFragments;
+	switch (page) {
+		case 'catalog':
+			getFragments = fragmentsAPI.getFragments;
+			break;
+
+		case 'my-fragments':
+			getFragments = fragmentsAPI.geMyFragments;
+			break;
+
+		case 'favorite':
+			getFragments = fragmentsAPI.getFavorites;
+			break;
+
+		default:
+			getFragments = fragmentsAPI.getFragments;
+			break;
+	}
 	dispatch(setIsFetching(true));
-	fragmentsAPI.getFragments(page, title, type, tags)
+	getFragments(pageNumber, title, type, tags)
 		.then(res => {
 			dispatch(setFragments(res.data));
-			dispatch(setCurrentPage(page));
+			dispatch(setCurrentPage(pageNumber));
 			dispatch(setIsFetching(false));
 		})
 		.catch(err => {
@@ -104,8 +120,10 @@ export const getFragments = (page, title, type, tags) => (dispatch) => {
 		})
 };
 
-export const changePage = (page, title, type, tags) => (dispatch) => {
-	dispatch(getFragments(page, title, type, tags));
+export const changeFavorite = (id) => () => {
+	return fragmentsAPI.changeFavorite(id)
+		.then(() => {})
+		.catch(() => {})
 };
 
 export default myFragmentsReducer;

@@ -9,8 +9,8 @@ const MyFragments = () => {
 	return (
 		<div className={s.content}>
 			<h1 className={'pageTitle'}>Мои фрагменты</h1>
-			<SearchBlockContainer/>
-			<FragmentsListContainer />
+			<SearchBlockContainer page={'my-fragments'}/>
+			<FragmentsListContainer page={'my-fragments'}/>
 		</div>
 	);
 };

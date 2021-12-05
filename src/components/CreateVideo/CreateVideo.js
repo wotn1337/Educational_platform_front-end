@@ -20,7 +20,7 @@ const CreateVideo = (props) => {
 
 	return (
 		<div className={s.createVideo}>
-			{videoSrc ? <video src={videoSrc} controls={'controls'}/> : <VideoPlaceholder />}
+			{videoSrc ? <video src={videoSrc} controls={'controls'} className={s.video}/> : <VideoPlaceholder />}
 			<input
 				className={s.hide}
 				type='file'

@@ -21,15 +21,17 @@ const FragmentsList = (props) => {
             {fragmentCards.length > 0
                 ? <>
                     <div className={s.fragmentsList}>{fragmentCards}</div>
-                    <div className={s.pagination}>
-                        <Pagination
-                            handler={props.changePage}
-                            currentPage={props.currentPage}
-                            prevPage={props.prevPage}
-                            lastPage={props.lastPage}
-                            nextPage={props.nextPage}
-                        />
-                    </div>
+                    {props.lastPage > 1 &&
+                        <div className={s.pagination}>
+                            <Pagination
+                                handler={props.changePage}
+                                currentPage={props.currentPage}
+                                prevPage={props.prevPage}
+                                lastPage={props.lastPage}
+                                nextPage={props.nextPage}
+                            />
+                        </div>
+                    }
                 </>
                 : <div className={s.noFragments}>
                     С такими параметрами фрагментов не найдено

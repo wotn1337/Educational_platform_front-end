@@ -1,34 +1,54 @@
 import React from "react";
 import {connect} from "react-redux";
-import {getMyFragments, setSearchTitle, setSearchType} from "../../../redux/myFragmentsReducer";
 import SearchBlock from "./SearchBlock";
+import {
+	addSearchTag,
+	deleteSearchTag,
+	getFragments,
+	setSearchTitle,
+	setSearchType
+} from "../../../redux/catalogFragmentsReducer";
+import {returnTag} from "../../../redux/allTagsReducer";
 
 
 class SearchBlockContainer extends React.Component {
+	state = {
+		title: this.props.searchTitle,
+		type: this.props.searchType,
+		tags: this.props.searchTags
+	}
+
 	searchFragments = () => {
-		this.props.geMyFragments(
+		const tags = this.props.searchTags.map(tag => tag.id);
+		this.props.getFragments(
+			this.props.page,
 			1,
 			this.props.searchTitle,
-			this.props.searchType
+			this.props.searchType,
+			tags
 		);
 	}
 	render() {
 		return (
-			<SearchBlock {...this.props} searchFragments={this.searchFragments}/>
+			<SearchBlock {...this.props} {...this.state} searchFragments={this.searchFragments}/>
 		);
 	}
 }
 
 const mapStateToProps = (state) => ({
 	token: state.auth.token,
-	searchTitle: state.myFragments.searchTitle,
-	searchType: state.myFragments.searchType,
-	totalFragmentsCount: state.myFragments.totalFragmentsCount,
-	currentFragmentsCount: state.myFragments.currentFragmentsCount
+	searchTitle: state.catalogFragments.searchTitle,
+	searchType: state.catalogFragments.searchType,
+	totalFragmentsCount: state.catalogFragments.totalFragmentsCount,
+	currentFragmentsCount: state.catalogFragments.currentFragmentsCount,
+	searchTags: state.catalogFragments.searchTags
 });
 
 export default connect(mapStateToProps, {
-	geMyFragments: getMyFragments,
+	getFragments,
 	setSearchTitle,
-	setSearchType
+	setSearchType,
+	addSearchTag,
+	deleteSearchTag,
+	returnTag
 })(SearchBlockContainer);
