@@ -13,7 +13,7 @@ const UploadAvatar = (props) => {
 	}
 	return (
 		<div className={s.uploadAvatarBlock}>
-			<input className={s.hide} type='file' id='upload' onChange={e => {
+			<input className={s.hide} type='file' id='upload' accept={'image/*'} onChange={e => {
 				setAvatar(e.target.files[0]);
 				getImgSrc(e.target.files[0]);
 			}}/>
