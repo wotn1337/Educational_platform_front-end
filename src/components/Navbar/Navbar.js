@@ -19,14 +19,8 @@ const Navbar = ({role, ...props}) => {
 				<NavLink className={s.navLink} exact to="/" activeClassName={s.active}>Главная</NavLink>
 				{props.isAuth
 					? <>
-						<DropDownMenu
-							title={'Каталог'}
-							links={[
-								{'catalog-fragments': 'Каталог фрагментов'},
-								{'lessons-catalog': 'Каталог уроков'},
-								{'teachers': 'Преподаватели'}
-							]}
-						/>
+						<NavLink className={s.navLink} to="/catalog" activeClassName={s.active}>Каталог</NavLink>
+						<NavLink className={s.navLink} to="/teachers" activeClassName={s.active}>Преподаватели</NavLink>
 						{role !== 'admin' &&
 						<>
 							<DropDownMenu

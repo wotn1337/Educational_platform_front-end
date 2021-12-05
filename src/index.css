@@ -9,6 +9,10 @@ body {
     background-repeat: no-repeat;
     background-color: rgba(83, 104, 113, 0.73);
 }
+.content {
+    width: 1200px;
+    margin: 70px auto 40px;
+}
 
 h1.pageTitle {
     font-style: normal;

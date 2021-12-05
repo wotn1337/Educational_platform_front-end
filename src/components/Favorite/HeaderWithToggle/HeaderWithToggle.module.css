@@ -1,0 +1,11 @@
+.wrapper {
+    position: relative;
+    height: 85px;
+}
+
+.titleBlock {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    position: absolute;
+}
