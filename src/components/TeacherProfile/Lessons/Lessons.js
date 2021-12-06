@@ -1,9 +1,10 @@
 import React from 'react';
+import LessonsListContainer from "../../CatalogPage/lessonsCatalog/LessonsList/LessonsListContainer";
 
 
 const Lessons = (props) => {
 	return (
-		<div>jkoihibjkn</div>
+		<LessonsListContainer page={'teacher'} teacherId={props.teacherId}/>
 	);
 };
 

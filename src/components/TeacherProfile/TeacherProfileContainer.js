@@ -18,7 +18,7 @@ class TeacherProfileContainer extends React.Component {
 
 	render() {
 		return (
-			<TeacherProfile {...this.props}/>
+			<TeacherProfile teacherId={this.state.id} {...this.props}/>
 		);
 	}
 }

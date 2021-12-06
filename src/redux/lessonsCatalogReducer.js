@@ -76,7 +76,7 @@ export const changeSearchTeacherName = (name) => ({type: CHANGE_SEARCH_TEACHER_N
 export const addSearchTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteSearchTag = (tag) => ({type: DELETE_TAG, tag});
 
-export const getLessons = (page, pageNumber, title, teacherName, tags) => (dispatch) => {
+export const getLessons = (page, pageNumber, title, teacherName, tags, teacherId) => (dispatch) => {
 	let getLessonsFunction;
 	switch (page) {
 		case 'favorite':
@@ -87,22 +87,44 @@ export const getLessons = (page, pageNumber, title, teacherName, tags) => (dispa
 			getLessonsFunction = lessonsAPI.getLessons;
 			break;
 
+		case 'my-lessons':
+			getLessonsFunction = lessonsAPI.getMyLessons;
+			break;
+
+		case 'teacher':
+			getLessonsFunction = lessonsAPI.getTeacherLessons;
+			break;
+
 		default:
 			getLessonsFunction = lessonsAPI.getLessons;
 			break;
 	}
 	dispatch(toggleIsFetching(true));
-	getLessonsFunction(pageNumber, title, teacherName, tags)
-		.then(res => {
-			console.log(res);
-			dispatch(setLessons(res.data));
-			dispatch(setCurrentPage(pageNumber));
-			dispatch(toggleIsFetching(false));
-		})
-		.catch(err => {
-			console.log(err.response);
-			dispatch(toggleIsFetching(false));
-		})
+	if (page !== 'teacher') {
+		getLessonsFunction(pageNumber, title, teacherName, tags)
+			.then(res => {
+				console.log(res);
+				dispatch(setLessons(res.data));
+				dispatch(setCurrentPage(pageNumber));
+				dispatch(toggleIsFetching(false));
+			})
+			.catch(err => {
+				console.log(err.response);
+				dispatch(toggleIsFetching(false));
+			})
+	} else {
+		getLessonsFunction(teacherId, pageNumber)
+			.then(res => {
+				console.log(res);
+				dispatch(setLessons(res.data));
+				dispatch(setCurrentPage(pageNumber));
+				dispatch(toggleIsFetching(false));
+			})
+			.catch(err => {
+				console.log(err.response);
+				dispatch(toggleIsFetching(false));
+			})
+	}
 };
 
 export default lessonsCatalogReducer;

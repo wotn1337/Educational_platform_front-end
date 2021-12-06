@@ -40,25 +40,29 @@ const Teachers = (props) => {
                     <button className={s.searchButton} onClick={props.search}/>
                 </div>
             </div>
-            {props.isFetching && <Preloader size={300}/>}
+            {props.isFetching && <Preloader size={200}/>}
             {(props.teachers.length === 0 && !props.isFetching) &&
             <div className={s.noTeachers}>
-                С таким именем преподавателей не найдено
+                Преподаватели не найдены
                 <div className={s.sadSmile}>: (</div>
             </div>
             }
-            <div className={s.teachers}>{teachersCards}</div>
-            {props.lastPage > 1 &&
-            <div className={s.pagination}>
-                <Pagination
-                    handler={props.changePage}
-                    currentPage={props.currentPage}
-                    prevPage={props.prevPage}
-                    lastPage={props.lastPage}
-                    nextPage={props.nextPage}
-                />
-            </div>
-            }
+	        {!props.isFetching &&
+		        <>
+			        <div className={s.teachers}>{teachersCards}</div>
+			        {props.lastPage > 1 &&
+				        <div className={s.pagination}>
+					        <Pagination
+						        handler={props.changePage}
+						        currentPage={props.currentPage}
+						        prevPage={props.prevPage}
+						        lastPage={props.lastPage}
+						        nextPage={props.nextPage}
+					        />
+				        </div>
+			        }
+		        </>
+			}
         </section>
     );
 };

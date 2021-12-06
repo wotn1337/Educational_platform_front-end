@@ -15,7 +15,8 @@ class LessonsListContainer extends React.Component {
 			1,
 			this.props.searchLessonTitle,
 			this.props.searchTeacherName,
-			tagsIds
+			tagsIds,
+			this.props.teacherId
 		);
 	}
 
@@ -26,7 +27,8 @@ class LessonsListContainer extends React.Component {
 			page,
 			this.props.searchLessonTitle,
 			this.props.searchTeacherName,
-			tagsIds
+			tagsIds,
+			this.props.teacherId
 		);
 	}
 

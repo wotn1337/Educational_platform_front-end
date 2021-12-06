@@ -227,6 +227,15 @@ export const lessonsAPI = {
 		);
 	},
 
+	// Получить список уроков текущего пользователя
+	getMyLessons(page, title, teacherName, tags) {
+		let tagsString = createTagsString(tags);
+		return instance.get(
+			`my-lessons?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&creator=${teacherName}` : ''}${tagsString}`,
+			authConfig()
+		);
+	},
+
 	// Получить список избранных уроков текущего пользователя
 	getFavoriteLessons(page, title, teacherName, tags) {
 		let tagsString = createTagsString(tags);
@@ -234,6 +243,11 @@ export const lessonsAPI = {
 			`lessons/like?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&creator=${teacherName}` : ''}${tagsString}`,
 			authConfig()
 		);
+	},
+
+	// Получить уроки конкретного преподавателя
+	getTeacherLessons(id, page) {
+		return instance.get(`teacher/lessons/${id}?page=${page}`, authConfig());
 	},
 
 	// Получить данные конкретного урока
