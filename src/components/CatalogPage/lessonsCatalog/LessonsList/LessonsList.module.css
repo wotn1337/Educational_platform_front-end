@@ -27,3 +27,13 @@
     cursor: default;
     transform: rotate(90deg);
 }
+
+@media all and (max-width: 710px) {
+    .noLessons {
+        text-align: center;
+        margin: 0 auto;
+        padding: 20px 40px;
+        border-radius: 10px;
+        font-size: 22px;
+    }
+}

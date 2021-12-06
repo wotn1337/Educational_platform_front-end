@@ -12,7 +12,6 @@
     display: block;
 }
 
-
 .total {
     color: rgba(255, 255, 255, 0.45);
 }
@@ -24,8 +23,8 @@
 }
 
 .searchButton {
-    margin-left: 35px;
     width: 42px;
+    color: transparent;
     height: 42px;
     padding: 0;
     background-size: 35px;
@@ -54,4 +53,23 @@
     width: 45px;
     color: white;
     font-size: 22px;
+}
+
+@media all and (max-width: 960px) {
+    .inputBlock {
+        flex-wrap: wrap;
+    }
+}
+
+@media all and (max-width: 920px) {
+    .searchButton {
+        font-weight: bold;
+        width: 130px;
+        height: 49px;
+        margin: 5px;
+        background-image: none;
+        background-color: #FBE184;
+        border-radius: 10px;
+        color: rgba(90, 89, 89, 0.52);
+    }
 }

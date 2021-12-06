@@ -25,12 +25,12 @@ const LessonSearchBlock = ({searchLessonTitle, changeSearchLessonTitle, searchTe
 				Всего {props.lessonsCount} {rightWord(props.lessonsCount)} <span className={s.total}>из {props.allLessonsCount}</span>
 			</span>
 			<div className={s.inputBlock}>
-				<Input placeholder={'Название урока'} value={searchLessonTitle} onChange={changeSearchLessonTitle} style={{marginRight: '35px'}}/>
+				<Input placeholder={'Название урока'} value={searchLessonTitle} onChange={changeSearchLessonTitle}/>
 				<Input placeholder={'Имя преподавателя'} value={searchTeacherName} onChange={changeSearchTeacherName}/>
 				<button className={s.searchButton} onClick={() => {
 					setTagsList(false);
 					search();
-				}}/>
+				}}>Искать</button>
 			</div>
 			<div className={s.searchTags}>
 				<ThisTags tags={props.searchTags} edit={true} returnTag={props.returnTag} deleteTag={props.deleteSearchTag}/>
