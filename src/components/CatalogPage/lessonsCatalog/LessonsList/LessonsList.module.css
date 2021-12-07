@@ -1,7 +1,7 @@
 .lessons {
     display: grid;
     grid-gap: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .lessonCard {
@@ -28,7 +28,19 @@
     transform: rotate(90deg);
 }
 
-@media all and (max-width: 710px) {
+@media all and (max-width: 1024px) {
+    .lessons {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 45px;
+        justify-items: center;
+    }
+}
+
+@media all and (max-width: 720px) {
+    .lessons {
+        grid-template-columns: 1fr;
+    }
+
     .noLessons {
         text-align: center;
         margin: 0 auto;
