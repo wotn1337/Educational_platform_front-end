@@ -73,6 +73,8 @@ const mapStateToProps = (state) => ({
 	favoriteFetching: state.lesson.favoriteFetching,
 	isFetching: state.lesson.isFetching,
 	creatorId: state.lesson.creatorId,
+	creatorName: state.lesson.creatorName,
+	creatorAvatar: state.lesson.creatorAvatar,
 	tags: state.lesson.tags
 });
 

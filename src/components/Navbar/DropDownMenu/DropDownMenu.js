@@ -9,7 +9,6 @@ const DropDownMenu = (props) => {
 		<NavLink
 			to={`/${Object.keys(link)[0]}`}
 			className={s.dropDownItem}
-			activeClassName={s.dropDownActiveLink}
 			key={Object.keys(link)[0]}
 		>
 			{link[Object.keys(link)[0]]}

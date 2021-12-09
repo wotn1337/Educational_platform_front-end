@@ -1,0 +1,26 @@
+.lessonPreview {
+    padding: 50px;
+}
+
+.lessonImage {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 350px;
+}
+
+.annotationTitle {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 30px;
+    color: #000000;
+    margin-top: 10px;
+}
+
+.bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}

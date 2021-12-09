@@ -4,6 +4,7 @@ import Switches from "../../common/Switches/Switches";
 import s from './TeacherProfile.module.css';
 import FragmentsContainer from "./Fragments/FragmentsContainer";
 import Preloader from "../../common/Preloader/Preloader";
+import Lessons from "./Lessons/Lessons";
 
 
 const TeacherProfile = (props) => {
@@ -28,7 +29,7 @@ const TeacherProfile = (props) => {
 			/>
 			<main>
 				<section className={s.content}>
-					{lessons && <h1>lessons</h1>}
+					{lessons && <Lessons teacherId={props.teacherId}/>}
 					{fragments && <FragmentsContainer/>}
 				</section>
 			</main>

@@ -50,7 +50,8 @@ class FragmentsListContainer extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.getFragments(this.props.page, this.props.currentPage);
+		const page = this.props.role === 'student' ? 'favorite' : this.props.page;
+		this.props.getFragments(page, this.props.currentPage);
 	};
 
 	changePage = (page) => {
@@ -79,6 +80,7 @@ class FragmentsListContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+	role: state.auth.role,
 	myFragments: state.catalogFragments.fragments,
 	currentPage: state.catalogFragments.currentPage,
 	nextPage: state.catalogFragments.nextPage,

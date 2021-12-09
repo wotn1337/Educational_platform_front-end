@@ -1,0 +1,32 @@
+.select {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 38px;
+    line-height: 54px;
+    color: white;
+    /*text-decoration: underline #F56464;*/
+    cursor: pointer;
+    padding: 0 20px 5px;
+    border-radius: 10px;
+    transition: all 500ms;
+    left: 250px;
+    z-index: 1;
+    min-width: 320px;
+}
+
+.select:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.arrow {
+    margin-left: 10px;
+    transition: all 500ms;
+}
+
+.otherType {
+    transition: 0.5s;
+}
+
+.select:hover .arrow {
+    transform: rotate(180deg);
+}

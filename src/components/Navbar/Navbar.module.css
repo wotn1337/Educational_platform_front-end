@@ -13,20 +13,21 @@
     align-items: flex-start;
 }
 
+.logoLink {
+    margin-right: auto;
+    margin-top: -20px;
+}
+
 .logo {
     height: 100px;
     display: block;
-    margin-right: auto;
-    margin-top: -20px;
 }
 
 .navLink {
     text-decoration: none;
     padding: 20px;
     text-align: center;
-    margin: 0 1%;
     color: white;
-    font-family: "Open Sans", sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: 1.2em;
@@ -68,22 +69,18 @@
 }
 
 .dropDown:hover .navLink {
-    color: #F56464 !important;
-    width: 210px;
-}
-
-.dropDownActiveLink {
-    color: #F56464 !important;
+    color: black !important;
+    width: 251px;
 }
 
 .dropDownMenu {
     position: absolute;
     top: 69px;
-    width: 210px;
     background-color: white;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
     text-align: center;
+    width: max-content;
 }
 
 .dropDownMenu .dropDownItem {
@@ -96,6 +93,7 @@
     font-weight: bold;
     font-size: 1.2em;
     transition: all .15s;
+    width: 251px;
 }
 
 .dropDownMenu .dropDownItem:hover {

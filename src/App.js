@@ -10,13 +10,14 @@ import LoginContainer from "./components/AuthPage/Login/LoginContainer";
 import RegisterContainer from "./components/AuthPage/Register/RegisterContainer";
 import FragmentContainer from "./components/Fragment/FragmentContainer";
 import CreateFragmentContainer from "./components/CreateFragment/CreateFragmentContainer";
-import FragmentsCatalog from "./components/CatalogPage/fragmentsCatalog/FragmentsCatalog";
 import CreateLessonContainer from "./components/CreateLesson/CreateLessonContainer";
 import TeacherProfileContainer from "./components/TeacherProfile/TeacherProfileContainer";
 import Favorite from "./components/Favorite/Favorite";
 import TeachersContainer from "./components/Teachers/TeachersContainer";
-import LessonsCatalog from "./components/CatalogPage/lessonsCatalog/LessonsCatalog";
 import LessonContainer from "./components/Lesson/LessonContainer";
+import Catalog from "./components/CatalogPage/Catalog";
+import MyLessons from "./components/MyLessons/MyLessons";
+import MyMaterials from "./components/MyMaterials/MyMaterials";
 
 
 const App = () => {
@@ -36,12 +37,8 @@ const App = () => {
 				render={() => <RegisterContainer/>}
 			/>
 			<Route
-				exact path='/catalog-fragments'
-				render={() => <FragmentsCatalog/>}
-			/>
-			<Route
-				exact path='/lessons-catalog'
-				render={() => <LessonsCatalog/>}
+				exact path='/catalog'
+				render={() => <Catalog />}
 			/>
 			<Route
 				exact path='/teachers'
@@ -50,6 +47,14 @@ const App = () => {
 			<Route
 				exact path='/my-fragments'
 				render={() => <MyFragments/>}
+			/>
+			<Route
+				exact path='/my-lessons'
+				render={() => <MyLessons/>}
+			/>
+			<Route
+				exact path='/my-materials'
+				render={() => <MyMaterials/>}
 			/>
 			<Route
 				exact path='/favorites'

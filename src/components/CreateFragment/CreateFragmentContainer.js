@@ -7,6 +7,7 @@ import Preloader from "../../common/Preloader/Preloader";
 import CreateFragment from "./CreateFragment";
 import {returnTag} from "../../redux/allTagsReducer";
 import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
+import {redirectStudentToMain} from "../../hoc/redirectStudentToMain";
 
 
 class CreateFragmentContainer extends React.Component {
@@ -39,6 +40,7 @@ const mapStateToProps = (state) => ({
 export default compose(
 	withoutAuthRedirectToAuthPage,
 	redirectAdminToMain,
+	redirectStudentToMain,
 	connect(mapStateToProps, {
 		setContent,
 		createFragment,
