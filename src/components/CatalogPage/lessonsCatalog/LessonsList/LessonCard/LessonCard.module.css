@@ -113,7 +113,7 @@
 }
 
 .addToFavorite:hover {
-    transform: scale(1.5);
+    transform: scale(1.2);
 }
 
 .author {
@@ -132,4 +132,116 @@
 .creatorName:hover {
     color: white;
     text-decoration: underline;
+}
+
+@media all and (max-width: 1024px) {
+    .lessonCard {
+        border-radius: 9px;
+        max-width: 320px;
+    }
+
+    .mainInfo {
+        padding: 30px 25px 0;
+        display: grid;
+        grid-template-areas: "preview"
+                         "title"
+                         "annotation"
+                         "count"
+                         "tags";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto auto 100px;
+        margin-bottom: 15px;
+    }
+
+    .preview {
+        margin: 0 auto;
+        width: 100%;
+        height: auto;
+    }
+
+    .favorite {
+        display: block;
+        position: relative;
+        margin-left: 0;
+    }
+
+    .lessonButton {
+        display: none;
+    }
+
+    .addToFavorite {
+        display: block;
+        position: absolute;
+        bottom: 360px;
+        right: 2px;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+    }
+
+    .addToFavorite:hover {
+        transform: scale(1.1);
+    }
+
+    .title {
+        padding-bottom: 3px;
+        margin-left: 0;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .annotation {
+        font-size: 22px;
+        margin-left: 0;
+    }
+
+    .fragmentsCount {
+        align-items: center;
+        justify-content: space-between;
+        margin-left: 0;
+    }
+
+    .fragmentsCountTitle {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 27px;
+        text-align: center;
+        color: #000000;
+        margin-right: 15px;
+    }
+
+    .count {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 27px;
+        text-align: center;
+        color: #EF5B5B;
+    }
+
+    .author {
+        border-radius: 0 0 9px 9px;
+        color: black;
+        padding: 15px 24px;
+        text-align: start;
+        font-weight: 600;
+    }
+
+    .creatorName {
+        color: black;
+    }
+}
+
+@media all and (max-width: 765px) {
+    .mainInfo {
+        padding: 30px 20px 0;
+    }
+}
+
+@media all and (max-width: 425px) {
+    .mainInfo {
+        padding: 20px 20px 0;
+    }
 }

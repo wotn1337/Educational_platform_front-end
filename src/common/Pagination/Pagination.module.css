@@ -83,6 +83,7 @@
         font-size: 18px;
         align-items: center;
         margin: 20px auto;
+        width: fit-content;
     }
 
     .pages {

@@ -25,17 +25,6 @@ h1.pageTitle {
     width: fit-content;
 }
 
-
-@media all and (max-width: 720px) {
-}
-
-@media all and (max-width: 480px) {
-    h1.pageTitle {
-        font-size: 30px;
-        line-height: 40px;
-    }
-}
-
 .btn {
     font-weight: 700;
     font-size: 20px;
@@ -58,9 +47,32 @@ h1.pageTitle {
     background-color: #7C7676;
     opacity: 1;
 }
+
 .btn:focus {
     outline: none;
     border: none;
     box-shadow: none;
     background-color: #FBCB84;
+}
+
+@media all and (max-width: 768px) {
+    .btn {
+        width: 200px;
+        min-height: 60px;
+        font-size: 18px;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .btn {
+        width: 280px;
+        margin: 10px 0;
+        min-height: 60px;
+        font-size: 18px;
+    }
+
+    h1.pageTitle {
+        font-size: 30px;
+        line-height: 40px;
+    }
 }

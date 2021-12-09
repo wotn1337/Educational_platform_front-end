@@ -4,8 +4,8 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 20px;
     grid-row-gap: 50px;
-    margin: 0 auto;
-    width: fit-content;
+    margin: 0 auto 65px;
+    width: 100%;
 }
 
 .pagination {
@@ -51,5 +51,13 @@
     .fragmentsList {
         grid-template-columns: 1fr;
         grid-row-gap: 20px;
+        justify-items: center;
+    }
+    .noFragments {
+        text-align: center;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 10px;
+        font-size: 22px;
     }
 }

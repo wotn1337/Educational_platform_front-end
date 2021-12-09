@@ -10,7 +10,6 @@ const Input = ({placeholder, value, onChange, style, disabled = false, ...props}
 			className={s.input}
 			value={value}
 			onChange={event => onChange(event.target.value)}
-			style={style}
 			disabled={disabled}
 		/>
 	);
