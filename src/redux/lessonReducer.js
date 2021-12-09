@@ -24,6 +24,8 @@ const initState = {
 	favoriteFetching: false,
 	isFetching: false,
 	creatorId: undefined,
+	creatorName: '',
+	creatorAvatar: undefined,
 	tags: []
 };
 
@@ -36,6 +38,8 @@ const lessonReducer = (state = initState, action) => {
 				lessonTitle: action.data.lesson.title,
 				lessonAnnotation: action.data.lesson.annotation,
 				creatorId: action.data.lesson.user_id,
+				creatorName: action.data.lesson.user_name,
+				creatorAvatar: action.data.lesson.user_avatar,
 				favorite: action.data.lesson.favourite,
 				tags: action.data.lesson.tags?.data
 			};
@@ -56,7 +60,13 @@ const lessonReducer = (state = initState, action) => {
 			return {...state, lessonAnnotation: action.annotation};
 
 		case SET_CURRENT_FRAGMENT:
-			return {...state, currentFragment: state.fragments[action.orderNumber - 1]};
+			let currentFragment;
+			for (const fragment of state.fragments) {
+				if (fragment.order === action.orderNumber) {
+					currentFragment = fragment;
+				}
+			}
+			return {...state, currentFragment: currentFragment};
 
 		case SET_FRAGMENTS:
 			return {...state, fragments: action.fragments};

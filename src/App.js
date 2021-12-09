@@ -17,6 +17,7 @@ import TeachersContainer from "./components/Teachers/TeachersContainer";
 import LessonContainer from "./components/Lesson/LessonContainer";
 import Catalog from "./components/CatalogPage/Catalog";
 import MyLessons from "./components/MyLessons/MyLessons";
+import MyMaterials from "./components/MyMaterials/MyMaterials";
 
 
 const App = () => {
@@ -50,6 +51,10 @@ const App = () => {
 			<Route
 				exact path='/my-lessons'
 				render={() => <MyLessons/>}
+			/>
+			<Route
+				exact path='/my-materials'
+				render={() => <MyMaterials/>}
 			/>
 			<Route
 				exact path='/favorites'

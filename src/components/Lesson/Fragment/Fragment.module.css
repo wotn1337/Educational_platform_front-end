@@ -8,6 +8,10 @@
     margin-bottom: 20px;
 }
 
+.content {
+    margin-bottom: 15px;
+}
+
 .article p {
     font-family: Bebas Neue, sans-serif !important;
     font-style: normal;
@@ -24,7 +28,6 @@
 }
 
 .author {
-    margin-top: 15px;
     display: flex;
     align-items: center;
     gap: 15px;
@@ -38,7 +41,10 @@
 }
 
 .authorAvatar {
-    display: block;
     width: 55px;
+    height: 55px;
     border-radius: 50%;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }

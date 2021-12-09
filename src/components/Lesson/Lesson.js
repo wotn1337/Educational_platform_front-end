@@ -6,6 +6,7 @@ import {Route} from "react-router-dom";
 import Preloader from "../../common/Preloader/Preloader";
 import ButtonsBlock from "./ButtonsBlock/ButtonsBlock";
 import EditingLesson from "./EditingLesson/EditingLesson";
+import LessonPreview from "./LessonPreview/LessonPreview";
 
 
 const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle, isEdit, ...props}) => {
@@ -16,9 +17,21 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 					<h1 className={'pageTitle'}>{lessonTitle}</h1>
 					<section className={s.lesson}>
 						<Navigation fragments={fragments} lessonId={id} setCurrentFragment={setCurrentFragment}/>
-						{props.isFetching ? <Preloader size={200}/>
-							: <>{currentFragment && <Route path={`/lesson/${id}/:fragmentId`}
-							                               render={() => <Fragment fragment={currentFragment}/>}/>}</>
+						{props.isFetching
+							? <Preloader size={200}/>
+							: <>
+								{
+									currentFragment
+										? <Route path={`/lesson/${id}/:fragmentId`} render={() => <Fragment fragment={currentFragment}/>}/>
+										: <LessonPreview
+											image={undefined}
+											creatorName={props.creatorName}
+											creatorAvatar={props.creatorAvatar}
+											annotation={props.lessonAnnotation}
+											tags={props.tags}
+										/>
+								}
+								</>
 						}
 
 					</section>

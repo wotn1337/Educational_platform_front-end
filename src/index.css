@@ -20,7 +20,7 @@ h1.pageTitle {
     font-size: 40px;
     line-height: 54px;
     color: white;
-    text-decoration: underline #F56464;
+    /*text-decoration: underline #F56464;*/
     margin-bottom: 30px;
     width: fit-content;
 }
