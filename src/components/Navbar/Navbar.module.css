@@ -13,11 +13,14 @@
     align-items: flex-start;
 }
 
+.logoLink {
+    margin-right: auto;
+    margin-top: -20px;
+}
+
 .logo {
     height: 100px;
     display: block;
-    margin-right: auto;
-    margin-top: -20px;
 }
 
 .navLink {

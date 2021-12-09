@@ -15,7 +15,7 @@ const Navbar = ({role, ...props}) => {
 	return (
 		<div className={s.nav}>
 			<div className={s.headerWrapper}>
-				<img src={logo} alt="Logo" className={s.logo}/>
+				<NavLink to={'/'} className={s.logoLink}><img src={logo} alt="Logo" className={s.logo}/></NavLink>
 				<NavLink className={s.navLink} exact to="/" activeClassName={s.active}>Главная</NavLink>
 				{props.isAuth
 					? <>
@@ -29,12 +29,16 @@ const Navbar = ({role, ...props}) => {
 							{/*/>*/}
 							<DropDownMenu
 								title={'Учебные материалы'}
-								links={[{'catalog': 'Каталог'}, {'my-materials': 'Мои материалы'}, {'favorites': 'Избранное'}]}
+								links={[{'catalog': 'Каталог'}, {'my-materials': role !== 'student' ? 'Мои материалы' : 'Мои уроки'}, {'favorites': 'Избранное'}]}
 							/>
-							<DropDownMenu
-								title={'Создать'}
-								links={[props.role !== 'student' && {'create-fragment': 'Создать фрагмент'}, {'create-lesson': 'Создать урок'}]}
-							/>
+							{role !== 'student'
+								? <DropDownMenu
+									title={'Создать'}
+									links={[{'create-fragment': 'Создать фрагмент'}, {'create-lesson': 'Создать урок'}]}
+								/>
+								: <NavLink className={s.navLink} to="/create-lesson" activeClassName={s.active}>Создать урок</NavLink>
+							}
+
 						</>
 						}
 						<NavLink className={s.navLink} to="/me" activeClassName={s.active}>Мой профиль</NavLink>
