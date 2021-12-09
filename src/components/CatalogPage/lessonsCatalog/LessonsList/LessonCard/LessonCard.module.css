@@ -136,11 +136,15 @@
 
 @media all and (max-width: 1024px) {
     .lessonCard {
+        display: flex;
         border-radius: 9px;
         max-width: 320px;
+        flex-direction: column;
+        justify-content: space-between;
     }
 
     .mainInfo {
+        position: relative;
         padding: 30px 25px 0;
         display: grid;
         grid-template-areas: "preview"
@@ -149,7 +153,7 @@
                          "count"
                          "tags";
         grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr auto auto 100px;
+        grid-template-rows: auto 1fr auto auto auto;
         margin-bottom: 15px;
     }
 
@@ -161,8 +165,10 @@
 
     .favorite {
         display: block;
-        position: relative;
+        position: absolute;
         margin-left: 0;
+        top: 35px;
+        right: 22px;
     }
 
     .lessonButton {
@@ -171,10 +177,9 @@
 
     .addToFavorite {
         display: block;
-        position: absolute;
         bottom: 360px;
         right: 2px;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(255, 255, 255, 0.72);
         border-radius: 50%;
         width: 45px;
         height: 45px;
@@ -243,5 +248,9 @@
 @media all and (max-width: 425px) {
     .mainInfo {
         padding: 20px 20px 0;
+    }
+    .favorite {
+        top: 25px;
+        right: 18px;
     }
 }
