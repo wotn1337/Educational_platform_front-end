@@ -85,6 +85,7 @@
     .content {
         width: 80%;
     }
+
     .btn {
         font-size: 20px;
     }
@@ -94,6 +95,7 @@
     .content {
         width: 90%;
     }
+
     .btn {
         font-size: 15px;
         padding: 15px 50px;
@@ -104,8 +106,17 @@
     .content {
         width: 90%;
     }
+
     .btn {
         font-size: 15px;
         padding: 10px 40px;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .buttonsBlock {
+        margin: 0;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 }

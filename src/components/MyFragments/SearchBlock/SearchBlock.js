@@ -42,7 +42,7 @@ const SearchBlock = (props) => {
 					<option value="video">Видео</option>
 					<option value="test">Тест</option>
 				</select>
-				<button onClick={props.searchFragments} className={s.searchButton}/>
+				<button onClick={props.searchFragments} className={s.searchButton}>Искать</button>
 			</div>
 			<div className={s.searchTags}>
 				{props.searchTags && <ThisTags tags={props.searchTags} edit={true} returnTag={props.returnTag}
