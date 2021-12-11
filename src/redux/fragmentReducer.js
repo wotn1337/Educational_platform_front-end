@@ -32,7 +32,7 @@ const fragmentReducer = (state = initState, action) => {
 				type: action.fragment.type,
 				creatorId: action.fragment.user_id,
 				creator: action.fragment.user_name,
-				creatorAvatar: action.fragment.avatar,
+				creatorAvatar: action.fragment.user_avatar,
 				tags: action.fragment.tags ? action.fragment.tags.data : [],
 				tagsIds: action.fragment.tags ? action.fragment.tags.data.map(tag => tag.id) : []
 			};
