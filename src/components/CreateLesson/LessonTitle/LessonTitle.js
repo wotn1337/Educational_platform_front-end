@@ -4,7 +4,7 @@ import s from './LessonTitle.module.css';
 const LessonTitle = ({title, changeLessonTitle, ...props}) => {
 	return (
 		<div className={s.fragmentTitleBlock}>
-			<div className={s.preTitle}>Название вашего урока</div>
+			<h3 className={s.preTitle}>Название вашего урока</h3>
 			<input
 				type="text"
 				name={'fragmentTitle'}

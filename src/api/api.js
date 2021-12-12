@@ -1,6 +1,7 @@
 import {instance} from "./instance";
 import axios from "axios";
 import {fragmentTypes} from "../common/fragmentTypes";
+
 const TOKEN_TYPE = 'Bearer';
 let TOKEN = localStorage.getItem('token');
 const fullUrl = 'https://youngeek-test.na4u.ru/back-end/public/api/'
@@ -27,9 +28,9 @@ export const authAPI = {
 	login(data) {
 		const promise = instance.post('login', JSON.stringify(data));
 		promise.then(res => {
-				TOKEN = res.data.token;
-				localStorage.setItem('token', res.data.token);
-			});
+			TOKEN = res.data.token;
+			localStorage.setItem('token', res.data.token);
+		});
 		return promise;
 	},
 
@@ -37,9 +38,9 @@ export const authAPI = {
 	register(data) {
 		const promise = instance.post('register', JSON.stringify(data));
 		promise.then(res => {
-				TOKEN = res.data.token;
-				localStorage.setItem('token', res.data.token);
-			});
+			TOKEN = res.data.token;
+			localStorage.setItem('token', res.data.token);
+		});
 		return promise;
 	},
 
@@ -145,18 +146,27 @@ export const adminAPI = {
 
 export const fragmentsAPI = {
 	// Создать новый фрагмент
-	createFragment(type, title, content, tagsIds) {
-		if (type === fragmentTypes.video) {
-			const data = new FormData();
-			data.append('type', type);
-			data.append('title', title);
-			data.append('content', content);
-			for (const id of tagsIds) {
-				data.append('tags[]', id);
-			}
-			return axios.post(`${fullUrl}fragments`, data, authConfig());
+	createFragment(type, title, content, tagsIds, fon) {
+		// if (type === fragmentTypes.video) {
+		// 	const data = new FormData();
+		// 	data.append('type', type);
+		// 	data.append('title', title);
+		// 	data.append('content', content);
+		// 	for (const id of tagsIds) {
+		// 		data.append('tags[]', id);
+		// 	}
+		// 	return axios.post(`${fullUrl}fragments`, data, authConfig());
+		// }
+		// return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig());
+		const data = new FormData();
+		data.append('type', type);
+		data.append('title', title);
+		data.append('content', content);
+		for (const id of tagsIds) {
+			data.append('tags[]', id);
 		}
-		return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig());
+		data.append('fon', fon)
+		return axios.post(`${fullUrl}fragments`, data, authConfig());
 	},
 
 	// Получить список всех фрагментов
