@@ -2,19 +2,19 @@ import React from 'react';
 import s from '../Lesson.module.css';
 
 
-const ButtonsBlock = ({lessonId, creatorId, userId, role, favorite, toggleFavorite, deleteLesson, favoriteFetching, ...props}) => {
+const ButtonsBlock = ({id, creatorId, userId, role, favorite, toggleFavorite, deleteThis, favoriteFetching, ...props}) => {
 	return (
 		<div className={s.buttonsBlock}>
 			{(creatorId === userId || role === 'admin') &&
 			<>
 				<button className={'btn'} onClick={props.toggleIsEdit}>Редактировать</button>
-				<button className={'btn'} onClick={() => deleteLesson()}>Удалить</button>
+				<button className={'btn'} onClick={() => deleteThis()}>Удалить</button>
 			</>
 			}
 			{role !== 'admin' &&
 			<button
 				className={'btn'}
-				onClick={() => toggleFavorite(lessonId)}
+				onClick={() => toggleFavorite(id)}
 				disabled={favoriteFetching}
 				style={{marginLeft: `${(creatorId === userId || role === 'admin') ? '' : 'auto'}`}}
 			>

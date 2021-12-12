@@ -64,11 +64,17 @@ a.creatorName:hover {
     margin: 0 auto 15px;
 }
 
+.editBlock {
+    margin-bottom: 15px;
+    background-color: white;
+}
+
 .buttonsBlock {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     width: 100%;
-    margin: 50px auto 20px;
+    margin: 15px auto 20px;
 }
 
 .btn {

@@ -5,7 +5,7 @@ import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuth
 import Fragment from "./Fragment";
 import {Redirect, withRouter} from "react-router-dom";
 import {
-	addTag,
+	addTag, changeFavorite,
 	deleteFragment,
 	deleteTag,
 	editFragment,
@@ -54,7 +54,7 @@ class FragmentContainer extends React.Component {
 		}
 
 		if (this.props.isFetching) {
-			return <Preloader size={400}/>
+			return <Preloader size={200}/>
 		}
 
 		return <Fragment
@@ -79,6 +79,8 @@ const mapStateToProps = (state) => ({
 	isFetching: state.fragment.isFetching,
 	tags: state.fragment.tags,
 	tagsIds: state.fragment.tagsIds,
+	favorite: state.fragment.favorite,
+	favoriteFetching: state.fragment.favoriteFetching
 });
 
 export default compose(
@@ -90,7 +92,8 @@ export default compose(
 		setContent,
 		deleteTag,
 		addTag,
-		returnTag
+		returnTag,
+		changeFavorite
 	}),
 	withRouter,
 	withoutAuthRedirectToAuthPage

@@ -9,10 +9,16 @@ import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 import TagsListContainer from "../CreateFragment/TagsList/TagsListContainer";
 import {NavLink} from "react-router-dom";
 import avatarPlaceholder from "../../assets/img/profile/teacherProfile.svg";
+import ButtonsBlock from "../Lesson/ButtonsBlock/ButtonsBlock";
 
 const Fragment = (props) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 	const [showTags, setShowTags] = useState(false);
+
+	const editToggle = () => {
+		props.toggleIsEdit();
+		convertToDraft();
+	}
 
 	const setContent = (editorState) => {
 		props.setContent(draftToHtml(convertToRaw(editorState.getCurrentContent())));
@@ -38,7 +44,7 @@ const Fragment = (props) => {
 				/>
 			}
 
-			<div className={!props.isEdit && s.fragmentBlock}>
+			<div className={!props.isEdit ? s.fragmentBlock : s.editBlock}>
 				{props.type === fragmentTypes.article &&
 				<>
 					{!props.isEdit
@@ -66,33 +72,55 @@ const Fragment = (props) => {
 				deleteTag={props.deleteTag}
 				returnTag={props.returnTag}
 			/>
-
-			<div className={s.buttonsBlock}>
-				{props.isEdit &&
-				<button onClick={() => setShowTags(!showTags)} className={s.btn}>Добавить теги</button>}
-				{(props.userId === props.creatorId || props.role === 'admin') &&
-				<>
-					{!props.isEdit
-						? <button className={s.btn} onClick={() => {
-							props.toggleIsEdit();
-							convertToDraft();
-						}}>Редактировать</button>
-						: <button className={s.btn} onClick={props.editFragment}>Сохранить
-							изменения</button>
-					}
-				</>
-				}
-				{!props.isEdit &&
-				<>
-					{(props.userId === props.creatorId || props.role === 'admin') &&
-					<button className={`${s.btn} ${s.deleteButton}`} onClick={props.deleteFragment}>Удалить</button>
-					}
-					{props.role !== 'admin' &&
-					<button className={`${s.btn} ${s.addToFavorite}`}>Добавить в избранное</button>
-					}
-				</>
-				}
-			</div>
+			{props.isEdit
+				? <div className={s.buttonsBlock}>
+					<button onClick={() => setShowTags(!showTags)} className={'btn'}>Добавить теги</button>
+					<button className={'btn'} onClick={props.editFragment}>Сохранить изменения</button>
+				</div>
+				: <ButtonsBlock
+					id={props.id}
+					creatorId={props.creatorId}
+					userId={props.userId}
+					role={props.role}
+					favorite={props.favorite}
+					favoriteFetching={props.favoriteFetching}
+					deleteThis={props.deleteFragment}
+					toggleFavorite={props.changeFavorite}
+					toggleIsEdit={editToggle}
+				/>
+			}
+			{/*<div className={s.buttonsBlock}>*/}
+			{/*	{props.isEdit &&*/}
+			{/*	<button onClick={() => setShowTags(!showTags)} className={s.btn}>Добавить теги</button>}*/}
+			{/*	{(props.userId === props.creatorId || props.role === 'admin') &&*/}
+			{/*	<>*/}
+			{/*		{!props.isEdit*/}
+			{/*			? <button className={s.btn} onClick={() => {*/}
+			{/*				props.toggleIsEdit();*/}
+			{/*				convertToDraft();*/}
+			{/*			}}>Редактировать</button>*/}
+			{/*			: <button className={s.btn} onClick={props.editFragment}>Сохранить*/}
+			{/*				изменения</button>*/}
+			{/*		}*/}
+			{/*	</>*/}
+			{/*	}*/}
+			{/*	{!props.isEdit &&*/}
+			{/*	<>*/}
+			{/*		{(props.userId === props.creatorId || props.role === 'admin') &&*/}
+			{/*		<button className={`${s.btn} ${s.deleteButton}`} onClick={props.deleteFragment}>Удалить</button>*/}
+			{/*		}*/}
+			{/*		{props.role !== 'admin' &&*/}
+			{/*		<button*/}
+			{/*			className={'btn'}*/}
+			{/*			onClick={() => props.changeFavorite(props.id)}*/}
+			{/*			disabled={props.favoriteFetching}*/}
+			{/*		>*/}
+			{/*			{props.favorite ? 'Удалить из избранного' : 'Добавить в избранное'}*/}
+			{/*		</button>*/}
+			{/*		}*/}
+			{/*	</>*/}
+			{/*	}*/}
+			{/*</div>*/}
 			{showTags && <TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}/>}
 		</div>
 	)

@@ -36,13 +36,13 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 
 					</section>
 					<ButtonsBlock
-						lessonId={id}
+						id={id}
 						creatorId={props.creatorId}
 						userId={props.userId}
 						role={props.role}
 						favorite={props.favorite}
 						favoriteFetching={props.favoriteFetching}
-						deleteLesson={props.deleteLesson}
+						deleteThis={props.deleteLesson}
 						toggleFavorite={props.toggleFavorite}
 						toggleIsEdit={props.toggleIsEdit}
 					/>
