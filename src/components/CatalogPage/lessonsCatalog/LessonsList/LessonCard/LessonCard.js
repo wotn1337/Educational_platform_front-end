@@ -10,7 +10,7 @@ const LessonCard = ({lesson, toggleFavorite, role, ...props}) => {
 	return (
 		<div className={s.lessonCard}>
 			<div className={s.mainInfo}>
-				<img src={lessonPlaceholder} alt="lesson" className={s.preview}/>
+				<img src={lesson.fon || lessonPlaceholder} alt="lesson" className={s.preview}/>
 				<div className={s.tags}>
 					<Tags tags={lesson.tags}/>
 				</div>

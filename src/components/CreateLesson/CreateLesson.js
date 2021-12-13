@@ -15,7 +15,7 @@ const CreateLesson = ({isFetching, ...props}) => {
 		<div className={s.content}>
 			<h1 className={'pageTitle'}>Создать урок</h1>
 			<LessonTitle title={props.title} changeLessonTitle={props.changeLessonTitle}/>
-			<UploadFon type={'lesson'}/>
+			<UploadFon type={'lesson'} setFon={props.setFon} fon={props.fon}/>
 			<LessonAnnotation annotation={props.annotation} changeAnnotation={props.changeAnnotation}/>
 			{isFetching
 				? <Preloader size={200}/>

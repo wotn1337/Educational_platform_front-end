@@ -24,7 +24,7 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 									currentFragment
 										? <Route path={`/lesson/${id}/:fragmentId`} render={() => <Fragment fragment={currentFragment}/>}/>
 										: <LessonPreview
-											image={undefined}
+											image={props.fon}
 											creatorName={props.creatorName}
 											creatorAvatar={props.creatorAvatar}
 											annotation={props.lessonAnnotation}

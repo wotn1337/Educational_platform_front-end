@@ -50,7 +50,7 @@ class FragmentContainer extends React.Component {
 
 	render() {
 		if (!this.state.id) {
-			return <Redirect to={'/my-fragments'} />;
+			return <Redirect to={'/catalog'} />;
 		}
 
 		if (this.props.isFetching) {

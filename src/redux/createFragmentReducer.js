@@ -9,6 +9,7 @@ const SET_TITLE_ERROR = 'createFragment/SET_TITLE_ERROR';
 const ADD_TAG = 'createFragment/ADD_TAG';
 const DELETE_TAG = 'createFragment/DELETE_TAG';
 const CLEAR_TAGS = 'createFragment/CLEAR_TAGS';
+const SET_FON = 'createFragment/SET_FON';
 
 
 const initState = {
@@ -19,7 +20,8 @@ const initState = {
 	tagsFetching: false,
 	titleError: '',
 	tagsIds: [],
-	tags: []
+	tags: [],
+	fon: undefined
 };
 
 const createFragmentReducer = (state = initState, action) => {
@@ -54,11 +56,10 @@ const createFragmentReducer = (state = initState, action) => {
 			};
 
 		case CLEAR_TAGS:
-			return {
-				...state,
-				tags: [],
-				tagsIds: []
-			}
+			return {...state, tags: [], tagsIds: []};
+
+		case SET_FON:
+			return {...state, fon: action.fon};
 
 		default:
 			return state;
@@ -70,18 +71,21 @@ export const changeFragmentTitle = (fragmentTitle) => ({type: CHANGE_FRAGMENT_TI
 export const setContent = (content) => ({type: SET_CONTENT, content});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
+export const setFon = (fon) => ({type: SET_FON, fon});
+
 const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 const setTitleError = (error) => ({type: SET_TITLE_ERROR, error});
 const clearTags = () => ({type: CLEAR_TAGS});
 
-export const createFragment = (fragmentType, title, content, tagsIds) => (dispatch) => {
+export const createFragment = (fragmentType, title, content, tagsIds, fon) => (dispatch) => {
 	dispatch(setIsFetching(true));
-	return fragmentsAPI.createFragment(fragmentType, title, content, tagsIds)
+	return fragmentsAPI.createFragment(fragmentType, title, content, tagsIds, fon)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(setTitleError(''));
 			dispatch(changeFragmentTitle(''));
 			dispatch(setContent(''));
+			dispatch(setFon(undefined));
 			dispatch(setIsFetching(false));
 			dispatch(clearTags());
 		})

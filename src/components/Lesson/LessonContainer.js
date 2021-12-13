@@ -48,7 +48,7 @@ class LessonContainer extends React.Component {
 
 	render() {
 		if (!this.state.id) {
-			return <Redirect to={'/lessons-catalog'}/>
+			return <Redirect to={'/catalog'}/>
 		}
 		return (
 			<Lesson
@@ -75,7 +75,8 @@ const mapStateToProps = (state) => ({
 	creatorId: state.lesson.creatorId,
 	creatorName: state.lesson.creatorName,
 	creatorAvatar: state.lesson.creatorAvatar,
-	tags: state.lesson.tags
+	tags: state.lesson.tags,
+	fon: state.lesson.fon
 });
 
 export default compose(

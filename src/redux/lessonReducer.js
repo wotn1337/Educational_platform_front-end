@@ -26,22 +26,31 @@ const initState = {
 	creatorId: undefined,
 	creatorName: '',
 	creatorAvatar: undefined,
-	tags: []
+	tags: [],
+	fon: undefined
 };
 
 const lessonReducer = (state = initState, action) => {
 	switch (action.type) {
 		case SET_LESSON:
+			const resultFragments = [];
+			const fragments = action.data.lesson.fragments.data;
+			for (let i = 0; i < fragments.length; i++) {
+				const order = fragments[i].order;
+				resultFragments[order - 1] = fragments[i];
+			}
+
 			return {
 				...state,
-				fragments: action.data.lesson.fragments.data,
+				fragments: resultFragments,
 				lessonTitle: action.data.lesson.title,
 				lessonAnnotation: action.data.lesson.annotation,
 				creatorId: action.data.lesson.user_id,
 				creatorName: action.data.lesson.user_name,
 				creatorAvatar: action.data.lesson.user_avatar,
 				favorite: action.data.lesson.favourite,
-				tags: action.data.lesson.tags?.data
+				tags: action.data.lesson.tags?.data,
+				fon: action.data.lesson.fon
 			};
 
 		case TOGGLE_FAVORITE:

@@ -20,6 +20,8 @@
     display: block;
     width: 325px;
     height: 200px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .tags {

@@ -1,5 +1,5 @@
 import React from "react";
-import {addTag, createFragment, deleteTag, setContent} from "../../redux/createFragmentReducer";
+import {addTag, createFragment, deleteTag, setContent, setFon} from "../../redux/createFragmentReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
@@ -16,7 +16,8 @@ class CreateFragmentContainer extends React.Component {
 			this.props.fragmentType,
 			this.props.title,
 			this.props.content,
-			this.props.tagsIds
+			this.props.tagsIds,
+			this.props.fon
 		);
 	}
 	render() {
@@ -34,7 +35,8 @@ const mapStateToProps = (state) => ({
 	content: state.createFragment.content,
 	isFetching: state.createFragment.isFetching,
 	tags: state.createFragment.tags,
-	tagsIds: state.createFragment.tagsIds
+	tagsIds: state.createFragment.tagsIds,
+	fon: state.createFragment.fon
 });
 
 export default compose(
@@ -46,6 +48,7 @@ export default compose(
 		createFragment,
 		deleteTag,
 		addTag,
-		returnTag
+		returnTag,
+		setFon
 	})
 )(CreateFragmentContainer);

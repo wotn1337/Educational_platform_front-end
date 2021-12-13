@@ -7,7 +7,7 @@ import {
 	changeAnnotation,
 	changeLessonTitle,
 	createLesson,
-	deleteTag
+	deleteTag, setFon
 } from "../../redux/createLessonReducer";
 import {compose} from "redux";
 import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
@@ -24,14 +24,13 @@ class CreateLessonContainer extends React.Component {
 			this.props.title,
 			this.props.annotation,
 			fragmentsIds,
-			tagsIds);
+			tagsIds,
+			this.props.fon
+		);
 	}
 
 	render() {
-		return <CreateLesson
-			{...this.props}
-			createLesson={this.createLesson}
-		/>;
+		return <CreateLesson {...this.props} createLesson={this.createLesson}/>;
 	}
 }
 
@@ -40,7 +39,8 @@ const mapStateToProps = (state) => ({
 	lessonFragments: state.createLesson.fragments,
 	isFetching: state.createLesson.isFetching,
 	tags: state.createLesson.tags,
-	annotation: state.createLesson.annotation
+	annotation: state.createLesson.annotation,
+	fon: state.createLesson.fon
 });
 
 export default compose(
@@ -54,6 +54,7 @@ export default compose(
 		addTag,
 		deleteTag,
 		returnTag,
-		changeAnnotation
+		changeAnnotation,
+		setFon
 	})
 )(CreateLessonContainer);

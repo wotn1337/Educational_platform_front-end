@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import s from './UploadFon.module.css';
 
 
-const UploadFon = ({type}) => {
-	const [fon, setFon] = useState(null);
+const UploadFon = ({type, fon, setFon}) => {
 	const [fonSrc, setFonSrc] = useState('');
 	const getImgSrc = (newFon) => {
 		const reader = new FileReader();

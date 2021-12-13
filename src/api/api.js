@@ -1,6 +1,5 @@
 import {instance} from "./instance";
 import axios from "axios";
-import {fragmentTypes} from "../common/fragmentTypes";
 
 const TOKEN_TYPE = 'Bearer';
 let TOKEN = localStorage.getItem('token');
@@ -147,17 +146,6 @@ export const adminAPI = {
 export const fragmentsAPI = {
 	// Создать новый фрагмент
 	createFragment(type, title, content, tagsIds, fon) {
-		// if (type === fragmentTypes.video) {
-		// 	const data = new FormData();
-		// 	data.append('type', type);
-		// 	data.append('title', title);
-		// 	data.append('content', content);
-		// 	for (const id of tagsIds) {
-		// 		data.append('tags[]', id);
-		// 	}
-		// 	return axios.post(`${fullUrl}fragments`, data, authConfig());
-		// }
-		// return instance.post('fragments', JSON.stringify({type, title, content, tags: tagsIds}), authConfig());
 		const data = new FormData();
 		data.append('type', type);
 		data.append('title', title);
@@ -165,7 +153,7 @@ export const fragmentsAPI = {
 		for (const id of tagsIds) {
 			data.append('tags[]', id);
 		}
-		data.append('fon', fon)
+		data.append('fon', fon);
 		return axios.post(`${fullUrl}fragments`, data, authConfig());
 	},
 
@@ -224,8 +212,18 @@ export const fragmentsAPI = {
 
 export const lessonsAPI = {
 	// Создать урок
-	createLesson(title, annotation, fragments, tags) {
-		return instance.post('lessons', JSON.stringify({title, annotation, fragments, tags}), authConfig());
+	createLesson(title, annotation, fragments, tags, fon) {
+		const data = new FormData();
+		data.append('title', title);
+		data.append('annotation', annotation);
+		for (const fragment of fragments) {
+			data.append('fragments[]', fragment);
+		}
+		for (const id of tags) {
+			data.append('tags[]', id);
+		}
+		data.append('fon', fon);
+		return instance.post(`${fullUrl}lessons`, data, authConfig());
 	},
 
 	// Получить список всех уроков
