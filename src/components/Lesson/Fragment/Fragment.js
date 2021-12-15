@@ -16,6 +16,9 @@ const Fragment = ({fragment}) => {
 				{fragment.type === fragmentTypes.video &&
 					<video src={fragment.content} controls={'controls'} className={s.video}/>
 				}
+				{fragment.type === fragmentTypes.image &&
+					<div className={s.image}><img src={fragment.content} alt="fragment"/></div>
+				}
 			</div>
 			<Author name={fragment.user_name} avatar={fragment.user_avatar}/>
 		</div>

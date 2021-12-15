@@ -15,13 +15,13 @@ const ConstructorBlock = (props) => {
 		if (i !== props.fragments.length - 1) {
 			fragmentCards.push(
 				<FragmentCard id={fragment.id} key={fragment.id} fragmentType={fragment.type}
-				              title={fragment.title} tags={fragment.tags}/>
+				              title={fragment.title} tags={fragment.tags} fon={fragment.fon} content={fragment.content}/>
 			)
 		} else {
 			fragmentCards.push(
 				<div className={s.lastCard}>
 					<FragmentCard id={fragment.id} key={fragment.id} fragmentType={fragment.type}
-					              title={fragment.title} tags={fragment.tags} fon={fragment.fon}/>
+					              title={fragment.title} tags={fragment.tags} fon={fragment.fon} content={fragment.content}/>
 					<button className={`${s.button} ${s.addButton}`} onClick={() => setModalActive(true)}/>
 				</div>
 			)

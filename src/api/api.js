@@ -153,7 +153,8 @@ export const fragmentsAPI = {
 		for (const id of tagsIds) {
 			data.append('tags[]', id);
 		}
-		data.append('fon', fon);
+		if (fon)
+			data.append('fon', fon);
 		return axios.post(`${fullUrl}fragments`, data, authConfig());
 	},
 
@@ -222,7 +223,8 @@ export const lessonsAPI = {
 		for (const id of tags) {
 			data.append('tags[]', id);
 		}
-		data.append('fon', fon);
+		if (fon)
+			data.append('fon', fon);
 		return instance.post(`${fullUrl}lessons`, data, authConfig());
 	},
 

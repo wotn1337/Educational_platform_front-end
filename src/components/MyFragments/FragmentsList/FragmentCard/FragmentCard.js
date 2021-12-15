@@ -2,7 +2,7 @@ import React from "react";
 import s from './FragmentCard.module.css';
 import {fragmentTypeImg, previewImg} from "../../../../common/fragmentsPreview";
 import {NavLink} from "react-router-dom";
-import {russianFragmentTypes} from "../../../../common/fragmentTypes";
+import {fragmentTypes, russianFragmentTypes} from "../../../../common/fragmentTypes";
 import Tags from "./Tags/Tags";
 
 const getShortTitle = (title, length) => {
@@ -14,10 +14,11 @@ const getShortTitle = (title, length) => {
 
 
 const FragmentCard = ({role, ...props}) => {
+	const fon = props.fragmentType === fragmentTypes.image ? props.content : props.fon;
 	return (
 		<NavLink to={`/fragment/${props.id}`} className={s.fragmentCard}>
 			<div className={s.preview}>
-				<img src={props.fon || previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
+				<img src={fon || previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
 				{role !== 'admin' &&
 				<button className={`${s.addToFavoriteButton} ${props.isFavorite ? s.alreadyFavorite : s.addToFavorite}`}
 				        onClick={event => {
