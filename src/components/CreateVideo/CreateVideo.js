@@ -24,7 +24,7 @@ const CreateVideo = (props) => {
 			<input
 				className={s.hide}
 				type='file'
-				id='upload'
+				id='uploadVideo'
 				onChange={e => {
 					setInputValue(e.target.value);
 					setVideo(e.target.files[0]);
@@ -35,7 +35,7 @@ const CreateVideo = (props) => {
 				accept={'video/*'}
 			/>
 			{!video
-				? <label className={s.btn} htmlFor="upload">Загрузить видео</label>
+				? <label className={s.btn} htmlFor="uploadVideo">Загрузить видео</label>
 				: <button
 					className={s.btn}
 					onClick={() => {

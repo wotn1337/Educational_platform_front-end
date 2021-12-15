@@ -13,6 +13,7 @@ const FragmentsList = (props) => {
             title={fragment.title}
             isFavorite={fragment.favourite}
             tags={fragment.tags}
+            fon={fragment.fon}
         />
     ));
 

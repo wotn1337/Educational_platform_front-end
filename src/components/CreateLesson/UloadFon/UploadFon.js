@@ -16,7 +16,7 @@ const UploadFon = ({type, fon, setFon}) => {
 		<div style={{marginBottom: '35px'}}>
 			<h3>Обложка вашего {type === 'lesson' ? 'урока' : 'фрагмента'}</h3>
 			<div className={s.fonBlock}>
-				{fon && <img src={fonSrc} alt={`${type} preview`} className={s.fon}/>}
+				{fon && <img src={fonSrc} alt={`${type} preview`} className={s.fon} id={'upload'}/>}
 				<label className={'btn'} htmlFor="upload">{fon ? 'Выбрать другую обложку' : 'Загрузить обложку'}</label>
 				<input className={'hide'} type='file' id='upload' accept={'image/*'} onChange={e => {
 					setFon(e.target.files[0]);

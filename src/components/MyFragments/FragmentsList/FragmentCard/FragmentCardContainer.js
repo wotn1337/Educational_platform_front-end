@@ -17,11 +17,6 @@ class FragmentCardContainer extends React.Component {
         return (
             <FragmentCard
                 {...this.props}
-                id={this.props.id}
-                key={this.props.id}
-                fragmentType={this.props.fragmentType}
-                title={this.props.title}
-                tags={this.props.tags}
                 isFavorite={this.state.isFavorite}
                 changeFavorite={this.changeFavorite}
             />
