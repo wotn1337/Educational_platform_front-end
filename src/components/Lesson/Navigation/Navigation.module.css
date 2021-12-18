@@ -3,6 +3,28 @@
     border-right: 2px solid rgba(243, 106, 118, 0.7);
 }
 
+.mobileNavigation {
+    margin-top: 20px;
+    display: none;
+    height: 60px;
+}
+
+.btn {
+    width: 61px;
+    background-position: center;
+    border: none;
+    background-color: transparent;
+}
+
+.btnBack {
+    background-image: url("./../../../assets/img/lessons/arrow.png");
+    transform: rotate(180deg);
+}
+
+.btnForward {
+    background-image: url("./../../../assets/img/lessons/arrow.png");
+}
+
 .description {
     display: flex;
     justify-content: center;
@@ -62,4 +84,15 @@
     grid-area: type;
     font-weight: 400;
     font-size: 16px;
+}
+
+@media all and (max-width: 768px) {
+    .navigation {
+        display: none;
+    }
+
+    .mobileNavigation {
+        display: flex;
+        justify-content: space-between;
+    }
 }

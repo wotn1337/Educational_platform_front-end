@@ -1,14 +1,18 @@
-.content {
-    width: 1200px;
-    margin: 70px auto 80px;
-}
-
 .lesson {
     background-color: white;
     display: grid;
+    grid-template-areas: "nav fragment";
     grid-template-columns: 1fr 5fr;
     border-radius: 10px;
     min-height: 400px;
+}
+
+.navigation {
+    grid-area: nav;
+}
+
+.fragment {
+    grid-area: fragment;
 }
 
 .buttonsBlock {
@@ -21,3 +25,28 @@
 .addToFavorite {
     margin-left: auto;
 }
+
+
+@media all and (max-width: 768px) {
+    .lesson {
+        grid-template-areas: "fragment";
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+}
+
+@media all and (max-width: 720px) {
+
+}
+
+@media all and (max-width: 425px) {
+    .lesson {
+        margin-top: 20px;
+    }
+
+    .buttonsBlock {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
