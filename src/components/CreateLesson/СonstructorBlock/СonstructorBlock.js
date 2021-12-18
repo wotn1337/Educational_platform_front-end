@@ -21,7 +21,7 @@ const ConstructorBlock = (props) => {
 			fragmentCards.push(
 				<div className={s.lastCard}>
 					<FragmentCard id={fragment.id} key={fragment.id} fragmentType={fragment.type}
-					              title={fragment.title} tags={fragment.tags}/>
+					              title={fragment.title} tags={fragment.tags} fon={fragment.fon}/>
 					<button className={`${s.button} ${s.addButton}`} onClick={() => setModalActive(true)}/>
 				</div>
 			)

@@ -9,6 +9,7 @@ const ADD_TAG = 'createLesson/ADD_TAG';
 const DELETE_TAG = 'createLesson/DELETE_TAG';
 const CLEAR_TAGS = 'createLesson/CLEAR_TAGS';
 const CHANGE_ANNOTATION = 'createLesson/CHANGE_ANNOTATION';
+const SET_FON = 'createLesson/SET_FON';
 
 
 const initState = {
@@ -16,7 +17,8 @@ const initState = {
     isFetching: false,
     tags: [],
     fragments: [],
-    annotation: ''
+    annotation: '',
+    fon: undefined,
 };
 
 const createLessonReducer = (state = initState, action) => {
@@ -25,28 +27,16 @@ const createLessonReducer = (state = initState, action) => {
             return {...state, title: action.lessonTitle};
 
         case SET_FRAGMENTS:
-            return {
-                ...state,
-                fragments: action.fragments
-            }
+            return {...state, fragments: action.fragments};
 
         case TOGGLE_IS_FETCHING:
-            return {
-                ...state,
-                isFetching: action.isFetching
-            };
+            return {...state, isFetching: action.isFetching};
 
         case CLEAR_FRAGMENTS:
-            return {
-                ...state,
-                fragments: []
-            };
+            return {...state, fragments: []};
 
         case ADD_TAG: {
-            return {
-                ...state,
-                tags: [...state.tags, action.tag]
-            };
+            return {...state, tags: [...state.tags, action.tag]};
         }
 
         case DELETE_TAG: {
@@ -57,17 +47,14 @@ const createLessonReducer = (state = initState, action) => {
         }
 
         case CLEAR_TAGS: {
-            return {
-                ...state,
-                tags: []
-            };
+            return {...state, tags: []};
         }
 
         case CHANGE_ANNOTATION:
-            return {
-                ...state,
-                annotation: action.annotation
-            };
+            return {...state, annotation: action.annotation};
+
+        case SET_FON:
+            return {...state, fon: action.fon};
 
         default:
             return state;
@@ -83,13 +70,15 @@ export const setFragments = (fragments) => ({type: SET_FRAGMENTS, fragments});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const changeAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});
+export const setFon = (fon) => ({type: SET_FON, fon});
 
-export const createLesson = (title, annotation, fragments, tags) => (dispatch) => {
+export const createLesson = (title, annotation, fragments, tags, fon) => (dispatch) => {
     dispatch(toggleIsFetching(true));
-    lessonsAPI.createLesson(title, annotation, fragments, tags)
+    lessonsAPI.createLesson(title, annotation, fragments, tags, fon)
         .then(res => {
             dispatch(clearFragments());
             dispatch(clearTags());
+            dispatch(setFon(undefined));
             dispatch(changeLessonTitle(''));
             dispatch(changeAnnotation(''));
             dispatch(toggleIsFetching(false));

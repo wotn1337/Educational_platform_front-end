@@ -17,7 +17,7 @@ const FragmentCard = ({role, ...props}) => {
 	return (
 		<NavLink to={`/fragment/${props.id}`} className={s.fragmentCard}>
 			<div className={s.preview}>
-				<img src={previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
+				<img src={props.fon || previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
 				{role !== 'admin' &&
 				<button className={`${s.addToFavoriteButton} ${props.isFavorite ? s.alreadyFavorite : s.addToFavorite}`}
 				        onClick={event => {

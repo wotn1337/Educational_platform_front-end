@@ -8,7 +8,7 @@ import Author from "../Author/Author";
 const Fragment = ({fragment}) => {
 	return (
 		<div className={s.fragment}>
-			<h3 className={s.title}>{fragment.title}</h3>
+			<h2 className={s.title}>{fragment.title}</h2>
 			<div className={s.content}>
 				{fragment.type === fragmentTypes.article &&
 					<div className={s.article} dangerouslySetInnerHTML={{__html: fragment.content}}/>

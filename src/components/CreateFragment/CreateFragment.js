@@ -8,6 +8,7 @@ import CreateVideo from "../CreateVideo/CreateVideo";
 import CreateArticle from "../CreateArticle/CreateArticle";
 import TagsListContainer from "./TagsList/TagsListContainer";
 import ThisTags from "./ThisTags/ThisTags";
+import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 
 
 const CreateFragment = (props) => {
@@ -18,6 +19,7 @@ const CreateFragment = (props) => {
             <h1 className={'pageTitle'}>Создать фрагмент</h1>
             <SelectType/>
             <FragmentTitle/>
+            <UploadFon type={'fragment'} fon={props.fon} setFon={props.setFon}/>
             <div style={{marginBottom: '20px'}}>
                 {props.fragmentType === fragmentTypes.article &&
                 <CreateArticle/>
@@ -47,7 +49,7 @@ const CreateFragment = (props) => {
                 <button
                     className={'btn'}
                     onClick={props.createFragment}
-                    disabled={props.isFetching}
+                    disabled={props.isFetching || !props.fragmentType || props.fragmentType === 'none'}
                 >
                     Создать
                 </button>

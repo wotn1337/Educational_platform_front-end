@@ -6,6 +6,7 @@ import TagsListContainer from "../CreateFragment/TagsList/TagsListContainer";
 import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 import LessonAnnotation from "./LessonAnnotation/LessonAnnotation";
 import Preloader from "../../common/Preloader/Preloader";
+import UploadFon from "./UloadFon/UploadFon";
 
 
 const CreateLesson = ({isFetching, ...props}) => {
@@ -14,6 +15,7 @@ const CreateLesson = ({isFetching, ...props}) => {
 		<div className={s.content}>
 			<h1 className={'pageTitle'}>Создать урок</h1>
 			<LessonTitle title={props.title} changeLessonTitle={props.changeLessonTitle}/>
+			<UploadFon type={'lesson'} setFon={props.setFon} fon={props.fon}/>
 			<LessonAnnotation annotation={props.annotation} changeAnnotation={props.changeAnnotation}/>
 			{isFetching
 				? <Preloader size={200}/>
