@@ -9,6 +9,7 @@ import CreateArticle from "../CreateArticle/CreateArticle";
 import TagsListContainer from "./TagsList/TagsListContainer";
 import ThisTags from "./ThisTags/ThisTags";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";
+import CreateImage from "./CreateImage/CreateImage";
 
 
 const CreateFragment = (props) => {
@@ -19,7 +20,9 @@ const CreateFragment = (props) => {
             <h1 className={'pageTitle'}>Создать фрагмент</h1>
             <SelectType/>
             <FragmentTitle/>
-            <UploadFon type={'fragment'} fon={props.fon} setFon={props.setFon}/>
+            {props.fragmentType !== fragmentTypes.image &&
+                <UploadFon type={'fragment'} fon={props.fon} setFon={props.setFon}/>
+            }
             <div style={{marginBottom: '20px'}}>
                 {props.fragmentType === fragmentTypes.article &&
                 <CreateArticle/>
@@ -29,6 +32,9 @@ const CreateFragment = (props) => {
                 }
                 {props.fragmentType === fragmentTypes.video &&
                 <CreateVideo/>
+                }
+                {props.fragmentType === fragmentTypes.image &&
+                <CreateImage/>
                 }
             </div>
             {!!props.tags.length &&

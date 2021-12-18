@@ -14,6 +14,7 @@ const FragmentsList = (props) => {
             isFavorite={fragment.favourite}
             tags={fragment.tags}
             fon={fragment.fon}
+            content={fragment.content}
         />
     ));
 

@@ -64,6 +64,15 @@ a.creatorName:hover {
     margin: 0 auto 15px;
 }
 
+.image {
+    margin: 0 auto 15px;
+    width: fit-content;
+}
+
+.image img {
+    max-height: 80vh;
+}
+
 .editBlock {
     margin-bottom: 15px;
     background-color: white;

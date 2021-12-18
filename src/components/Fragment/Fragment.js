@@ -58,6 +58,9 @@ const Fragment = (props) => {
 					<video src={props.content} controls={'controls'} className={s.video}/>
 				</div>
 				}
+				{props.type === fragmentTypes.image &&
+					<div className={s.image}><img src={props.content} alt="fragment"/></div>
+				}
 				{!props.isEdit &&
 				<div className={s.author}>
 					<NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>

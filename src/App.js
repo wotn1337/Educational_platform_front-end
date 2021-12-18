@@ -18,6 +18,7 @@ import LessonContainer from "./components/Lesson/LessonContainer";
 import Catalog from "./components/CatalogPage/Catalog";
 import MyLessons from "./components/MyLessons/MyLessons";
 import MyMaterials from "./components/MyMaterials/MyMaterials";
+import BlockedPage from "./components/BlockedPage/BlockedPage";
 
 
 const App = () => {
@@ -91,6 +92,10 @@ const App = () => {
 			<Route
 				path='/lesson/:id?'
 				render={() => <LessonContainer/>}
+			/>
+			<Route
+				path='/blocked'
+				render={() => <BlockedPage/>}
 			/>
 		</>
 	)

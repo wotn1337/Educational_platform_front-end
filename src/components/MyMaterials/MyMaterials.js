@@ -5,7 +5,6 @@ import FragmentsListContainer from "../MyFragments/FragmentsList/FragmentsListCo
 import LessonSearchBlockContainer from "../CatalogPage/lessonsCatalog/LessonSearchBlock/LessonSearchBlockContainer";
 import LessonsListContainer from "../CatalogPage/lessonsCatalog/LessonsList/LessonsListContainer";
 import {connect} from "react-redux";
-import {logout} from "../../redux/authReducer";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 

@@ -45,6 +45,7 @@ h3 {
     transition: background-color;
     transition-duration: 200ms;
     min-height: 70px;
+    margin: 0;
 }
 
 .btn:hover {
@@ -64,8 +65,40 @@ h3 {
     background-color: #FBCB84;
 }
 
+.uploadBtn {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding: 8px;
+    width: 280px;
+    background-color: #FBCB84;
+    border-radius: 20px;
+    border: none;
+    color: black;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.uploadBtn:hover {
+    outline: none;
+    background-color: #F18A93;
+    box-shadow: 0 0 5px rgba(78, 78, 78, 0.5);
+}
+
 .hide {
     display: none;
+}
+
+.textarea {
+    display: block;
+    background: rgba(255, 255, 255, 0.69);
+    border-radius: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
 }
 
 @media all and (max-width: 1220px) {
