@@ -76,7 +76,7 @@ const mapStateToProps = (state) => ({
 	creatorName: state.lesson.creatorName,
 	creatorAvatar: state.lesson.creatorAvatar,
 	tags: state.lesson.tags,
-	fon: state.lesson.fon
+	fon: state.lesson.fon,
 	prevFragmentOrder: state.lesson.prevFragmentOrder,
 	nextFragmentOrder: state.lesson.nextFragmentOrder,
 	currentFragmentId: state.lesson.currentFragmentId,
