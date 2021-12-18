@@ -13,128 +13,148 @@ const SET_CURRENT_FRAGMENT = 'lesson/SET_CURRENT_FRAGMENT';
 const SET_FRAGMENTS = 'lesson/SET_FRAGMENTS';
 const ADD_TAG = 'lesson/ADD_TAG';
 const DELETE_TAG = 'lesson/DELETE_TAG';
-
+const CHANGE_FRAGMENT = 'lesson/CHANGE_FRAGMENT';
 
 const initState = {
-	currentFragment: undefined,
-	fragments: [],
-	lessonTitle: undefined,
-	lessonAnnotation: undefined,
-	favorite: false,
-	favoriteFetching: false,
-	isFetching: false,
-	creatorId: undefined,
-	creatorName: '',
-	creatorAvatar: undefined,
-	tags: [],
-	fon: undefined
+    currentFragment: undefined,
+    fragments: [],
+    lessonTitle: undefined,
+    lessonAnnotation: undefined,
+    favorite: false,
+    favoriteFetching: false,
+    isFetching: false,
+    creatorId: undefined,
+    creatorName: '',
+    creatorAvatar: undefined,
+    tags: [],
+    fon: undefined,
+    allFragmentsCount: 0,
+    prevFragmentOrder: undefined,
+    nextFragmentOrder: 1,
+    prevId: undefined,
+    nextId: 0,
+    currentFragmentId: undefined
 };
 
 const lessonReducer = (state = initState, action) => {
-	switch (action.type) {
-		case SET_LESSON:
-			const resultFragments = [];
-			const fragments = action.data.lesson.fragments.data;
-			for (let i = 0; i < fragments.length; i++) {
-				const order = fragments[i].order;
-				resultFragments[order - 1] = fragments[i];
-			}
+    switch (action.type) {
+        case SET_LESSON:
+            const resultFragments = [];
+            let nextFragmentId = 0;
+            const fragments = action.data.lesson.fragments.data;
+            for (let i = 0; i < fragments.length; i++) {
+                const order = fragments[i].order;
+                resultFragments[order - 1] = fragments[i];
+            }
+            nextFragmentId = resultFragments[0].id;
+            return {
+                ...state,
+                fragments: resultFragments,
+                lessonTitle: action.data.lesson.title,
+                lessonAnnotation: action.data.lesson.annotation,
+                creatorId: action.data.lesson.user_id,
+                creatorName: action.data.lesson.user_name,
+                creatorAvatar: action.data.lesson.user_avatar,
+                favorite: action.data.lesson.favourite,
+                tags: action.data.lesson.tags?.data,
+                fon: action.data.lesson.fon,
+                allFragmentsCount: action.data.lesson.fragments.all_count,
+                nextId: nextFragmentId
+            };
 
-			return {
-				...state,
-				fragments: resultFragments,
-				lessonTitle: action.data.lesson.title,
-				lessonAnnotation: action.data.lesson.annotation,
-				creatorId: action.data.lesson.user_id,
-				creatorName: action.data.lesson.user_name,
-				creatorAvatar: action.data.lesson.user_avatar,
-				favorite: action.data.lesson.favourite,
-				tags: action.data.lesson.tags?.data,
-				fon: action.data.lesson.fon
-			};
-
-		case TOGGLE_FAVORITE:
-			return {...state, favorite: !state.favorite};
-
-		case TOGGLE_FAVORITE_FETCHING:
-			return {...state, favoriteFetching: action.isFetching};
-
-		case TOGGLE_IS_FETCHING:
-			return {...state, isFetching: action.isFetching};
-
-		case CHANGE_TITLE:
-			return {...state, lessonTitle: action.title};
-
-		case CHANGE_ANNOTATION:
-			return {...state, lessonAnnotation: action.annotation};
-
-		case SET_CURRENT_FRAGMENT:
-			let currentFragment;
-			for (const fragment of state.fragments) {
-				if (fragment.order === action.orderNumber) {
-					currentFragment = fragment;
-				}
-			}
-			return {...state, currentFragment: currentFragment};
-
-		case SET_FRAGMENTS:
-			return {...state, fragments: action.fragments};
-
-		case ADD_TAG:
-			return {...state, tags: [...state.tags, action.tag]};
-
-		case DELETE_TAG:
-			return {...state, tags: state.tags.filter(tag => tag.id !== action.tag.id)};
-
-		default:
-			return state;
-	}
+        case TOGGLE_FAVORITE:
+            return {...state, favorite: !state.favorite};
+        case TOGGLE_FAVORITE_FETCHING:
+            return {...state, favoriteFetching: action.isFetching};
+        case TOGGLE_IS_FETCHING:
+            return {...state, isFetching: action.isFetching};
+        case CHANGE_TITLE:
+            return {...state, lessonTitle: action.title};
+        case CHANGE_ANNOTATION:
+            return {...state, lessonAnnotation: action.annotation};
+        case SET_CURRENT_FRAGMENT:
+            let currentFragment;
+            let prevOrder;
+            let nextOrder;
+            let prevId;
+            let nextId;
+            if (action.orderNumber === undefined) {
+                prevOrder = undefined;
+                nextOrder = 1;
+                prevId = '';
+                nextId = state.fragments[0].id
+            } else {
+                prevOrder = action.orderNumber === 1 ? undefined : action.orderNumber - 1;
+                nextOrder = action.orderNumber === state.allFragmentsCount
+                    ? state.allFragmentsCount
+                    : action.orderNumber + 1;
+                prevId = action.orderNumber === 1 ? '' : state.fragments[action.orderNumber - 2].id;
+                nextId = action.orderNumber === state.allFragmentsCount
+                    ? state.fragments[action.orderNumber - 1].id
+                    : state.fragments[action.orderNumber].id;
+            }
+            for (const fragment of state.fragments) {
+                if (fragment.order === action.orderNumber) {
+                    currentFragment = fragment;
+                }
+            }
+            return {
+                ...state,
+                currentFragment: currentFragment,
+                prevFragmentOrder: prevOrder,
+                nextFragmentOrder: nextOrder,
+                prevId: prevId,
+                nextId: nextId
+            };
+        case SET_FRAGMENTS:
+            return {...state, fragments: action.fragments};
+        case ADD_TAG:
+            return {...state, tags: [...state.tags, action.tag]};
+        case DELETE_TAG:
+            return {...state, tags: state.tags.filter(tag => tag.id !== action.tag.id)};
+        default:
+            return state;
+    }
 }
-
 const toggleStateFavorite = () => ({type: TOGGLE_FAVORITE});
 const toggleFavoriteFetching = (isFetching) => ({type: TOGGLE_FAVORITE_FETCHING, isFetching});
 const setLesson = (data) => ({type: SET_LESSON, data});
-
 export const changeLessonTitle = (title) => ({type: CHANGE_TITLE, title});
 export const changeLessonAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});
 export const setCurrentFragment = (orderNumber) => ({type: SET_CURRENT_FRAGMENT, orderNumber});
 export const setFragments = (fragments) => ({type: SET_FRAGMENTS, fragments});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
-
+export const changeFragment = (order) => ({type: CHANGE_FRAGMENT, order});
 export const getLesson = (id) => (dispatch) => {
-	dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
-	lessonsAPI.getLesson(id)
-		.then(res => {
-			console.log(res);
-			dispatch(setLesson(res.data));
-			dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
-		})
+    dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
+    lessonsAPI.getLesson(id)
+        .then(res => {
+            console.log(res);
+            dispatch(setLesson(res.data));
+            dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
+        })
 }
-
 export const deleteLesson = (id) => () => {
     return lessonsAPI.deleteLesson(id)
-	    .then(res => successNotification(res.data.message))
-	    .catch(err => console.error(err))
+        .then(res => successNotification(res.data.message))
+        .catch(err => console.error(err))
 }
-
 export const toggleFavorite = (id) => (dispatch) => {
-	dispatch(toggleFavoriteFetching(true));
-	return lessonsAPI.toggleFavorite(id)
-		.then(() => {
-			dispatch(toggleStateFavorite());
-			dispatch(toggleFavoriteFetching(false));
-		})
+    dispatch(toggleFavoriteFetching(true));
+    return lessonsAPI.toggleFavorite(id)
+        .then(() => {
+            dispatch(toggleStateFavorite());
+            dispatch(toggleFavoriteFetching(false));
+        })
 }
-
 export const updateLesson = (id, title, annotation, fragments, tags) => (dispatch) => {
-	dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
-	return lessonsAPI.updateLesson(id, title, annotation, fragments, tags)
-		.then(res => {
-			dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
-			successNotification(res.data.messages);
-		})
-		.catch(err => console.log(err.response))
+    dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
+    return lessonsAPI.updateLesson(id, title, annotation, fragments, tags)
+        .then(res => {
+            dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
+            successNotification(res.data.messages);
+        })
+        .catch(err => console.log(err.response))
 }
-
 export default lessonReducer;

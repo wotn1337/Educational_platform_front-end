@@ -49,3 +49,19 @@
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+@media all and (max-width: 425px) {
+    .fragment {
+        padding: 30px;
+    }
+    .article p {
+        font-size: 18px;
+    }
+    .authorName {
+        font-size: 18px;
+    }
+    .authorAvatar {
+        width: 45px;
+        height: 45px;
+    }
+}

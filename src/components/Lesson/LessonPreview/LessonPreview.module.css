@@ -21,5 +21,20 @@
 .bottom {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+}
+
+@media all and (max-width: 425px) {
+    .lessonPreview {
+        padding: 20px;
+    }
+
+    .lessonImage {
+        width: auto;
+        height: 185px;
+    }
+
+    .bottom {
+        display: none;
+    }
 }

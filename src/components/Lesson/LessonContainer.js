@@ -77,6 +77,11 @@ const mapStateToProps = (state) => ({
 	creatorAvatar: state.lesson.creatorAvatar,
 	tags: state.lesson.tags,
 	fon: state.lesson.fon
+	prevFragmentOrder: state.lesson.prevFragmentOrder,
+	nextFragmentOrder: state.lesson.nextFragmentOrder,
+	currentFragmentId: state.lesson.currentFragmentId,
+	prevId: state.lesson.prevId,
+	nextId: state.lesson.nextId,
 });
 
 export default compose(

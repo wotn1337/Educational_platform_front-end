@@ -16,7 +16,7 @@
     line-height: 41px;
     color: #F34B50;
     text-transform: uppercase;
-    margin-bottom: 15px;
+    margin-bottom: 70px;
 }
 
 .steps {
@@ -42,7 +42,8 @@
     }
 
     .title {
-        text-align: center;
+        padding-top: 50px;
+        margin-bottom: 50px;
     }
 }
 
@@ -53,7 +54,13 @@
     }
 
     .title {
+        padding-top: 35px;
+        margin-bottom: 35px;
         font-size: 15px;
         line-height: 20px;
+    }
+
+    .steps {
+        grid-gap: 25px;
     }
 }
