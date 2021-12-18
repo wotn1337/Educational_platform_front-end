@@ -3,7 +3,7 @@ import axios from "axios";
 
 const TOKEN_TYPE = 'Bearer';
 let TOKEN = localStorage.getItem('token');
-const fullUrl = 'https://youngeek-test.na4u.ru/back-end/public/api/'
+const fullUrl = 'https://youngeek-test.na4u.ru/api/';
 
 const authConfig = () => ({
 	headers: {
@@ -145,7 +145,7 @@ export const adminAPI = {
 
 export const fragmentsAPI = {
 	// Создать новый фрагмент
-	createFragment(type, title, content, tagsIds, fon) {
+	createFragment(type, title, content, tagsIds, fon, annotation) {
 		const data = new FormData();
 		data.append('type', type);
 		data.append('title', title);
@@ -155,6 +155,8 @@ export const fragmentsAPI = {
 		}
 		if (fon)
 			data.append('fon', fon);
+		if (type === 'image')
+			data.append('annotation', annotation);
 		return axios.post(`${fullUrl}fragments`, data, authConfig());
 	},
 

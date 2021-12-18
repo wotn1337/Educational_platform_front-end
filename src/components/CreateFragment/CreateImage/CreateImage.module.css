@@ -7,6 +7,14 @@
     align-items: center;
 }
 
+.annotation {
+    margin-bottom: 35px;
+}
+
+.annotationText {
+    height: 120px;
+}
+
 .placeholder {
     text-align: center;
     padding: 20px;

@@ -17,7 +17,8 @@ class CreateFragmentContainer extends React.Component {
 			this.props.title,
 			this.props.content,
 			this.props.tagsIds,
-			this.props.fon
+			this.props.fon,
+			this.props.annotation
 		);
 	}
 	render() {
@@ -36,7 +37,8 @@ const mapStateToProps = (state) => ({
 	isFetching: state.createFragment.isFetching,
 	tags: state.createFragment.tags,
 	tagsIds: state.createFragment.tagsIds,
-	fon: state.createFragment.fon
+	fon: state.createFragment.fon,
+	annotation: state.createFragment.annotation
 });
 
 export default compose(

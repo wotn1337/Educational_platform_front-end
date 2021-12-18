@@ -45,6 +45,7 @@ h3 {
     transition: background-color;
     transition-duration: 200ms;
     min-height: 70px;
+    margin: 0;
 }
 
 .btn:hover {
@@ -86,6 +87,18 @@ h3 {
 
 .hide {
     display: none;
+}
+
+.textarea {
+    display: block;
+    background: rgba(255, 255, 255, 0.69);
+    border-radius: 10px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
 }
 
 @media all and (max-width: 1220px) {
