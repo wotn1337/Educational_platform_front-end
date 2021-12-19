@@ -101,6 +101,30 @@ h3 {
     resize: none;
 }
 
+.addToFavorite {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 35px;
+    width: 35px;
+    height: 35px;
+    background-color: transparent;
+    border: none;
+    transition: 500ms;
+    margin: 0 7.5px 0;
+}
+
+.inFavorite {
+    background-image: url("./assets/img/fragments/full-heart.svg");
+}
+
+.notInFavorite {
+    background-image: url("./assets/img/fragments/addToFavorite.svg");
+}
+
+.addToFavorite:hover {
+    transform: scale(1.2);
+}
+
 @media all and (max-width: 1220px) {
     .content {
         width: 900px;

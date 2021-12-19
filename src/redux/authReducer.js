@@ -2,10 +2,11 @@ import {adminAPI, authAPI} from "../api/api";
 import {successNotification} from "../notifications/notifications";
 
 
-const SET_AUTH = 'SET_AUTH';
-const LOGOUT = 'LOGOUT';
-const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
-const TOGGLE_RESET_PASSWORD_FORM = 'SHOW_RESET_PASSWORD_FORM';
+const SET_AUTH = 'auth/SET_AUTH';
+const LOGOUT = 'auth/LOGOUT';
+const TOGGLE_IS_FETCHING = 'auth/TOGGLE_IS_FETCHING';
+const TOGGLE_RESET_PASSWORD_FORM = 'auth/SHOW_RESET_PASSWORD_FORM';
+const SET_BLOCKED = 'auth/SET_BLOCKED';
 
 
 const initState = {
@@ -14,7 +15,8 @@ const initState = {
 	userId: Number(localStorage.getItem('id')),
 	role: localStorage.getItem('role'),
 	isFetching: false,
-	showResetPasswordForm: false
+	showResetPasswordForm: false,
+	blocked: false
 };
 
 
@@ -39,16 +41,13 @@ const authReducer = (state = initState, action) => {
 			}
 
 		case TOGGLE_IS_FETCHING:
-			return {
-				...state,
-				isFetching: action.isFetching
-			};
+			return {...state, isFetching: action.isFetching};
 
 		case TOGGLE_RESET_PASSWORD_FORM:
-			return {
-				...state,
-				showResetPasswordForm: !state.showResetPasswordForm
-			}
+			return {...state, showResetPasswordForm: !state.showResetPasswordForm};
+
+		case SET_BLOCKED:
+			return {...state, blocked: action.blocked};
 
 		default:
 			return state;
@@ -56,16 +55,12 @@ const authReducer = (state = initState, action) => {
 };
 
 const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+const setBlocked = (blocked) => ({type: SET_BLOCKED, blocked});
 const setAuth = (token, id, role) => {
 	localStorage.setItem('token', token);
 	localStorage.setItem('id', id);
 	localStorage.setItem('role', role);
-	return {
-		type: SET_AUTH,
-		token,
-		id,
-		role
-	};
+	return {type: SET_AUTH, token, id, role};
 };
 
 export const toggleResetPasswordForm = () => ({type: TOGGLE_RESET_PASSWORD_FORM});
@@ -88,6 +83,9 @@ export const login = (data, setStatus) => (dispatch) => {
 					password: err.response.data.errors.password,
 					summary: !(err.response.status === 422) && err.response.data.message
 				});
+			}
+			if (err.response.status === 403) {
+				dispatch(setBlocked(true));
 			}
 			dispatch(toggleIsFetching(false));
 		});

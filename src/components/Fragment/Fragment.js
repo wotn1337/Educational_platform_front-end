@@ -44,28 +44,35 @@ const Fragment = (props) => {
 				/>
 			}
 
-			<div className={!props.isEdit ? s.fragmentBlock : s.editBlock}>
+			<div className={!(props.isEdit && props.type === fragmentTypes.article) && s.fragmentBlock}>
 				{props.type === fragmentTypes.article &&
-				<>
-					{!props.isEdit
-						? <div dangerouslySetInnerHTML={{__html: props.content}} style={{marginBottom:'40px'}}/>
-						: <TextEditor editorState={editorState} setEditorState={setContent}/>
-					}
-				</>
+					<>
+						{!props.isEdit
+							? <div dangerouslySetInnerHTML={{__html: props.content}} style={{marginBottom: '40px'}}/>
+							: <TextEditor editorState={editorState} setEditorState={setContent}/>
+						}
+					</>
 				}
 				{props.type === fragmentTypes.video &&
-				<div>
-					<video src={props.content} controls={'controls'} className={s.video}/>
-				</div>
+					<div>
+						<video src={props.content} controls={'controls'} className={s.video}/>
+					</div>
 				}
 				{props.type === fragmentTypes.image &&
-					<div className={s.image}><img src={props.content} alt="fragment"/></div>
+					<>
+						<div className={s.image}><img src={props.content} alt="fragment"/></div>
+						<p className={s.annotation}>{props.annotation}</p>
+						{/*{props.isEdit*/}
+						{/*	? <input type="text" value={props.annotation} onChange={e => props.setAnnotation(e.target.value)}/>*/}
+						{/*	: <p className={s.annotation}>{props.annotation}</p>*/}
+						{/*}*/}
+					</>
 				}
 				{!props.isEdit &&
-				<div className={s.author}>
-					<NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>
-					<img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
-				</div>
+					<div className={s.author}>
+						<NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>
+						<img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
+					</div>
 				}
 			</div>
 
@@ -92,38 +99,6 @@ const Fragment = (props) => {
 					toggleIsEdit={editToggle}
 				/>
 			}
-			{/*<div className={s.buttonsBlock}>*/}
-			{/*	{props.isEdit &&*/}
-			{/*	<button onClick={() => setShowTags(!showTags)} className={s.btn}>Добавить теги</button>}*/}
-			{/*	{(props.userId === props.creatorId || props.role === 'admin') &&*/}
-			{/*	<>*/}
-			{/*		{!props.isEdit*/}
-			{/*			? <button className={s.btn} onClick={() => {*/}
-			{/*				props.toggleIsEdit();*/}
-			{/*				convertToDraft();*/}
-			{/*			}}>Редактировать</button>*/}
-			{/*			: <button className={s.btn} onClick={props.editFragment}>Сохранить*/}
-			{/*				изменения</button>*/}
-			{/*		}*/}
-			{/*	</>*/}
-			{/*	}*/}
-			{/*	{!props.isEdit &&*/}
-			{/*	<>*/}
-			{/*		{(props.userId === props.creatorId || props.role === 'admin') &&*/}
-			{/*		<button className={`${s.btn} ${s.deleteButton}`} onClick={props.deleteFragment}>Удалить</button>*/}
-			{/*		}*/}
-			{/*		{props.role !== 'admin' &&*/}
-			{/*		<button*/}
-			{/*			className={'btn'}*/}
-			{/*			onClick={() => props.changeFavorite(props.id)}*/}
-			{/*			disabled={props.favoriteFetching}*/}
-			{/*		>*/}
-			{/*			{props.favorite ? 'Удалить из избранного' : 'Добавить в избранное'}*/}
-			{/*		</button>*/}
-			{/*		}*/}
-			{/*	</>*/}
-			{/*	}*/}
-			{/*</div>*/}
 			{showTags && <TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}/>}
 		</div>
 	)

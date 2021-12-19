@@ -183,8 +183,9 @@ export const fragmentsAPI = {
 	},
 
 	// Редактировать фрагмент (только для админа или владельца фрагмента)
-	editFragment(id, title, content, tagsIds) {
-		const data = content ? {title, content, tags: tagsIds} : {title, content: null, tags: tagsIds};
+	editFragment(id, title, content, tagsIds, annotation) {
+		content = content ? content : null;
+		const data = {title, content, tags: tagsIds, annotation};
 		return instance.patch(`fragments/${id}`, JSON.stringify(data), authConfig());
 	},
 

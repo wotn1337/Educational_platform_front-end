@@ -4,6 +4,7 @@ import Login from "./Login";
 import {forgotPassword, login, toggleResetPasswordForm} from "../../../redux/authReducer";
 import {compose} from "redux";
 import {withAuthRedirectToMain} from "../../../hoc/withAuthRedirectToMain";
+import {redirectToBlockedPage} from "../../../hoc/redirectToBlockedPage";
 
 class LoginContainer extends React.Component {
 	render() {
@@ -24,5 +25,6 @@ export default compose(
 		login,
 		forgotPassword
 	}),
-	withAuthRedirectToMain
+	withAuthRedirectToMain,
+	redirectToBlockedPage
 )(LoginContainer);
