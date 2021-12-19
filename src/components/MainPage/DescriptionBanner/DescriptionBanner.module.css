@@ -95,7 +95,7 @@
     color: black;
 }
 
-@media all and (min-width: 1024px) and (max-width: 2024px) {
+@media all and (min-width: 1024px) and (max-width: 2140px) {
     .descriptionBanner {
         display: flex;
         align-items: center;
@@ -107,10 +107,6 @@
 }
 
 @media all and (max-width: 1024px) {
-    .descriptionBanner {
-        /*margin: 0 0 50px 0;*/
-    }
-
     .descriptionWrapper {
         width: inherit;
         padding: 45px;
