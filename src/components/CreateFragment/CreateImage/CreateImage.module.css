@@ -24,4 +24,5 @@
 
 .preview {
     max-height: 80vh;
+    max-width: 100%;
 }
