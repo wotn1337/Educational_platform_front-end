@@ -1,5 +1,6 @@
 .fragment {
     padding: 50px;
+    position: relative;
 }
 
 .title {
@@ -7,6 +8,12 @@
     font-weight: bold;
     margin-bottom: 20px;
     color: black;
+}
+
+.favoriteButton {
+    position: absolute;
+    top: 30px;
+    right: 30px;
 }
 
 .content {
@@ -31,10 +38,12 @@
 .image {
     margin: 0 auto 15px;
     width: fit-content;
+    max-width: 100%;
 }
 
 .image img {
     max-height: 80vh;
+    width: 100%;
 }
 
 .author {

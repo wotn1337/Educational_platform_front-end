@@ -9,7 +9,7 @@ import {
 	deleteFragment,
 	deleteTag,
 	editFragment,
-	getFragment,
+	getFragment, setAnnotation,
 	setContent,
 	setTitle
 } from "../../redux/fragmentReducer";
@@ -42,7 +42,8 @@ class FragmentContainer extends React.Component {
 			this.state.id,
 			this.props.title,
 			this.props.type !== fragmentTypes.video && this.props.content,
-			this.props.tagsIds
+			this.props.tagsIds,
+			this.props.annotation
 		)
 			.then(() => this.props.setContent(this.props.content));
 		this.toggleIsEdit();
@@ -72,6 +73,7 @@ const mapStateToProps = (state) => ({
 	role: state.auth.role,
 	title: state.fragment.title,
 	content: state.fragment.content,
+	annotation: state.fragment.annotation,
 	type: state.fragment.type,
 	creator: state.fragment.creator,
 	creatorId: state.fragment.creatorId,
@@ -93,7 +95,8 @@ export default compose(
 		deleteTag,
 		addTag,
 		returnTag,
-		changeFavorite
+		changeFavorite,
+		setAnnotation
 	}),
 	withRouter,
 	withoutAuthRedirectToAuthPage

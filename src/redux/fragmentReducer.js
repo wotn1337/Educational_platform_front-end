@@ -10,11 +10,13 @@ const DELETE_TAG = 'fragment/DELETE_TAG';
 const ADD_TAG = 'fragment/ADD_TAG';
 const TOGGLE_FAVORITE = 'fragment/TOGGLE_FAVORITE';
 const TOGGLE_FAVORITE_FETCHING = 'fragment/TOGGLE_FAVORITE_FETCHING';
+const SET_ANNOTATION = 'fragment/SET_ANNOTATION';
 
 
 const initState = {
 	title: '',
 	content: undefined,
+	annotation: '',
 	type: '',
 	creator: '',
 	creatorId: '',
@@ -33,6 +35,7 @@ const fragmentReducer = (state = initState, action) => {
 				...state,
 				title: action.fragment.title,
 				content: action.fragment.content,
+				annotation: action.fragment.annotation,
 				type: action.fragment.type,
 				creatorId: action.fragment.user_id,
 				creator: action.fragment.user_name,
@@ -71,6 +74,9 @@ const fragmentReducer = (state = initState, action) => {
 		case TOGGLE_FAVORITE_FETCHING:
 			return {...state, favoriteFetching: action.favoriteFetching};
 
+		case SET_ANNOTATION:
+			return {...state, annotation: action.annotation};
+
 		default:
 			return state;
 	}
@@ -85,6 +91,7 @@ export const setTitle = (title) => ({type: SET_TITLE, title});
 export const setContent = (content) => ({type: SET_CONTENT, content});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
+export const setAnnotation = (annotation) => ({type: SET_ANNOTATION, annotation});
 
 export const getFragment = (id) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
@@ -105,11 +112,10 @@ export const deleteFragment = (id) => () => {
 		.catch(err => console.log(err.response));
 };
 
-export const editFragment = (id, title, content, tagsIds) => (dispatch) => {
+export const editFragment = (id, title, content, tagsIds, annotation) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	return fragmentsAPI.editFragment(id, title, content, tagsIds)
+	return fragmentsAPI.editFragment(id, title, content, tagsIds, annotation)
 		.then(res => {
-			console.log({id, title, content, tagsIds});
 			successNotification(res.data.message);
 			dispatch(toggleIsFetching(false));
 		})
@@ -120,7 +126,7 @@ export const editFragment = (id, title, content, tagsIds) => (dispatch) => {
 
 export const changeFavorite = (id) => (dispatch) => {
 	dispatch(toggleFavoriteFetching(true));
-	fragmentsAPI.changeFavorite(id)
+	return fragmentsAPI.changeFavorite(id)
 		.then(() => {
 			dispatch(toggleFavorite());
 			dispatch(toggleFavoriteFetching(false));

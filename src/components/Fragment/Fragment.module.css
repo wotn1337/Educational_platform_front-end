@@ -67,10 +67,16 @@ a.creatorName:hover {
 .image {
     margin: 0 auto 15px;
     width: fit-content;
+    max-width: 100%;
 }
 
 .image img {
     max-height: 80vh;
+    width: 100%;
+}
+
+.annotation {
+
 }
 
 .editBlock {

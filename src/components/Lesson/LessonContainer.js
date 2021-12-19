@@ -12,6 +12,7 @@ import {
 	toggleFavorite, updateLesson
 } from "../../redux/lessonReducer";
 import {returnTag} from "../../redux/allTagsReducer";
+import {changeFavorite} from "../../redux/fragmentReducer";
 
 
 class LessonContainer extends React.Component {
@@ -96,7 +97,8 @@ export default compose(
 		returnTag,
 		addTag,
 		deleteTag,
-		updateLesson
+		updateLesson,
+		changeFavorite
 	}),
 	withRouter
 )(LessonContainer)

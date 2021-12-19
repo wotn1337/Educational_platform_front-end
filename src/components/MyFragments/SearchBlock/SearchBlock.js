@@ -40,7 +40,7 @@ const SearchBlock = (props) => {
 					<option value={''}>Все фрагменты</option>
 					<option value="article">Статья</option>
 					<option value="video">Видео</option>
-					<option value="test">Тест</option>
+					<option value="image">Изображение</option>
 				</select>
 				<button onClick={props.searchFragments} className={s.searchButton}>Искать</button>
 			</div>
