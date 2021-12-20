@@ -11,23 +11,18 @@ class ProfilePageContainer extends React.Component {
 	}
 
 	render() {
-		return <ProfilePage {...this.props}
-		                    {...this.state}
-		/>;
+		return <ProfilePage {...this.props}/>;
 	}
 }
 
 
-export const mapStateToProps = (state) => {
-	return {
-		role: state.profile.role,
-		isAdmin: state.profile.isAdmin,
-		avatar: state.profile.avatar,
-		name: state.profile.name,
-		profile: state.profile,
-		isFetching: state.profile.isFetching
-	};
-};
+export const mapStateToProps = (state) => ({
+	isAdmin: state.profile.isAdmin,
+	avatar: state.profile.avatar,
+	name: state.profile.name,
+	profile: state.profile,
+	isFetching: state.profile.isFetching
+});
 
 export default compose(
 	connect(mapStateToProps, {getProfile}),

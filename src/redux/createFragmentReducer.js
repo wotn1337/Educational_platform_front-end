@@ -23,7 +23,7 @@ const initState = {
 	tagsIds: [],
 	tags: [],
 	fon: undefined,
-	annotation: undefined
+	annotation: ''
 };
 
 const createFragmentReducer = (state = initState, action) => {
