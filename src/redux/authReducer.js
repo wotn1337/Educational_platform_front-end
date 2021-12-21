@@ -14,6 +14,7 @@ const initState = {
 	isAuth: !!localStorage.getItem('token'),
 	userId: Number(localStorage.getItem('id')),
 	role: localStorage.getItem('role'),
+	isAdmin: false,
 	isFetching: false,
 	showResetPasswordForm: false,
 	blocked: false
@@ -28,16 +29,18 @@ const authReducer = (state = initState, action) => {
 				token: action.token,
 				isAuth: true,
 				userId: action.id,
-				role: action.role
+				role: action.role,
+				isAdmin: action.role === 'admin'
 			};
 
 		case LOGOUT:
 			return {
 				...state,
-				token: null,
+				token: undefined,
 				isAuth: false,
-				userId: null,
-				role: null
+				userId: undefined,
+				role: undefined,
+				isAdmin: false
 			}
 
 		case TOGGLE_IS_FETCHING:
