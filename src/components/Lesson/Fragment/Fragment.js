@@ -37,7 +37,7 @@ const Fragment = ({fragment, toggleFavorite}) => {
 					</>
 				}
 			</div>
-			<Author name={fragment.user_name} avatar={fragment.user_avatar}/>
+			<Author name={fragment.user_name} id={fragment.user_id} avatar={fragment.user_avatar}/>
 		</div>
 	);
 };

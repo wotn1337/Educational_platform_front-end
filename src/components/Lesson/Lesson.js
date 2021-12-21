@@ -32,6 +32,7 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 											image={props.fon}
 											creatorName={props.creatorName}
 											creatorAvatar={props.creatorAvatar}
+											creatorId={props.creatorId}
 											annotation={props.lessonAnnotation}
 											tags={props.tags}
 											className={s.fragment}
