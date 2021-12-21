@@ -4,7 +4,6 @@
     grid-auto-rows: max-content;
     grid-column-gap: 20px;
     grid-row-gap: 50px;
-    align-items: baseline;
     justify-items: center;
     margin: 0 auto 65px;
 }
