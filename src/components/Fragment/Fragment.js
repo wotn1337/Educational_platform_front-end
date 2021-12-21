@@ -71,7 +71,7 @@ const Fragment = (props) => {
 				{!props.isEdit &&
 					<div className={s.author}>
 						<NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>
-						<img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
+						<img className={`avatar ${s.creatorAvatar}`} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
 					</div>
 				}
 			</div>
