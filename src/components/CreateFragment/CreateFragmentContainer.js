@@ -1,5 +1,5 @@
 import React from "react";
-import {addTag, createFragment, deleteTag, setContent, setFon} from "../../redux/createFragmentReducer";
+import {addTag, clearAllFields, createFragment, deleteTag, setContent, setFon} from "../../redux/createFragmentReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
@@ -11,6 +11,10 @@ import {redirectStudentToMain} from "../../hoc/redirectStudentToMain";
 
 
 class CreateFragmentContainer extends React.Component {
+	componentWillUnmount() {
+		this.props.clearAllFields();
+	}
+
 	createFragment = () => {
 		this.props.createFragment(
 			this.props.fragmentType,
@@ -51,6 +55,7 @@ export default compose(
 		deleteTag,
 		addTag,
 		returnTag,
-		setFon
+		setFon,
+		clearAllFields
 	})
 )(CreateFragmentContainer);
