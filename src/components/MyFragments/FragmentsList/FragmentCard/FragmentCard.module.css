@@ -6,6 +6,7 @@
     padding: 20px 25px;
     box-sizing: border-box;
     width: fit-content;
+    height: 100%;
     max-width: 364px;
     text-decoration: none;
     transition: 0.5s;
