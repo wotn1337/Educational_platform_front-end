@@ -27,6 +27,7 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 										? <Route path={`/lesson/${id}/:fragmentId`}
 										         render={() => <Fragment fragment={currentFragment}
 										                                 toggleFavorite={props.changeFavorite}
+										                                 toggleCurrentFragmentFavorite={props.toggleCurrentFragmentFavorite}
 										                                 className={s.fragment}/>}/>
 										: <LessonPreview
 											image={props.fon}

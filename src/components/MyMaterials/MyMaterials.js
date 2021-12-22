@@ -10,9 +10,9 @@ import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuth
 
 
 const MyMaterials = ({role}) => {
-	const [current, setCurrent] = useState('fragments');
+	const [current, setCurrent] = useState('lessons');
 	const [showOther, setShowOther] = useState(false);
-	const [other, setOther] = useState('lessons');
+	const [other, setOther] = useState('fragments');
 	const rusTypes = {'fragments': 'Фрагменты', 'lessons': 'Уроки'}
 	return (
 		<section className={'content'}>

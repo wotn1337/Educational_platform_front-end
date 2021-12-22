@@ -14,6 +14,7 @@ const SET_FRAGMENTS = 'lesson/SET_FRAGMENTS';
 const ADD_TAG = 'lesson/ADD_TAG';
 const DELETE_TAG = 'lesson/DELETE_TAG';
 const CHANGE_FRAGMENT = 'lesson/CHANGE_FRAGMENT';
+const TOGGLE_CURRENT_FRAGMENT_FAVORITE = 'lesson/TOGGLE_CURRENT_FRAGMENT_FAVORITE';
 
 const initState = {
     currentFragment: undefined,
@@ -112,6 +113,22 @@ const lessonReducer = (state = initState, action) => {
             return {...state, tags: [...state.tags, action.tag]};
         case DELETE_TAG:
             return {...state, tags: state.tags.filter(tag => tag.id !== action.tag.id)};
+
+        case TOGGLE_CURRENT_FRAGMENT_FAVORITE:
+            return {
+                ...state,
+                currentFragment: {
+                    ...state.currentFragment,
+                    favourite: !state.currentFragment.favourite
+                },
+                fragments: state.fragments.map(fragment => {
+                    if (fragment.id === state.currentFragment.id) {
+                        return {...fragment, favourite: !fragment.favourite};
+                    }
+                    return fragment;
+                })
+            };
+
         default:
             return state;
     }
@@ -119,6 +136,7 @@ const lessonReducer = (state = initState, action) => {
 const toggleStateFavorite = () => ({type: TOGGLE_FAVORITE});
 const toggleFavoriteFetching = (isFetching) => ({type: TOGGLE_FAVORITE_FETCHING, isFetching});
 const setLesson = (data) => ({type: SET_LESSON, data});
+
 export const changeLessonTitle = (title) => ({type: CHANGE_TITLE, title});
 export const changeLessonAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});
 export const setCurrentFragment = (orderNumber) => ({type: SET_CURRENT_FRAGMENT, orderNumber});
@@ -126,6 +144,8 @@ export const setFragments = (fragments) => ({type: SET_FRAGMENTS, fragments});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const changeFragment = (order) => ({type: CHANGE_FRAGMENT, order});
+export const toggleCurrentFragmentFavorite = () => ({type: TOGGLE_CURRENT_FRAGMENT_FAVORITE});
+
 export const getLesson = (id) => (dispatch) => {
     dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
     lessonsAPI.getLesson(id)

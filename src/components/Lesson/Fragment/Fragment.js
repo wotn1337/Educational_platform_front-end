@@ -1,25 +1,19 @@
-import React, {useEffect, useState} from 'react';
 import s from './Fragment.module.css';
 import {withRouter} from "react-router-dom";
 import {fragmentTypes} from "../../../common/fragmentTypes";
 import Author from "../Author/Author";
 
 
-const Fragment = ({fragment, toggleFavorite}) => {
-	const [favorite, setFavorite] = useState(fragment.favourite);
+const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite}) => {
 	const toggleFragmentFavorite = () => {
 		toggleFavorite(fragment.id)
-			.then(() => setFavorite(!favorite));
+			.then(() => toggleCurrentFragmentFavorite());
 	};
-
-	useEffect(() => {
-		setFavorite(fragment.favourite);
-	}, [fragment.favourite]);
 
 	return (
 		<div className={s.fragment}>
 			<button
-				className={`addToFavorite ${favorite ? 'inFavorite' : 'notInFavorite'} ${s.favoriteButton}`}
+				className={`addToFavorite ${fragment.favourite ? 'inFavorite' : 'notInFavorite'} ${s.favoriteButton}`}
 				onClick={toggleFragmentFavorite}
 			/>
 			<h2 className={s.title}>{fragment.title}</h2>

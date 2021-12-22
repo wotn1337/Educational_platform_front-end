@@ -7,6 +7,7 @@ const CHANGE_SEARCH_LESSON_TITLE = 'lessonsCatalog/CHANGE_SEARCH_LESSON_TITLE';
 const CHANGE_SEARCH_TEACHER_NAME = 'lessonsCatalog/CHANGE_SEARCH_TEACHER_NAME';
 const ADD_TAG = 'lessonsCatalog/ADD_TAG';
 const DELETE_TAG = 'lessonsCatalog/DELETE_TAG';
+const CLEAR_SEARCH_FIELDS = 'lessonsCatalog/CLEAR_SEARCH_FIELDS';
 
 const initState = {
 	lessons: [],
@@ -62,6 +63,14 @@ const lessonsCatalogReducer = (state = initState, action) => {
 		case DELETE_TAG:
 			return {...state, searchTags: state.searchTags.filter(tag => tag.id !== action.tag.id)};
 
+		case CLEAR_SEARCH_FIELDS:
+			return {
+				...state,
+				searchLessonTitle: '',
+				searchTeacherName: '',
+				searchTags: []
+			};
+
 		default:
 			return state;
 	}
@@ -75,6 +84,7 @@ export const changeSearchLessonTitle = (title) => ({type: CHANGE_SEARCH_LESSON_T
 export const changeSearchTeacherName = (name) => ({type: CHANGE_SEARCH_TEACHER_NAME, name});
 export const addSearchTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteSearchTag = (tag) => ({type: DELETE_TAG, tag});
+export const clearSearchFields = () => ({type: CLEAR_SEARCH_FIELDS});
 
 export const getLessons = (page, pageNumber, title, teacherName, tags, teacherId) => (dispatch) => {
 	let getLessonsFunction;

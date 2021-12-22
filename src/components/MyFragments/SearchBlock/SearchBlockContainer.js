@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import SearchBlock from "./SearchBlock";
 import {
-	addSearchTag,
+	addSearchTag, clearSearchFields,
 	deleteSearchTag,
 	getFragments,
 	setSearchTitle,
@@ -12,6 +12,10 @@ import {returnTag} from "../../../redux/allTagsReducer";
 
 
 class SearchBlockContainer extends React.Component {
+	componentWillUnmount() {
+		this.props.clearSearchFields();
+	}
+
 	state = {
 		title: this.props.searchTitle,
 		type: this.props.searchType,
@@ -50,5 +54,6 @@ export default connect(mapStateToProps, {
 	setSearchType,
 	addSearchTag,
 	deleteSearchTag,
-	returnTag
+	returnTag,
+	clearSearchFields
 })(SearchBlockContainer);
