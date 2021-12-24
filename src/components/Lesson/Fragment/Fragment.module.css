@@ -57,6 +57,12 @@
     font-style: normal;
     font-weight: bold;
     font-size: 22px;
+    color: black;
+}
+
+.authorName:hover {
+    color: black;
+    text-decoration: underline;
 }
 
 .authorAvatar {

@@ -9,9 +9,9 @@ import HeaderWithToggle from "./HeaderWithToggle/HeaderWithToggle";
 
 
 const Favorite = () => {
-	const [favoriteType, setFavoriteType] = useState('fragments');
+	const [favoriteType, setFavoriteType] = useState('lessons');
 	const [otherType, setOtherType] = useState(false);
-	const [other, setOther] = useState('lessons');
+	const [other, setOther] = useState('fragments');
 	const rusTypes = {'fragments': 'Фрагменты', 'lessons': 'Уроки'}
 
 	return (

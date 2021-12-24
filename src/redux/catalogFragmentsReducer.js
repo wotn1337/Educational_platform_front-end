@@ -8,6 +8,7 @@ const SET_SEARCH_TITLE = 'catalogFragments/SET_SEARCH_TITLE';
 const SET_SEARCH_TYPE = 'catalogFragments/SET_SEARCH_TYPE';
 const ADD_SEARCH_TAG = 'catalogFragments/ADD_SEARCH_TAG';
 const DELETE_SEARCH_TAG = 'catalogFragments/DELETE_SEARCH_TAG';
+const CLEAR_SEARCH_FIELDS = 'catalogFragments/CLEAR_SEARCH_FIELDS';
 
 
 const initState = {
@@ -51,27 +52,26 @@ const myFragmentsReducer = (state = initState, action) => {
 			return {...state, isFetching: action.isFetching};
 
 		case SET_SEARCH_TITLE:
-			return {
-				...state,
-				searchTitle: action.searchTitle
-			};
+			return {...state, searchTitle: action.searchTitle};
 
 		case SET_SEARCH_TYPE:
-			return {
-				...state,
-				searchType: action.searchType
-			};
+			return {...state, searchType: action.searchType};
 
 		case ADD_SEARCH_TAG:
-			return {
-				...state,
-				searchTags: [...state.searchTags, action.tag],
-			};
+			return {...state, searchTags: [...state.searchTags, action.tag],};
 
 		case DELETE_SEARCH_TAG:
 			return {
 				...state,
 				searchTags: state.searchTags.filter(tag => tag.id !== action.tag.id),
+			};
+
+		case CLEAR_SEARCH_FIELDS:
+			return {
+				...state,
+				searchTitle : '',
+				searchType: '',
+				searchTags: []
 			};
 
 		default:
@@ -87,6 +87,7 @@ export const setSearchTitle = (searchTitle) => ({type: SET_SEARCH_TITLE, searchT
 export const setSearchType = (searchType) => ({type: SET_SEARCH_TYPE, searchType});
 export const addSearchTag = (tag) => ({type: ADD_SEARCH_TAG, tag});
 export const deleteSearchTag = (tag) => ({type: DELETE_SEARCH_TAG, tag});
+export const clearSearchFields = () => ({type: CLEAR_SEARCH_FIELDS});
 
 export const getFragments = (page, pageNumber, title, type, tags) => (dispatch) => {
 	let getFragments;

@@ -7,7 +7,7 @@ import {
 	changeAnnotation,
 	changeLessonTitle,
 	createLesson,
-	deleteTag, setFon
+	deleteTag, setFon, clearAllFields
 } from "../../redux/createLessonReducer";
 import {compose} from "redux";
 import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
@@ -17,6 +17,10 @@ import {getFragments} from "../../redux/catalogFragmentsReducer";
 
 
 class CreateLessonContainer extends React.Component {
+	componentWillUnmount() {
+		this.props.clearAllFields();
+	}
+
 	createLesson = () => {
 		const fragmentsIds = this.props.lessonFragments.map(fragment => fragment.id);
 		const tagsIds = this.props.tags.map(tag => tag.id);
@@ -55,6 +59,7 @@ export default compose(
 		deleteTag,
 		returnTag,
 		changeAnnotation,
-		setFon
+		setFon,
+		clearAllFields
 	})
 )(CreateLessonContainer);

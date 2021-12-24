@@ -25,7 +25,7 @@ class FragmentCardContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    role: state.auth.role,
+    isAdmin: state.auth.isAdmin,
 });
 
 export default connect(mapStateToProps, {changeFavorite})(FragmentCardContainer);

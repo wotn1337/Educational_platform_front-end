@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import FragmentCard from "../../MyFragments/FragmentsList/FragmentCard/FragmentCard";
 import s from "./СonstructorBlock.module.css";
 import Modal from "../Modal/Modal";
 import FragmentsListContainer from "../FragmentsList/FragmentsListContainer";
+import FragmentCardContainer from "../../MyFragments/FragmentsList/FragmentCard/FragmentCardContainer";
 
 const ConstructorBlock = (props) => {
 
@@ -12,16 +12,22 @@ const ConstructorBlock = (props) => {
 
 	for (let i = 0; i < props.fragments.length; i++) {
 		let fragment = props.fragments[i];
+		const card = <FragmentCardContainer
+			id={fragment.id}
+			key={fragment.id}
+			fragmentType={fragment.type}
+			title={fragment.title}
+			isFavorite={fragment.favourite}
+			tags={fragment.tags}
+			fon={fragment.fon}
+			content={fragment.content}
+		/>;
 		if (i !== props.fragments.length - 1) {
-			fragmentCards.push(
-				<FragmentCard id={fragment.id} key={fragment.id} fragmentType={fragment.type}
-				              title={fragment.title} tags={fragment.tags} fon={fragment.fon} content={fragment.content}/>
-			)
+			fragmentCards.push(card)
 		} else {
 			fragmentCards.push(
 				<div className={s.lastCard}>
-					<FragmentCard id={fragment.id} key={fragment.id} fragmentType={fragment.type}
-					              title={fragment.title} tags={fragment.tags} fon={fragment.fon} content={fragment.content}/>
+					{card}
 					<button className={`${s.button} ${s.addButton}`} onClick={() => setModalActive(true)}/>
 				</div>
 			)
@@ -31,8 +37,8 @@ const ConstructorBlock = (props) => {
 	return (
 		<div>
 			{props.fragments.length === 0 &&
-			<button className={`${s.button} ${s.addButtonWithoutCard}`}
-			        onClick={() => setModalActive(true)}/>
+				<button className={`${s.button} ${s.addButtonWithoutCard}`}
+				        onClick={() => setModalActive(true)}/>
 			}
 
 			<div className={s.fragmentsList}>{fragmentCards}</div>

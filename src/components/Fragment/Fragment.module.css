@@ -45,8 +45,6 @@ a.creatorName:hover {
 .creatorAvatar {
     width: 35px;
     height: 35px;
-    border-radius: 50%;
-    box-sizing: border-box;
 }
 
 .video {
@@ -61,6 +59,10 @@ a.creatorName:hover {
     padding: 40px 70px;
     background-color: white;
     border-radius: 9px;
+    margin: 0 auto 15px;
+}
+
+.editBlock {
     margin: 0 auto 15px;
 }
 

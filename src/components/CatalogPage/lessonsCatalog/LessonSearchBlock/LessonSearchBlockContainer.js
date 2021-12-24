@@ -4,7 +4,7 @@ import {compose} from "redux";
 import LessonSearchBlock from "./LessonSearchBlock";
 import {
 	addSearchTag,
-	changeSearchLessonTitle, changeSearchTeacherName,
+	changeSearchLessonTitle, changeSearchTeacherName, clearSearchFields,
 	deleteSearchTag,
 	getLessons
 } from "../../../../redux/lessonsCatalogReducer";
@@ -12,6 +12,10 @@ import {returnTag} from "../../../../redux/allTagsReducer";
 
 
 class LessonSearchBlockContainer extends React.Component {
+	componentWillUnmount() {
+		this.props.clearSearchFields();
+	}
+
 	search = () => {
 		const tagsIds = this.props.searchTags.map(tag => tag.id);
 		this.props.getLessons(
@@ -45,6 +49,7 @@ export default compose(
 		addSearchTag,
 		deleteSearchTag,
 		returnTag,
-		getLessons
+		getLessons,
+		clearSearchFields
 	}),
 )(LessonSearchBlockContainer)

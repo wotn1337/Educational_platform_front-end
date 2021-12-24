@@ -3,10 +3,10 @@ import s from './UploadFon.module.css';
 
 
 const UploadFon = ({type, fon, setFon}) => {
-	const [fonSrc, setFonSrc] = useState('');
-	const getImgSrc = (newFon) => {
+	const [fonSrc, setFonSrc] = useState(undefined);
+	const getImgSrc = (fon) => {
 		const reader = new FileReader();
-		reader.readAsDataURL(newFon || fon);
+		reader.readAsDataURL(fon);
 		reader.onloadend = function () {
 			setFonSrc([reader.result]);
 		}

@@ -7,10 +7,10 @@ import LessonsListContainer from "./lessonsCatalog/LessonsList/LessonsListContai
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 
 
-const Catalog = (props) => {
-	const [current, setCurrent] = useState('fragments');
+const Catalog = () => {
+	const [current, setCurrent] = useState('lessons');
 	const [showOther, setShowOther] = useState(false);
-	const [other, setOther] = useState('lessons');
+	const [other, setOther] = useState('fragments');
 	const rusTypes = {'fragments': 'Фрагменты', 'lessons': 'Уроки'}
 	return (
 		<section className={'content'}>

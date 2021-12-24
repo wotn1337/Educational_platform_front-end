@@ -8,9 +8,9 @@ const SET_CONTENT = 'createFragment/SET_CONTENT';
 const SET_TITLE_ERROR = 'createFragment/SET_TITLE_ERROR';
 const ADD_TAG = 'createFragment/ADD_TAG';
 const DELETE_TAG = 'createFragment/DELETE_TAG';
-const CLEAR_TAGS = 'createFragment/CLEAR_TAGS';
 const SET_FON = 'createFragment/SET_FON';
 const SET_ANNOTATION = 'createFragment/SET_ANNOTATION';
+const CLEAR_ALL_FIELDS = 'createFragment/CLEAR_ALL_FIELDS';
 
 
 const initState = {
@@ -18,7 +18,6 @@ const initState = {
 	title: '',
 	content: undefined,
 	isFetching: false,
-	tagsFetching: false,
 	titleError: '',
 	tagsIds: [],
 	tags: [],
@@ -57,14 +56,25 @@ const createFragmentReducer = (state = initState, action) => {
 				tagsIds: state.tagsIds.filter(id => id !== action.tag.id),
 			};
 
-		case CLEAR_TAGS:
-			return {...state, tags: [], tagsIds: []};
-
 		case SET_FON:
 			return {...state, fon: action.fon};
 
 		case SET_ANNOTATION:
-			return {...state, annotation: action.annotation}
+			return {...state, annotation: action.annotation};
+
+		case CLEAR_ALL_FIELDS:
+			return {
+				...state,
+				fragmentType: '',
+				title: '',
+				content: undefined,
+				isFetching: false,
+				titleError: '',
+				tagsIds: [],
+				tags: [],
+				fon: undefined,
+				annotation: ''
+			};
 
 		default:
 			return state;
@@ -78,23 +88,17 @@ export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const setFon = (fon) => ({type: SET_FON, fon});
 export const setAnnotation = (annotation) => ({type: SET_ANNOTATION, annotation});
+export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
 
 const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 const setTitleError = (error) => ({type: SET_TITLE_ERROR, error});
-const clearTags = () => ({type: CLEAR_TAGS});
 
 export const createFragment = (fragmentType, title, content, tagsIds, fon, annotation) => (dispatch) => {
 	dispatch(setIsFetching(true));
 	return fragmentsAPI.createFragment(fragmentType, title, content, tagsIds, fon, annotation)
 		.then(res => {
 			successNotification(res.data.message);
-			dispatch(setTitleError(''));
-			dispatch(changeFragmentTitle(''));
-			dispatch(setContent(''));
-			dispatch(setAnnotation(''));
-			dispatch(setFon(undefined));
-			dispatch(setIsFetching(false));
-			dispatch(clearTags());
+			dispatch(clearAllFields());
 		})
 		.catch(err => {
 			dispatch(setTitleError(err.response.data.errors.title));

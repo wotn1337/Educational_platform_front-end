@@ -44,7 +44,7 @@ const Fragment = (props) => {
 				/>
 			}
 
-			<div className={!(props.isEdit && props.type === fragmentTypes.article) && s.fragmentBlock}>
+			<div className={!(props.isEdit && props.type === fragmentTypes.article) ? s.fragmentBlock : s.editBlock}>
 				{props.type === fragmentTypes.article &&
 					<>
 						{!props.isEdit
@@ -71,7 +71,7 @@ const Fragment = (props) => {
 				{!props.isEdit &&
 					<div className={s.author}>
 						<NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>
-						<img className={s.creatorAvatar} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
+						<img className={`avatar ${s.creatorAvatar}`} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
 					</div>
 				}
 			</div>

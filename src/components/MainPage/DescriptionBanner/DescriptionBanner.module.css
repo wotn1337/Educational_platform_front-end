@@ -157,11 +157,13 @@
 
     .buttonsBlock {
         margin-top: 10px;
+        flex-wrap: wrap;
     }
 
     .btn {
         font-size: 18px;
         line-height: 25px;
+        margin: 5px 0;
     }
 
     .btn.login {

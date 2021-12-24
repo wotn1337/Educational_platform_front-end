@@ -12,7 +12,7 @@ const LessonPreview = ({annotation, image, creatorAvatar, creatorName, tags, ...
 			<p>{annotation}</p>
 			<div className={s.bottom}>
 				<ThisTags tags={tags} edit={false}/>
-				<Author name={creatorName} avatar={creatorAvatar}/>
+				<Author name={creatorName} id={props.creatorId} avatar={creatorAvatar}/>
 			</div>
 		</div>
 	);
