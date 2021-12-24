@@ -62,6 +62,10 @@ a.creatorName:hover {
     margin: 0 auto 15px;
 }
 
+.editBlock {
+    margin: 0 auto 15px;
+}
+
 .image {
     margin: 0 auto 15px;
     width: fit-content;

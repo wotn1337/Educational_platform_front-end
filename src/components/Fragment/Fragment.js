@@ -44,7 +44,7 @@ const Fragment = (props) => {
 				/>
 			}
 
-			<div className={!(props.isEdit && props.type === fragmentTypes.article) && s.fragmentBlock}>
+			<div className={!(props.isEdit && props.type === fragmentTypes.article) ? s.fragmentBlock : s.editBlock}>
 				{props.type === fragmentTypes.article &&
 					<>
 						{!props.isEdit
