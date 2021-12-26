@@ -19,7 +19,7 @@ const FragmentCard = ({isAdmin, createLesson, deleteFragment, ...props}) => {
 		? <button className={s.addToFavoriteButton + ' ' + s.deleteFragmentButton}
 		          onClick={event => {
 			          event.preventDefault();
-			          //deleteFragment(props.id);
+			          deleteFragment(props.id);
 		          }}
 		/>
 		: <>{

@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import FragmentCard from "./FragmentCard";
 import {changeFavorite} from "../../../../redux/catalogFragmentsReducer";
+import {deleteFragment} from "../../../../redux/createLessonReducer";
 
 class FragmentCardContainer extends React.Component {
     state = {
@@ -28,4 +29,4 @@ const mapStateToProps = (state) => ({
     isAdmin: state.auth.isAdmin,
 });
 
-export default connect(mapStateToProps, {changeFavorite})(FragmentCardContainer);
+export default connect(mapStateToProps, {changeFavorite, deleteFragment})(FragmentCardContainer);

@@ -10,6 +10,7 @@ const CHANGE_ANNOTATION = 'createLesson/CHANGE_ANNOTATION';
 const SET_FON = 'createLesson/SET_FON';
 const CLEAR_ALL_FIELDS = 'createLesson/CLEAR_ALL_FIELDS';
 const SET_ERRORS = 'createLesson/SET_ERRORS';
+const DELETE_FRAGMENT = 'createLesson/DELETE_FRAGMENT';
 
 
 const initState = {
@@ -72,6 +73,20 @@ const createLessonReducer = (state = initState, action) => {
                 fragmentsError: action.errors.fragments
             }
 
+        case DELETE_FRAGMENT:
+            const index = state.fragments.findIndex(elem => elem.id === action.id);
+            const deleteNumber = state.fragments[index].order;
+            let fragments = state.fragments;
+            if (state.fragments.length !== deleteNumber) {
+                fragments = state.fragments.map(f => {
+                    return (f.order > deleteNumber ? {...f, order: f.order - 1} : f)
+                });
+            }
+            return {
+                ...state,
+                fragments: fragments.filter(fragment => fragment.id !== action.id)
+            };
+
         default:
             return state;
     }
@@ -87,6 +102,7 @@ export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const changeAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annotation});
 export const setFon = (fon) => ({type: SET_FON, fon});
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
+export const deleteFragment = (id) => ({type: DELETE_FRAGMENT, id});
 
 export const createLesson = (title, annotation, fragments, tags, fon) => (dispatch) => {
     dispatch(toggleIsFetching(true));
