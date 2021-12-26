@@ -37,7 +37,7 @@ class LessonContainer extends React.Component {
 
 	updateLesson = () => {
 		const fragmentsIds = this.props.fragments.map(fragment => fragment.id);
-		const tagsIds = this.props.tags.map(tag => tag.id);
+		const tagsIds = this.props.tags?.map(tag => tag.id);
 		return this.props.updateLesson(
 			this.state.id,
 			this.props.lessonTitle,

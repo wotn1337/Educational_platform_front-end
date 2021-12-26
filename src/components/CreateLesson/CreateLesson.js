@@ -9,14 +9,14 @@ import Preloader from "../../common/Preloader/Preloader";
 import UploadFon from "./UloadFon/UploadFon";
 
 
-const CreateLesson = ({isFetching, ...props}) => {
+const CreateLesson = ({isFetching, annotation, ...props}) => {
 	const [tags, setTags] = useState(false);
 	return (
 		<div className={s.content}>
 			<h1 className={'pageTitle'}>Создать урок</h1>
-			<LessonTitle title={props.title} changeLessonTitle={props.changeLessonTitle}/>
+			<LessonTitle title={props.title} changeLessonTitle={props.changeLessonTitle} error={props.titleError}/>
 			<UploadFon type={'lesson'} setFon={props.setFon} fon={props.fon}/>
-			<LessonAnnotation annotation={props.annotation} changeAnnotation={props.changeAnnotation}/>
+			<LessonAnnotation annotation={annotation} changeAnnotation={props.changeAnnotation} error={props.annotationError}/>
 			{isFetching
 				? <Preloader size={200}/>
 				: <>
@@ -29,10 +29,11 @@ const CreateLesson = ({isFetching, ...props}) => {
 					/>
 				</>
 			}
+			<p className={'inputError'}>{props.fragmentsError}</p>
 			<div className={s.buttonsBlock}>
 				<button className={'btn'} onClick={() => setTags(!tags)}>Добавить теги</button>
 				<button className={'btn'} onClick={props.createLesson}
-				        disabled={props.annotation.length > 255 || props.title.length === 0 || props.lessonFragments.length === 0}>Создать</button>
+				        disabled={isFetching}>Создать</button>
 			</div>
 			{tags && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}
 		</div>

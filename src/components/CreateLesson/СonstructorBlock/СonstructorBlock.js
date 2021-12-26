@@ -21,6 +21,8 @@ const ConstructorBlock = (props) => {
 			tags={fragment.tags}
 			fon={fragment.fon}
 			content={fragment.content}
+			createLesson={true}
+
 		/>;
 		if (i !== props.fragments.length - 1) {
 			fragmentCards.push(card)

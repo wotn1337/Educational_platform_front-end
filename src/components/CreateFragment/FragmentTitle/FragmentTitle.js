@@ -8,8 +8,8 @@ const rightWords = (fragment) => {
 	switch (fragment) {
 		case 'article':
 			return 'вашей статьи';
-		case 'test':
-			return 'вашего теста';
+		case 'image':
+			return 'вашего изображения';
 		case 'video':
 			return 'вашего видеоролика';
 		case 'lesson':
@@ -31,7 +31,7 @@ const FragmentTitle = (props) => {
 				value={props.title}
 				onChange={e => props.changeFragmentTitle(e.target.value)}
 			/>
-			{props.titleError && <div className={s.titleError}>{props.titleError}</div>}
+			{props.titleError && <div className={'inputError'}>{props.titleError}</div>}
 		</div>
 	);
 };

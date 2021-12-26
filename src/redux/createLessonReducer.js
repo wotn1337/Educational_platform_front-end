@@ -1,5 +1,5 @@
 import {lessonsAPI} from "../api/api";
-import {successNotification} from "../notifications/notifications";
+import {errorNotification, successNotification} from "../notifications/notifications";
 
 const CHANGE_LESSON_TITLE = 'createLesson/CHANGE_LESSON_TITLE';
 const SET_FRAGMENTS = 'createLesson/SET_FRAGMENTS';
@@ -9,10 +9,14 @@ const DELETE_TAG = 'createLesson/DELETE_TAG';
 const CHANGE_ANNOTATION = 'createLesson/CHANGE_ANNOTATION';
 const SET_FON = 'createLesson/SET_FON';
 const CLEAR_ALL_FIELDS = 'createLesson/CLEAR_ALL_FIELDS';
+const SET_ERRORS = 'createLesson/SET_ERRORS';
 
 
 const initState = {
     title: '',
+    titleError: '',
+    annotationError: '',
+    fragmentsError: '',
     isFetching: false,
     tags: [],
     fragments: [],
@@ -55,7 +59,18 @@ const createLessonReducer = (state = initState, action) => {
                 fragments: [],
                 annotation: '',
                 fon: undefined,
+                titleError: '',
+                annotationError: '',
+                fragmentsError: '',
             };
+
+        case SET_ERRORS:
+            return {
+                ...state,
+                titleError: action.errors.title,
+                annotationError: action.errors.annotation,
+                fragmentsError: action.errors.fragments
+            }
 
         default:
             return state;
@@ -63,6 +78,7 @@ const createLessonReducer = (state = initState, action) => {
 }
 
 const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching});
+const setErrors = (errors) => ({type: SET_ERRORS, errors});
 
 export const changeLessonTitle = (lessonTitle) => ({type: CHANGE_LESSON_TITLE, lessonTitle});
 export const setFragments = (fragments) => ({type: SET_FRAGMENTS, fragments});
@@ -82,6 +98,10 @@ export const createLesson = (title, annotation, fragments, tags, fon) => (dispat
         .catch(err => {
             dispatch(toggleIsFetching(false));
             console.log(err.response);
+            if (err.response.status === 422) {
+                dispatch(setErrors(err.response.data.errors));
+            }
+            errorNotification('Что-то пошло не так :(');
         })
 };
 

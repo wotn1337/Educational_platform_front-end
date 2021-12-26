@@ -24,7 +24,7 @@ const allTagsReducer = (state = initState, action) => {
 		case SET_TAGS_IDS:
 			return {
 				...state,
-				currentTagsIds: action.tags.map(tag => tag.id)
+				currentTagsIds: action.tags ? action.tags.map(tag => tag.id) : []
 			};
 
 		case ADD_TAG:

@@ -1,5 +1,5 @@
 import {fragmentsAPI} from "../api/api";
-import {successNotification} from "../notifications/notifications";
+import {errorNotification, successNotification} from "../notifications/notifications";
 
 const CHANGE_FRAGMENT_TYPE = 'createFragment/CHANGE_FRAGMENT_TYPE';
 const CHANGE_FRAGMENT_TITLE = 'createFragment/CHANGE_FRAGMENT_TITLE';
@@ -14,7 +14,7 @@ const CLEAR_ALL_FIELDS = 'createFragment/CLEAR_ALL_FIELDS';
 
 
 const initState = {
-	fragmentType: '',
+	fragmentType: undefined,
 	title: '',
 	content: undefined,
 	isFetching: false,
@@ -103,6 +103,7 @@ export const createFragment = (fragmentType, title, content, tagsIds, fon, annot
 		.catch(err => {
 			dispatch(setTitleError(err.response.data.errors.title));
 			dispatch(setIsFetching(false));
+			errorNotification();
 		});
 };
 

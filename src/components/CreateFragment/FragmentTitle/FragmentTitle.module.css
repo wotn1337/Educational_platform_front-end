@@ -22,11 +22,3 @@
     width: 100%;
     border: none;
 }
-
-.titleError {
-    background-color: white;
-    border-radius: 10px;
-    color: #F56464;
-    text-align: center;
-    margin-top: 5px;
-}
