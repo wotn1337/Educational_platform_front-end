@@ -27,7 +27,7 @@ const Navigation = ({lessonId, fragments, setCurrentFragment, depth, setDepth}) 
 		<nav className={s.navigation}>
 			<NavLink
 				exact to={`/lesson/${lessonId}`}
-				onClick={() => setCurrentFragment(undefined)}
+				onClick={() => setDepth(depth - 1)}
 				className={s.description}
 				activeClassName={s.active}
 			>

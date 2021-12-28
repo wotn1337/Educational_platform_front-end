@@ -15,6 +15,7 @@ import {
 import Preloader from "../../common/Preloader/Preloader";
 import {fragmentTypes} from "../../common/fragmentTypes";
 import {returnTag} from "../../redux/allTagsReducer";
+import {withRouter} from "react-router-dom";
 
 
 class FragmentContainer extends React.Component {
@@ -93,5 +94,6 @@ export default compose(
 		changeFavorite,
 		setAnnotation
 	}),
-	withoutAuthRedirectToAuthPage
+	withoutAuthRedirectToAuthPage,
+	withRouter
 )(FragmentContainer);
