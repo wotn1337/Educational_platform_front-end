@@ -10,8 +10,9 @@ import TagsListContainer from "../CreateFragment/TagsList/TagsListContainer";
 import {NavLink} from "react-router-dom";
 import avatarPlaceholder from "../../assets/img/profile/teacherProfile.svg";
 import ButtonsBlock from "../Lesson/ButtonsBlock/ButtonsBlock";
+import HeaderWithBackButton from "../../common/HeaderWithBackButton/HeaderWithBackButton";
 
-const Fragment = (props) => {
+const Fragment = ({history, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 	const [showTags, setShowTags] = useState(false);
 
@@ -34,7 +35,7 @@ const Fragment = (props) => {
 	return (
 		<div className={s.fragmentWrapper}>
 			{!props.isEdit
-				? <h1 className={'pageTitle'}>{props.title}</h1>
+				? <HeaderWithBackButton title={props.title}/>
 				: <input
 					type="text"
 					name={'fragmentTitle'}

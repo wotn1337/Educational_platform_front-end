@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 import Fragment from "./Fragment";
-import {Redirect, withRouter} from "react-router-dom";
 import {
 	addTag, changeFavorite,
 	deleteFragment,
@@ -33,8 +32,8 @@ class FragmentContainer extends React.Component {
 	}
 
 	deleteFragment = () => {
-		this.props.deleteFragment(this.state.id);
-		this.setState({id: ''});
+		return this.props.deleteFragment(this.state.id)
+			.then(() => this.setState({id: ''}));
 	}
 
 	editFragment = () => {
@@ -50,10 +49,6 @@ class FragmentContainer extends React.Component {
 	}
 
 	render() {
-		if (!this.state.id) {
-			return <Redirect to={'/catalog'} />;
-		}
-
 		if (this.props.isFetching) {
 			return <Preloader size={200}/>
 		}
@@ -98,6 +93,5 @@ export default compose(
 		changeFavorite,
 		setAnnotation
 	}),
-	withRouter,
 	withoutAuthRedirectToAuthPage
 )(FragmentContainer);

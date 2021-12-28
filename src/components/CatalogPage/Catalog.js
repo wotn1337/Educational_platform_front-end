@@ -5,6 +5,8 @@ import FragmentsListContainer from "../MyFragments/FragmentsList/FragmentsListCo
 import LessonSearchBlockContainer from "./lessonsCatalog/LessonSearchBlock/LessonSearchBlockContainer";
 import LessonsListContainer from "./lessonsCatalog/LessonsList/LessonsListContainer";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {compose} from "redux";
+import {withRouter} from "react-router-dom";
 
 
 const Catalog = () => {
@@ -40,4 +42,7 @@ const Catalog = () => {
 	);
 };
 
-export default withoutAuthRedirectToAuthPage(Catalog);
+export default compose(
+	withoutAuthRedirectToAuthPage,
+	withRouter
+)(Catalog);
