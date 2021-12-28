@@ -2,7 +2,7 @@ import React from 'react';
 import s from './LessonAnnotation.module.css';
 
 
-const LessonAnnotation = ({annotation, changeAnnotation}) => {
+const LessonAnnotation = ({annotation, changeAnnotation, error}) => {
 	return (
 		<div className={s.annotationBlock}>
 			<h3 className={s.annotationTitle}>Аннотация к уроку</h3>
@@ -10,6 +10,7 @@ const LessonAnnotation = ({annotation, changeAnnotation}) => {
 			<span className={s.symbolCount} style={{color: `${annotation.length > 255 ? '#F56464' : '#50b340'}`}}>
 				{annotation.length > 255 ? 'Аннотация слишком длинная' : `Осталось символов: ${255 - annotation.length}`}
 			</span>
+			<p className={'inputError'}>{error}</p>
 		</div>
 	);
 };

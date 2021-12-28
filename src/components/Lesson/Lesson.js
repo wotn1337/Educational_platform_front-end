@@ -8,6 +8,7 @@ import ButtonsBlock from "./ButtonsBlock/ButtonsBlock";
 import EditingLesson from "./EditingLesson/EditingLesson";
 import LessonPreview from "./LessonPreview/LessonPreview";
 import MobileNav from "./Navigation/MobileNavigation/MobileNav";
+import HeaderWithBackButton from "../../common/HeaderWithBackButton/HeaderWithBackButton";
 
 
 const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle, isEdit, ...props}) => {
@@ -15,10 +16,10 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 		<section className={"content"}>
 			{!isEdit ?
 				<>
-					<h1 className={'pageTitle'}>{lessonTitle}</h1>
+					<HeaderWithBackButton title={lessonTitle} depth={props.depth} setDepth={props.setDepth}/>
 					<section className={s.lesson}>
 						<Navigation fragments={fragments} lessonId={id} setCurrentFragment={setCurrentFragment}
-						            className={s.navigation}/>
+						            className={s.navigation} depth={props.depth} setDepth={props.setDepth}/>
 						{props.isFetching
 							? <Preloader size={200}/>
 							: <>

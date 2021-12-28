@@ -13,20 +13,31 @@ const getShortTitle = (title, length) => {
 }
 
 
-const FragmentCard = ({isAdmin, ...props}) => {
+const FragmentCard = ({isAdmin, createLesson, deleteFragment, ...props}) => {
 	const fon = props.fragmentType === fragmentTypes.image ? props.content : props.fon;
+	const cardButton = createLesson
+		? <button className={s.addToFavoriteButton + ' ' + s.deleteFragmentButton}
+		          onClick={event => {
+			          event.preventDefault();
+			          deleteFragment(props.id);
+		          }}
+		/>
+		: <>{
+			!isAdmin &&
+			<button
+				className={`${s.addToFavoriteButton} ${props.isFavorite ? s.alreadyFavorite : s.addToFavorite}`}
+				onClick={event => {
+					event.preventDefault();
+					props.changeFavorite(props.id)
+				}}
+			/>
+		}</>
+
 	return (
 		<NavLink to={`/fragment/${props.id}`} className={s.fragmentCard}>
 			<div className={s.preview}>
 				<img src={fon || previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
-				{!isAdmin &&
-				<button className={`${s.addToFavoriteButton} ${props.isFavorite ? s.alreadyFavorite : s.addToFavorite}`}
-				        onClick={event => {
-					        event.preventDefault();
-					        props.changeFavorite(props.id)
-				        }}
-				/>
-				}
+				{cardButton}
 			</div>
 			<div>
 				<div className={s.description}>

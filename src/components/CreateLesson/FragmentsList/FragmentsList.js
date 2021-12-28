@@ -18,15 +18,18 @@ const FragmentsList = (props) => {
             <h3 className={s.title}>Мои фрагменты</h3>
             <div className={s.fragmentsList}>
                 {fragmentCards}
+                {fragmentCards.length < 1 && <p>Похоже, у вас нет фрагментов : (</p>}
             </div>
             <div className={s.actionBlock}>
-                <div style={{width: '30%'}}>
-                    <Pagination handler={props.changePage} currentPage={props.currentPage} prevPage={props.prevPage}
-                                lastPage={props.lastPage}
-                                nextPage={props.nextPage}
-                    />
-                </div>
-                <button className={s.addButton} onClick={() => {
+                {props.lastPage > 1 &&
+                    <div style={{width: '30%'}}>
+                        <Pagination handler={props.changePage} currentPage={props.currentPage} prevPage={props.prevPage}
+                                    lastPage={props.lastPage}
+                                    nextPage={props.nextPage}
+                        />
+                    </div>
+                }
+                <button style={{marginLeft: props.lastPage < 2 ? 'auto' : ''}} className={s.addButton} onClick={() => {
                     props.setFragments();
                     props.setModalActive(false)
                 }}>

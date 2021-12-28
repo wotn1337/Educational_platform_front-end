@@ -1,5 +1,5 @@
 import {lessonsAPI} from "../api/api";
-import {successNotification} from "../notifications/notifications";
+import {errorNotification, successNotification} from "../notifications/notifications";
 import {toggleIsFetching} from "../common/actionCreators";
 
 
@@ -57,7 +57,7 @@ const lessonReducer = (state = initState, action) => {
                 creatorName: action.data.lesson.user_name,
                 creatorAvatar: action.data.lesson.user_avatar,
                 favorite: action.data.lesson.favourite,
-                tags: action.data.lesson.tags?.data,
+                tags: action.data.lesson.tags ? action.data.lesson.tags.data : [],
                 fon: action.data.lesson.fon,
                 allFragmentsCount: action.data.lesson.fragments.all_count,
                 nextId: nextFragmentId
@@ -154,6 +154,7 @@ export const getLesson = (id) => (dispatch) => {
             dispatch(setLesson(res.data));
             dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
         })
+        .catch(() => errorNotification('Что-то пошло не так ('))
 }
 export const deleteLesson = (id) => () => {
     return lessonsAPI.deleteLesson(id)
@@ -175,6 +176,9 @@ export const updateLesson = (id, title, annotation, fragments, tags) => (dispatc
             dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
             successNotification(res.data.messages);
         })
-        .catch(err => console.log(err.response))
+        .catch(err => {
+            console.log(err.response);
+            errorNotification('Что-то пошло не так (');
+        })
 }
 export default lessonReducer;

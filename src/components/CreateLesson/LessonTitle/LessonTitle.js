@@ -1,7 +1,7 @@
 import React from "react";
 import s from './LessonTitle.module.css';
 
-const LessonTitle = ({title, changeLessonTitle, ...props}) => {
+const LessonTitle = ({title, changeLessonTitle, error, ...props}) => {
 	return (
 		<div className={s.fragmentTitleBlock}>
 			<h3 className={s.preTitle}>Название вашего урока</h3>
@@ -12,6 +12,7 @@ const LessonTitle = ({title, changeLessonTitle, ...props}) => {
 				value={title}
 				onChange={e => changeLessonTitle(e.target.value)}
 			/>
+			<p className={'inputError'}>{error}</p>
 		</div>
 	);
 };

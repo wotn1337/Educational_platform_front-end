@@ -116,8 +116,8 @@ export const register = (data, setStatus) => (dispatch) => {
 		});
 };
 
-export const logout = (token) => (dispatch) => {
-	authAPI.logout(token)
+export const logout = () => (dispatch) => {
+	authAPI.logout()
 		.then((res) => {
 			localStorage.clear();
 			dispatch(logoutAction());

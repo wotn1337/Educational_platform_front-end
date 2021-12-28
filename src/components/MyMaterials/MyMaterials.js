@@ -7,6 +7,7 @@ import LessonsListContainer from "../CatalogPage/lessonsCatalog/LessonsList/Less
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withRouter} from "react-router-dom";
 
 
 const MyMaterials = ({role}) => {
@@ -51,5 +52,6 @@ export const mapStateToProps = (state) => ({
 
 export default compose(
 	withoutAuthRedirectToAuthPage,
-	connect(mapStateToProps, {})
+	connect(mapStateToProps, {}),
+	withRouter
 )(MyMaterials);

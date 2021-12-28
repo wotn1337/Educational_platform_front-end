@@ -121,37 +121,51 @@ a.active {
         width: 100%;
         flex-wrap: nowrap;
     }
+
     .navLink {
         font-size: 1em;
         padding: 20px 5px;
         margin: 0 5px;
         min-width: 100px;
     }
+
     .dropDown:hover .navLink {
         padding: 20px 0 10px 0;
         color: #F56464 !important;
         min-width: 100px;
-        width: 148px;
+        width: 178px;
     }
+
     .dropDownMenu .dropDownItem {
         font-size: 1em;
-    }
-    .dropDownMenu {
         width: 158px;
-        top: 54px;
+        margin: 0 auto;
     }
+
+    .dropDownMenu {
+        width: 188px;
+        top: 53px;
+    }
+
     .nav {
         margin-top: 0;
     }
+
     .navLink:hover {
         background-image: none;
     }
+
     a.active {
         background-image: none;
     }
+
     .logo {
         margin-top: 0;
-        height: 64px;
+        height: 70px;
+    }
+
+    .logoLink {
+        margin-top: 0;
     }
 }
 

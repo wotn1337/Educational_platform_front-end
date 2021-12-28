@@ -107,7 +107,7 @@ export const getFragment = (id) => (dispatch) => {
 };
 
 export const deleteFragment = (id) => () => {
-	fragmentsAPI.deleteFragment(id)
+	return fragmentsAPI.deleteFragment(id)
 		.then(res => successNotification(res.data.message))
 		.catch(err => console.log(err.response));
 };

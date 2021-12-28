@@ -55,12 +55,8 @@ class FragmentsListContainer extends React.Component {
 	};
 
 	changePage = (page) => {
-		this.props.getFragments(
-			this.props.page,
-			page,
-			this.props.searchTitle,
-			this.props.searchType
-		);
+		const pageName = this.props.role === 'student' ? 'favorite' : this.props.page;
+		this.props.getFragments(pageName, page);
 	};
 
 	render() {

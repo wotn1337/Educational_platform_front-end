@@ -2,18 +2,27 @@ import React, {useEffect, useState} from 'react';
 import s from "./MobileNavbar.module.css";
 import logo from "../../../assets/img/navbar/logo.svg";
 import {NavLink} from "react-router-dom";
-import userImg from "../../../assets/img/profile/user.svg";
+import userImg from "../../../assets/img/navbar/mobileProfile.svg";
+import arrow from "../../../assets/img/navbar/arrow.svg";
 import catalog from '../../../assets/img/navbar/catalog.svg';
+import main from '../../../assets/img/navbar/main.svg';
+import myMaterials from '../../../assets/img/navbar/myLessons.svg';
+import favorite from '../../../assets/img/navbar/favorite.svg';
+import createFragment from '../../../assets/img/navbar/myFragments.svg';
+import createLesson from '../../../assets/img/navbar/createLesson.svg';
+import exit from '../../../assets/img/navbar/logout.svg';
 import {getProfile} from "../../../redux/profileReducer";
+import {logout} from "../../../redux/authReducer";
 import {connect} from "react-redux";
+import MobileLink from "./MobileLink";
 
 
-const MobileNavbar = (props) => {
+const MobileNavbar = ({isAdmin, role, logout, isAuth, ...props}) => {
 	const [showMenu, setShowMenu] = useState(false);
 	const [avatar, setAvatar] = useState(null);
 	const [userName, setUserName] = useState('Профиль');
 	useEffect(() => {
-		props.getProfile(props.token);
+		props.getProfile();
 		setAvatar(props.avatar);
 		setUserName(props.userName);
 	}, [props]);
@@ -29,82 +38,39 @@ const MobileNavbar = (props) => {
 						activeClassName={s.activeProfile}
 						onClick={() => setShowMenu(!showMenu)}
 					>
-						<img src={avatar || userImg} alt="user" className={s.userAvatar}/>
-						<span className={s.userName}>{userName}</span>
+						<img src={(isAuth ? avatar : false) || userImg} alt="user" className={s.userAvatar}/>
+						<span className={s.userName}>{isAuth ? userName : 'Войти'}</span>
+						<img src={arrow} alt="arrow" className={s.arrow}/>
 					</NavLink>
 					<nav className={s.menu}>
-						<NavLink
-							exact to={'/'}
-							className={s.navItem}
-							activeClassName={s.active}
-							onClick={() => setShowMenu(!showMenu)}
-						>
-							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Главная</span>
-						</NavLink>
-						<NavLink
-							to={'/lessons-catalog'}
-							className={s.navItem}
-							activeClassName={s.active}
-							onClick={() => setShowMenu(!showMenu)}
-						>
-							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Каталог уроков</span>
-						</NavLink>
-						<NavLink
-							to={'/catalog-fragments'}
-							className={s.navItem}
-							activeClassName={s.active}
-							onClick={() => setShowMenu(!showMenu)}
-						>
-							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Каталог фрагментов</span>
-						</NavLink>
-						<NavLink
-							to={'/my-lessons'}
-							className={s.navItem}
-							activeClassName={s.active}
-							onClick={() => setShowMenu(!showMenu)}
-						>
-							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Мои уроки</span>
-						</NavLink>
-						<NavLink
-							to={'/my-fragments'}
-							className={s.navItem}
-							activeClassName={s.active}
-							onClick={() => setShowMenu(!showMenu)}
-						>
-							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Мои фрагменты</span>
-						</NavLink>
-						<NavLink
-							to={'/favorites'}
-							className={s.navItem}
-							activeClassName={s.active}
-							onClick={() => setShowMenu(!showMenu)}
-						>
-							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Избранное</span>
-						</NavLink>
-						<NavLink
-							to={'/create-lesson'}
-							className={s.navItem}
-							activeClassName={s.active}
-							onClick={() => setShowMenu(!showMenu)}
-						>
-							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Создать урок</span>
-						</NavLink>
-						<NavLink
-							to={'/create-fragment'}
-							className={s.navItem}
-							activeClassName={s.active}
-							onClick={() => setShowMenu(!showMenu)}
-						>
-							<img src={catalog} alt="" className={s.navImg}/>
-							<span className={s.navName}>Создать фрагмент</span>
-						</NavLink>
+						<MobileLink to={'/'} setShowMenu={setShowMenu} title={'Главная'} icon={main}/>
+						{isAuth &&
+						<>
+							<MobileLink to={'/teachers'} setShowMenu={setShowMenu} title={'Преподаватели'} icon={userImg}/>
+							<MobileLink to={'/catalog'} setShowMenu={setShowMenu} title={'Каталог'} icon={catalog}/>
+							{!isAdmin &&
+								<>
+									<MobileLink to={'/my-materials'} setShowMenu={setShowMenu}
+									            title={role === 'creator' ? 'Мои материалы' : 'Мои уроки'}
+									            icon={myMaterials}/>
+
+									<MobileLink to={'/favorites'} setShowMenu={setShowMenu} title={'Избранное'}
+									            icon={favorite}/>
+									{role !== 'student' &&
+										<MobileLink to={'/create-fragment'} setShowMenu={setShowMenu}
+										            title={'Создать фрагмент'}
+										            icon={createFragment}/>
+									}
+									<MobileLink to={'/create-lesson'} setShowMenu={setShowMenu} title={'Создать урок'}
+									            icon={createLesson}/>
+								</>
+							}
+							<div className={s.exitButton} onClick={logout}>
+								<img src={exit} alt="logout" className={s.navImg}/>
+								<span>Выйти</span>
+							</div>
+						</>
+						}
 					</nav>
 				</div>
 			</div>
@@ -113,9 +79,11 @@ const MobileNavbar = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-	token: state.auth.token,
+	isAdmin: state.auth.isAdmin,
+	role: state.auth.role,
 	avatar: state.profile.avatar,
-	userName: state.profile.name
+	userName: state.profile.name,
+	isAuth: state.auth.isAuth
 });
 
-export default connect(mapStateToProps, {getProfile})(MobileNavbar);
+export default connect(mapStateToProps, {getProfile, logout})(MobileNavbar);

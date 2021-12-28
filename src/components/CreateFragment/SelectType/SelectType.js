@@ -14,7 +14,7 @@ const SelectType = (props) => {
 				onChange={(e) => props.changeFragmentType(e.target.value)}
 				className={s.selectType}
 			>
-				<option value="none">Тип фрагмента</option>
+				<option value="">Тип фрагмента</option>
 				<option value="article">Статья</option>
 				<option value="image">Изображение</option>
 				<option value="video">Видео</option>

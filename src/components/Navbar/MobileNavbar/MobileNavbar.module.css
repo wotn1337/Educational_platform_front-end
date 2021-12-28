@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: #A2E1F4;
+    background-color: #2CDAA8;
     transition: all 0.5s;
 }
 
@@ -44,11 +44,21 @@
 }
 
 .profileInfo {
-    background-color: #A2E1F4;
+    background-color: #2CDAA8;
     text-decoration: none;
-    display: block;
+    display: flex;
+    align-items: center;
     padding: 25px 0 25px 45px;
     color: black;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 26px;
+}
+
+.arrow {
+    margin: 0 10px 0 auto;
+    display: block;
 }
 
 .profileInfo:focus {
@@ -64,6 +74,8 @@
     height: 45px;
     margin-right: 18px;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .menu {
@@ -90,6 +102,14 @@
 .navImg {
     width: 22px;
     margin-right: 10px;
+}
+
+.exitButton {
+    display: flex;
+    align-items: center;
+    padding: 15px 60px;
+    background-color: #BFC3C5;
+    margin-top: 50px;
 }
 
 @media all and (max-width: 900px) {

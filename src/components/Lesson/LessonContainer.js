@@ -18,12 +18,17 @@ import {changeFavorite} from "../../redux/fragmentReducer";
 class LessonContainer extends React.Component {
 	state = {
 		id: this.props.match.params.id,
-		isEdit: false
+		isEdit: false,
+		depth: -1
 	}
 
 	componentDidMount() {
 		this.props.getLesson(this.state.id);
 		this.props.history.push(`/lesson/${this.state.id}`);
+	}
+
+	setDepth = (depth) => {
+		this.setState({depth});
 	}
 
 	toggleIsEdit = () => {
@@ -37,7 +42,7 @@ class LessonContainer extends React.Component {
 
 	updateLesson = () => {
 		const fragmentsIds = this.props.fragments.map(fragment => fragment.id);
-		const tagsIds = this.props.tags.map(tag => tag.id);
+		const tagsIds = this.props.tags?.map(tag => tag.id);
 		return this.props.updateLesson(
 			this.state.id,
 			this.props.lessonTitle,
@@ -58,6 +63,7 @@ class LessonContainer extends React.Component {
 				toggleIsEdit={this.toggleIsEdit}
 				deleteLesson={this.deleteLesson}
 				updateLesson={this.updateLesson}
+				setDepth={this.setDepth}
 			/>
 		);
 	}

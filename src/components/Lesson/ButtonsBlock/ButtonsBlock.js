@@ -1,5 +1,6 @@
 import React from 'react';
 import s from '../Lesson.module.css';
+import {withRouter} from "react-router-dom";
 
 
 const ButtonsBlock = ({id, creatorId, userId, role, favorite, toggleFavorite, deleteThis, favoriteFetching, ...props}) => {
@@ -8,7 +9,10 @@ const ButtonsBlock = ({id, creatorId, userId, role, favorite, toggleFavorite, de
 			{(creatorId === userId || role === 'admin') &&
 			<>
 				<button className={'btn'} onClick={props.toggleIsEdit}>Редактировать</button>
-				<button className={'btn'} onClick={() => deleteThis()}>Удалить</button>
+				<button className={'btn'} onClick={() => {
+					deleteThis()
+						.then(() => props.history.goBack());
+				}}>Удалить</button>
 			</>
 			}
 			{role !== 'admin' &&
@@ -25,4 +29,4 @@ const ButtonsBlock = ({id, creatorId, userId, role, favorite, toggleFavorite, de
 	);
 };
 
-export default ButtonsBlock;
+export default withRouter(ButtonsBlock);

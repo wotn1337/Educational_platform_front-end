@@ -44,7 +44,10 @@ const mapStateToProps = (state) => ({
 	isFetching: state.createLesson.isFetching,
 	tags: state.createLesson.tags,
 	annotation: state.createLesson.annotation,
-	fon: state.createLesson.fon
+	fon: state.createLesson.fon,
+	titleError: state.createLesson.titleError,
+	annotationError: state.createLesson.annotationError,
+	fragmentsError: state.createLesson.fragmentsError
 });
 
 export default compose(
