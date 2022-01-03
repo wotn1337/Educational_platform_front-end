@@ -36,8 +36,13 @@ class LessonContainer extends React.Component {
 	}
 
 	deleteLesson = () => {
-		this.props.deleteLesson(this.state.id)
-			.then(() => this.setState({id: ''}));
+		return this.props.deleteLesson(this.state.id)
+			.then(() => {
+				this.setState({id: ''});
+				this.props.history.go(this.state.depth + 1);
+				//this.props.history.goBack();
+				this.setDepth(-1);
+			});
 	}
 
 	updateLesson = () => {
@@ -53,9 +58,6 @@ class LessonContainer extends React.Component {
 	}
 
 	render() {
-		if (!this.state.id) {
-			return <Redirect to={'/catalog'}/>
-		}
 		return (
 			<Lesson
 				{...this.state}

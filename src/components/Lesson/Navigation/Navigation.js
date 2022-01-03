@@ -5,7 +5,7 @@ import {fragmentTypeImg} from "../../../common/fragmentsPreview";
 import {russianFragmentTypes} from "../../../common/fragmentTypes";
 
 
-const Navigation = ({lessonId, fragments, setCurrentFragment, depth, setDepth}) => {
+const Navigation = ({lessonId, fragments, setCurrentFragment, depth, setDepth, currentFragment}) => {
 	const navLinks = fragments.map(fragment => (
 		<NavLink
 			to={`/lesson/${lessonId}/${fragment.id}`}
@@ -13,7 +13,9 @@ const Navigation = ({lessonId, fragments, setCurrentFragment, depth, setDepth}) 
 			className={s.fragmentLink}
 			onClick={() => {
 				setCurrentFragment(fragment.order);
-				setDepth(depth - 1);
+				if (currentFragment && currentFragment.id !== fragment.id) {
+					setDepth(depth - 1);
+				}
 			}}
 			activeClassName={s.active}
 		>

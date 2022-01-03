@@ -19,7 +19,8 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 					<HeaderWithBackButton title={lessonTitle} depth={props.depth} setDepth={props.setDepth}/>
 					<section className={s.lesson}>
 						<Navigation fragments={fragments} lessonId={id} setCurrentFragment={setCurrentFragment}
-						            className={s.navigation} depth={props.depth} setDepth={props.setDepth}/>
+						            className={s.navigation} depth={props.depth} setDepth={props.setDepth}
+						            currentFragment={props.currentFragment}/>
 						{props.isFetching
 							? <Preloader size={200}/>
 							: <>
@@ -29,7 +30,10 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 										         render={() => <Fragment fragment={currentFragment}
 										                                 toggleFavorite={props.changeFavorite}
 										                                 toggleCurrentFragmentFavorite={props.toggleCurrentFragmentFavorite}
-										                                 className={s.fragment}/>}/>
+										                                 className={s.fragment}
+										                                 setCurrentFragment={setCurrentFragment}
+										         />}
+										/>
 										: <LessonPreview
 											image={props.fon}
 											creatorName={props.creatorName}
