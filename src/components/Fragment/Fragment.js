@@ -11,6 +11,7 @@ import {NavLink} from "react-router-dom";
 import avatarPlaceholder from "../../assets/img/profile/teacherProfile.svg";
 import ButtonsBlock from "../Lesson/ButtonsBlock/ButtonsBlock";
 import HeaderWithBackButton from "../../common/HeaderWithBackButton/HeaderWithBackButton";
+import ImageFragment from "./ImageFragment/ImageFragment";
 
 const Fragment = ({history, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -60,14 +61,15 @@ const Fragment = ({history, ...props}) => {
 					</div>
 				}
 				{props.type === fragmentTypes.image &&
-					<>
-						<div className={s.image}><img src={props.content} alt="fragment"/></div>
-						<p className={s.annotation}>{props.annotation}</p>
-						{/*{props.isEdit*/}
-						{/*	? <input type="text" value={props.annotation} onChange={e => props.setAnnotation(e.target.value)}/>*/}
-						{/*	: <p className={s.annotation}>{props.annotation}</p>*/}
-						{/*}*/}
-					</>
+					// <>
+					// 	<div className={s.image}><img src={props.content} alt="fragment"/></div>
+					// 	<p className={s.annotation}>{props.annotation}</p>
+					// 	{/*{props.isEdit*/}
+					// 	{/*	? <input type="text" value={props.annotation} onChange={e => props.setAnnotation(e.target.value)}/>*/}
+					// 	{/*	: <p className={s.annotation}>{props.annotation}</p>*/}
+					// 	{/*}*/}
+					// </>
+					<ImageFragment image={props.content} annotation={props.annotation} isEdit={props.isEdit} setImage={props.setContent}/>
 				}
 				{!props.isEdit &&
 					<div className={s.author}>

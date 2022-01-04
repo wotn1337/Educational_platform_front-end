@@ -184,9 +184,12 @@ export const fragmentsAPI = {
 
 	// Редактировать фрагмент (только для админа или владельца фрагмента)
 	editFragment(id, title, content, tagsIds, annotation) {
-		content = content ? content : null;
-		const data = {title, content, tags: tagsIds, annotation};
-		return instance.patch(`fragments/${id}`, JSON.stringify(data), authConfig());
+		const data = new FormData();
+		data.append('title', title);
+		data.append('content', content);
+		data.append('tags', tagsIds);
+		data.append('annotation', annotation);
+		return instance.post(`fragments/${id}?_method=PATCH`, data, authConfig());
 	},
 
 	// Получить список всех возможных тегов
