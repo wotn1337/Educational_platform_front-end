@@ -14,6 +14,7 @@
     background-position: center;
     border: none;
     background-color: transparent;
+    cursor: pointer;
 }
 
 .btnBack {
@@ -34,6 +35,7 @@
     padding: 25px;
     font-weight: bold;
     font-size: 22px;
+    cursor: pointer;
 }
 
 .fragmentLink {
@@ -46,6 +48,7 @@
     font-style: normal;
     font-size: 20px;
     color: #000000;
+    cursor: pointer;
 }
 
 .fragmentLink:hover, .description:hover {

@@ -20,7 +20,7 @@ const CreateLesson = ({isFetching, annotation, ...props}) => {
 			{isFetching
 				? <Preloader size={200}/>
 				: <>
-					<ConstructorBlock fragments={props.lessonFragments} setFragments={props.setFragments}/>
+					<ConstructorBlock fragments={props.lessonFragments} setFragments={props.setFragments} deleteFragment={props.deleteFragment}/>
 					<ThisTags
 						tags={props.tags}
 						edit={true}

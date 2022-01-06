@@ -2,7 +2,6 @@ import React from 'react';
 import s from './Lesson.module.css';
 import Navigation from "./Navigation/Navigation";
 import Fragment from "./Fragment/Fragment";
-import {Route} from "react-router-dom";
 import Preloader from "../../common/Preloader/Preloader";
 import ButtonsBlock from "./ButtonsBlock/ButtonsBlock";
 import EditingLesson from "./EditingLesson/EditingLesson";
@@ -16,23 +15,20 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 		<section className={"content"}>
 			{!isEdit ?
 				<>
-					<HeaderWithBackButton title={lessonTitle} depth={props.depth} setDepth={props.setDepth}/>
+					<HeaderWithBackButton title={lessonTitle}/>
 					<section className={s.lesson}>
-						<Navigation fragments={fragments} lessonId={id} setCurrentFragment={setCurrentFragment}
-						            className={s.navigation} depth={props.depth} setDepth={props.setDepth}
-						            currentFragment={props.currentFragment}/>
+						<Navigation fragments={fragments} setCurrentFragment={setCurrentFragment}
+						            className={s.navigation} current={currentFragment}/>
 						{props.isFetching
 							? <Preloader size={200}/>
 							: <>
 								{
 									currentFragment
-										? <Route path={`/lesson/${id}/:fragmentId`}
-										         render={() => <Fragment fragment={currentFragment}
-										                                 toggleFavorite={props.changeFavorite}
-										                                 toggleCurrentFragmentFavorite={props.toggleCurrentFragmentFavorite}
-										                                 className={s.fragment}
-										                                 setCurrentFragment={setCurrentFragment}
-										         />}
+										? <Fragment fragment={currentFragment}
+										            toggleFavorite={props.changeFavorite}
+										            toggleCurrentFragmentFavorite={props.toggleCurrentFragmentFavorite}
+										            className={s.fragment}
+										            setCurrentFragment={setCurrentFragment}
 										/>
 										: <LessonPreview
 											image={props.fon}
@@ -47,12 +43,10 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 							</>
 						}
 					</section>
-					<MobileNav lessonId={id}
-					           setCurrentFragment={setCurrentFragment}
-					           prevOrder={props.prevFragmentOrder}
-					           nextOrder={props.nextFragmentOrder}
-					           prevId={props.prevId}
-					           nextId={props.nextId}
+					<MobileNav
+						setCurrentFragment={setCurrentFragment}
+						prevOrder={props.prevFragmentOrder}
+						nextOrder={props.nextFragmentOrder}
 					/>
 					<ButtonsBlock
 						id={id}
@@ -80,6 +74,7 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 					updateLesson={props.updateLesson}
 					toggleIsEdit={props.toggleIsEdit}
 					isFetching={props.isFetching}
+					deleteFragment={props.deleteFragment}
 				/>
 			}
 		</section>

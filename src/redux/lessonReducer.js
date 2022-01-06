@@ -15,6 +15,8 @@ const ADD_TAG = 'lesson/ADD_TAG';
 const DELETE_TAG = 'lesson/DELETE_TAG';
 const CHANGE_FRAGMENT = 'lesson/CHANGE_FRAGMENT';
 const TOGGLE_CURRENT_FRAGMENT_FAVORITE = 'lesson/TOGGLE_CURRENT_FRAGMENT_FAVORITE';
+const CLEAR_ALL_FIELDS = 'lesson/CLEAR_ALL_FIELDS';
+const DELETE_FRAGMENT = 'lesson/DELETE_FRAGMENT';
 
 const initState = {
     currentFragment: undefined,
@@ -30,27 +32,17 @@ const initState = {
     tags: [],
     fon: undefined,
     allFragmentsCount: 0,
-    prevFragmentOrder: undefined,
-    nextFragmentOrder: 1,
-    prevId: undefined,
-    nextId: 0,
+    prevFragmentOrder: -1,
+    nextFragmentOrder: 0,
     currentFragmentId: undefined
 };
 
 const lessonReducer = (state = initState, action) => {
     switch (action.type) {
         case SET_LESSON:
-            const resultFragments = [];
-            let nextFragmentId = 0;
-            const fragments = action.data.lesson.fragments.data;
-            for (let i = 0; i < fragments.length; i++) {
-                const order = fragments[i].order;
-                resultFragments[order - 1] = fragments[i];
-            }
-            nextFragmentId = resultFragments[0].id;
             return {
                 ...state,
-                fragments: resultFragments,
+                fragments: action.data.lesson.fragments.data,
                 lessonTitle: action.data.lesson.title,
                 lessonAnnotation: action.data.lesson.annotation,
                 creatorId: action.data.lesson.user_id,
@@ -60,7 +52,6 @@ const lessonReducer = (state = initState, action) => {
                 tags: action.data.lesson.tags ? action.data.lesson.tags.data : [],
                 fon: action.data.lesson.fon,
                 allFragmentsCount: action.data.lesson.fragments.all_count,
-                nextId: nextFragmentId
             };
 
         case TOGGLE_FAVORITE:
@@ -74,38 +65,11 @@ const lessonReducer = (state = initState, action) => {
         case CHANGE_ANNOTATION:
             return {...state, lessonAnnotation: action.annotation};
         case SET_CURRENT_FRAGMENT:
-            let currentFragment;
-            let prevOrder;
-            let nextOrder;
-            let prevId;
-            let nextId;
-            if (action.orderNumber === undefined) {
-                prevOrder = undefined;
-                nextOrder = 1;
-                prevId = '';
-                nextId = state.fragments[0].id
-            } else {
-                prevOrder = action.orderNumber === 1 ? undefined : action.orderNumber - 1;
-                nextOrder = action.orderNumber === state.allFragmentsCount
-                    ? state.allFragmentsCount
-                    : action.orderNumber + 1;
-                prevId = action.orderNumber === 1 ? '' : state.fragments[action.orderNumber - 2].id;
-                nextId = action.orderNumber === state.allFragmentsCount
-                    ? state.fragments[action.orderNumber - 1].id
-                    : state.fragments[action.orderNumber].id;
-            }
-            for (const fragment of state.fragments) {
-                if (fragment.order === action.orderNumber) {
-                    currentFragment = fragment;
-                }
-            }
             return {
                 ...state,
-                currentFragment: currentFragment,
-                prevFragmentOrder: prevOrder,
-                nextFragmentOrder: nextOrder,
-                prevId: prevId,
-                nextId: nextId
+                currentFragment: action.orderNumber === -1 ? undefined : {...state.fragments[action.orderNumber]},
+                prevFragmentOrder: action.orderNumber === -1 ? -1 : action.orderNumber - 1,
+                nextFragmentOrder: action.orderNumber === state.fragments.length - 1 ? action.orderNumber : action.orderNumber + 1,
             };
         case SET_FRAGMENTS:
             return {...state, fragments: action.fragments};
@@ -129,6 +93,39 @@ const lessonReducer = (state = initState, action) => {
                 })
             };
 
+        case CLEAR_ALL_FIELDS:
+            return {
+                currentFragment: undefined,
+                fragments: [],
+                lessonTitle: undefined,
+                lessonAnnotation: undefined,
+                favorite: false,
+                favoriteFetching: false,
+                isFetching: false,
+                creatorId: undefined,
+                creatorName: '',
+                creatorAvatar: undefined,
+                tags: [],
+                fon: undefined,
+                allFragmentsCount: 0,
+                prevFragmentOrder: -1,
+                nextFragmentOrder: 0,
+                currentFragmentId: undefined
+            }
+
+        case DELETE_FRAGMENT:
+            const index = state.fragments.findIndex(elem => elem.id === action.id);
+            const deleteNumber = state.fragments[index].order;
+            let fragments = state.fragments;
+            if (state.fragments.length !== deleteNumber) {
+                fragments = state.fragments.map(f => {
+                    return (f.order > deleteNumber ? {...f, order: f.order - 1} : f)
+                });
+            }
+            return {
+                ...state,
+                fragments: fragments.filter(fragment => fragment.id !== action.id)
+            };
         default:
             return state;
     }
@@ -145,6 +142,8 @@ export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const changeFragment = (order) => ({type: CHANGE_FRAGMENT, order});
 export const toggleCurrentFragmentFavorite = () => ({type: TOGGLE_CURRENT_FRAGMENT_FAVORITE});
+export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
+export const deleteFragment = (id) => ({type: DELETE_FRAGMENT, id});
 
 export const getLesson = (id) => (dispatch) => {
     dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));

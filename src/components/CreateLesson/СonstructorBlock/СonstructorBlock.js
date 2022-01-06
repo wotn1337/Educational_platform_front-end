@@ -4,12 +4,12 @@ import Modal from "../Modal/Modal";
 import FragmentsListContainer from "../FragmentsList/FragmentsListContainer";
 import FragmentCardContainer from "../../MyFragments/FragmentsList/FragmentCard/FragmentCardContainer";
 
-const ConstructorBlock = (props) => {
+const ConstructorBlock = ({fragments, setFragments, ...props}) => {
 	const [modalActive, setModalActive] = useState(false)
 	let fragmentCards = [];
 
-	for (let i = 0; i < props.fragments.length; i++) {
-		let fragment = props.fragments[i];
+	for (let i = 0; i < fragments.length; i++) {
+		let fragment = fragments[i];
 		const card = <FragmentCardContainer
 			id={fragment.id}
 			key={fragment.id}
@@ -20,8 +20,9 @@ const ConstructorBlock = (props) => {
 			fon={fragment.fon}
 			content={fragment.content}
 			createLesson={true}
+			deleteFragment={props.deleteFragment}
 		/>;
-		if (i !== props.fragments.length - 1) {
+		if (i !== fragments.length - 1) {
 			fragmentCards.push(card)
 		} else {
 			fragmentCards.push(
@@ -35,7 +36,7 @@ const ConstructorBlock = (props) => {
 
 	return (
 		<div>
-			{props.fragments.length === 0 &&
+			{fragments.length === 0 &&
 				<button className={`${s.button} ${s.addButtonWithoutCard}`}
 				        onClick={() => setModalActive(true)}/>
 			}
@@ -46,10 +47,10 @@ const ConstructorBlock = (props) => {
 				<Modal active={modalActive} setActive={setModalActive}>
 					<FragmentsListContainer
 						page={'my-fragments'}
-						fragments={props.fragments}
+						fragments={fragments}
 						setModalActive={setModalActive}
 						changeSelectedMode={props.changeSelectedMode}
-						setFragments={props.setFragments}/>
+						setFragments={setFragments}/>
 				</Modal>
 			}
 		</div>

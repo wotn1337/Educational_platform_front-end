@@ -12,6 +12,7 @@ import avatarPlaceholder from "../../assets/img/profile/teacherProfile.svg";
 import ButtonsBlock from "../Lesson/ButtonsBlock/ButtonsBlock";
 import HeaderWithBackButton from "../../common/HeaderWithBackButton/HeaderWithBackButton";
 import ImageFragment from "./ImageFragment/ImageFragment";
+import VideoFragment from "./VideoFragment/VideoFragment";
 
 const Fragment = ({history, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -40,7 +41,7 @@ const Fragment = ({history, ...props}) => {
 				: <input
 					type="text"
 					name={'fragmentTitle'}
-					className={s.fragmentTitle}
+					className={`lightInput ${s.fragmentTitle}`}
 					value={props.title}
 					onChange={event => props.setTitle(event.target.value)}
 				/>
@@ -56,20 +57,20 @@ const Fragment = ({history, ...props}) => {
 					</>
 				}
 				{props.type === fragmentTypes.video &&
-					<div>
-						<video src={props.content} controls={'controls'} className={s.video}/>
-					</div>
+					<VideoFragment
+						video={props.content}
+						setVideo={props.setContent}
+						isEdit={props.isEdit}
+					/>
 				}
 				{props.type === fragmentTypes.image &&
-					// <>
-					// 	<div className={s.image}><img src={props.content} alt="fragment"/></div>
-					// 	<p className={s.annotation}>{props.annotation}</p>
-					// 	{/*{props.isEdit*/}
-					// 	{/*	? <input type="text" value={props.annotation} onChange={e => props.setAnnotation(e.target.value)}/>*/}
-					// 	{/*	: <p className={s.annotation}>{props.annotation}</p>*/}
-					// 	{/*}*/}
-					// </>
-					<ImageFragment image={props.content} annotation={props.annotation} isEdit={props.isEdit} setImage={props.setContent}/>
+					<ImageFragment
+						image={props.content}
+						annotation={props.annotation}
+						isEdit={props.isEdit}
+						setImage={props.setContent}
+						setAnnotation={props.setAnnotation}
+					/>
 				}
 				{!props.isEdit &&
 					<div className={s.author}>

@@ -1,15 +1,12 @@
 import React from "react";
-import s from '../Navigation.module.css'
-import {NavLink} from "react-router-dom";
+import s from '../Navigation.module.css';
 
-const MobileNavigation = ({lessonId, setCurrentFragment, prevOrder, nextOrder, prevId, nextId}) => {
+const MobileNavigation = ({setCurrentFragment, prevOrder, nextOrder}) => {
     return (
         <section className={s.mobileNavigation}>
-            <NavLink className={`${s.btn} ${s.btnBack}`}
-                     to={`/lesson/${lessonId}${prevId ? `/${prevId}` : ''}`}
+            <div className={`${s.btn} ${s.btnBack}`}
                      onClick={() => setCurrentFragment(prevOrder)}/>
-            <NavLink className={`${s.btn} ${s.btnForward}`}
-                     to={`/lesson/${lessonId}${nextId ? `/${nextId}` : ''}`}
+            <div className={`${s.btn} ${s.btnForward}`}
                      onClick={() => setCurrentFragment(nextOrder)}/>
         </section>
     )

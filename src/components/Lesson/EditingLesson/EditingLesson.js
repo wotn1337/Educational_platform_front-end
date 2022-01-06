@@ -13,7 +13,7 @@ const EditingLesson = ({title, changeTitle, annotation, changeAnnotation, fragme
 		<>
 			<LessonTitle title={title} changeLessonTitle={changeTitle}/>
 			<LessonAnnotation annotation={annotation} changeAnnotation={changeAnnotation}/>
-			<ConstructorBlock fragments={fragments} setFragments={props.setFragments}/>
+			<ConstructorBlock fragments={fragments} setFragments={props.setFragments} deleteFragment={props.deleteFragment}/>
 			<ThisTags tags={props.tags} edit={true} deleteTag={props.deleteTag} returnTag={props.returnTag}/>
 			<div className={s.buttonsBlock}>
 				<button className={'btn'} onClick={() => setTags(!tags)} disabled={props.isFetching}>Добавить теги</button>

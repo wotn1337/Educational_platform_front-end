@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import s from '../Fragment.module.css';
+import i from './ImageFragment.module.css';
 
 
-const ImageFragment = ({annotation, image, isEdit, setImage}) => {
-	const [imageSrc, setImageSrc] = useState(image);
+const ImageFragment = ({annotation, image, isEdit, setImage, setAnnotation}) => {
+	const [imageSrc, setImageSrc] = useState(typeof image === 'string' ? image : URL.createObjectURL(image));
 
 	return (
 		<>
@@ -25,7 +26,10 @@ const ImageFragment = ({annotation, image, isEdit, setImage}) => {
 				</div>
 			</>
 			}
-			<p className={s.annotation}>{annotation}</p>
+			{isEdit
+				? <textarea className={`input ${i.input}`} value={annotation} onChange={e => setAnnotation(e.target.value)}/>
+				: <p className={s.annotation}>{annotation}</p>
+			}
 		</>
 	);
 };

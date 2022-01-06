@@ -7,7 +7,7 @@ import {
 	changeAnnotation,
 	changeLessonTitle,
 	createLesson,
-	deleteTag, setFon, clearAllFields
+	deleteTag, setFon, clearAllFields, deleteFragment
 } from "../../redux/createLessonReducer";
 import {compose} from "redux";
 import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
@@ -63,6 +63,7 @@ export default compose(
 		returnTag,
 		changeAnnotation,
 		setFon,
-		clearAllFields
+		clearAllFields,
+		deleteFragment
 	})
 )(CreateLessonContainer);

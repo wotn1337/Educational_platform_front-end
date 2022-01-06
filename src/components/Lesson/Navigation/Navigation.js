@@ -1,40 +1,30 @@
 import React from 'react';
 import s from './Navigation.module.css'
-import {NavLink} from "react-router-dom";
 import {fragmentTypeImg} from "../../../common/fragmentsPreview";
 import {russianFragmentTypes} from "../../../common/fragmentTypes";
 
 
-const Navigation = ({lessonId, fragments, setCurrentFragment, depth, setDepth, currentFragment}) => {
+const Navigation = ({fragments, setCurrentFragment, current}) => {
 	const navLinks = fragments.map(fragment => (
-		<NavLink
-			to={`/lesson/${lessonId}/${fragment.id}`}
+		<div
 			key={fragment.id}
-			className={s.fragmentLink}
-			onClick={() => {
-				setCurrentFragment(fragment.order);
-				if (currentFragment && currentFragment.id !== fragment.id) {
-					setDepth(depth - 1);
-				}
-			}}
-			activeClassName={s.active}
+			className={`${s.fragmentLink} ${current?.id === fragment.id ? s.active : ''}`}
+			onClick={() => setCurrentFragment(fragment.order - 1)}
 		>
 			<div className={s.fragmentTypeImg}><img src={fragmentTypeImg[fragment.type]} alt='type'/></div>
 			<span className={s.fragmentTitle}>{fragment.title}</span>
 			<span className={s.fragmentType}>{russianFragmentTypes[fragment.type]}</span>
-		</NavLink>
+		</div>
 	));
 
 	return (
 		<nav className={s.navigation}>
-			<NavLink
-				exact to={`/lesson/${lessonId}`}
-				onClick={() => setDepth(depth - 1)}
-				className={s.description}
-				activeClassName={s.active}
+			<div
+				onClick={() => setCurrentFragment(-1)}
+				className={`${s.description} ${current ? '' : s.active}`}
 			>
 				Описание урока
-			</NavLink>
+			</div>
 			{navLinks}
 		</nav>
 	);

@@ -3,17 +3,10 @@ import s from './HeaderWithBackButton.module.css';
 import {withRouter} from "react-router-dom";
 
 
-const HeaderWithBackButton = ({history, title, depth, setDepth}) => {
+const HeaderWithBackButton = ({history, title}) => {
 	return (
 		<div className={s.header}>
-			<button onClick={() => {
-				if (!depth && !setDepth) {
-					history.goBack();
-				} else {
-					history.go(depth);
-					setDepth(-1);
-				}
-			}} className={'backButton'}/>
+			<button onClick={() => history.goBack()} className={'backButton'}/>
 			<h1 className={'pageTitle'}>{title}</h1>
 		</div>
 	);

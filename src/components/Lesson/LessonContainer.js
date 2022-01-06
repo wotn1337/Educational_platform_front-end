@@ -2,11 +2,11 @@ import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import Lesson from "./Lesson";
-import {Redirect, withRouter} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import {
 	addTag,
 	changeLessonAnnotation,
-	changeLessonTitle,
+	changeLessonTitle, clearAllFields, deleteFragment,
 	deleteLesson, deleteTag,
 	getLesson, setCurrentFragment, setFragments, toggleCurrentFragmentFavorite,
 	toggleFavorite, updateLesson
@@ -18,17 +18,15 @@ import {changeFavorite} from "../../redux/fragmentReducer";
 class LessonContainer extends React.Component {
 	state = {
 		id: this.props.match.params.id,
-		isEdit: false,
-		depth: -1
+		isEdit: false
 	}
 
 	componentDidMount() {
 		this.props.getLesson(this.state.id);
-		this.props.history.push(`/lesson/${this.state.id}`);
 	}
 
-	setDepth = (depth) => {
-		this.setState({depth});
+	componentWillUnmount() {
+		this.props.clearAllFields();
 	}
 
 	toggleIsEdit = () => {
@@ -37,12 +35,7 @@ class LessonContainer extends React.Component {
 
 	deleteLesson = () => {
 		return this.props.deleteLesson(this.state.id)
-			.then(() => {
-				this.setState({id: ''});
-				this.props.history.go(this.state.depth + 1);
-				//this.props.history.goBack();
-				this.setDepth(-1);
-			});
+			.then(() => this.setState({id: ''}));
 	}
 
 	updateLesson = () => {
@@ -65,7 +58,6 @@ class LessonContainer extends React.Component {
 				toggleIsEdit={this.toggleIsEdit}
 				deleteLesson={this.deleteLesson}
 				updateLesson={this.updateLesson}
-				setDepth={this.setDepth}
 			/>
 		);
 	}
@@ -107,7 +99,9 @@ export default compose(
 		deleteTag,
 		updateLesson,
 		changeFavorite,
-		toggleCurrentFragmentFavorite
+		toggleCurrentFragmentFavorite,
+		clearAllFields,
+		deleteFragment
 	}),
 	withRouter
 )(LessonContainer)

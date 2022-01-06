@@ -13,7 +13,6 @@ import {
 	setTitle
 } from "../../redux/fragmentReducer";
 import Preloader from "../../common/Preloader/Preloader";
-import {fragmentTypes} from "../../common/fragmentTypes";
 import {returnTag} from "../../redux/allTagsReducer";
 import {withRouter} from "react-router-dom";
 
@@ -41,12 +40,11 @@ class FragmentContainer extends React.Component {
 		this.props.editFragment(
 			this.state.id,
 			this.props.title,
-			this.props.type !== fragmentTypes.video && this.props.content,
+			this.props.content,
 			this.props.tagsIds,
 			this.props.annotation
 		)
-			.then(() => this.props.setContent(this.props.content));
-		this.toggleIsEdit();
+			.then(() => this.toggleIsEdit());
 	}
 
 	render() {
