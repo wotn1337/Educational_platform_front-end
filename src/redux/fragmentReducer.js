@@ -1,5 +1,5 @@
 import {fragmentsAPI} from "../api/api";
-import {successNotification} from "../notifications/notifications";
+import {errorNotification, successNotification} from "../notifications/notifications";
 
 
 const SET_FRAGMENT = 'fragment/SET_FRAGMENT';
@@ -11,6 +11,7 @@ const ADD_TAG = 'fragment/ADD_TAG';
 const TOGGLE_FAVORITE = 'fragment/TOGGLE_FAVORITE';
 const TOGGLE_FAVORITE_FETCHING = 'fragment/TOGGLE_FAVORITE_FETCHING';
 const SET_ANNOTATION = 'fragment/SET_ANNOTATION';
+const SET_FON = 'fragment/SET_FON';
 
 
 const initState = {
@@ -26,6 +27,7 @@ const initState = {
 	favoriteFetching: false,
 	tags: [],
 	tagsIds: [],
+	fon: undefined
 };
 
 const fragmentReducer = (state = initState, action) => {
@@ -42,7 +44,8 @@ const fragmentReducer = (state = initState, action) => {
 				creatorAvatar: action.fragment.user_avatar,
 				favorite: action.fragment.favourite,
 				tags: action.fragment.tags ? action.fragment.tags.data : [],
-				tagsIds: action.fragment.tags ? action.fragment.tags.data.map(tag => tag.id) : []
+				tagsIds: action.fragment.tags ? action.fragment.tags.data.map(tag => tag.id) : [],
+				fon: action.fragment.fon
 			};
 
 		case SET_TITLE:
@@ -77,6 +80,9 @@ const fragmentReducer = (state = initState, action) => {
 		case SET_ANNOTATION:
 			return {...state, annotation: action.annotation};
 
+		case SET_FON:
+			return {...state, fon: action.fon};
+
 		default:
 			return state;
 	}
@@ -92,6 +98,7 @@ export const setContent = (content) => ({type: SET_CONTENT, content});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const setAnnotation = (annotation) => ({type: SET_ANNOTATION, annotation});
+export const setFon = (fon) => ({type: SET_FON, fon});
 
 export const getFragment = (id) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
@@ -112,14 +119,15 @@ export const deleteFragment = (id) => () => {
 		.catch(err => console.log(err.response));
 };
 
-export const editFragment = (id, title, content, tagsIds, annotation) => (dispatch) => {
+export const editFragment = (id, title, content, tagsIds, annotation, fon) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	return fragmentsAPI.editFragment(id, title, content, tagsIds, annotation)
+	return fragmentsAPI.editFragment(id, title, content, tagsIds, annotation, fon)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(toggleIsFetching(false));
 		})
 		.catch(() => {
+			errorNotification();
 			dispatch(toggleIsFetching(false));
 		});
 }

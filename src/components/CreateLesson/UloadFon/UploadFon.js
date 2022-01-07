@@ -3,13 +3,10 @@ import s from './UploadFon.module.css';
 
 
 const UploadFon = ({type, fon, setFon}) => {
-	const [fonSrc, setFonSrc] = useState(undefined);
+	const [fonSrc, setFonSrc] = useState(typeof fon === 'string' ? fon : undefined);
 
 	useEffect(() => {
-		return () => {
-			setFonSrc(undefined);
-			setFon(undefined);
-		}
+		return () => setFonSrc(undefined);
 	}, []);
 
 	return (

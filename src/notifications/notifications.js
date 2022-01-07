@@ -7,6 +7,6 @@ export const successNotification = (text) => {
 	toast.success(text);
 }
 
-export const errorNotification = () => {
-	toast.error('Что-то пошло не так :(');
+export const errorNotification = (text = 'Что-то пошло не так :(') => {
+	toast.error(text);
 }

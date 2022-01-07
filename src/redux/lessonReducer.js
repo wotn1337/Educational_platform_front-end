@@ -17,6 +17,7 @@ const CHANGE_FRAGMENT = 'lesson/CHANGE_FRAGMENT';
 const TOGGLE_CURRENT_FRAGMENT_FAVORITE = 'lesson/TOGGLE_CURRENT_FRAGMENT_FAVORITE';
 const CLEAR_ALL_FIELDS = 'lesson/CLEAR_ALL_FIELDS';
 const DELETE_FRAGMENT = 'lesson/DELETE_FRAGMENT';
+const SET_FON = 'lesson/SET_FON';
 
 const initState = {
     currentFragment: undefined,
@@ -126,6 +127,10 @@ const lessonReducer = (state = initState, action) => {
                 ...state,
                 fragments: fragments.filter(fragment => fragment.id !== action.id)
             };
+
+        case SET_FON:
+            return {...state, fon: action.fon};
+
         default:
             return state;
     }
@@ -144,6 +149,7 @@ export const changeFragment = (order) => ({type: CHANGE_FRAGMENT, order});
 export const toggleCurrentFragmentFavorite = () => ({type: TOGGLE_CURRENT_FRAGMENT_FAVORITE});
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
 export const deleteFragment = (id) => ({type: DELETE_FRAGMENT, id});
+export const setFon = (fon) => ({type: SET_FON, fon});
 
 export const getLesson = (id) => (dispatch) => {
     dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));

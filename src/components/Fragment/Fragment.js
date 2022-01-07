@@ -13,6 +13,7 @@ import ButtonsBlock from "../Lesson/ButtonsBlock/ButtonsBlock";
 import HeaderWithBackButton from "../../common/HeaderWithBackButton/HeaderWithBackButton";
 import ImageFragment from "./ImageFragment/ImageFragment";
 import VideoFragment from "./VideoFragment/VideoFragment";
+import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 
 const Fragment = ({history, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -45,6 +46,10 @@ const Fragment = ({history, ...props}) => {
 					value={props.title}
 					onChange={event => props.setTitle(event.target.value)}
 				/>
+			}
+
+			{props.isEdit &&
+				<UploadFon setFon={props.setFon} fon={props.fon} type={'fragment'}/>
 			}
 
 			<div className={!(props.isEdit && props.type === fragmentTypes.article) ? s.fragmentBlock : s.editBlock}>

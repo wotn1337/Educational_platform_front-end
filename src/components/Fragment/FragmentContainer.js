@@ -9,7 +9,7 @@ import {
 	deleteTag,
 	editFragment,
 	getFragment, setAnnotation,
-	setContent,
+	setContent, setFon,
 	setTitle
 } from "../../redux/fragmentReducer";
 import Preloader from "../../common/Preloader/Preloader";
@@ -42,7 +42,8 @@ class FragmentContainer extends React.Component {
 			this.props.title,
 			this.props.content,
 			this.props.tagsIds,
-			this.props.annotation
+			this.props.annotation,
+			this.props.fon
 		)
 			.then(() => this.toggleIsEdit());
 	}
@@ -76,7 +77,8 @@ const mapStateToProps = (state) => ({
 	tags: state.fragment.tags,
 	tagsIds: state.fragment.tagsIds,
 	favorite: state.fragment.favorite,
-	favoriteFetching: state.fragment.favoriteFetching
+	favoriteFetching: state.fragment.favoriteFetching,
+	fon: state.fragment.fon
 });
 
 export default compose(
@@ -90,7 +92,8 @@ export default compose(
 		addTag,
 		returnTag,
 		changeFavorite,
-		setAnnotation
+		setAnnotation,
+		setFon
 	}),
 	withoutAuthRedirectToAuthPage,
 	withRouter

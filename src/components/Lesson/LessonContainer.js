@@ -8,7 +8,7 @@ import {
 	changeLessonAnnotation,
 	changeLessonTitle, clearAllFields, deleteFragment,
 	deleteLesson, deleteTag,
-	getLesson, setCurrentFragment, setFragments, toggleCurrentFragmentFavorite,
+	getLesson, setCurrentFragment, setFon, setFragments, toggleCurrentFragmentFavorite,
 	toggleFavorite, updateLesson
 } from "../../redux/lessonReducer";
 import {returnTag} from "../../redux/allTagsReducer";
@@ -101,7 +101,8 @@ export default compose(
 		changeFavorite,
 		toggleCurrentFragmentFavorite,
 		clearAllFields,
-		deleteFragment
+		deleteFragment,
+		setFon
 	}),
 	withRouter
 )(LessonContainer)

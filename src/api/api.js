@@ -183,12 +183,14 @@ export const fragmentsAPI = {
 	},
 
 	// Редактировать фрагмент (только для админа или владельца фрагмента)
-	editFragment(id, title, content, tagsIds, annotation) {
+	editFragment(id, title, content, tagsIds, annotation, fon) {
 		const data = new FormData();
 		data.append('title', title);
 		data.append('content', content);
 		data.append('tags', tagsIds);
 		data.append('annotation', annotation);
+		if (typeof fon !== 'string' && typeof fon !== 'undefined')
+			data.append('fon', fon);
 		return instance.post(`fragments/${id}?_method=PATCH`, data, authConfig());
 	},
 

@@ -75,6 +75,8 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 					toggleIsEdit={props.toggleIsEdit}
 					isFetching={props.isFetching}
 					deleteFragment={props.deleteFragment}
+					fon={props.fon}
+					setFon={props.setFon}
 				/>
 			}
 		</section>

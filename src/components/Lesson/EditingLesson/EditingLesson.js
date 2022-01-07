@@ -5,6 +5,7 @@ import ConstructorBlock from "../../CreateLesson/СonstructorBlock/СonstructorB
 import ThisTags from "../../CreateFragment/ThisTags/ThisTags";
 import s from '../Lesson.module.css';
 import TagsListContainer from "../../CreateFragment/TagsList/TagsListContainer";
+import UploadFon from "../../CreateLesson/UloadFon/UploadFon";
 
 
 const EditingLesson = ({title, changeTitle, annotation, changeAnnotation, fragments, ...props}) => {
@@ -12,6 +13,7 @@ const EditingLesson = ({title, changeTitle, annotation, changeAnnotation, fragme
 	return (
 		<>
 			<LessonTitle title={title} changeLessonTitle={changeTitle}/>
+			<UploadFon fon={props.fon} setFon={props.setFon} type={'lesson'}/>
 			<LessonAnnotation annotation={annotation} changeAnnotation={changeAnnotation}/>
 			<ConstructorBlock fragments={fragments} setFragments={props.setFragments} deleteFragment={props.deleteFragment}/>
 			<ThisTags tags={props.tags} edit={true} deleteTag={props.deleteTag} returnTag={props.returnTag}/>
