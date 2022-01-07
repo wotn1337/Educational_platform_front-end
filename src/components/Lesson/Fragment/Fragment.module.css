@@ -1,6 +1,9 @@
 .fragment {
     padding: 50px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .title {
@@ -51,6 +54,7 @@
     align-items: center;
     gap: 15px;
     float: right;
+    align-self: end;
 }
 
 .authorName {

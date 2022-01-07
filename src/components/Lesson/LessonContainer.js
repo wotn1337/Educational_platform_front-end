@@ -46,7 +46,8 @@ class LessonContainer extends React.Component {
 			this.props.lessonTitle,
 			this.props.lessonAnnotation,
 			fragmentsIds,
-			tagsIds
+			tagsIds,
+			this.props.fon
 		);
 	}
 

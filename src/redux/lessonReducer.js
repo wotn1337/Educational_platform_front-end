@@ -174,16 +174,16 @@ export const toggleFavorite = (id) => (dispatch) => {
             dispatch(toggleFavoriteFetching(false));
         })
 }
-export const updateLesson = (id, title, annotation, fragments, tags) => (dispatch) => {
+export const updateLesson = (id, title, annotation, fragments, tags, fon) => (dispatch) => {
     dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
-    return lessonsAPI.updateLesson(id, title, annotation, fragments, tags)
+    return lessonsAPI.updateLesson(id, title, annotation, fragments, tags, fon)
         .then(res => {
             dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
             successNotification(res.data.messages);
         })
         .catch(err => {
             console.log(err.response);
-            errorNotification('Что-то пошло не так (');
+            errorNotification();
         })
 }
 export default lessonReducer;

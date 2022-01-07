@@ -187,7 +187,9 @@ export const fragmentsAPI = {
 		const data = new FormData();
 		data.append('title', title);
 		data.append('content', content);
-		data.append('tags', tagsIds);
+		for (const tag of tagsIds) {
+			data.append('tags[]', tag);
+		}
 		data.append('annotation', annotation);
 		if (typeof fon !== 'string' && typeof fon !== 'undefined')
 			data.append('fon', fon);
@@ -284,7 +286,18 @@ export const lessonsAPI = {
 	},
 
 	// Редактировать урок
-	updateLesson(id, title, annotation, fragments, tags) {
-		return instance.patch(`lessons/${id}`, JSON.stringify({title, annotation, fragments, tags}), authConfig())
+	updateLesson(id, title, annotation, fragments, tags, fon) {
+		const data = new FormData();
+		data.append('title', title);
+		data.append('annotation', annotation);
+		for (const f of fragments) {
+			data.append('fragments[]', f);
+		}
+		for (const tag of tags) {
+			data.append('tags[]', tag);
+		}
+		if (typeof fon !== 'string' && typeof fon !== 'undefined')
+			data.append('fon', fon);
+		return instance.post(`lessons/${id}?_method=PATCH`, data, authConfig());
 	}
 };
