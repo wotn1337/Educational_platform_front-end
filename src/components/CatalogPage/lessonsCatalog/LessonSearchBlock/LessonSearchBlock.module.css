@@ -19,7 +19,15 @@
 .inputBlock {
     margin-bottom: 15px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    gap: 35px;
+}
+
+.allTags {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .searchButton {

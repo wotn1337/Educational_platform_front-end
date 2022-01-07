@@ -27,6 +27,10 @@ const LessonSearchBlock = ({searchLessonTitle, changeSearchLessonTitle, searchTe
 			<div className={s.inputBlock}>
 				<Input placeholder={'Название урока'} value={searchLessonTitle} onChange={changeSearchLessonTitle}/>
 				<Input placeholder={'Имя преподавателя'} value={searchTeacherName} onChange={changeSearchTeacherName}/>
+				<div className={s.allTags}>
+					<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>
+					{tagsList && <TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
+				</div>
 				<button className={s.searchButton} onClick={() => {
 					setTagsList(false);
 					search();
@@ -34,8 +38,6 @@ const LessonSearchBlock = ({searchLessonTitle, changeSearchLessonTitle, searchTe
 			</div>
 			<div className={s.searchTags}>
 				<ThisTags tags={props.searchTags} edit={true} returnTag={props.returnTag} deleteTag={props.deleteSearchTag}/>
-				<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>
-				{tagsList && <TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
 			</div>
 		</div>
 	);

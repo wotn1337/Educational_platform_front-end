@@ -5,7 +5,7 @@ import Author from "../Author/Author";
 import lessonPlaceholder from '../../../assets/img/lessons/lessonPlaceholder_large.png';
 
 const LessonPreview = ({annotation, image, creatorAvatar, creatorName, tags, ...props}) => {
-	const preview = typeof image === 'string' || typeof image === 'undefined' ? image : URL.createObjectURL(image);
+	const preview = typeof image === 'string' || typeof image === 'undefined' || image === null ? image : URL.createObjectURL(image);
 	return (
 		<div className={s.lessonPreview}>
 			<img className={s.lessonImage} src={preview || lessonPlaceholder} alt={'lesson preview'}/>
