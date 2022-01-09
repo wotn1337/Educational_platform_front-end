@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import s from '../BlackList.module.css';
-import {roles} from "../../../../common/roles";
-import Preloader from "../../../../common/Preloader/Preloader";
+import {roles} from "../../../../../../common/roles";
+import Preloader from "../../../../../common/Preloader/Preloader";
 
 const User = (props) => {
 	const [unblocked, setUnblocked] = useState(false);

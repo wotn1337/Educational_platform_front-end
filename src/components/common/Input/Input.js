@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Input.module.css';
 
 
-const Input = ({placeholder, value, onChange, style, disabled = false, ...props}) => {
+const Input = ({placeholder, value, onChange, style, disabled = false}) => {
 	return (
 		<input
 			type={'text'}

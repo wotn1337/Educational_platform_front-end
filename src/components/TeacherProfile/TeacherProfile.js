@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import TeacherInfo from "./TeacherInfo/TeacherInfo";
-import Switches from "../../common/Switches/Switches";
+import Switches from "../common/Switches/Switches";
 import s from './TeacherProfile.module.css';
 import FragmentsContainer from "./Fragments/FragmentsContainer";
-import Preloader from "../../common/Preloader/Preloader";
 import Lessons from "./Lessons/Lessons";
+import MainUserInfo from "../ProfilePage/MainUserInfo/MainUserInfo";
 
 
 const TeacherProfile = (props) => {
@@ -13,14 +12,7 @@ const TeacherProfile = (props) => {
 
 	return (
 		<>
-			{props.profileFetching
-				? <Preloader size={200}/>
-				: <TeacherInfo
-					avatar={props.avatar}
-					name={props.name}
-					role={props.role}
-				/>
-			}
+			<MainUserInfo avatar={props.avatar} name={props.name} isFetching={props.profileFetching}/>
 			<Switches
 				switches={{
 					'Уроки пользователя': [lessons, setLessons],

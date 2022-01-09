@@ -1,5 +1,5 @@
 import React from "react";
-import s from '../../../components/AuthPage/AuthPage.module.css';
+import s from '../../../AuthPage.module.css';
 import {Field, Form, Formik} from "formik";
 
 

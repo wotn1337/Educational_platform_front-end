@@ -10,8 +10,8 @@ import {
 	deleteTag, setFon, clearAllFields, deleteFragment
 } from "../../redux/createLessonReducer";
 import {compose} from "redux";
-import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {redirectAdminToMain} from "../hoc/redirectAdminToMain";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 import {returnTag} from "../../redux/allTagsReducer";
 import {getFragments} from "../../redux/catalogFragmentsReducer";
 

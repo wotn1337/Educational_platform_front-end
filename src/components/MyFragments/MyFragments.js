@@ -1,7 +1,7 @@
 import React from "react";
 import s from './MyFragments.module.css';
 import FragmentsListContainer from "./FragmentsList/FragmentsListContainer";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 import SearchBlockContainer from "./SearchBlock/SearchBlockContainer";
 
 

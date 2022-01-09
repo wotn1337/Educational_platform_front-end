@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import s from './AllUsers.module.css';
 import User from "./User/User";
-import Pagination from "../../../common/Pagination/Pagination";
 import NewUserForm from "./NewUserForm/NewUserForm";
+import Pagination from "../../../../common/Pagination/Pagination";
 
 
 const AllUsers = (props) => {

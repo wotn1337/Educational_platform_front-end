@@ -2,12 +2,12 @@ import React from 'react';
 import s from './Lesson.module.css';
 import Navigation from "./Navigation/Navigation";
 import Fragment from "./Fragment/Fragment";
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 import ButtonsBlock from "./ButtonsBlock/ButtonsBlock";
 import EditingLesson from "./EditingLesson/EditingLesson";
 import LessonPreview from "./LessonPreview/LessonPreview";
 import MobileNav from "./Navigation/MobileNavigation/MobileNav";
-import HeaderWithBackButton from "../../common/HeaderWithBackButton/HeaderWithBackButton";
+import HeaderWithBackButton from "../common/HeaderWithBackButton/HeaderWithBackButton";
 
 
 const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle, isEdit, ...props}) => {

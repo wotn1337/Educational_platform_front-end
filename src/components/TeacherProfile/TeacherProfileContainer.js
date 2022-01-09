@@ -4,7 +4,7 @@ import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 import {getTeacherProfile} from "../../redux/teacherProfileReducer";
 import TeacherProfile from "./TeacherProfile";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 
 
 class TeacherProfileContainer extends React.Component {

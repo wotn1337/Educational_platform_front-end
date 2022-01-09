@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 import Fragment from "./Fragment";
 import {
 	addTag, changeFavorite,
@@ -12,7 +12,7 @@ import {
 	setContent, setFon,
 	setTitle
 } from "../../redux/fragmentReducer";
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 import {returnTag} from "../../redux/allTagsReducer";
 import {withRouter} from "react-router-dom";
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import s from './Teachers.module.css';
-import Pagination from "../../common/Pagination/Pagination";
+import Pagination from "../common/Pagination/Pagination";
 import avatarPlaceholder from '../../assets/img/profile/teacherProfile.svg';
 import {NavLink} from "react-router-dom";
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 
 
 const Teachers = (props) => {

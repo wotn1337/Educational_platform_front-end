@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from 'react-redux';
 import Login from "./Login";
-import {adminLogin} from "../../../redux/authReducer";
+import {adminLogin} from "../../../../../redux/authReducer";
 
 class LoginContainer extends React.Component {
 	login = (data, setStatus) => {
@@ -14,12 +14,8 @@ class LoginContainer extends React.Component {
 }
 
 
-const mapStateToProps = (state) => {
-	return {
-		isFetching: state.auth.isFetching
-	};
-};
+const mapStateToProps = (state) => ({
+	isFetching: state.auth.isFetching
+});
 
-export default connect(mapStateToProps, {
-	adminLogin
-})(LoginContainer);
+export default connect(mapStateToProps, {adminLogin})(LoginContainer);

@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import {withAuthRedirectToMain} from "../../../../hoc/withAuthRedirectToMain";
+import {withAuthRedirectToMain} from "../../../hoc/withAuthRedirectToMain";
 import {compose} from "redux";
 import ResetPassword from "./ResetPassword";
 import {withRouter} from "react-router-dom";

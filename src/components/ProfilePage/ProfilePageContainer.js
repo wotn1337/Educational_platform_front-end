@@ -3,7 +3,7 @@ import React from "react";
 import ProfilePage from "./ProfilePage";
 import {getProfile} from "../../redux/profileReducer";
 import {compose} from "redux";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 
 class ProfilePageContainer extends React.Component {
 	componentDidMount() {

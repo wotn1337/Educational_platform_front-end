@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Register from "./Register";
 import {register} from "../../../redux/authReducer";
 import {compose} from "redux";
-import {withAuthRedirectToMain} from "../../../hoc/withAuthRedirectToMain";
+import {withAuthRedirectToMain} from "../../hoc/withAuthRedirectToMain";
 
 class RegisterContainer extends React.Component {
 	render() {

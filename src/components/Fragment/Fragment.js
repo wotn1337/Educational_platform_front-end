@@ -10,7 +10,7 @@ import TagsListContainer from "../CreateFragment/TagsList/TagsListContainer";
 import {NavLink} from "react-router-dom";
 import avatarPlaceholder from "../../assets/img/profile/teacherProfile.svg";
 import ButtonsBlock from "../Lesson/ButtonsBlock/ButtonsBlock";
-import HeaderWithBackButton from "../../common/HeaderWithBackButton/HeaderWithBackButton";
+import HeaderWithBackButton from "../common/HeaderWithBackButton/HeaderWithBackButton";
 import ImageFragment from "./ImageFragment/ImageFragment";
 import VideoFragment from "./VideoFragment/VideoFragment";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";

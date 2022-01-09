@@ -8,8 +8,8 @@ import {
 	getUsers,
 	registerNewUser,
 	unblockUser
-} from "../../../redux/adminReducer";
-import Preloader from "../../../common/Preloader/Preloader";
+} from "../../../../../redux/adminReducer";
+import Preloader from "../../../../common/Preloader/Preloader";
 
 
 class AllUsersContainer extends React.Component {
@@ -22,7 +22,7 @@ class AllUsersContainer extends React.Component {
 	}
 
 	registerNewUser = (newUserData, setStatus) => {
-		this.props.registerNewUser(this.props.token, newUserData, setStatus);
+		this.props.registerNewUser(newUserData, setStatus);
 	}
 
 	blockUser = (id) => {
@@ -58,7 +58,6 @@ const mapStateToProps = (state) => ({
 	currentPage: state.admin.allUsers.currentPage,
 	pageSize: state.admin.allUsers.pageSize,
 	isFetching: state.admin.allUsers.isFetching,
-	token: state.auth.token,
 	prevPage: state.admin.allUsers.prevPage,
 	nextPage: state.admin.allUsers.nextPage,
 	lastPage: state.admin.allUsers.lastPage

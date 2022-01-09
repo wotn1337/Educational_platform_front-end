@@ -1,6 +1,6 @@
 import React from 'react';
 import LoginContainer from "./Login/LoginContainer";
-import s from '../../components/AuthPage/AuthPage.module.css';
+import s from '../../AuthPage.module.css';
 
 const AdminAuthPage = () => {
 	return (

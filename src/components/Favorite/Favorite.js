@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import s from './Favorite.module.css'
 import LessonSearchBlockContainer from "../CatalogPage/lessonsCatalog/LessonSearchBlock/LessonSearchBlockContainer";
 import LessonsListContainer from "../CatalogPage/lessonsCatalog/LessonsList/LessonsListContainer";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 import SearchBlockContainer from "../MyFragments/SearchBlock/SearchBlockContainer";
 import FragmentsListContainer from "../MyFragments/FragmentsList/FragmentsListContainer";
 import HeaderWithToggle from "./HeaderWithToggle/HeaderWithToggle";

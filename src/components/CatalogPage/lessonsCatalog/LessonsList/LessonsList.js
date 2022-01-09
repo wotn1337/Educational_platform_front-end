@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './LessonsList.module.css';
-import Pagination from "../../../../common/Pagination/Pagination";
+import Pagination from "../../../common/Pagination/Pagination";
 import LessonCard from "./LessonCard/LessonCard";
 
 

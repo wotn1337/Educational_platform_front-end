@@ -1,7 +1,7 @@
 import React from "react";
 import s from "../AllUsers.module.css";
-import {roles} from "../../../../common/roles";
 import UserButtons from "./UserButtons";
+import {roles} from "../../../../../../common/roles";
 
 class User extends React.Component {
 	state = {
