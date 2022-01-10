@@ -113,7 +113,6 @@ export const getLessons = (page, pageNumber, title, teacherName, tags, teacherId
 	if (page !== 'teacher') {
 		getLessonsFunction(pageNumber, title, teacherName, tags)
 			.then(res => {
-				console.log(res);
 				dispatch(setLessons(res.data));
 				dispatch(setCurrentPage(pageNumber));
 				dispatch(toggleIsFetching(false));
@@ -125,7 +124,6 @@ export const getLessons = (page, pageNumber, title, teacherName, tags, teacherId
 	} else {
 		getLessonsFunction(teacherId, pageNumber)
 			.then(res => {
-				console.log(res);
 				dispatch(setLessons(res.data));
 				dispatch(setCurrentPage(pageNumber));
 				dispatch(toggleIsFetching(false));
