@@ -191,7 +191,7 @@ export const fragmentsAPI = {
 			data.append('tags[]', tag);
 		}
 		data.append('annotation', annotation);
-		if (typeof fon !== 'string' && typeof fon !== 'undefined')
+		if (typeof fon !== 'string' && typeof fon !== 'undefined' && fon !== null)
 			data.append('fon', fon);
 		return instance.post(`fragments/${id}?_method=PATCH`, data, authConfig());
 	},
@@ -296,7 +296,7 @@ export const lessonsAPI = {
 		for (const tag of tags) {
 			data.append('tags[]', tag);
 		}
-		if (typeof fon !== 'string' && typeof fon !== 'undefined')
+		if (typeof fon !== 'string' && typeof fon !== 'undefined' && fon !== null)
 			data.append('fon', fon);
 		return instance.post(`lessons/${id}?_method=PATCH`, data, authConfig());
 	}
