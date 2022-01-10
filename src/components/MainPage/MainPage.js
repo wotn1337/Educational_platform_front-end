@@ -18,7 +18,7 @@ const MainPage = (props) => {
 					<TargetAudienceBlock/>
 					<QuestionsBlock/>
 				</section>
-				<AboutBlock/>
+				{/*<AboutBlock/>*/}
 			</main>
 		</>
 
