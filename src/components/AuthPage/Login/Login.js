@@ -23,7 +23,7 @@ const Login = (props) => {
 				>
 					{props.showResetPasswordForm ? 'Войти' : 'Забыли пароль?'}
 				</span>
-				<NavLink to={'/register'} className={`${s.logLink}`}>Зарегистрироваться</NavLink>
+				<NavLink to={'/register'} className={s.logLink}>Зарегистрироваться</NavLink>
 			</div>
 		</div>
 	);

@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './TagsList.module.css';
-import Preloader from "../../../common/Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 
 
 const TagsList = (props) => {

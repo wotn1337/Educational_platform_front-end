@@ -1,7 +1,7 @@
 import React from "react";
 import s from "../../../components/ProfilePage/ProfilePage.module.css";
 import generalAvatar from "../../../assets/img/profile/user.svg";
-import Preloader from "../../../common/Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 
 
 const MainUserInfo = (props) => {

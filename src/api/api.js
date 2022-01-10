@@ -5,11 +5,7 @@ const TOKEN_TYPE = 'Bearer';
 let TOKEN = localStorage.getItem('token');
 const fullUrl = 'https://youngeek-test.na4u.ru/api/';
 
-const authConfig = () => ({
-	headers: {
-		'Authorization': `${TOKEN_TYPE} ${TOKEN}`
-	}
-});
+const authConfig = () => ({headers: {'Authorization': `${TOKEN_TYPE} ${TOKEN}`}});
 
 const createTagsString = (tags) => {
 	let tagsString = '';
@@ -109,17 +105,8 @@ export const adminAPI = {
 	},
 
 	// Зарегистрировать нового пользователя
-	registerNewUser(token, newUserData) {
-		return instance.post('admin/users', JSON.stringify({
-			name: newUserData.name,
-			email: newUserData.email,
-			password: newUserData.password,
-			role: newUserData.role
-		}), {
-			headers: {
-				'Authorization': `${TOKEN_TYPE} ${token}`
-			}
-		});
+	registerNewUser(newUserData) {
+		return instance.post('admin/users', JSON.stringify(newUserData), authConfig());
 	},
 
 	// Заблокировать пользователя

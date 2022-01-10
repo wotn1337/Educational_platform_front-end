@@ -2,12 +2,12 @@ import React from "react";
 import {addTag, clearAllFields, createFragment, deleteTag, setContent, setFon} from "../../redux/createFragmentReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
-import Preloader from "../../common/Preloader/Preloader";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
+import Preloader from "../common/Preloader/Preloader";
 import CreateFragment from "./CreateFragment";
 import {returnTag} from "../../redux/allTagsReducer";
-import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
-import {redirectStudentToMain} from "../../hoc/redirectStudentToMain";
+import {redirectAdminToMain} from "../hoc/redirectAdminToMain";
+import {redirectStudentToMain} from "../hoc/redirectStudentToMain";
 
 
 class CreateFragmentContainer extends React.Component {

@@ -6,7 +6,7 @@ import LessonSearchBlockContainer from "../CatalogPage/lessonsCatalog/LessonSear
 import LessonsListContainer from "../CatalogPage/lessonsCatalog/LessonsList/LessonsListContainer";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 import {withRouter} from "react-router-dom";
 
 

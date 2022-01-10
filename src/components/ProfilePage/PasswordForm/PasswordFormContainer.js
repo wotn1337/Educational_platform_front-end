@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import React from "react";
 import {changePassword} from "../../../redux/profileReducer";
-import Preloader from "../../../common/Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import PasswordForm from "./PasswordForm";
 
 

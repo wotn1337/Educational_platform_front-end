@@ -16,19 +16,19 @@
 }
 
 .btnSubmit {
-    background-image: url("../../../assets/img/profile/check.svg");
+    background-image: url("../../../../../assets/img/profile/check.svg");
 }
 
 .btnBlock {
-    background-image: url("../../../assets/img/profile/user-block.svg");
+    background-image: url("../../../../../assets/img/profile/user-block.svg");
 }
 
 .btnUnblock {
-    background-image: url("../../../assets/img/profile/unblock.png");
+    background-image: url("../../../../../assets/img/profile/unblock.png");
 }
 
 .btnEdit {
-    background-image: url("../../../assets/img/profile/edit.svg");
+    background-image: url("../../../../../assets/img/profile/edit.svg");
 }
 
 .formControl {

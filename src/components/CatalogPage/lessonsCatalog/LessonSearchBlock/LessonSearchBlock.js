@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import s from './LessonSearchBlock.module.css';
-import Input from "../../../../common/Input/Input";
+import Input from "../../../common/Input/Input";
 import ThisTags from "../../../CreateFragment/ThisTags/ThisTags";
 import TagsListContainer from "../../../CreateFragment/TagsList/TagsListContainer";
 

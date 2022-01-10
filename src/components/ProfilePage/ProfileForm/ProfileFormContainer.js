@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import React from "react";
 import ProfileForm from "./ProfileForm";
 import {updateProfile} from "../../../redux/profileReducer";
-import Preloader from "../../../common/Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 
 
 class ProfileFormContainer extends React.Component {

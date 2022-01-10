@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {getLessons} from "../../../../redux/lessonsCatalogReducer";
 import LessonsList from "./LessonsList";
-import Preloader from "../../../../common/Preloader/Preloader";
+import Preloader from "../../../common/Preloader/Preloader";
 import {toggleFavorite} from "../../../../redux/lessonReducer";
 
 

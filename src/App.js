@@ -3,7 +3,6 @@ import {Route} from "react-router-dom";
 import MainPage from "./components/MainPage/MainPage";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
-import AdminAuthPageContainer from "./admin/AdminAuthPage/AdminAuthPageContainer";
 import ResetPasswordContainer from "./components/AuthPage/Login/ResetPassword/ResetPasswordContainer";
 import MyFragments from "./components/MyFragments/MyFragments";
 import LoginContainer from "./components/AuthPage/Login/LoginContainer";
@@ -19,6 +18,7 @@ import Catalog from "./components/CatalogPage/Catalog";
 import MyLessons from "./components/MyLessons/MyLessons";
 import MyMaterials from "./components/MyMaterials/MyMaterials";
 import BlockedPage from "./components/BlockedPage/BlockedPage";
+import AdminAuthPageContainer from "./components/AuthPage/admin/AdminAuthPage/AdminAuthPageContainer";
 
 
 const App = () => {

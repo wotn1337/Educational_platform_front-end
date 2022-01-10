@@ -1,7 +1,7 @@
 import React from "react";
 import FragmentsList from "./FragmentsList";
 import {connect} from "react-redux";
-import Preloader from "../../../common/Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 import {getFragments} from "../../../redux/catalogFragmentsReducer";
 
 

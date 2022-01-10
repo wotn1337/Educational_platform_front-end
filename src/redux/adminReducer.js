@@ -136,8 +136,8 @@ export const changeAllUsersPage = (token, pageNumber) => (dispatch) => {
 	dispatch(getUsers(token, pageNumber));
 };
 
-export const registerNewUser = (token, newUserData, setStatus) => () => {
-	adminAPI.registerNewUser(token, newUserData)
+export const registerNewUser = (newUserData, setStatus) => () => {
+	adminAPI.registerNewUser(newUserData)
 		.then(res => successNotification(res.data.message))
 		.catch(err => {
 			if (err.response.status === 500) {

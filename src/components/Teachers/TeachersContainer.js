@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Teachers from "./Teachers";
 import {getTeachers, changePage, setSearchName} from "../../redux/teachersReducer";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 
 
 class TeachersContainer extends React.Component {

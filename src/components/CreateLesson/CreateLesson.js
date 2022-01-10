@@ -5,7 +5,7 @@ import ConstructorBlock from "./СonstructorBlock/СonstructorBlock";
 import TagsListContainer from "../CreateFragment/TagsList/TagsListContainer";
 import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 import LessonAnnotation from "./LessonAnnotation/LessonAnnotation";
-import Preloader from "../../common/Preloader/Preloader";
+import Preloader from "../common/Preloader/Preloader";
 import UploadFon from "./UloadFon/UploadFon";
 
 

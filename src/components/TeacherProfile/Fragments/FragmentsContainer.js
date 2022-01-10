@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import {getTeacherFragments} from "../../../redux/teacherProfileReducer";
 import FragmentsList from "../../MyFragments/FragmentsList/FragmentsList";
-import Preloader from "../../../common/Preloader/Preloader";
+import Preloader from "../../common/Preloader/Preloader";
 
 
 class FragmentsContainer extends React.Component {
@@ -21,12 +21,7 @@ class FragmentsContainer extends React.Component {
 		}
 		
 		return (
-			<FragmentsList
-				{...this.props}
-				changePage={this.changePage}
-				// isFavorite={this.isFavorite}
-				// changeFavorite={this.changeFavorite}
-			/>
+			<FragmentsList{...this.props} changePage={this.changePage}/>
 		);
 	}
 }
@@ -43,6 +38,4 @@ const mapStateToProps = (state) => ({
 	fragmentsFetching: state.teacherProfile.fragmentsFetching
 });
 
-export default compose(
-	connect(mapStateToProps, {getTeacherFragments}),
-)(FragmentsContainer)
+export default compose(connect(mapStateToProps, {getTeacherFragments}))(FragmentsContainer)

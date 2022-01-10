@@ -4,7 +4,7 @@ import SearchBlockContainer from "../MyFragments/SearchBlock/SearchBlockContaine
 import FragmentsListContainer from "../MyFragments/FragmentsList/FragmentsListContainer";
 import LessonSearchBlockContainer from "./lessonsCatalog/LessonSearchBlock/LessonSearchBlockContainer";
 import LessonsListContainer from "./lessonsCatalog/LessonsList/LessonsListContainer";
-import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
+import {withoutAuthRedirectToAuthPage} from "../hoc/withoutAuthRedirectToAuthPage";
 import {compose} from "redux";
 import {withRouter} from "react-router-dom";
 

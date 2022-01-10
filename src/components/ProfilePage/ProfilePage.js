@@ -1,10 +1,10 @@
 import React, {useState} from "react";
 import s from './ProfilePage.module.css';
-import AllUsersContainer from "../../admin/AdminProfile/AllUsers/AllUsersContainer";
-import BlackListContainer from "../../admin/AdminProfile/BlackListUsers/BlackListContainer";
 import MainUserInfo from "./MainUserInfo/MainUserInfo";
 import MyPageContainer from "./MyPage/MyPageContainer";
-import Switches from "../../common/Switches/Switches";
+import Switches from "../common/Switches/Switches";
+import AllUsersContainer from "../Profile/admin/AdminProfile/AllUsers/AllUsersContainer";
+import BlackListContainer from "../Profile/admin/AdminProfile/BlackListUsers/BlackListContainer";
 
 const ProfilePage = (props) => {
     const [profile, setProfile] = useState(true);
