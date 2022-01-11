@@ -186,7 +186,8 @@ export const fragmentsAPI = {
 	editFragment(id, title, content, tagsIds, annotation, fon) {
 		const data = new FormData();
 		data.append('title', title);
-		data.append('content', content);
+		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null)
+			data.append('content', content);
 		for (const tag of tagsIds) {
 			data.append('tags[]', tag);
 		}
