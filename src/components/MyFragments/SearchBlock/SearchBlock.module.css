@@ -60,6 +60,10 @@
     margin-right: 35px;
 }
 
+.typeSelect:focus {
+    outline: none;
+}
+
 .allTags {
     display: flex;
     align-items: flex-start;

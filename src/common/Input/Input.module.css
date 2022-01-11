@@ -15,7 +15,7 @@
 }
 
 .input:focus {
-    outline: 2px solid #F18A93;
+    outline: none;
 }
 
 @media all and (max-width: 992px) {
@@ -26,7 +26,6 @@
     }
 
     .input::placeholder {
-        color: rgba(255, 255, 255, 0.45);
         font-size: 18px;
     }
 
