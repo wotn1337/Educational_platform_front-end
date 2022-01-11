@@ -18,7 +18,11 @@ const customStyles = {
 
 const DeleteErrorModal = ({isOpen, error, closeModal}) => {
 	const lessons = error.lessons.map(lesson => (
-		<NavLink exect to={`/lesson/${lesson.id}`} style={{display: 'block'}}>{lesson.title}</NavLink>
+		<NavLink
+			className={s.lesson}
+			key={lesson.id}
+			exect to={`/lesson/${lesson.id}`}
+		>{lesson.title}</NavLink>
 	));
 
 	return (
@@ -28,11 +32,12 @@ const DeleteErrorModal = ({isOpen, error, closeModal}) => {
 	        shouldCloseOnOverlayClick={true}
 	        onRequestClose={closeModal}
 	        overlayClassName={s.overlay}
+	        className={s.content}
         >
-	        <button onClick={closeModal}>X</button>
+	        <button onClick={closeModal} className={s.closeButton}/>
 	        <h3>{error.message}</h3>
-	        <h4>Этот фрагмент содержится в следующих ваших уроках:</h4>
-	        {lessons}
+	        <h4>Этот фрагмент содержится в следующих Ваших уроках:</h4>
+	        <div className={s.lessons}>{lessons}</div>
         </Modal>
 	);
 };
