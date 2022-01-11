@@ -46,7 +46,10 @@ const SearchBlock = (props) => {
 					<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>
 					{tagsList && <TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
 				</div>
-				<button onClick={props.searchFragments} className={s.searchButton}>Искать</button>
+				<button onClick={() => {
+					props.searchFragments();
+					setTagsList(false);
+				}} className={s.searchButton}>Искать</button>
 			</div>
 			<div className={s.searchTags}>
 				<ThisTags tags={props.searchTags} edit={true} returnTag={props.returnTag} deleteTag={props.deleteSearchTag}/>
