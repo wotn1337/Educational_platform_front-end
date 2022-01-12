@@ -20,11 +20,20 @@ import {withRouter} from "react-router-dom";
 class FragmentContainer extends React.Component {
 	state = {
 		id: this.props.match.params.id,
-		isEdit: false
+		isEdit: false,
+		deleteErrorModal: false
 	}
 
 	componentDidMount() {
 		this.props.getFragment(this.state.id);
+	}
+
+	openDeleteErrorModal = () => {
+		this.setState({deleteErrorModal: true});
+	}
+
+	closeDeleteErrorModal = () => {
+		this.setState({deleteErrorModal: false});
 	}
 
 	toggleIsEdit = () => {
@@ -32,8 +41,7 @@ class FragmentContainer extends React.Component {
 	}
 
 	deleteFragment = () => {
-		return this.props.deleteFragment(this.state.id)
-			.then(() => this.setState({id: ''}));
+		this.props.deleteFragment(this.state.id, this.props.history.goBack, this.openDeleteErrorModal);
 	}
 
 	editFragment = () => {
@@ -59,6 +67,8 @@ class FragmentContainer extends React.Component {
 			deleteFragment={this.deleteFragment}
 			toggleIsEdit={this.toggleIsEdit}
 			editFragment={this.editFragment}
+			openDeleteErrorModal={this.openDeleteErrorModal}
+			closeDeleteErrorModal={this.closeDeleteErrorModal}
 		/>;
 	}
 }
@@ -78,7 +88,8 @@ const mapStateToProps = (state) => ({
 	tagsIds: state.fragment.tagsIds,
 	favorite: state.fragment.favorite,
 	favoriteFetching: state.fragment.favoriteFetching,
-	fon: state.fragment.fon
+	fon: state.fragment.fon,
+	deleteError: state.fragment.deleteError
 });
 
 export default compose(

@@ -51,8 +51,6 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 					<ButtonsBlock
 						id={id}
 						creatorId={props.creatorId}
-						userId={props.userId}
-						role={props.role}
 						favorite={props.favorite}
 						favoriteFetching={props.favoriteFetching}
 						deleteThis={props.deleteLesson}

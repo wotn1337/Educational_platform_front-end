@@ -35,7 +35,7 @@ class LessonContainer extends React.Component {
 
 	deleteLesson = () => {
 		return this.props.deleteLesson(this.state.id)
-			.then(() => this.setState({id: ''}));
+			.then(() => this.props.history.goBack());
 	}
 
 	updateLesson = () => {

@@ -14,8 +14,9 @@ import HeaderWithBackButton from "../../common/HeaderWithBackButton/HeaderWithBa
 import ImageFragment from "./ImageFragment/ImageFragment";
 import VideoFragment from "./VideoFragment/VideoFragment";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";
+import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
 
-const Fragment = ({history, ...props}) => {
+const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 	const [showTags, setShowTags] = useState(false);
 
@@ -99,8 +100,6 @@ const Fragment = ({history, ...props}) => {
 				: <ButtonsBlock
 					id={props.id}
 					creatorId={props.creatorId}
-					userId={props.userId}
-					role={props.role}
 					favorite={props.favorite}
 					favoriteFetching={props.favoriteFetching}
 					deleteThis={props.deleteFragment}
@@ -109,6 +108,13 @@ const Fragment = ({history, ...props}) => {
 				/>
 			}
 			{showTags && <TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}/>}
+			{deleteError &&
+				<DeleteErrorModal
+					isOpen={props.deleteErrorModal}
+					error={deleteError}
+					closeModal={props.closeDeleteErrorModal}
+				/>
+			}
 		</div>
 	)
 }

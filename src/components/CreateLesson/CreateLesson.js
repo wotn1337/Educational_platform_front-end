@@ -32,7 +32,10 @@ const CreateLesson = ({isFetching, annotation, ...props}) => {
 			<p className={'inputError'}>{props.fragmentsError}</p>
 			<div className={s.buttonsBlock}>
 				<button className={'btn'} onClick={() => setTags(!tags)}>Добавить теги</button>
-				<button className={'btn'} onClick={props.createLesson}
+				<button className={'btn'} onClick={() => {
+					props.createLesson();
+					setTags(false);
+				}}
 				        disabled={isFetching}>Создать</button>
 			</div>
 			{tags && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}

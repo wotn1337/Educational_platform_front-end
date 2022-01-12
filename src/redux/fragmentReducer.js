@@ -12,6 +12,7 @@ const TOGGLE_FAVORITE = 'fragment/TOGGLE_FAVORITE';
 const TOGGLE_FAVORITE_FETCHING = 'fragment/TOGGLE_FAVORITE_FETCHING';
 const SET_ANNOTATION = 'fragment/SET_ANNOTATION';
 const SET_FON = 'fragment/SET_FON';
+const SET_DELETE_ERROR = 'fragment/SET_DELETE_ERROR';
 
 
 const initState = {
@@ -27,7 +28,8 @@ const initState = {
 	favoriteFetching: false,
 	tags: [],
 	tagsIds: [],
-	fon: undefined
+	fon: undefined,
+	deleteError: undefined
 };
 
 const fragmentReducer = (state = initState, action) => {
@@ -83,6 +85,9 @@ const fragmentReducer = (state = initState, action) => {
 		case SET_FON:
 			return {...state, fon: action.fon};
 
+		case SET_DELETE_ERROR:
+			return {...state, deleteError: action.error};
+
 		default:
 			return state;
 	}
@@ -92,6 +97,7 @@ const setFragment = (fragment) => ({type: SET_FRAGMENT, fragment});
 const toggleIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 const toggleFavorite = () => ({type: TOGGLE_FAVORITE});
 const toggleFavoriteFetching = (favoriteFetching) => ({type: TOGGLE_FAVORITE_FETCHING, favoriteFetching});
+const setDeleteError = (error) => ({type: SET_DELETE_ERROR, error});
 
 export const setTitle = (title) => ({type: SET_TITLE, title});
 export const setContent = (content) => ({type: SET_CONTENT, content});
@@ -104,7 +110,6 @@ export const getFragment = (id) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
 	return fragmentsAPI.getFragment(id)
 		.then(res => {
-			console.log(res.data);
 			dispatch(setFragment(res.data.fragment));
 			dispatch(toggleIsFetching(false));
 		})
@@ -113,10 +118,17 @@ export const getFragment = (id) => (dispatch) => {
 		})
 };
 
-export const deleteFragment = (id) => () => {
+export const deleteFragment = (id, goBack, openErrorModal) => (dispatch) => {
 	return fragmentsAPI.deleteFragment(id)
-		.then(res => successNotification(res.data.message))
-		.catch(err => console.log(err.response));
+		.then(res => {
+			successNotification(res.data.message);
+			goBack();
+		})
+		.catch(err => {
+			console.log(err.response);
+			dispatch(setDeleteError(err.response.data));
+			openErrorModal();
+		});
 };
 
 export const editFragment = (id, title, content, tagsIds, annotation, fon) => (dispatch) => {
