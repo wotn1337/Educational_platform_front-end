@@ -13,43 +13,83 @@
     transition: 2s;
 }
 
-.overlay .content {
-    transform: none !important;
-    margin: 0 !important;
-    inset: initial !important;
-
+.content {
     background-color: white;
     border-radius: 10px;
-    padding: 20px;
+    padding: 50px 60px;
     width: 80%;
     position: relative;
-    max-height: 70vh;
+    max-height: 85vh;
 }
 
-.overlay h3 {
+.title {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 49px;
+    text-align: center;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.content p {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+}
+
+.content h3 {
     color: black;
     margin-right: 50px;
     line-height: 40px;
 }
 
-.overlay h4 {
+.content h4 {
     font-style: normal;
-    font-weight: bold;
-    font-size: 20px;
-    line-height: 27px;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.fragmentsCount {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.text {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
+}
+
+.count {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 33px;
+    color: #EF5B5B;
 }
 
 .lessons {
-    max-height: 300px;
+    max-height: 25vh;
     overflow-y: auto;
 }
 
 .lesson {
     display: block;
     font-style: normal;
-    font-size: 20px;
-    line-height: 27px;
-    color: black;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 33px;
+    color: #000000;
     border-bottom: 1px solid #C4C4C4;
     padding: 5px 10px;
 }
@@ -81,4 +121,53 @@
 
 .closeButton:hover {
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3);
+}
+
+@media all and (max-width: 800px) {
+    .content {
+        padding: 25px 30px;
+    }
+
+    .title {
+        font-size: 18px;
+        line-height: 30px;
+        margin-bottom: 10px;
+    }
+
+    .fragmentsCount {
+        margin-bottom: 5px;
+    }
+
+    .content p {
+        display: none;
+    }
+
+    .text {
+        font-size: 14px;
+        line-height: 26px;
+    }
+
+    .count {
+        font-size: 14px;
+        line-height: 26px;
+    }
+
+    .content h4 {
+        font-size: 14px;
+        line-height: 26px;
+        margin-bottom: 10px;
+    }
+
+    .lesson {
+        font-size: 16px;
+        line-height: 20px;
+        padding: 5px 10px;
+    }
+}
+
+@media all and (max-width: 360px) {
+    .closeButton {
+        top: 5px;
+        right: 5px;
+    }
 }
