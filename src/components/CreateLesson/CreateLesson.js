@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import s from './CreateLesson.module.css';
 import LessonTitle from "./LessonTitle/LessonTitle";
 import ConstructorBlock from "./СonstructorBlock/СonstructorBlock";
@@ -7,10 +7,10 @@ import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 import LessonAnnotation from "./LessonAnnotation/LessonAnnotation";
 import Preloader from "../../common/Preloader/Preloader";
 import UploadFon from "./UloadFon/UploadFon";
+import Tippy from "@tippyjs/react";
 
 
 const CreateLesson = ({isFetching, annotation, ...props}) => {
-	const [tags, setTags] = useState(false);
 	return (
 		<div className={s.content}>
 			<h1 className={'pageTitle'}>Создать урок</h1>
@@ -21,6 +21,7 @@ const CreateLesson = ({isFetching, annotation, ...props}) => {
 				? <Preloader size={200}/>
 				: <>
 					<ConstructorBlock fragments={props.lessonFragments} setFragments={props.setFragments} deleteFragment={props.deleteFragment}/>
+					<p className={'inputError'}>{props.fragmentsError}</p>
 					<ThisTags
 						tags={props.tags}
 						edit={true}
@@ -29,16 +30,20 @@ const CreateLesson = ({isFetching, annotation, ...props}) => {
 					/>
 				</>
 			}
-			<p className={'inputError'}>{props.fragmentsError}</p>
 			<div className={s.buttonsBlock}>
-				<button className={'btn'} onClick={() => setTags(!tags)}>Добавить теги</button>
-				<button className={'btn'} onClick={() => {
-					props.createLesson();
-					setTags(false);
-				}}
-				        disabled={isFetching}>Создать</button>
+				<Tippy
+					content={<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}
+					trigger='click'
+					interactive={true}
+					placement="right-start"
+					className={s.tippy}
+				>
+					<button className={'btn'}>Добавить теги</button>
+				</Tippy>
+				{/*<button className={'btn'} onClick={() => setTags(!tags)}>Добавить теги</button>*/}
+				<button className={'btn'} onClick={props.createLesson} disabled={isFetching}>Создать</button>
 			</div>
-			{tags && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}
+			{/*{tags && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}*/}
 		</div>
 	);
 }

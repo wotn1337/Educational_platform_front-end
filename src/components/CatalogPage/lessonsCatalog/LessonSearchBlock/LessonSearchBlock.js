@@ -1,8 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import s from './LessonSearchBlock.module.css';
 import Input from "../../../../common/Input/Input";
 import ThisTags from "../../../CreateFragment/ThisTags/ThisTags";
 import TagsListContainer from "../../../CreateFragment/TagsList/TagsListContainer";
+import Tippy from "@tippyjs/react";
 
 
 const rightWord = (count) => {
@@ -17,27 +18,29 @@ const rightWord = (count) => {
 }
 
 const LessonSearchBlock = ({searchLessonTitle, changeSearchLessonTitle, searchTeacherName, changeSearchTeacherName, search, ...props}) => {
-	const [tagsList, setTagsList] = useState(false);
-
 	return (
 		<div className={s.search}>
 			<span className={s.count}>
-				Всего {props.lessonsCount} {rightWord(props.lessonsCount)} <span className={s.total}>из {props.allLessonsCount}</span>
+				Всего {props.lessonsCount} {rightWord(props.lessonsCount)} <span
+				className={s.total}>из {props.allLessonsCount}</span>
 			</span>
 			<div className={s.inputBlock}>
 				<Input placeholder={'Название урока'} value={searchLessonTitle} onChange={changeSearchLessonTitle}/>
 				<Input placeholder={'Имя преподавателя'} value={searchTeacherName} onChange={changeSearchTeacherName}/>
-				<div className={s.allTags}>
-					<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>
-					{tagsList && <TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
-				</div>
-				<button className={s.searchButton} onClick={() => {
-					setTagsList(false);
-					search();
-				}}>Искать</button>
+				<Tippy
+					content={<TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
+					trigger='click'
+					interactive={true}
+					placement="right-start"
+					className={s.tippy}
+				>
+					<button className={s.addTagButton}>+</button>
+				</Tippy>
+				<button className={s.searchButton} onClick={search}>Искать</button>
 			</div>
 			<div className={s.searchTags}>
-				<ThisTags tags={props.searchTags} edit={true} returnTag={props.returnTag} deleteTag={props.deleteSearchTag}/>
+				<ThisTags tags={props.searchTags} edit={true} returnTag={props.returnTag}
+				          deleteTag={props.deleteSearchTag}/>
 			</div>
 		</div>
 	);

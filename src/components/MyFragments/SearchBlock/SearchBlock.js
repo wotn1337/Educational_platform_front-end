@@ -1,7 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import s from './SearchBlock.module.css'
 import TagsListContainer from "../../CreateFragment/TagsList/TagsListContainer";
 import ThisTags from "../../CreateFragment/ThisTags/ThisTags";
+import Tippy from "@tippyjs/react";
 
 const rightWord = (count) => {
 	const twoLastNumbers = count % 100;
@@ -16,7 +17,6 @@ const rightWord = (count) => {
 
 
 const SearchBlock = (props) => {
-	const [tagsList, setTagsList] = useState(false);
 	return (
 		<div className={s.searchBlock}>
 			<div className={s.title}>
@@ -42,14 +42,20 @@ const SearchBlock = (props) => {
 					<option value="video">Видео</option>
 					<option value="image">Изображение</option>
 				</select>
-				<div className={s.allTags}>
-					<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>
-					{tagsList && <TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
-				</div>
-				<button onClick={() => {
-					props.searchFragments();
-					setTagsList(false);
-				}} className={s.searchButton}>Искать</button>
+				{/*<div className={s.allTags}>*/}
+				{/*	<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>*/}
+				{/*	{tagsList && <TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}*/}
+				{/*</div>*/}
+				<Tippy
+					content={<TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
+					trigger='click'
+					interactive={true}
+					placement="right-start"
+					className={s.tippy}
+				>
+					<button className={s.addTagButton}>+</button>
+				</Tippy>
+				<button onClick={props.searchFragments} className={s.searchButton}>Искать</button>
 			</div>
 			<div className={s.searchTags}>
 				<ThisTags tags={props.searchTags} edit={true} returnTag={props.returnTag} deleteTag={props.deleteSearchTag}/>
