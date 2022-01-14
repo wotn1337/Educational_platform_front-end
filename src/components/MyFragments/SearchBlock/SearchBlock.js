@@ -2,7 +2,6 @@ import React from "react";
 import s from './SearchBlock.module.css'
 import TagsListContainer from "../../CreateFragment/TagsList/TagsListContainer";
 import ThisTags from "../../CreateFragment/ThisTags/ThisTags";
-import Tippy from "@tippyjs/react";
 
 const rightWord = (count) => {
 	const twoLastNumbers = count % 100;
@@ -46,15 +45,9 @@ const SearchBlock = (props) => {
 				{/*	<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>*/}
 				{/*	{tagsList && <TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}*/}
 				{/*</div>*/}
-				<Tippy
-					content={<TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
-					trigger='click'
-					interactive={true}
-					placement="right-start"
-					className={s.tippy}
-				>
+				<TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}>
 					<button className={s.addTagButton}>+</button>
-				</Tippy>
+				</TagsListContainer>
 				<button onClick={props.searchFragments} className={s.searchButton}>Искать</button>
 			</div>
 			<div className={s.searchTags}>

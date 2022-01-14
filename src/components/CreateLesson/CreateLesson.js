@@ -7,7 +7,6 @@ import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 import LessonAnnotation from "./LessonAnnotation/LessonAnnotation";
 import Preloader from "../../common/Preloader/Preloader";
 import UploadFon from "./UloadFon/UploadFon";
-import Tippy from "@tippyjs/react";
 
 
 const CreateLesson = ({isFetching, annotation, ...props}) => {
@@ -31,19 +30,11 @@ const CreateLesson = ({isFetching, annotation, ...props}) => {
 				</>
 			}
 			<div className={s.buttonsBlock}>
-				<Tippy
-					content={<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}
-					trigger='click'
-					interactive={true}
-					placement="right-start"
-					className={s.tippy}
-				>
+				<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}>
 					<button className={'btn'}>Добавить теги</button>
-				</Tippy>
-				{/*<button className={'btn'} onClick={() => setTags(!tags)}>Добавить теги</button>*/}
+				</TagsListContainer>
 				<button className={'btn'} onClick={props.createLesson} disabled={isFetching}>Создать</button>
 			</div>
-			{/*{tags && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}*/}
 		</div>
 	);
 }

@@ -3,7 +3,6 @@ import s from './LessonSearchBlock.module.css';
 import Input from "../../../../common/Input/Input";
 import ThisTags from "../../../CreateFragment/ThisTags/ThisTags";
 import TagsListContainer from "../../../CreateFragment/TagsList/TagsListContainer";
-import Tippy from "@tippyjs/react";
 
 
 const rightWord = (count) => {
@@ -27,15 +26,9 @@ const LessonSearchBlock = ({searchLessonTitle, changeSearchLessonTitle, searchTe
 			<div className={s.inputBlock}>
 				<Input placeholder={'Название урока'} value={searchLessonTitle} onChange={changeSearchLessonTitle}/>
 				<Input placeholder={'Имя преподавателя'} value={searchTeacherName} onChange={changeSearchTeacherName}/>
-				<Tippy
-					content={<TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}
-					trigger='click'
-					interactive={true}
-					placement="right-start"
-					className={s.tippy}
-				>
+				<TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}>
 					<button className={s.addTagButton}>+</button>
-				</Tippy>
+				</TagsListContainer>
 				<button className={s.searchButton} onClick={search}>Искать</button>
 			</div>
 			<div className={s.searchTags}>

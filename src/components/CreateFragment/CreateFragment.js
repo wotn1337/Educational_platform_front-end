@@ -10,7 +10,6 @@ import TagsListContainer from "./TagsList/TagsListContainer";
 import ThisTags from "./ThisTags/ThisTags";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import CreateImage from "./CreateImage/CreateImage";
-import Tippy from "@tippyjs/react";
 
 
 const CreateFragment = ({fragmentType, ...props}) => {
@@ -47,15 +46,9 @@ const CreateFragment = ({fragmentType, ...props}) => {
                         />
                     }
                     <div className={s.buttonsBlock}>
-                        <Tippy
-                            content={<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}
-                            trigger='click'
-                            interactive={true}
-                            placement="right-start"
-                            className={s.tippy}
-                        >
+                        <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}>
                             <button className={'btn'}>Добавить теги</button>
-                        </Tippy>
+                        </TagsListContainer>
                         <button className={'btn'} onClick={props.createFragment} disabled={props.isFetching}>Создать
                         </button>
                     </div>

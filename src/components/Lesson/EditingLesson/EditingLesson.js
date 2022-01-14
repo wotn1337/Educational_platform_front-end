@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import LessonTitle from "../../CreateLesson/LessonTitle/LessonTitle";
 import LessonAnnotation from "../../CreateLesson/LessonAnnotation/LessonAnnotation";
 import ConstructorBlock from "../../CreateLesson/СonstructorBlock/СonstructorBlock";
@@ -9,7 +9,7 @@ import UploadFon from "../../CreateLesson/UloadFon/UploadFon";
 
 
 const EditingLesson = ({title, changeTitle, annotation, changeAnnotation, fragments, ...props}) => {
-	const [tags, setTags] = useState(false);
+	// const [tags, setTags] = useState(false);
 	return (
 		<>
 			<LessonTitle title={title} changeLessonTitle={changeTitle}/>
@@ -18,13 +18,15 @@ const EditingLesson = ({title, changeTitle, annotation, changeAnnotation, fragme
 			<ConstructorBlock fragments={fragments} setFragments={props.setFragments} deleteFragment={props.deleteFragment}/>
 			<ThisTags tags={props.tags} edit={true} deleteTag={props.deleteTag} returnTag={props.returnTag}/>
 			<div className={s.buttonsBlock}>
-				<button className={'btn'} onClick={() => setTags(!tags)} disabled={props.isFetching}>Добавить теги</button>
+				<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}>
+					<button className={'btn'}>Добавить теги</button>
+				</TagsListContainer>
 				<button className={'btn'}  disabled={props.isFetching} onClick={() => {
 					props.updateLesson()
 						.then(() => props.toggleIsEdit());
 				}}>Сохранить изменения</button>
 			</div>
-			{tags && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}
+			{/*{tags && <TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}/>}*/}
 		</>
 	);
 };

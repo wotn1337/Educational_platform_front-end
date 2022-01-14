@@ -1,17 +1,18 @@
 import React from 'react';
 import s from './TagsList.module.css';
 import Preloader from "../../../common/Preloader/Preloader";
+import Tippy from "@tippyjs/react";
 
 
-const TagsList = (props) => {
+const TagsList = ({children, addTag, externalAddTag, isFetching, ...props}) => {
 	const tags = props.allTags.map(tag => {
 		return <div
 			className={s.tag}
 			key={tag.id}
 			id={tag.id}
 			onClick={() => {
-				props.addTag(tag);
-				props.externalAddTag(tag);
+				addTag(tag);
+				externalAddTag(tag);
 			}}
 		>
 			{tag.value}
@@ -19,12 +20,16 @@ const TagsList = (props) => {
 	});
 
 	return (
-		<div className={s.tagsList}>
-			{props.isFetching
-				? <Preloader size={50}/>
-				: tags
-			}
-		</div>
+		<Tippy
+			content={<div className={s.tagsList}>{isFetching ? <Preloader size={50}/> : tags}</div>}
+			trigger='click'
+			interactive={true}
+			placement="right-start"
+			delay={0}
+			duration={0}
+		>
+			{children}
+		</Tippy>
 	);
 };
 
