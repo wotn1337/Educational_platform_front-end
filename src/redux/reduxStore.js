@@ -13,6 +13,7 @@ import teacherProfileReducer from "./teacherProfileReducer";
 import teachersReducer from "./teachersReducer";
 import lessonsCatalogReducer from "./lessonsCatalogReducer";
 import lessonReducer from "./lessonReducer";
+import catalogPagesReducer from "./catalogPagesReducer";
 
 
 const reducers = combineReducers({
@@ -28,7 +29,8 @@ const reducers = combineReducers({
 	teacherProfile: teacherProfileReducer,
 	teachers: teachersReducer,
 	lessonsCatalog: lessonsCatalogReducer,
-	lesson: lessonReducer
+	lesson: lessonReducer,
+	catalogPages: catalogPagesReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

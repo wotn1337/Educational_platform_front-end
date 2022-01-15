@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import HeaderWithToggle from "../Favorite/HeaderWithToggle/HeaderWithToggle";
 import SearchBlockContainer from "../MyFragments/SearchBlock/SearchBlockContainer";
 import FragmentsListContainer from "../MyFragments/FragmentsList/FragmentsListContainer";
@@ -6,33 +6,26 @@ import LessonSearchBlockContainer from "./lessonsCatalog/LessonSearchBlock/Lesso
 import LessonsListContainer from "./lessonsCatalog/LessonsList/LessonsListContainer";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
 import {compose} from "redux";
-import {withRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {togglePage} from "../../redux/catalogPagesReducer";
 
 
-const Catalog = () => {
-	const [current, setCurrent] = useState('lessons');
-	const [showOther, setShowOther] = useState(false);
-	const [other, setOther] = useState('fragments');
-	const rusTypes = {'fragments': 'Фрагменты', 'lessons': 'Уроки'}
+const Catalog = ({type, togglePage}) => {
 	return (
 		<section className={'content'}>
 			<HeaderWithToggle
 				title={'Каталог'}
-				setCurrent={setCurrent}
-				current={current}
-				other={other}
-				setOther={setOther}
-				showOther={showOther}
-				setShowOther={setShowOther}
-				rusPages={rusTypes}
+				type={type}
+				toggle={togglePage}
+				page={'catalog'}
 			/>
-			{current === 'fragments' &&
+			{type.current === 'fragments' &&
 				<>
 					<SearchBlockContainer page={'catalog'}/>
 					<FragmentsListContainer page={'catalog'}/>
 				</>
 			}
-			{current === 'lessons' &&
+			{type.current === 'lessons' &&
 				<>
 					<LessonSearchBlockContainer page={'catalog'}/>
 					<LessonsListContainer page={'catalog'} />
@@ -42,7 +35,11 @@ const Catalog = () => {
 	);
 };
 
+const mapStateToProps = (state) => ({
+	type: state.catalogPages.catalog
+});
+
 export default compose(
 	withoutAuthRedirectToAuthPage,
-	withRouter
+	connect(mapStateToProps, {togglePage})
 )(Catalog);

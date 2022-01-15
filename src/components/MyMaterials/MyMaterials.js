@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import HeaderWithToggle from "../Favorite/HeaderWithToggle/HeaderWithToggle";
 import SearchBlockContainer from "../MyFragments/SearchBlock/SearchBlockContainer";
 import FragmentsListContainer from "../MyFragments/FragmentsList/FragmentsListContainer";
@@ -7,37 +7,29 @@ import LessonsListContainer from "../CatalogPage/lessonsCatalog/LessonsList/Less
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
-import {withRouter} from "react-router-dom";
+import {togglePage} from "../../redux/catalogPagesReducer";
 
 
-const MyMaterials = ({role}) => {
-	const [current, setCurrent] = useState('lessons');
-	const [showOther, setShowOther] = useState(false);
-	const [other, setOther] = useState('fragments');
-	const rusTypes = {'fragments': 'Фрагменты', 'lessons': 'Уроки'}
+const MyMaterials = ({role, type, togglePage}) => {
 	return (
 		<section className={'content'}>
 			{role !== 'student'
 				? <HeaderWithToggle
 					title={'Мои материалы'}
-					setCurrent={setCurrent}
-					current={current}
-					other={other}
-					setOther={setOther}
-					showOther={showOther}
-					setShowOther={setShowOther}
-					rusPages={rusTypes}
+					type={type}
+					toggle={togglePage}
+					page={'myMaterials'}
 				/>
 				: <h1 className={'pageTitle'}>Мои уроки</h1>
 			}
 
-			{(current === 'fragments' && role !== 'student') &&
+			{(type.current === 'fragments' && role !== 'student') &&
 				<>
 					<SearchBlockContainer page={'my-fragments'}/>
 					<FragmentsListContainer page={'my-fragments'}/>
 				</>
 			}
-			{(current === 'lessons' || role === 'student') &&
+			{(type.current === 'lessons' || role === 'student') &&
 				<>
 					<LessonSearchBlockContainer page={'my-lessons'}/>
 					<LessonsListContainer page={'my-lessons'}/>
@@ -48,10 +40,10 @@ const MyMaterials = ({role}) => {
 };
 export const mapStateToProps = (state) => ({
 	role: state.auth.role,
+	type: state.catalogPages.myMaterials
 });
 
 export default compose(
 	withoutAuthRedirectToAuthPage,
-	connect(mapStateToProps, {}),
-	withRouter
+	connect(mapStateToProps, {togglePage}),
 )(MyMaterials);
