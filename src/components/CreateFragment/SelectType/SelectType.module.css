@@ -25,6 +25,10 @@
     color: #FFFFFF;
 }
 
+.selectType:focus {
+    outline: none;
+}
+
 @media all and (max-width: 520px) {
     .selectTypeBlock {
         flex-wrap: wrap;

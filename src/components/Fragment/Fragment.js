@@ -18,7 +18,6 @@ import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
-	const [showTags, setShowTags] = useState(false);
 
 	const editToggle = () => {
 		props.toggleIsEdit();
@@ -81,7 +80,8 @@ const Fragment = ({deleteError, ...props}) => {
 				{!props.isEdit &&
 					<div className={s.author}>
 						<NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>
-						<img className={`avatar ${s.creatorAvatar}`} src={props.creatorAvatar || avatarPlaceholder} alt="avatar"/>
+						<img className={`avatar ${s.creatorAvatar}`} src={props.creatorAvatar || avatarPlaceholder}
+						     alt="avatar"/>
 					</div>
 				}
 			</div>
@@ -94,7 +94,9 @@ const Fragment = ({deleteError, ...props}) => {
 			/>
 			{props.isEdit
 				? <div className={s.buttonsBlock}>
-					<button onClick={() => setShowTags(!showTags)} className={'btn'}>Добавить теги</button>
+					<TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}>
+						<button className={'btn'}>Добавить теги</button>
+					</TagsListContainer>
 					<button className={'btn'} onClick={props.editFragment}>Сохранить изменения</button>
 				</div>
 				: <ButtonsBlock
@@ -107,7 +109,6 @@ const Fragment = ({deleteError, ...props}) => {
 					toggleIsEdit={editToggle}
 				/>
 			}
-			{showTags && <TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}/>}
 			{deleteError &&
 				<DeleteErrorModal
 					isOpen={props.deleteErrorModal}
