@@ -3,7 +3,6 @@ import s from './CreateFragment.module.css';
 import SelectType from "./SelectType/SelectType";
 import FragmentTitle from "./FragmentTitle/FragmentTitle";
 import {fragmentTypes} from "../../common/fragmentTypes";
-import CreateTestContainer from "../CreateTest/CreateTestContainer";
 import CreateVideo from "../CreateVideo/CreateVideo";
 import CreateArticle from "../CreateArticle/CreateArticle";
 import TagsListContainer from "./TagsList/TagsListContainer";
@@ -12,7 +11,8 @@ import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import CreateImage from "./CreateImage/CreateImage";
 
 
-const CreateFragment = ({fragmentType, ...props}) => {
+const CreateFragment = ({fragmentType, errors, ...props}) => {
+    const contentErrors = errors?.content?.map(error => <p className='inputError'>{error}</p>);
     return (
         <div className={s.content}>
             <h1 className={'pageTitle'}>Создать фрагмент</h1>
@@ -24,19 +24,11 @@ const CreateFragment = ({fragmentType, ...props}) => {
                         <UploadFon type={'fragment'} fon={props.fon} setFon={props.setFon}/>
                     }
                     <div style={{marginBottom: '20px'}}>
-                        {fragmentType === fragmentTypes.article &&
-                            <CreateArticle/>
-                        }
-                        {fragmentType === fragmentTypes.test &&
-                            <CreateTestContainer/>
-                        }
-                        {fragmentType === fragmentTypes.video &&
-                            <CreateVideo/>
-                        }
-                        {fragmentType === fragmentTypes.image &&
-                            <CreateImage/>
-                        }
+                        {fragmentType === fragmentTypes.article && <CreateArticle/>}
+                        {fragmentType === fragmentTypes.video && <CreateVideo/>}
+                        {fragmentType === fragmentTypes.image && <CreateImage/>}
                     </div>
+                    {contentErrors}
                     {!!props.tags.length &&
                         <ThisTags
                             tags={props.tags}

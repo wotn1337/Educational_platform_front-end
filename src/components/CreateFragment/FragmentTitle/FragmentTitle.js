@@ -20,7 +20,8 @@ const rightWords = (fragment) => {
 	}
 }
 
-const FragmentTitle = (props) => {
+const FragmentTitle = ({errors, ...props}) => {
+	const errorsTags = errors?.map(error => <p className='inputError'>{error}</p>);
 	return (
 		<div className={s.fragmentTitleBlock}>
 			<div className={s.preTitle}>Название {rightWords(props.fragmentType)}</div>
@@ -31,7 +32,7 @@ const FragmentTitle = (props) => {
 				value={props.title}
 				onChange={e => props.changeFragmentTitle(e.target.value)}
 			/>
-			{props.titleError && <div className={'inputError'}>{props.titleError}</div>}
+			{errorsTags}
 		</div>
 	);
 };
@@ -39,7 +40,7 @@ const FragmentTitle = (props) => {
 const mapStateToProps = (state) => ({
 	fragmentType: state.createFragment.fragmentType,
 	title: state.createFragment.title,
-	titleError: state.createFragment.titleError
+	errors: state.createFragment.errors?.title
 });
 
 export default connect(mapStateToProps, {changeFragmentTitle})(FragmentTitle);

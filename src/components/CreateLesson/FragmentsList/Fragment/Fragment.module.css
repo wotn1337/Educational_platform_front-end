@@ -1,3 +1,7 @@
+.fragmentLine {
+    position: relative;
+}
+
 .fragmentBlock {
     display: grid;
     margin-left: 24px;
@@ -9,9 +13,13 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.45);;
 }
 
+.fragmentBlock:hover {
+    background-color: #e2e2e2;
+    cursor: pointer;
+}
+
 .title {
     display: inline-block;
-    font-family: "Open Sans", sans-serif;
     font-weight: 600;
 }
 .fragmentWrapper {
@@ -34,7 +42,6 @@
     height: 24px;
     color: white;
     text-align: center;
-    font-family: "Open Sans", sans-serif;
     font-weight: 600;
 }
 

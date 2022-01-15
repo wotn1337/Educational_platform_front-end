@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import s from './SelectType.module.css';
-import {changeFragmentType} from "../../../redux/createFragmentReducer";
+import {changeFragmentType, setContent} from "../../../redux/createFragmentReducer";
 
 
 const SelectType = (props) => {
@@ -11,7 +11,10 @@ const SelectType = (props) => {
 			<select
 				name="type"
 				value={props.fragmentType}
-				onChange={(e) => props.changeFragmentType(e.target.value)}
+				onChange={(e) => {
+					props.changeFragmentType(e.target.value);
+					props.setContent(undefined);
+				}}
 				className={s.selectType}
 			>
 				<option value="">Тип фрагмента</option>
@@ -27,4 +30,4 @@ const mapStateToProps = (state) => ({
 	fragmentType: state.createFragment.fragmentType
 });
 
-export default connect(mapStateToProps, {changeFragmentType})(SelectType);
+export default connect(mapStateToProps, {changeFragmentType, setContent})(SelectType);

@@ -12,13 +12,11 @@ const Fragment = (props) => {
         }
     }
     return (
-        <div style={{position: "relative"}}>
+        <div className={s.fragmentLine}>
             {fragmentIsChecked && <div className={s.number}>{props.getFragmentNumber(props.fragment.id)}</div>}
             <div className={s.fragmentBlock} onClick={check}>
                 <img src={fragmentTypeImg[props.fragment.type]} alt="type" className={s.fragmentType}/>
-                <div className={s.title}>
-                    {props.fragment.title}
-                </div>
+                <div className={s.title}>{props.fragment.title}</div>
                 <input className={s.checkbox}
                        type="checkbox"
                        checked={fragmentIsChecked}

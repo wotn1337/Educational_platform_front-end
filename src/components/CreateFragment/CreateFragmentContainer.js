@@ -42,7 +42,8 @@ const mapStateToProps = (state) => ({
 	tags: state.createFragment.tags,
 	tagsIds: state.createFragment.tagsIds,
 	fon: state.createFragment.fon,
-	annotation: state.createFragment.annotation
+	annotation: state.createFragment.annotation,
+	errors: state.createFragment.errors
 });
 
 export default compose(

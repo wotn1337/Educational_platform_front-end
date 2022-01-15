@@ -5,7 +5,7 @@ const CHANGE_FRAGMENT_TYPE = 'createFragment/CHANGE_FRAGMENT_TYPE';
 const CHANGE_FRAGMENT_TITLE = 'createFragment/CHANGE_FRAGMENT_TITLE';
 const SET_IS_FETCHING = 'createFragment/SET_IS_FETCHING';
 const SET_CONTENT = 'createFragment/SET_CONTENT';
-const SET_TITLE_ERROR = 'createFragment/SET_TITLE_ERROR';
+const SET_ERRORS = 'createFragment/SET_ERRORS';
 const ADD_TAG = 'createFragment/ADD_TAG';
 const DELETE_TAG = 'createFragment/DELETE_TAG';
 const SET_FON = 'createFragment/SET_FON';
@@ -18,11 +18,11 @@ const initState = {
 	title: '',
 	content: undefined,
 	isFetching: false,
-	titleError: '',
 	tagsIds: [],
 	tags: [],
 	fon: undefined,
-	annotation: ''
+	annotation: '',
+	errors: undefined
 };
 
 const createFragmentReducer = (state = initState, action) => {
@@ -38,9 +38,6 @@ const createFragmentReducer = (state = initState, action) => {
 
 		case SET_CONTENT:
 			return {...state, content: action.content};
-
-		case SET_TITLE_ERROR:
-			return {...state, titleError: action.error};
 
 		case ADD_TAG:
 			return {
@@ -76,6 +73,9 @@ const createFragmentReducer = (state = initState, action) => {
 				annotation: ''
 			};
 
+		case SET_ERRORS:
+			return {...state, errors: action.errors};
+
 		default:
 			return state;
 	}
@@ -91,7 +91,7 @@ export const setAnnotation = (annotation) => ({type: SET_ANNOTATION, annotation}
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
 
 const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
-const setTitleError = (error) => ({type: SET_TITLE_ERROR, error});
+const setErrors = (errors) => ({type: SET_ERRORS, errors});
 
 export const createFragment = (fragmentType, title, content, tagsIds, fon, annotation) => (dispatch) => {
 	dispatch(setIsFetching(true));
@@ -99,9 +99,10 @@ export const createFragment = (fragmentType, title, content, tagsIds, fon, annot
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(clearAllFields());
+			dispatch(setIsFetching(false));
 		})
 		.catch(err => {
-			dispatch(setTitleError(err.response.data.errors.title));
+			dispatch(setErrors(err.response.data.errors));
 			dispatch(setIsFetching(false));
 			errorNotification();
 		});
