@@ -1,13 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './Toggle.module.css';
 import selectArrow from "../../../../assets/img/selectArrow.svg";
+import {rusTypes} from "../../../../common/rusTypes";
 
 
-const Toggle = ({current, showOther, setCurrent, other, setOther, setShowOther, rusPages, ...props}) => {
-	const togglePages = () => {
-		setCurrent(other);
-		setOther(current);
-	}
+const Toggle = ({type, toggle, page}) => {
+	const [showOther, setShowOther] = useState(false);
 
 	return (
 		<div
@@ -15,13 +13,13 @@ const Toggle = ({current, showOther, setCurrent, other, setOther, setShowOther, 
 			onMouseEnter={() => setShowOther(true)}
 			onMouseLeave={() => setShowOther(false)}
 		>
-			<div className={s.selectHead}>
-				{rusPages[current]}
+			<div>
+				{rusTypes[type.current]}
 				<img src={selectArrow} alt="select arrow" className={s.arrow}/>
 			</div>
 			{showOther &&
-				<div className={s.otherType} onClick={togglePages}>
-					{rusPages[other]}
+				<div className={s.otherType} onClick={() => toggle(page)}>
+					{rusTypes[type.other]}
 				</div>
 			}
 		</div>

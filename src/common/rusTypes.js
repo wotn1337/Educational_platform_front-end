@@ -1,0 +1,1 @@
+export const rusTypes = {'fragments': 'Фрагменты', 'lessons': 'Уроки'};
