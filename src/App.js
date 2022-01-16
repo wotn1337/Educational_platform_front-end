@@ -4,8 +4,6 @@ import MainPage from "./components/MainPage/MainPage";
 import NavbarContainer from "./components/Navbar/NavbarContainer";
 import ProfilePageContainer from "./components/ProfilePage/ProfilePageContainer";
 import AdminAuthPageContainer from "./admin/AdminAuthPage/AdminAuthPageContainer";
-import ResetPasswordContainer from "./components/AuthPage/Login/ResetPassword/ResetPasswordContainer";
-import MyFragments from "./components/MyFragments/MyFragments";
 import LoginContainer from "./components/AuthPage/Login/LoginContainer";
 import RegisterContainer from "./components/AuthPage/Register/RegisterContainer";
 import FragmentContainer from "./components/Fragment/FragmentContainer";
@@ -13,12 +11,14 @@ import CreateFragmentContainer from "./components/CreateFragment/CreateFragmentC
 import CreateLessonContainer from "./components/CreateLesson/CreateLessonContainer";
 import TeacherProfileContainer from "./components/TeacherProfile/TeacherProfileContainer";
 import Favorite from "./components/Favorite/Favorite";
-import TeachersContainer from "./components/Teachers/TeachersContainer";
 import LessonContainer from "./components/Lesson/LessonContainer";
 import Catalog from "./components/CatalogPage/Catalog";
-import MyLessons from "./components/MyLessons/MyLessons";
 import MyMaterials from "./components/MyMaterials/MyMaterials";
-import BlockedPage from "./components/BlockedPage/BlockedPage";
+import Preloader from "./common/Preloader/Preloader";
+
+const BlockedPage = React.lazy(() => import("./components/BlockedPage/BlockedPage"));
+const ResetPasswordContainer = React.lazy(() => import("./components/AuthPage/Login/ResetPassword/ResetPasswordContainer"));
+const TeachersContainer = React.lazy(() => import("./components/Teachers/TeachersContainer"));
 
 
 const App = () => {
@@ -43,15 +43,11 @@ const App = () => {
 			/>
 			<Route
 				exact path='/teachers'
-				render={() => <TeachersContainer/>}
-			/>
-			<Route
-				exact path='/my-fragments'
-				render={() => <MyFragments/>}
-			/>
-			<Route
-				exact path='/my-lessons'
-				render={() => <MyLessons/>}
+				render={() => (
+					<React.Suspense fallback={<Preloader size={200}/>}>
+						<TeachersContainer/>
+					</React.Suspense>
+				)}
 			/>
 			<Route
 				exact path='/my-materials'
@@ -83,7 +79,11 @@ const App = () => {
 			/>
 			<Route
 				exact path='/reset-password/:token?'
-				render={() => <ResetPasswordContainer/>}
+				render={() => (
+					<React.Suspense fallback={<Preloader size={200}/>}>
+						<ResetPasswordContainer/>
+					</React.Suspense>
+				)}
 			/>
 			<Route
 				exact path='/fragment/:id?'
@@ -95,7 +95,11 @@ const App = () => {
 			/>
 			<Route
 				path='/blocked'
-				render={() => <BlockedPage/>}
+				render={() => (
+					<React.Suspense fallback={<Preloader size={200}/>}>
+						<BlockedPage/>
+					</React.Suspense>
+				)}
 			/>
 		</>
 	)

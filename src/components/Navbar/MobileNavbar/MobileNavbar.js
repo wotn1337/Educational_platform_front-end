@@ -11,15 +11,12 @@ import favorite from '../../../assets/img/navbar/favorite.svg';
 import createFragment from '../../../assets/img/navbar/myFragments.svg';
 import createLesson from '../../../assets/img/navbar/createLesson.svg';
 import exit from '../../../assets/img/navbar/logout.svg';
-import {getProfile} from "../../../redux/profileReducer";
-import {logout} from "../../../redux/authReducer";
-import {connect} from "react-redux";
 import MobileLink from "./MobileLink";
 
 
 const MobileNavbar = ({isAdmin, role, logout, isAuth, ...props}) => {
 	const [showMenu, setShowMenu] = useState(false);
-	const [avatar, setAvatar] = useState(null);
+	const [avatar, setAvatar] = useState(undefined);
 	const [userName, setUserName] = useState('Профиль');
 	useEffect(() => {
 		props.getProfile();
@@ -78,12 +75,4 @@ const MobileNavbar = ({isAdmin, role, logout, isAuth, ...props}) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	isAdmin: state.auth.isAdmin,
-	role: state.auth.role,
-	avatar: state.profile.avatar,
-	userName: state.profile.name,
-	isAuth: state.auth.isAuth
-});
-
-export default connect(mapStateToProps, {getProfile, logout})(MobileNavbar);
+export default MobileNavbar;
