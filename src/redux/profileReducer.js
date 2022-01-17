@@ -85,7 +85,8 @@ export const updateProfile = (name, birthday) => (dispatch) => {
 				res.data.user.birthday,
 				res.data.user.email,
 				res.data.user.id,
-				res.data.user.role
+				res.data.user.role,
+				res.data.user.avatar
 			));
 			dispatch(toggleIsFetching(false));
 			successNotification(res.data.message);
