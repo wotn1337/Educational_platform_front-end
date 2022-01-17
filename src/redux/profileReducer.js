@@ -31,7 +31,7 @@ const profileReducer = (state = initState, action) => {
 				id: action.id,
 				role: action.role,
 				isAdmin: action.role === 'admin',
-				avatar: action.avatar || undefined
+				avatar: action?.avatar
 			};
 
 		case SET_AVATAR:
