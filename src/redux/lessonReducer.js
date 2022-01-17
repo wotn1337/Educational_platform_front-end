@@ -35,6 +35,7 @@ const initState = {
     allFragmentsCount: 0,
     prevFragmentOrder: -1,
     nextFragmentOrder: 0,
+    currentFragmentOrder: -1,
     currentFragmentId: undefined
 };
 
@@ -69,6 +70,7 @@ const lessonReducer = (state = initState, action) => {
             return {
                 ...state,
                 currentFragment: action.orderNumber === -1 ? undefined : {...state.fragments[action.orderNumber]},
+                currentFragmentOrder: action.orderNumber,
                 prevFragmentOrder: action.orderNumber === -1 ? -1 : action.orderNumber - 1,
                 nextFragmentOrder: action.orderNumber === state.fragments.length - 1 ? action.orderNumber : action.orderNumber + 1,
             };

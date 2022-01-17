@@ -47,6 +47,8 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 						setCurrentFragment={setCurrentFragment}
 						prevOrder={props.prevFragmentOrder}
 						nextOrder={props.nextFragmentOrder}
+						current={props.currentFragmentOrder}
+						length={fragments.length}
 					/>
 					<ButtonsBlock
 						id={id}

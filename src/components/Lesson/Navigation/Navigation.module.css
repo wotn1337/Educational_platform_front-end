@@ -23,6 +23,7 @@
 }
 
 .btnForward {
+    margin-left: auto;
     background-image: url("./../../../assets/img/lessons/arrow.png");
 }
 
