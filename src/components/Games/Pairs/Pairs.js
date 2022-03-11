@@ -13,45 +13,60 @@ const Pairs = ({images}) => {
 	const [pair, setPair] = useState([])
 	const [pairCount, setPairCount] = useState(0)
 	const [openEndGameModal, setOpenEndGameModal] = useState(false)
+	const [isChecking, setIsChecking] = useState(false)
+	const [startTime, setStartTime] = useState(0)
+	const [totalTime, setTotalTime] = useState(0)
 
 	// Проверка пары на соответствие
 	useEffect(() => {
 		if (pair.length === 2) {
+			setIsChecking(true)
 			const isPair = pair[0] === pair[1]
 			const index = pair[0]
 			if (isPair) {
-				setTimeout(() => setCards(cards.map(card => {
-					if (card.pairIndex === index) {
-						return {...card, finished: true}
-					}
-					return card
-				})), 700)
+				setTimeout(() => {
+					setCards(cards.map(card => {
+						if (card.pairIndex === index) {
+							return {...card, finished: true}
+						}
+						return card
+					}))
+					setIsChecking(false)
+				}, 700)
 				setPairCount(pairCount + 1)
 			} else {
-				setTimeout(() => setCards(cards.map(card => {
-					if (!card.finished) {
-						return {...card, rotated: true}
-					}
-					return card
-				})), 1000)
+				setTimeout(() => {
+					setCards(cards.map(card => {
+						if (!card.finished) {
+							return {...card, rotated: true}
+						}
+						return card
+					}))
+					setIsChecking(false)
+				}, 1000)
 			}
 			setPair([])
 		}
 	}, [pair])
 
+	// Открывает модальное окно завершения игры
 	useEffect(() => {
 		if (pairCount === images.length) {
+			setTotalTime(new Date().getTime() - startTime)
 			setTimeout(() => {
 				setOpenEndGameModal(true)
 			}, 1500)
 		}
 	}, [pairCount])
 
+	// Запускает игру
 	const startGame = () => {
 		setInGame(true)
+		setStartTime(new Date().getTime())
 		rotateAllCards()
 	}
 
+	// Перезапускает игру
 	const restartGame = () => {
 		setInGame(false)
 		setCards(createCardsArray(images))
@@ -60,22 +75,25 @@ const Pairs = ({images}) => {
 		setOpenEndGameModal(false)
 	}
 
+	// Переворачивает все карточки рубашкой вверх
 	const rotateAllCards = () => {
 		setCards(cards.map(card => ({...card, rotated: true})))
 	}
 
-	const rotateCardToFront = (targetCard) => {
+	// Переворачивает карточку с переданным id лицевой стороной вверх
+	const rotateCardToFront = (id) => {
 		setCards(cards.map(card => {
-			if (card.id === targetCard.id) {
+			if (card.id === id) {
 				return {...card, rotated: false}
 			}
 			return card
 		}))
 	}
 
+	// Обработчик клика по карточке
 	const onCardClick = (card) => {
-		if (inGame && !card.finished && card.rotated) {
-			rotateCardToFront(card)
+		if (inGame && !card.finished && card.rotated && !isChecking) {
+			rotateCardToFront(card.id)
 			setPair([...pair, card.pairIndex])
 		}
 	}
@@ -92,7 +110,15 @@ const Pairs = ({images}) => {
 
 	return (
 		<section className={'content'}>
-			<section className={s.cards}>{cardsBlocks}</section>
+			<section
+				className={s.cards}
+				style={{
+					gridTemplateColumns: `repeat(${getColumnsCount(images.length)}, 200px)`,
+					//gridTemplateColumns: `repeat(${getLinesCount(images.length) + 1}, 200px)`,
+				}}
+			>
+				{cardsBlocks}
+			</section>
 			<div className={s.button}>
 				<button
 					className={'btn'}
@@ -109,6 +135,10 @@ const Pairs = ({images}) => {
 			>
 				<div className={s.modalInner}>
 					<h3 className={s.modalHeader}>Отличная работа!</h3>
+					<div className={s.timeBlock}>
+						<span>Вы справились за</span>
+						<span className={s.time}>{getTimeString(totalTime)}</span>
+					</div>
 					<div className={s.modalButtons}>
 						<button className={'btn'} onClick={restartGame}>Пройти еще раз</button>
 					</div>
@@ -120,10 +150,10 @@ const Pairs = ({images}) => {
 
 // Состояния анимации для карточек
 const transitionStyles = {
-	entering: { transform: 'scale(0.5)' },
-	entered:  { opacity: 0 },
-	exiting:  { transform: 'scale(0.5)' },
-	exited:  { opacity: 1 },
+	entering: {transform: 'scale(0.5)'},
+	entered: {opacity: 0},
+	exiting: {opacity: 0},
+	exited: {opacity: 1},
 };
 
 const Card = ({image, rotated, rotateCard, finished}) => {
@@ -133,9 +163,7 @@ const Card = ({image, rotated, rotateCard, finished}) => {
 				<div
 					className={`${s.card} ${rotated ? s.rotated : ''} ${finished ? s.finished : ''}`}
 					onClick={rotateCard}
-					style={{
-						...transitionStyles[state]
-					}}
+					style={{...transitionStyles[state]}}
 				>
 					<img className={s.cardImage} src={image} alt="card"/>
 				</div>
@@ -164,11 +192,72 @@ const createCardsArray = (images) => {
 	return shuffleArray(cards)
 }
 
-// Перемешивает массив в случайном порядке
+// Возвращает массив, перемешанный в случайном порядке
 const shuffleArray = (array) => {
 	const tempArray = [...array]
 	tempArray.sort(() => Math.random() - 0.5)
 	return tempArray
+}
+
+// Рассчитывает кол-во линий в сетке карточек в зависимости от кол-ва изображений
+const getColumnsCount = (imagesCount) => {
+	if ((imagesCount < 8 && imagesCount !== 6) || imagesCount === 11) {
+		return imagesCount
+	}
+	if (imagesCount === 8 || imagesCount === 6) return 4
+	if (imagesCount === 9 || imagesCount === 12) return 6
+	if (imagesCount === 10) return 5
+}
+
+// Получает кол-во миллисекунд и возвращает строку в формате "XX часов XX минут XX секунд"
+const getTimeString = (milliseconds) => {
+	let seconds = Math.floor(milliseconds / 1000)
+	const hours = Math.floor(seconds / 3600)
+	seconds %= 3600
+	const minutes = Math.floor(seconds / 60)
+	seconds %= 60
+
+	const hoursString = hours ? `${hours} ${rightHours(hours)}` : ''
+	const minutesString = minutes ? `${minutes} ${rightMinutes(minutes)}` : ''
+	const secondsString = seconds ? `${seconds} ${rightSeconds(seconds)}` : ''
+
+	return `${hoursString} ${minutesString} ${secondsString}`.trim()
+}
+
+// Возвращает слово "час" в нужном падеже, в зависимости от кол-ва
+const rightHours = (count) => {
+	const twoLastNumbers = count % 100;
+	const lastNumber = count % 10;
+
+	if (lastNumber === 1 && twoLastNumbers !== 11)
+		return "час";
+	else if (lastNumber >= 2 && lastNumber <= 4 && twoLastNumbers !== 12 && twoLastNumbers !== 13 && twoLastNumbers !== 14)
+		return "часа";
+	else return "часов";
+}
+
+// Возвращает слово "минута" в нужном падеже, в зависимости от кол-ва
+const rightMinutes = (count) => {
+	const twoLastNumbers = count % 100;
+	const lastNumber = count % 10;
+
+	if (lastNumber === 1 && twoLastNumbers !== 11)
+		return "минуту";
+	else if (lastNumber >= 2 && lastNumber <= 4 && twoLastNumbers !== 12 && twoLastNumbers !== 13 && twoLastNumbers !== 14)
+		return "минуты";
+	else return "минут";
+}
+
+// Возвращает слово "секунда" в нужном падеже, в зависимости от кол-ва
+const rightSeconds = (count) => {
+	const twoLastNumbers = count % 100;
+	const lastNumber = count % 10;
+
+	if (lastNumber === 1 && twoLastNumbers !== 11)
+		return "секунду";
+	else if (lastNumber >= 2 && lastNumber <= 4 && twoLastNumbers !== 12 && twoLastNumbers !== 13 && twoLastNumbers !== 14)
+		return "секунды";
+	else return "секунд";
 }
 
 const mapStateToProps = (state) => ({
