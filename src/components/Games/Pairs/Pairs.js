@@ -112,13 +112,16 @@ const Pairs = ({images}) => {
 		<section className={'content'}>
 			<section
 				className={s.cards}
-				style={{
-					gridTemplateColumns: `repeat(${getColumnsCount(images.length)}, 200px)`,
-					//gridTemplateColumns: `repeat(${getLinesCount(images.length) + 1}, 200px)`,
-				}}
+				style={{gridTemplateColumns: `repeat(${getColumnsCount(images.length)}, 200px)`}}
 			>
 				{cardsBlocks}
 			</section>
+			<div className={s.progressBarContainer}>
+				<div className={s.progressBar} style={{
+					width: `${pairCount / images.length * 100}%`,
+					backgroundColor: getProgressBarColor(pairCount / images.length * 100)
+				}}/>
+			</div>
 			<div className={s.button}>
 				<button
 					className={'btn'}
@@ -199,7 +202,7 @@ const shuffleArray = (array) => {
 	return tempArray
 }
 
-// Рассчитывает кол-во линий в сетке карточек в зависимости от кол-ва изображений
+// Рассчитывает кол-во колонок в сетке карточек в зависимости от кол-ва изображений
 const getColumnsCount = (imagesCount) => {
 	if ((imagesCount < 8 && imagesCount !== 6) || imagesCount === 11) {
 		return imagesCount
@@ -258,6 +261,17 @@ const rightSeconds = (count) => {
 	else if (lastNumber >= 2 && lastNumber <= 4 && twoLastNumbers !== 12 && twoLastNumbers !== 13 && twoLastNumbers !== 14)
 		return "секунды";
 	else return "секунд";
+}
+
+// Возвращает цвет прогресс-бара в зависимости от процента угаданных пар
+const getProgressBarColor = (percent) => {
+	if (percent <= 33) {
+		return 'orange'
+	} else if (percent <= 66) {
+		return 'yellow'
+	} else {
+		return 'green'
+	}
 }
 
 const mapStateToProps = (state) => ({

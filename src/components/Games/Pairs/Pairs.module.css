@@ -97,3 +97,17 @@
     color: black;
     text-align: center;
 }
+
+.progressBarContainer {
+    margin-top: 20px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.progressBar {
+    height: 10px;
+    border-radius: 5px;
+    background-color: green;
+    transition: all ease 500ms;
+}
