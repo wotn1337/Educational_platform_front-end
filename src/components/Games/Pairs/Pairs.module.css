@@ -1,3 +1,34 @@
+.taskBlock {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.soundButton {
+    width: 50px;
+    height: 40px;
+    background-image: url("../../../assets/img/games/sound.svg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    transition: all ease 500ms;
+}
+
+.soundButton:hover {
+    transform: scale(1.1);
+}
+
+.task {
+    margin: 0;
+}
+
 .cards {
     display: grid;
     gap: 20px;

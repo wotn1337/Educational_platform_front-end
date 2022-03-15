@@ -5,9 +5,11 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {Transition} from "react-transition-group";
 import Modal from 'react-modal';
+import taskAudio from '../Audio/Pairs/task.ogg'
+import {soundTask} from "../Audio/soundTask";
 
 
-const Pairs = ({images}) => {
+const Pairs = ({images, task}) => {
 	const [inGame, setInGame] = useState(false)
 	const [cards, setCards] = useState(createCardsArray(images))
 	const [pair, setPair] = useState([])
@@ -110,6 +112,10 @@ const Pairs = ({images}) => {
 
 	return (
 		<section className={'content'}>
+			<div className={s.taskBlock}>
+				<button className={s.soundButton} onClick={() => soundTask(taskAudio)}/>
+				<p className={s.task}>{task}</p>
+			</div>
 			<section
 				className={s.cards}
 				style={{gridTemplateColumns: `repeat(${getColumnsCount(images.length)}, 200px)`}}
@@ -275,7 +281,8 @@ const getProgressBarColor = (percent) => {
 }
 
 const mapStateToProps = (state) => ({
-	images: state.pairs.images
+	images: state.pairs.images,
+	task: state.pairs.task
 });
 
 export default compose(
