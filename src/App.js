@@ -62,7 +62,7 @@ const App = () => {
 				render={() => <CreateFragmentContainer/>}
 			/>
 			<Route
-				exact path='/create-lesson'
+				exact path='/create-game'
 				render={() => <CreateLessonContainer/>}
 			/>
 			<Route
@@ -90,7 +90,7 @@ const App = () => {
 				render={() => <FragmentContainer/>}
 			/>
 			<Route
-				path='/lesson/:id?'
+				path='/game/:id?'
 				render={() => <LessonContainer/>}
 			/>
 			<Route
