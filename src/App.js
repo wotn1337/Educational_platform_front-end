@@ -15,6 +15,7 @@ import LessonContainer from "./components/Lesson/LessonContainer";
 import Catalog from "./components/CatalogPage/Catalog";
 import MyMaterials from "./components/MyMaterials/MyMaterials";
 import Preloader from "./common/Preloader/Preloader";
+import Pairs from "./components/Games/Pairs/Pairs";
 
 const BlockedPage = React.lazy(() => import("./components/BlockedPage/BlockedPage"));
 const ResetPasswordContainer = React.lazy(() => import("./components/AuthPage/Login/ResetPassword/ResetPasswordContainer"));
@@ -25,6 +26,10 @@ const App = () => {
 	return (
 		<>
 			<NavbarContainer/>
+			<Route
+				exact path='/pairs'
+				render={() => <Pairs/>}
+			/>
 			<Route
 				exact path='/'
 				render={() => <MainPage/>}

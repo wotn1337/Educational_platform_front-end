@@ -14,6 +14,7 @@ import teachersReducer from "./teachersReducer";
 import lessonsCatalogReducer from "./lessonsCatalogReducer";
 import lessonReducer from "./lessonReducer";
 import catalogPagesReducer from "./catalogPagesReducer";
+import pairsReducer from "./games/pairsReducer";
 import gamesReducer from "./gamesReducer";
 
 
@@ -32,6 +33,7 @@ const reducers = combineReducers({
 	lessonsCatalog: lessonsCatalogReducer,
 	lesson: lessonReducer,
 	catalogPages: catalogPagesReducer,
+	pairs: pairsReducer
 	games: gamesReducer
 });
 
