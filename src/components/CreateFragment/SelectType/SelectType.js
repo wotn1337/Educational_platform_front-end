@@ -21,6 +21,7 @@ const SelectType = (props) => {
 				<option value="article">Статья</option>
 				<option value="image">Изображение</option>
 				<option value="video">Видео</option>
+				<option value="game">Игра</option>
 			</select>
 		</div>
 	);

@@ -145,11 +145,10 @@ export const adminAPI = {
 
 export const fragmentsAPI = {
 	// Создать новый фрагмент
-	createFragment(type, title, content, tagsIds, fon, annotation) {
+	createFragment(type, title, content, tagsIds, fon, annotation, gameType) {
 		const data = new FormData();
 		data.append('type', type);
 		data.append('title', title);
-		data.append('content', content);
 		for (const id of tagsIds) {
 			data.append('tags[]', id);
 		}
@@ -157,6 +156,14 @@ export const fragmentsAPI = {
 			data.append('fon', fon);
 		if (type === 'image')
 			data.append('annotation', annotation);
+		if (type === 'game'){
+			data.append('game_type', gameType);
+			for (const image of content) {
+				data.append('content[]', image);
+			}
+		} else {
+			data.append('content', content);
+		}
 		return axios.post(`${fullUrl}fragments`, data, authConfig());
 	},
 
