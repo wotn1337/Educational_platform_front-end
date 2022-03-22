@@ -14,6 +14,8 @@ const rightWords = (fragment) => {
 			return 'вашего видеоролика';
 		case 'lesson':
 			return 'вашего урока';
+		case 'game':
+			return 'вашей игры';
 
 		default:
 			return '';
