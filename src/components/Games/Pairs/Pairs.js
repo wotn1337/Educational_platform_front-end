@@ -9,7 +9,7 @@ import taskAudio from '../Audio/Pairs/task.ogg'
 import {soundTask} from "../Audio/soundTask";
 
 
-const Pairs = ({images, task}) => {
+const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNextFragment}) => {
 	const [inGame, setInGame] = useState(false)
 	const [cards, setCards] = useState(createCardsArray(images))
 	const [pair, setPair] = useState([])
@@ -107,18 +107,19 @@ const Pairs = ({images, task}) => {
 			rotated={card.rotated}
 			rotateCard={() => onCardClick(card)}
 			finished={card.finished}
+			size={size}
 		/>
 	))
 
 	return (
-		<section className={'content'}>
+		<>
 			<div className={s.taskBlock}>
 				<button className={s.soundButton} onClick={() => soundTask(taskAudio)}/>
 				<p className={s.task}>{task}</p>
 			</div>
 			<section
 				className={s.cards}
-				style={{gridTemplateColumns: `repeat(${getColumnsCount(images.length)}, 200px)`}}
+				style={{gridTemplateColumns: `repeat(${getColumnsCount(images.length)}, ${size}px)`}}
 			>
 				{cardsBlocks}
 			</section>
@@ -149,11 +150,19 @@ const Pairs = ({images, task}) => {
 						<span className={s.time}>{getTimeString(totalTime)}</span>
 					</div>
 					<div className={s.modalButtons}>
-						<button className={'btn'} onClick={restartGame}>Пройти еще раз</button>
+						<button className={`btn ${s.endGameModalButton}`} onClick={restartGame}>Пройти еще раз</button>
+						{inLesson && !isLastFragmentInLesson &&
+							<button
+								className={`btn ${s.endGameModalButton}`}
+								onClick={toNextFragment}
+							>
+								Перейти к следующему заданию
+							</button>
+						}
 					</div>
 				</div>
 			</Modal>
-		</section>
+		</>
 	);
 };
 
@@ -165,14 +174,14 @@ const transitionStyles = {
 	exited: {opacity: 1},
 };
 
-const Card = ({image, rotated, rotateCard, finished}) => {
+const Card = ({image, rotated, rotateCard, finished, size}) => {
 	return (
 		<Transition in={finished} timeout={500}>
 			{state => (
 				<div
 					className={`${s.card} ${rotated ? s.rotated : ''} ${finished ? s.finished : ''}`}
 					onClick={rotateCard}
-					style={{...transitionStyles[state]}}
+					style={{width: size, height: size, ...transitionStyles[state]}}
 				>
 					<img className={s.cardImage} src={image} alt="card"/>
 				</div>
@@ -281,7 +290,6 @@ const getProgressBarColor = (percent) => {
 }
 
 const mapStateToProps = (state) => ({
-	images: state.pairs.images,
 	task: state.pairs.task
 });
 

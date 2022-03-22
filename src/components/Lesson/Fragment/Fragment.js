@@ -2,9 +2,10 @@ import s from './Fragment.module.css';
 import {withRouter} from "react-router-dom";
 import {fragmentTypes} from "../../../common/fragmentTypes";
 import Author from "../Author/Author";
+import Pairs from "../../Games/Pairs/Pairs";
 
 
-const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite}) => {
+const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite, setCurrentFragment, fragmentsCount}) => {
 	const toggleFragmentFavorite = () => {
 		toggleFavorite(fragment.id)
 			.then(() => toggleCurrentFragmentFavorite());
@@ -30,6 +31,15 @@ const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite}) => 
 							<div className={s.image}><img src={fragment.content} alt="fragment"/></div>
 							<p>{fragment.annotation}</p>
 						</>
+					}
+					{fragment.type === fragmentTypes.game &&
+						<Pairs
+							images={fragment.content}
+							size={170}
+							inLesson={true}
+							isLastFragmentInLesson={fragment.order === fragmentsCount}
+							toNextFragment={() => setCurrentFragment(fragment.order)}
+						/>
 					}
 				</div>
 			</div>

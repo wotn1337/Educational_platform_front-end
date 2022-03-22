@@ -33,7 +33,7 @@ const reducers = combineReducers({
 	lessonsCatalog: lessonsCatalogReducer,
 	lesson: lessonReducer,
 	catalogPages: catalogPagesReducer,
-	pairs: pairsReducer
+	pairs: pairsReducer,
 	games: gamesReducer
 });
 

@@ -3,14 +3,13 @@
     background-color: white;
     border-radius: 10px;
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     gap: 25px;
     margin-bottom: 25px;
 }
 
 .soundButton {
-    width: 50px;
+    width: 70px;
     height: 40px;
     background-image: url("../../../assets/img/games/sound.svg");
     background-position: center;
@@ -36,8 +35,8 @@
 }
 
 .card {
-    width: 200px;
-    height: 200px;
+    /*width: 200px;*/
+    /*height: 200px;*/
     border-radius: 10px;
     transition: all ease 500ms;
     transform-style: preserve-3d;
@@ -102,6 +101,7 @@
     display: flex;
     justify-content: center;
     padding: 40px;
+    border: 2px solid rgba(243, 106, 118, 0.7);
 }
 
 .modalInner {
@@ -127,6 +127,18 @@
 .modalHeader {
     color: black;
     text-align: center;
+    width: auto;
+}
+
+.modalButtons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 20px;
+}
+
+.endGameModalButton {
+    min-width: 320px;
 }
 
 .progressBarContainer {

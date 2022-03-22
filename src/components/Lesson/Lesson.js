@@ -29,6 +29,7 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 										            toggleCurrentFragmentFavorite={props.toggleCurrentFragmentFavorite}
 										            className={s.fragment}
 										            setCurrentFragment={setCurrentFragment}
+										            fragmentsCount={fragments.length}
 										/>
 										: <LessonPreview
 											image={props.fon}

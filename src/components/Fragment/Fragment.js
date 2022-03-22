@@ -15,6 +15,7 @@ import ImageFragment from "./ImageFragment/ImageFragment";
 import VideoFragment from "./VideoFragment/VideoFragment";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
+import Pairs from "../Games/Pairs/Pairs";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -76,6 +77,9 @@ const Fragment = ({deleteError, ...props}) => {
 						setImage={props.setContent}
 						setAnnotation={props.setAnnotation}
 					/>
+				}
+				{props.type === fragmentTypes.game &&
+					<Pairs images={props.content}/>
 				}
 				{!props.isEdit &&
 					<div className={s.author}>
