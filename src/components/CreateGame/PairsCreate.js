@@ -3,7 +3,7 @@ import s from './PairsCreate.module.css';
 import FragmentTitle from "../CreateFragment/FragmentTitle/FragmentTitle";
 
 const PairsCreate = ({setContent, setGameType, ...props}) => {
-
+	let oldContent;
 	const [images, setImages] = useState([]);
 	const [imagesSrc, setImagesSrc] = useState([]);
 	const previews = imagesSrc.map(url => (
@@ -11,16 +11,26 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 			<img src={url} className={s.image} alt="img"/>
 		</div>
 	));
+	if (props.isEdit) {
+		oldContent = props.oldLinks.map(url => (
+				<div className={s.preview}>
+					<div className={s.delete} onClick={() => props.deleteImage(url)}>Удалить</div>
+					<img src={url} className={s.image} alt="img"/>
+				</div>
+		));
+	}
 
 
 	return (
 		<>
-			<FragmentTitle/>
-			<section className={s.createImage}>
-				<button className="backButton" onClick={() => setGameType(undefined)}/>
-				<h3>Загрузите свои изображения</h3>
+			{!props.isEdit && <FragmentTitle/>}
+			<section className={s.createGame}>
+				{!props.isEdit && <button className="backButton" onClick={() => setGameType(undefined)}/>}
+				{!props.isEdit && <h3>Загрузите свои изображения</h3>}
+				{props.isEdit && <div className={s.previewBlock}>{oldContent}</div>}
 				{images.length ? <div className={s.previewBlock}>{previews}</div> :
-					<div className={s.placeholder}>Здесь появятся выбранные изображения для игры</div>
+					<div className={s.placeholder}>{props.isEdit ? 'Выберите новые изображения'
+					: 'Здесь появятся выбранные изображения для игры'}</div>
 				}
 				<div className={s.uploadBlock}>
 					<div className={s.plus}> </div>

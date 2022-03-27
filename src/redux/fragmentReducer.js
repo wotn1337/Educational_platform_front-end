@@ -5,6 +5,7 @@ import {errorNotification, successNotification} from "../notifications/notificat
 const SET_FRAGMENT = 'fragment/SET_FRAGMENT';
 const SET_TITLE = 'fragment/SET_TITLE';
 const SET_CONTENT = 'fragment/SET_CONTENT';
+const SET_OLD_LINKS = 'fragment/SET_OLD_LINKS';
 const SET_IS_FETCHING = 'fragment/SET_IS_FETCHING';
 const DELETE_TAG = 'fragment/DELETE_TAG';
 const ADD_TAG = 'fragment/ADD_TAG';
@@ -28,6 +29,7 @@ const initState = {
 	favoriteFetching: false,
 	tags: [],
 	tagsIds: [],
+	oldLinks: undefined,
 	fon: undefined,
 	deleteError: undefined
 };
@@ -38,7 +40,7 @@ const fragmentReducer = (state = initState, action) => {
 			return {
 				...state,
 				title: action.fragment.title,
-				content: action.fragment.content,
+				content: action.fragment.content.images,
 				annotation: action.fragment.annotation,
 				type: action.fragment.type,
 				creatorId: action.fragment.user_id,
@@ -47,7 +49,8 @@ const fragmentReducer = (state = initState, action) => {
 				favorite: action.fragment.favourite,
 				tags: action.fragment.tags ? action.fragment.tags.data : [],
 				tagsIds: action.fragment.tags ? action.fragment.tags.data.map(tag => tag.id) : [],
-				fon: action.fragment.fon
+				fon: action.fragment.fon,
+				oldLinks: !state.oldLinks ? action.fragment.content.images : state.oldLinks
 			};
 
 		case SET_TITLE:
@@ -64,6 +67,12 @@ const fragmentReducer = (state = initState, action) => {
 				...state,
 				tags: state.tags.filter(tag => tag.id !== action.tag.id),
 				tagsIds: state.tagsIds.filter(id => id !== action.tag.id)
+			};
+
+		case SET_OLD_LINKS:
+			return {
+				...state,
+				oldLinks: action.links
 			};
 
 		case ADD_TAG:
@@ -102,6 +111,7 @@ const setDeleteError = (error) => ({type: SET_DELETE_ERROR, error});
 export const setTitle = (title) => ({type: SET_TITLE, title});
 export const setContent = (content) => ({type: SET_CONTENT, content});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
+export const setOldLinks = (links) => ({type: SET_OLD_LINKS, links});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const setAnnotation = (annotation) => ({type: SET_ANNOTATION, annotation});
 export const setFon = (fon) => ({type: SET_FON, fon});
@@ -131,9 +141,9 @@ export const deleteFragment = (id, goBack, openErrorModal) => (dispatch) => {
 		});
 };
 
-export const editFragment = (id, title, content, tagsIds, annotation, fon) => (dispatch) => {
+export const editFragment = (id, type, title, content, tagsIds, annotation, fon, oldLinks) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	return fragmentsAPI.editFragment(id, title, content, tagsIds, annotation, fon)
+	return fragmentsAPI.editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(toggleIsFetching(false));

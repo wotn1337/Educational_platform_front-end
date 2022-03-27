@@ -1,4 +1,4 @@
-.createImage {
+.createGame {
     border-radius: 10px;
     gap: 15px;
     flex-direction: column;
@@ -59,18 +59,41 @@
     object-fit: cover;
 }
 
+.delete {
+    display: flex;
+    cursor: pointer;
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: 0;
+    left: 0;
+    color: white;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(229, 84, 84, 0.9);
+    transition-duration: 0.3s;
+    opacity: 0;
+}
+
+.delete:hover {
+    opacity: 1;
+}
+
 .preview {
+    position: relative;
     width: 150px;
     height: 150px;
     overflow: hidden;
     border-radius: 20px;
     border: 5px solid #FBE184;
+    box-sizing: content-box;
 }
 
 .previewBlock {
     display: grid;
     width: 100%;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(6, 1fr);
     justify-items: center;
     gap: 20px;
     padding: 25px 0;

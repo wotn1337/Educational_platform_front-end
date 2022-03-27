@@ -157,7 +157,7 @@ export const fragmentsAPI = {
 		if (type === 'image')
 			data.append('annotation', annotation);
 		if (type === 'game'){
-			data.append('game_type', gameType);
+			data.append('gameType', gameType);
 			for (const image of content) {
 				data.append('content[]', image);
 			}
@@ -190,14 +190,29 @@ export const fragmentsAPI = {
 	},
 
 	// Редактировать фрагмент (только для админа или владельца фрагмента)
-	editFragment(id, title, content, tagsIds, annotation, fon) {
+	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks) {
 		const data = new FormData();
 		data.append('title', title);
-		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null)
+		// if (oldLinks){
+		// 	for (const image of content) {
+		// 		data.append('content[]', image);
+		// 	}
+		// }
+		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null && type !== 'game')
 			data.append('content', content);
+		else {
+			for (const image of content) {
+				if (typeof image !== 'string') {
+					data.append('content[]', image);
+				}
+			}
+		}
 		for (const tag of tagsIds) {
 			data.append('tags[]', tag);
 		}
+        for (const links of oldLinks) {
+            data.append('oldLinks[]', links);
+        }
 		data.append('annotation', annotation);
 		if (typeof fon !== 'string' && typeof fon !== 'undefined' && fon !== null)
 			data.append('fon', fon);

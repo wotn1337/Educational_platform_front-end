@@ -5,7 +5,7 @@ import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuth
 import Fragment from "./Fragment";
 import {
 	addTag, changeFavorite,
-	deleteFragment,
+	deleteFragment, setOldLinks,
 	deleteTag,
 	editFragment,
 	getFragment, setAnnotation,
@@ -21,11 +21,15 @@ class FragmentContainer extends React.Component {
 	state = {
 		id: this.props.match.params.id,
 		isEdit: false,
-		deleteErrorModal: false
+		deleteErrorModal: false,
+		oldLinks: this.props.oldLinks
 	}
 
+	deleteImage = (link) => {
+		this.setState({oldLinks: this.state.oldLinks.filter(l => l !== link)});
+	}
 	componentDidMount() {
-		this.props.getFragment(this.state.id);
+		this.props.getFragment(this.state.id).then(() => this.setState({oldLinks: this.props.content}));
 	}
 
 	openDeleteErrorModal = () => {
@@ -47,13 +51,21 @@ class FragmentContainer extends React.Component {
 	editFragment = () => {
 		this.props.editFragment(
 			this.state.id,
+			this.props.type,
 			this.props.title,
 			this.props.content,
 			this.props.tagsIds,
 			this.props.annotation,
-			this.props.fon
+			this.props.fon,
+			this.state.oldLinks
 		)
-			.then(() => this.toggleIsEdit());
+			.then(() => {
+				this.toggleIsEdit();
+				this.props.getFragment(this.state.id).then(() => {
+					this.props.setOldLinks(this.props.content);
+					this.setState({oldLinks: this.props.content})
+				});
+			});
 	}
 
 	render() {
@@ -64,11 +76,13 @@ class FragmentContainer extends React.Component {
 		return <Fragment
 			{...this.props}
 			{...this.state}
+			//oldLinks={this.state.oldLinks}
 			deleteFragment={this.deleteFragment}
 			toggleIsEdit={this.toggleIsEdit}
 			editFragment={this.editFragment}
 			openDeleteErrorModal={this.openDeleteErrorModal}
 			closeDeleteErrorModal={this.closeDeleteErrorModal}
+			deleteImage={this.deleteImage}
 		/>;
 	}
 }
@@ -86,6 +100,7 @@ const mapStateToProps = (state) => ({
 	isFetching: state.fragment.isFetching,
 	tags: state.fragment.tags,
 	tagsIds: state.fragment.tagsIds,
+	oldLinks: state.fragment.oldLinks,
 	favorite: state.fragment.favorite,
 	favoriteFetching: state.fragment.favoriteFetching,
 	fon: state.fragment.fon,
@@ -104,7 +119,8 @@ export default compose(
 		returnTag,
 		changeFavorite,
 		setAnnotation,
-		setFon
+		setFon,
+		setOldLinks
 	}),
 	withoutAuthRedirectToAuthPage,
 	withRouter
