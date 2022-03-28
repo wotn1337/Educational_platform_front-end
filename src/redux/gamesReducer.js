@@ -1,36 +1,42 @@
+import {fragmentsAPI} from "../api/api";
+
+const SET_GAMES = 'games/SET_GAMES';
 const SET_CURRENT_GAME = 'games/SET_CURRENT_GAME';
+const SET_IS_FETCHING = 'games/SET_IS_FETCHING';
 
 const initState = {
-    games: [
-        {
-            title:  'Парочки',
-            annotation: 'В этой игре вам предстоит найти каждой картинке свою пару',
-            type: 'pairs'
-        },
-        {
-            title:  'Филворд',
-            annotation: 'В этой игре необходимо найти слова',
-            type: 'filword'
-        },
-        {
-            title:  'Найди лишнее',
-            annotation: 'В этой игре вам предстоит найти лишнее на каждой картинке',
-            type: 'find_extra'
-        }
-    ],
+    games: undefined,
     isFetching: false,
     currentGame: undefined
 };
 
 const gamesReducer = (state = initState, action) => {
     switch (action.type) {
+        case SET_GAMES:
+            return {...state, games: action.games}
         case SET_CURRENT_GAME:
-            return {...state, currentGame: action.name}
+            return {...state, currentGame: action.game}
+        case SET_IS_FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state;
     }
 }
 
-export const setCurrentGame = (name) => ({type: SET_CURRENT_GAME, name});
+const setGames = (games) => ({type: SET_GAMES, games});
+export const setCurrentGame = (game) => ({type: SET_CURRENT_GAME, game});
+const toggleIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
+
+export const getGames = () => (dispatch) => {
+    dispatch(toggleIsFetching(true));
+    return fragmentsAPI.getGames()
+        .then(res => {
+            dispatch(setGames(res.data.gameTypes));
+            dispatch(toggleIsFetching(false));
+        })
+        .catch(() => {
+            dispatch(toggleIsFetching(false));
+        })
+};
 
 export default gamesReducer;

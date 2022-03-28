@@ -193,11 +193,6 @@ export const fragmentsAPI = {
 	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks) {
 		const data = new FormData();
 		data.append('title', title);
-		// if (oldLinks){
-		// 	for (const image of content) {
-		// 		data.append('content[]', image);
-		// 	}
-		// }
 		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null && type !== 'game')
 			data.append('content', content);
 		else {
@@ -222,6 +217,11 @@ export const fragmentsAPI = {
 	// Получить список всех возможных тегов
 	getTags() {
 		return instance.get('tags', authConfig());
+	},
+
+	// Получить список всех шаблонов игр
+	getGames() {
+		return instance.get('teacher/fragments/games/types', authConfig());
 	},
 
 	// Получить список избранного для конкретного пользователя
