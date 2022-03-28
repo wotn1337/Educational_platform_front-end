@@ -1,10 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
-import {setCurrentGame} from "../../../redux/gamesReducer";
+import {compose} from "redux";
+import {getGames, setCurrentGame} from "../../../redux/gamesReducer";
 import {setContent, setGameType} from "../../../redux/createFragmentReducer";
 import SelectGame from "./SelectGame";
 
 class SelectGameContainer extends React.Component {
+    componentDidMount() {
+        this.props.getGames();
+    }
+
     render() {
         return (
             <SelectGame {...this.props} />
@@ -17,4 +22,9 @@ const mapStateToProps = (state) => ({
     gameType: state.createFragment.gameType
 })
 
-export default connect(mapStateToProps, {setContent, setCurrentGame, setGameType})(SelectGameContainer)
+export default compose(connect(mapStateToProps, {
+    setContent,
+    setCurrentGame,
+    setGameType,
+    getGames})
+)(SelectGameContainer)

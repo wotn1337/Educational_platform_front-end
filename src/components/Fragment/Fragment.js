@@ -16,13 +16,16 @@ import VideoFragment from "./VideoFragment/VideoFragment";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
 import Pairs from "../Games/Pairs/Pairs";
+import PairsCreateContainer from "../CreateGame/PairsCreateContainer";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
 	const editToggle = () => {
 		props.toggleIsEdit();
-		convertToDraft();
+		if (props.type === fragmentTypes.article) {
+			convertToDraft();
+		}
 	}
 
 	const setContent = (editorState) => {
@@ -78,8 +81,13 @@ const Fragment = ({deleteError, ...props}) => {
 						setAnnotation={props.setAnnotation}
 					/>
 				}
-				{props.type === fragmentTypes.game &&
+				{props.type === fragmentTypes.game && !props.isEdit ?
 					<Pairs images={props.content}/>
+					: <PairsCreateContainer setContent={props.setContent}
+											isEdit={props.isEdit}
+											oldLinks={props.oldLinks}
+											content={props.content}
+											deleteImage={props.deleteImage}/>
 				}
 				{!props.isEdit &&
 					<div className={s.author}>
