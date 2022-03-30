@@ -7,7 +7,7 @@ const SelectGame = (props) => {
         <GameCard game={game} setGameType={props.setGameType}/>
     ));
     return (
-        props.gameType === 'pairs' ? <PairsCreate setContent={props.setContent} setGameType={props.setGameType}/>
+        props.gameType === 'Парочки' ? <PairsCreate setContent={props.setContent} setGameType={props.setGameType}/>
             : <div style={{display: 'grid', gap: 50, marginTop: 30}}>{games}</div>
     )
 }
