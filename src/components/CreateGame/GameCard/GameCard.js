@@ -6,7 +6,7 @@ import lessonPlaceholder from '../../../assets/img/fragments/gamePlaceholder.png
 const GameCard = ({game, setCurrentGame, setGameType, ...props}) => {
     return (
         <div className={s.lessonCard} onClick={() => {
-            setGameType(game.title)
+            setGameType(game.type)
         }}>
             <div className={s.mainInfo}>
                 <img src={lessonPlaceholder} alt="game" className={s.preview}/>
