@@ -10,6 +10,7 @@ const ADD_TAG = 'createFragment/ADD_TAG';
 const DELETE_TAG = 'createFragment/DELETE_TAG';
 const SET_FON = 'createFragment/SET_FON';
 const SET_ANNOTATION = 'createFragment/SET_ANNOTATION';
+const SET_TASK = 'createFragment/SET_TASK';
 const SET_GAME_TYPE = 'createFragment/SET_GAME_TYPE';
 const CLEAR_ALL_FIELDS = 'createFragment/CLEAR_ALL_FIELDS';
 
@@ -24,6 +25,7 @@ const initState = {
 	fon: undefined,
 	annotation: '',
 	gameType: undefined,
+	task: undefined,
 	errors: undefined
 };
 
@@ -61,6 +63,9 @@ const createFragmentReducer = (state = initState, action) => {
 		case SET_ANNOTATION:
 			return {...state, annotation: action.annotation};
 
+		case SET_TASK:
+			return {...state, task: action.task};
+
 		case SET_GAME_TYPE:
 			return {...state, gameType: action.gameType};
 
@@ -75,7 +80,9 @@ const createFragmentReducer = (state = initState, action) => {
 				tagsIds: [],
 				tags: [],
 				fon: undefined,
-				annotation: ''
+				annotation: '',
+				gameType: undefined,
+				task: undefined,
 			};
 
 		case SET_ERRORS:
@@ -93,15 +100,16 @@ export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const setFon = (fon) => ({type: SET_FON, fon});
 export const setAnnotation = (annotation) => ({type: SET_ANNOTATION, annotation});
+export const setTask = (task) => ({type: SET_TASK, task});
 export const setGameType = (gameType) => ({type: SET_GAME_TYPE, gameType});
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
 
 const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 const setErrors = (errors) => ({type: SET_ERRORS, errors});
 
-export const createFragment = (fragmentType, title, content, tagsIds, fon, annotation, gameType) => (dispatch) => {
+export const createFragment = (fragmentType, title, content, tagsIds, fon, annotation, gameType, task) => (dispatch) => {
 	dispatch(setIsFetching(true));
-	return fragmentsAPI.createFragment(fragmentType, title, content, tagsIds, fon, annotation, gameType)
+	return fragmentsAPI.createFragment(fragmentType, title, content, tagsIds, fon, annotation, gameType, task)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(clearAllFields());
