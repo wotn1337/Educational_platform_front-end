@@ -1,0 +1,50 @@
+.uploadPreview {
+    display: flex;
+    align-items: center;
+    width: 194px;
+    height: 194px;
+    min-height: 70px;
+    margin: 0;
+    padding: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.53);
+    background: #FFFFFF;
+    border: 3px dashed rgba(243, 106, 118, 0.7);
+    border-radius: 9px;
+    transition: background-color;
+    transition-duration: 200ms;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imagePreview {
+    position: relative;
+    width: 194px;
+    height: 194px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 3px solid rgba(243, 106, 118, 0.7);
+}
+
+.cross {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    transition-duration: 0.2s;
+}
+
+.cross:hover {
+    background-image: url("./../../../../../assets/img/fragments/cross.svg");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-color: rgba(93, 93, 93, 0.46);
+}
