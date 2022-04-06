@@ -1,0 +1,50 @@
+.createGame {
+    border-radius: 10px;
+    gap: 15px;
+    flex-direction: column;
+    align-items: start;
+}
+
+.pairsBlock {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 60px;
+}
+
+.addPairButton {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    width: fit-content;
+    height: 70px;
+    padding: 9px 19px;
+    margin-top: 30px;
+    background-color: #EF5B5B;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.addPairButton:hover {
+    background-color: #FBCB84;
+    color: white;
+}
+
+.plus {
+    background-image: url("./../../../assets/img/fragments/plus.svg");
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: invert(1);
+}
+
+.text {
+    width: 180px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+}
