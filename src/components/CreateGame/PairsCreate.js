@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import s from './PairsCreate.module.css';
-import FragmentTitle from "../CreateFragment/FragmentTitle/FragmentTitle";
 
 const PairsCreate = ({setContent, setGameType, ...props}) => {
 	let oldContent;
@@ -23,7 +22,6 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 
 	return (
 		<>
-			{!props.isEdit && <FragmentTitle/>}
 			<section className={s.createGame}>
 				{!props.isEdit && <button className="backButton" onClick={() => setGameType(undefined)}/>}
 				{!props.isEdit && <h3>Загрузите свои изображения</h3>}
@@ -32,8 +30,6 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 					<div className={s.placeholder}>{props.isEdit ? 'Выберите новые изображения'
 					: 'Здесь появятся выбранные изображения для игры'}</div>
 				}
-				<div className={s.uploadBlock}>
-					<div className={s.plus}> </div>
 					<input
 						type="file" multiple
 						accept={'image/*'}
@@ -52,8 +48,10 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 						}}
 					/>
 					<label htmlFor="image"
-						   className={s.uploadBtn}>{images.length ? 'Выбрать другие изображения' : 'Загрузить изображения'}</label>
-				</div>
+						   className={s.uploadBtn}>
+						<div className={s.plus}> </div>
+						{images.length ? 'Выбрать другие изображения' : 'Загрузить изображения'}
+					</label>
 			</section>
 		</>
 	);

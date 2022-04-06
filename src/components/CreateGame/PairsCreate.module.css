@@ -5,20 +5,6 @@
     align-items: start;
 }
 
-.uploadBlock {
-    display: flex;
-    justify-items: center;
-    width: fit-content;
-    height: 70px;
-    padding: 9px 19px;
-    margin-top: 30px;
-    align-items: center;
-    background-color: #EF5B5B;
-    border-radius: 10px;
-    cursor: pointer;
-    transition-duration: 200ms;
-}
-
 .plus {
     background-image: url("./../../assets/img/fragments/plus.svg");
     width: 50px;
@@ -29,27 +15,26 @@
     filter: invert(1);
 }
 
-.uploadBlock:hover {
-    background-color: #FBCB84;
-    color: white;
-}
-
 .uploadBtn {
+    display: flex;
+    width: 295px;
+    min-height: 70px;
+    margin-top: 30px;
+    padding: 0 25px;
+    align-items: center;
     text-align: center;
     font-weight: 700;
     font-size: 20px;
     color: white;
-    width: 180px;
     border-radius: 10px;
     border: none;
-    transition: background-color;
+    background-color: #EF5B5B;
+    cursor: pointer;
     transition-duration: 200ms;
-    min-height: 70px;
-    margin: 0;
-    padding: 4px;
 }
 
 .uploadBtn:hover {
+    background-color: #FBCB84;
     cursor: pointer;
 }
 
