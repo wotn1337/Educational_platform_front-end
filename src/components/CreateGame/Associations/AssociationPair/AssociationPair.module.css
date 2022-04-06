@@ -1,0 +1,24 @@
+.pairBlock {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    gap: 15px;
+    align-items: start;
+}
+
+.deletePair {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background-image: url("./../../../../assets/img/profile/delete.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: white;
+    transition-duration: 0.3s;
+}
+
+.deletePair:hover {
+    background-color: rgb(246, 211, 122);
+}
