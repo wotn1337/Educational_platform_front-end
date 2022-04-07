@@ -40,7 +40,7 @@ const fragmentReducer = (state = initState, action) => {
 			return {
 				...state,
 				title: action.fragment.title,
-				content: action.fragment.content.images,
+				content: action.fragment.content,
 				annotation: action.fragment.annotation,
 				type: action.fragment.type,
 				creatorId: action.fragment.user_id,

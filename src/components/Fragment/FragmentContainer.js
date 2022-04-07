@@ -29,7 +29,7 @@ class FragmentContainer extends React.Component {
 		this.setState({oldLinks: this.state.oldLinks.filter(l => l !== link)});
 	}
 	componentDidMount() {
-		this.props.getFragment(this.state.id).then(() => this.setState({oldLinks: this.props.content}));
+		this.props.getFragment(this.state.id).then(() => this.setState({oldLinks: this.props.content.images}));
 	}
 
 	openDeleteErrorModal = () => {
@@ -62,8 +62,8 @@ class FragmentContainer extends React.Component {
 			.then(() => {
 				this.toggleIsEdit();
 				this.props.getFragment(this.state.id).then(() => {
-					this.props.setOldLinks(this.props.content);
-					this.setState({oldLinks: this.props.content})
+					this.props.setOldLinks(this.props.content.images);
+					this.setState({oldLinks: this.props.content.images})
 				});
 			});
 	}
@@ -76,7 +76,6 @@ class FragmentContainer extends React.Component {
 		return <Fragment
 			{...this.props}
 			{...this.state}
-			//oldLinks={this.state.oldLinks}
 			deleteFragment={this.deleteFragment}
 			toggleIsEdit={this.toggleIsEdit}
 			editFragment={this.editFragment}

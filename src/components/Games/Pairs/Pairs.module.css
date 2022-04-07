@@ -9,8 +9,8 @@
 }
 
 .soundButton {
-    width: 70px;
-    height: 40px;
+    width: 80px;
+    height: 50px;
     background-image: url("../../../assets/img/games/sound.svg");
     background-position: center;
     background-size: cover;
@@ -82,63 +82,6 @@
     margin-top: 20px;
     display: flex;
     justify-content: center;
-}
-
-.endGameOverlay {
-    inset: 0;
-    position: fixed;
-    background-color: transparent;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.endGameModal {
-    background-color: white;
-    border-radius: 10px;
-    min-width: 750px;
-    min-height: 310px;
-    display: flex;
-    justify-content: center;
-    padding: 40px;
-    border: 2px solid rgba(243, 106, 118, 0.7);
-}
-
-.modalInner {
-    width: fit-content;
-    display: grid;
-    grid-auto-rows: 70px 1fr 70px;
-}
-
-.timeBlock {
-    font-size: 20px;
-    display: flex;
-    flex-direction: column;
-}
-
-.timeBlock span {
-    text-align: center;
-}
-
-.timeBlock .time {
-    font-weight: bold;
-}
-
-.modalHeader {
-    color: black;
-    text-align: center;
-    width: auto;
-}
-
-.modalButtons {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 20px;
-}
-
-.endGameModalButton {
-    min-width: 320px;
 }
 
 .progressBarContainer {

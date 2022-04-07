@@ -81,13 +81,17 @@ const Fragment = ({deleteError, ...props}) => {
 						setAnnotation={props.setAnnotation}
 					/>
 				}
-				{props.type === fragmentTypes.game && !props.isEdit ?
-					<Pairs images={props.content}/>
-					: <PairsCreateContainer setContent={props.setContent}
-											isEdit={props.isEdit}
-											oldLinks={props.oldLinks}
-											content={props.content}
-											deleteImage={props.deleteImage}/>
+				{props.type === fragmentTypes.game &&
+					<>
+						{!props.isEdit
+							? <Pairs images={props.content.images}/>
+							: <PairsCreateContainer setContent={props.setContent}
+							                        isEdit={props.isEdit}
+							                        oldLinks={props.oldLinks}
+							                        content={props.content}
+							                        deleteImage={props.deleteImage}/>
+						}
+					</>
 				}
 				{!props.isEdit &&
 					<div className={s.author}>

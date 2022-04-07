@@ -12,11 +12,11 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 		</div>
 	));
 	if (props.isEdit) {
-		oldContent = props.oldLinks.map(url => (
-				<div className={s.preview}>
-					<div className={s.delete} onClick={() => props.deleteImage(url)}>Удалить</div>
-					<img src={url} className={s.image} alt="img"/>
-				</div>
+		oldContent = props.oldLinks?.map(url => (
+			<div className={s.preview}>
+				<div className={s.delete} onClick={() => props.deleteImage(url)}>Удалить</div>
+				<img src={url} className={s.image} alt="img"/>
+			</div>
 		));
 	}
 
@@ -30,10 +30,10 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 				{props.isEdit && <div className={s.previewBlock}>{oldContent}</div>}
 				{images.length ? <div className={s.previewBlock}>{previews}</div> :
 					<div className={s.placeholder}>{props.isEdit ? 'Выберите новые изображения'
-					: 'Здесь появятся выбранные изображения для игры'}</div>
+						: 'Здесь появятся выбранные изображения для игры'}</div>
 				}
 				<div className={s.uploadBlock}>
-					<div className={s.plus}> </div>
+					<div className={s.plus}/>
 					<input
 						type="file" multiple
 						accept={'image/*'}
@@ -42,17 +42,17 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 						onChange={e => {
 							let urls = [];
 							let tempImages = [];
-							for (let i=0; i<e.target.files.length; i++) {
+							for (let i = 0; i < e.target.files.length; i++) {
 								tempImages.push(e.target.files[i]);
 								urls.push(URL.createObjectURL(e.target.files[i]));
 							}
 							setImages([...tempImages]);
 							setImagesSrc([...urls]);
-							setContent([...tempImages]);
+							setContent({...props.content, images: [...tempImages]});
 						}}
 					/>
 					<label htmlFor="image"
-						   className={s.uploadBtn}>{images.length ? 'Выбрать другие изображения' : 'Загрузить изображения'}</label>
+					       className={s.uploadBtn}>{images.length ? 'Выбрать другие изображения' : 'Загрузить изображения'}</label>
 				</div>
 			</section>
 		</>

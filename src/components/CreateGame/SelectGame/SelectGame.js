@@ -1,7 +1,7 @@
 import React from 'react';
 import GameCard from "../GameCard/GameCard";
 import PairsCreate from "../PairsCreate";
-import AssociationsCreateContainer from "../Associations/AssociationsCreateContainer";
+//import AssociationsCreateContainer from "../Associations/AssociationsCreateContainer";
 
 const SelectGame = (props) => {
     const games = props.games?.map(game => (
