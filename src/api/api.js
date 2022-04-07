@@ -211,7 +211,7 @@ export const fragmentsAPI = {
 		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null && type !== 'game')
 			data.append('content', content);
 		else {
-			for (const image of content) {
+			for (const image of content?.images) {
 				if (typeof image !== 'string') {
 					data.append('content[]', image);
 				}

@@ -4,9 +4,10 @@ import {v1 as uuid} from "uuid";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {Transition} from "react-transition-group";
-import Modal from 'react-modal';
 import taskAudio from '../Audio/Pairs/task.ogg'
 import {soundTask} from "../Audio/soundTask";
+import EndGameModal from "../EndGameModal/EndGameModal";
+import Card from "../GameCard/Card";
 
 
 const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNextFragment}) => {
@@ -101,7 +102,7 @@ const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNe
 	}
 
 	const cardsBlocks = cards.map(card => (
-		<Card
+		<TransitionCard
 			image={card.image}
 			key={card.id}
 			rotated={card.rotated}
@@ -137,54 +138,38 @@ const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNe
 					{inGame ? 'Начать заново' : 'Начать игру'}
 				</button>
 			</div>
-			<Modal
-				isOpen={openEndGameModal}
-				className={s.endGameModal}
-				overlayClassName={s.endGameOverlay}
-				onRequestClose={restartGame}
-			>
-				<div className={s.modalInner}>
-					<h3 className={s.modalHeader}>Отличная работа!</h3>
-					<div className={s.timeBlock}>
-						<span>Вы справились за</span>
-						<span className={s.time}>{getTimeString(totalTime)}</span>
-					</div>
-					<div className={s.modalButtons}>
-						<button className={`btn ${s.endGameModalButton}`} onClick={restartGame}>Пройти еще раз</button>
-						{inLesson && !isLastFragmentInLesson &&
-							<button
-								className={`btn ${s.endGameModalButton}`}
-								onClick={toNextFragment}
-							>
-								Перейти к следующему заданию
-							</button>
-						}
-					</div>
-				</div>
-			</Modal>
+			<EndGameModal
+				open={openEndGameModal}
+				restart={restartGame}
+				time={totalTime}
+				inLesson={inLesson}
+				isLastFragment={isLastFragmentInLesson}
+				toNextFragment={toNextFragment}
+			/>
 		</>
 	);
 };
 
 // Состояния анимации для карточек
 const transitionStyles = {
-	entering: {transform: 'scale(0.5)'},
-	entered: {opacity: 0},
+	entering: {opacity: 1},
+	entered: {opacity: 0, transform: 'scale(0.1)'},
 	exiting: {opacity: 0},
 	exited: {opacity: 1},
 };
 
-const Card = ({image, rotated, rotateCard, finished, size}) => {
+const TransitionCard = ({image, rotated, rotateCard, finished, size}) => {
 	return (
 		<Transition in={finished} timeout={500}>
 			{state => (
-				<div
-					className={`${s.card} ${rotated ? s.rotated : ''} ${finished ? s.finished : ''}`}
-					onClick={rotateCard}
-					style={{width: size, height: size, ...transitionStyles[state]}}
-				>
-					<img className={s.cardImage} src={image} alt="card"/>
-				</div>
+				<Card
+					image={image}
+					rotated={rotated}
+					rotateCard={rotateCard}
+					finished={finished}
+					size={size}
+					style={transitionStyles[state]}
+				/>
 			)}
 		</Transition>
 	)
@@ -225,57 +210,6 @@ const getColumnsCount = (imagesCount) => {
 	if (imagesCount === 8 || imagesCount === 6) return 4
 	if (imagesCount === 9 || imagesCount === 12) return 6
 	if (imagesCount === 10) return 5
-}
-
-// Получает кол-во миллисекунд и возвращает строку в формате "XX часов XX минут XX секунд"
-const getTimeString = (milliseconds) => {
-	let seconds = Math.floor(milliseconds / 1000)
-	const hours = Math.floor(seconds / 3600)
-	seconds %= 3600
-	const minutes = Math.floor(seconds / 60)
-	seconds %= 60
-
-	const hoursString = hours ? `${hours} ${rightHours(hours)}` : ''
-	const minutesString = minutes ? `${minutes} ${rightMinutes(minutes)}` : ''
-	const secondsString = seconds ? `${seconds} ${rightSeconds(seconds)}` : ''
-
-	return `${hoursString} ${minutesString} ${secondsString}`.trim()
-}
-
-// Возвращает слово "час" в нужном падеже, в зависимости от кол-ва
-const rightHours = (count) => {
-	const twoLastNumbers = count % 100;
-	const lastNumber = count % 10;
-
-	if (lastNumber === 1 && twoLastNumbers !== 11)
-		return "час";
-	else if (lastNumber >= 2 && lastNumber <= 4 && twoLastNumbers !== 12 && twoLastNumbers !== 13 && twoLastNumbers !== 14)
-		return "часа";
-	else return "часов";
-}
-
-// Возвращает слово "минута" в нужном падеже, в зависимости от кол-ва
-const rightMinutes = (count) => {
-	const twoLastNumbers = count % 100;
-	const lastNumber = count % 10;
-
-	if (lastNumber === 1 && twoLastNumbers !== 11)
-		return "минуту";
-	else if (lastNumber >= 2 && lastNumber <= 4 && twoLastNumbers !== 12 && twoLastNumbers !== 13 && twoLastNumbers !== 14)
-		return "минуты";
-	else return "минут";
-}
-
-// Возвращает слово "секунда" в нужном падеже, в зависимости от кол-ва
-const rightSeconds = (count) => {
-	const twoLastNumbers = count % 100;
-	const lastNumber = count % 10;
-
-	if (lastNumber === 1 && twoLastNumbers !== 11)
-		return "секунду";
-	else if (lastNumber >= 2 && lastNumber <= 4 && twoLastNumbers !== 12 && twoLastNumbers !== 13 && twoLastNumbers !== 14)
-		return "секунды";
-	else return "секунд";
 }
 
 // Возвращает цвет прогресс-бара в зависимости от процента угаданных пар
