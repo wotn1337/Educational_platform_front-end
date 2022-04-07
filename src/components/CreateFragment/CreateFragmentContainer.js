@@ -19,11 +19,12 @@ class CreateFragmentContainer extends React.Component {
 		this.props.createFragment(
 			this.props.fragmentType,
 			this.props.title,
-			this.props.content,
+			this.props.content || this.props.associations.map(a => [a.content[0], a.content[1]]),
 			this.props.tagsIds,
 			this.props.fon,
 			this.props.annotation,
-			this.props.gameType
+			this.props.gameType,
+			this.props.task
 		);
 	}
 	render() {
@@ -45,7 +46,9 @@ const mapStateToProps = (state) => ({
 	fon: state.createFragment.fon,
 	annotation: state.createFragment.annotation,
 	errors: state.createFragment.errors,
-	gameType: state.createFragment.gameType
+	gameType: state.createFragment.gameType,
+	task: state.createFragment.task,
+	associations: state.games.associations
 });
 
 export default compose(

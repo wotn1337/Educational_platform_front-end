@@ -145,25 +145,40 @@ export const adminAPI = {
 
 export const fragmentsAPI = {
 	// Создать новый фрагмент
-	createFragment(type, title, content, tagsIds, fon, annotation, gameType) {
+	createFragment(type, title, content, tagsIds, fon, annotation, gameType, task) {
 		const data = new FormData();
 		data.append('type', type);
 		data.append('title', title);
+
 		for (const id of tagsIds) {
 			data.append('tags[]', id);
 		}
+
 		if (fon)
 			data.append('fon', fon);
+
 		if (type === 'image')
 			data.append('annotation', annotation);
+
 		if (type === 'game'){
 			data.append('gameType', gameType);
-			for (const image of content) {
-				data.append('content[]', image);
+			data.append('task', task);
+			if (gameType === 'pairs') {
+				for (const image of content) {
+					data.append('content[]', image);
+				}
+			} else {
+				for (let i = 0; i < content.length; i++)
+				{
+					for(const c of content[i]) {
+						data.append(`content[${i}][]`, c);
+					}
+				}
 			}
 		} else {
 			data.append('content', content);
 		}
+
 		return axios.post(`${fullUrl}fragments`, data, authConfig());
 	},
 
