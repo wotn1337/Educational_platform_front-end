@@ -164,7 +164,7 @@ export const fragmentsAPI = {
 			data.append('gameType', gameType);
 			data.append('task', task);
 			if (gameType === 'pairs') {
-				for (const image of content) {
+				for (const image of content.images) {
 					data.append('content[]', image);
 				}
 			} else {
@@ -210,7 +210,7 @@ export const fragmentsAPI = {
 		data.append('title', title);
 		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null && type !== 'game')
 			data.append('content', content);
-		else {
+		else if (type === 'game') {
 			for (const image of content?.images) {
 				if (typeof image !== 'string') {
 					data.append('content[]', image);
@@ -220,9 +220,11 @@ export const fragmentsAPI = {
 		for (const tag of tagsIds) {
 			data.append('tags[]', tag);
 		}
-        for (const links of oldLinks) {
-            data.append('oldLinks[]', links);
-        }
+		if (oldLinks) {
+			for (const links of oldLinks) {
+				data.append('oldLinks[]', links);
+			}
+		}
 		data.append('annotation', annotation);
 		if (typeof fon !== 'string' && typeof fon !== 'undefined' && fon !== null)
 			data.append('fon', fon);
