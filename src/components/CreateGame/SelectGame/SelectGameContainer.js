@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {getGames, setCurrentGame} from "../../../redux/gamesReducer";
-import {setContent, setGameType, setTask} from "../../../redux/createFragmentReducer";
+import {setContent, setFon, setGameType, setTask} from "../../../redux/createFragmentReducer";
 import SelectGame from "./SelectGame";
 
 class SelectGameContainer extends React.Component {
@@ -18,10 +18,11 @@ class SelectGameContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    pairs: state.games.associations,
     games: state.games.games,
     task: state.createFragment.task,
     gameType: state.createFragment.gameType,
-    isEdit: state.createFragment.isEdit
+    fon: state.createFragment.fon
 })
 
 export default compose(connect(mapStateToProps, {
@@ -29,5 +30,7 @@ export default compose(connect(mapStateToProps, {
     setCurrentGame,
     setGameType,
     setTask,
-    getGames})
+    getGames,
+    setFon
+})
 )(SelectGameContainer)
