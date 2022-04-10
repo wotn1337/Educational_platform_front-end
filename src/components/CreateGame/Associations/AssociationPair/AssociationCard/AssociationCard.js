@@ -4,7 +4,7 @@ import s from './AssociationCard.module.css';
 const AssociationCard = (props) => {
     let pairId = props.pairId;
     let imageId = props.imageId;
-    const [imageSrc, setImageSrc] = useState(undefined);
+    const [imageSrc, setImageSrc] = useState(props.image !== '' ? props.image: undefined);
 
     return (
         <div>
@@ -24,11 +24,13 @@ const AssociationCard = (props) => {
                     <label htmlFor={`${pairId}_${imageId}`}
                            className={s.uploadPreview}>Добавьте изображение для создания пары</label> :
                     <div className={s.imagePreview} onClick={event => {
-                        event.preventDefault();
-                        props.setAssociation('', pairId, imageId);
-                        setImageSrc(undefined);
+                        if (props.isNew) {
+                            event.preventDefault();
+                            props.setAssociation('', pairId, imageId);
+                            setImageSrc(undefined);
+                        }
                     }}>
-                        <div className={s.cross}/>
+                        <div className={props.isNew && s.cross}/>
                         <img className={s.image} src={imageSrc} alt=""/>
                     </div>
             }

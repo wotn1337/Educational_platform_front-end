@@ -10,6 +10,8 @@ const AssociationPair = ({setContent, setGameType, ...props}) => {
                                    pairId={props.pairId}
                                    imageId={i}
                                    image={props.content[i]}
+                                   isNew={props.isNew}
+                                   isEdit={props.isEdit}
                                    setContent={props.setContent}
                                    setAssociation={props.setAssociation}/>)
     }
