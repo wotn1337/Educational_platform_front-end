@@ -51,7 +51,7 @@ const Associations = ({images, cardSize = 200, task, inLesson, isLastFragmentInL
 				setOpenEndGameModal(true)
 			}, 500)
 		}
-	}, [associationsCount, images.length, startTime])
+	}, [associationsCount])
 
 	const startGame = () => {
 		setInGame(true)
@@ -63,6 +63,7 @@ const Associations = ({images, cardSize = 200, task, inLesson, isLastFragmentInL
 		setInGame(false)
 		setImagesState(createInitImagesObject(images))
 		setOpenEndGameModal(false)
+		setAssociationsCount(0)
 	}
 
 	const onDragEnd = result => {
