@@ -15,6 +15,7 @@ import LessonContainer from "./components/Lesson/LessonContainer";
 import Catalog from "./components/CatalogPage/Catalog";
 import MyMaterials from "./components/MyMaterials/MyMaterials";
 import Preloader from "./common/Preloader/Preloader";
+import Associations from "./components/Games/Associations/Associations";
 
 const BlockedPage = React.lazy(() => import("./components/BlockedPage/BlockedPage"));
 const ResetPasswordContainer = React.lazy(() => import("./components/AuthPage/Login/ResetPassword/ResetPasswordContainer"));
@@ -100,6 +101,10 @@ const App = () => {
 						<BlockedPage/>
 					</React.Suspense>
 				)}
+			/>
+			<Route
+				path='/associations'
+				render={() => <Associations/>}
 			/>
 		</>
 	)

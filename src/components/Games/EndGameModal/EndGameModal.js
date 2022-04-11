@@ -1,9 +1,23 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import s from './EndGameModal.module.css';
 import Modal from "react-modal";
 
 
 const EndGameModal = ({open, restart, time, inLesson, isLastFragment, toNextFragment}) => {
+	useEffect(() => {
+		if (open) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'unset';
+		}
+	}, [open])
+
+	const toNextFragmentInLesson = () => {
+		restart()
+		toNextFragment()
+		document.body.style.overflow = 'unset';
+	}
+
 	return (
 		<Modal
 			isOpen={open}
@@ -22,7 +36,7 @@ const EndGameModal = ({open, restart, time, inLesson, isLastFragment, toNextFrag
 					{inLesson && !isLastFragment &&
 						<button
 							className={`btn ${s.endGameModalButton}`}
-							onClick={toNextFragment}
+							onClick={toNextFragmentInLesson}
 						>
 							Перейти к следующему заданию
 						</button>

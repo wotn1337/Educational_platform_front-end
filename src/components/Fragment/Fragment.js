@@ -17,6 +17,7 @@ import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
 import Pairs from "../Games/Pairs/Pairs";
 import PairsCreateContainer from "../CreateGame/PairsCreateContainer";
+import Associations from "../Games/Associations/Associations";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -83,13 +84,26 @@ const Fragment = ({deleteError, ...props}) => {
 				}
 				{props.type === fragmentTypes.game &&
 					<>
-						{!props.isEdit
-							? <Pairs images={props.content.images}/>
-							: <PairsCreateContainer setContent={props.setContent}
-							                        isEdit={props.isEdit}
-							                        oldLinks={props.oldLinks}
-							                        content={props.content}
-							                        deleteImage={props.deleteImage}/>
+						{props.content.gameType === 'pairs' &&
+							<>
+								{!props.isEdit
+									? <Pairs images={props.content.images}/>
+									: <PairsCreateContainer setContent={props.setContent}
+									                        isEdit={props.isEdit}
+									                        oldLinks={props.oldLinks}
+									                        content={props.content}
+									                        deleteImage={props.deleteImage}/>
+								}
+							</>
+						}
+
+						{props.content.gameType === 'matchmaking' &&
+							<>
+								{!props.isEdit
+									? <Associations images={props.content.images} cardSize={200} task={props.content.task.text}/>
+									: <div>Тут будет редактирование</div>
+								}
+							</>
 						}
 					</>
 				}

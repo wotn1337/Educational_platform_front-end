@@ -5,9 +5,10 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {Transition} from "react-transition-group";
 import taskAudio from '../Audio/Pairs/task.ogg'
-import {soundTask} from "../Audio/soundTask";
 import EndGameModal from "../EndGameModal/EndGameModal";
 import Card from "../GameCard/Card";
+import {shuffleArray} from "../../../common/helpers";
+import Task from "../Task/Task";
 
 
 const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNextFragment}) => {
@@ -114,10 +115,7 @@ const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNe
 
 	return (
 		<>
-			<div className={s.taskBlock}>
-				<button className={s.soundButton} onClick={() => soundTask(taskAudio)}/>
-				<p className={s.task}>{task}</p>
-			</div>
+			<Task task={task} taskAudio={taskAudio}/>
 			<section
 				className={s.cards}
 				style={{gridTemplateColumns: `repeat(${getColumnsCount(images.length)}, ${size}px)`}}
@@ -193,13 +191,6 @@ const createCardsArray = (images) => {
 	})
 
 	return shuffleArray(cards)
-}
-
-// Возвращает массив, перемешанный в случайном порядке
-const shuffleArray = (array) => {
-	const tempArray = [...array]
-	tempArray.sort(() => Math.random() - 0.5)
-	return tempArray
 }
 
 // Рассчитывает кол-во колонок в сетке карточек в зависимости от кол-ва изображений
