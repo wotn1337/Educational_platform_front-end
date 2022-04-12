@@ -36,7 +36,7 @@ const FragmentCard = ({isAdmin, createLesson, deleteFragment, ...props}) => {
 	return (
 		<NavLink to={`/fragment/${props.id}`} className={s.fragmentCard}>
 			<div className={s.preview}>
-				<img src={fon || previewImg[props.fragmentType]} alt="preview" className={s.previewImg}/>
+				<img src={fon || previewImg[props.fragmentType] || previewImg[props.content.gameType] } alt="preview" className={s.previewImg}/>
 				{cardButton}
 			</div>
 			<div>
