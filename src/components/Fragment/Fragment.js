@@ -17,6 +17,7 @@ import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
 import Pairs from "../Games/Pairs/Pairs";
 import PairsCreateContainer from "../CreateGame/PairsCreateContainer";
+import Associations from "../Games/Associations/Associations";
 import AssociationsCreateContainer from "../CreateGame/Associations/AssociationsCreateContainer";
 
 const Fragment = ({deleteError, ...props}) => {
@@ -96,29 +97,27 @@ const Fragment = ({deleteError, ...props}) => {
 
 				{props.type === fragmentTypes.game &&
 					<>
-                        {props.content.gameType === 'pairs' &&
-                            <>
-                                {!props.isEdit
-                                    ? <Pairs images={props.content.images}/>
-                                    : <PairsCreateContainer setContent={props.setContent}
-                                                            isEdit={props.isEdit}
-                                                            oldLinks={props.oldLinks}
-                                                            content={props.content}
-                                                            deleteImage={props.deleteImage}/>
-                                }
-                            </>
-                        }
+						{props.content.gameType === 'pairs' &&
+							<>
+								{!props.isEdit
+									? <Pairs images={props.content.images}/>
+									: <PairsCreateContainer setContent={props.setContent}
+									                        isEdit={props.isEdit}
+									                        oldLinks={props.oldLinks}
+									                        content={props.content}
+									                        deleteImage={props.deleteImage}/>
+								}
+							</>
+						}
 
-                        {props.content.gameType === 'matchmaking' &&
-                            <>
-                                {!props.isEdit
-                                    ? <></>
-                                    : <AssociationsCreateContainer setContent={props.setContent}
-																   isEdit={props.isEdit}
-									/>
-                                }
-                            </>
-                        }
+						{props.content.gameType === 'matchmaking' &&
+							<>
+								{!props.isEdit
+									? <Associations images={props.content.images} cardSize={200} task={props.content.task.text}/>
+									: <AssociationsCreateContainer setContent={props.setContent} isEdit={props.isEdit}/>
+								}
+							</>
+						}
 					</>
 				}
 				{!props.isEdit &&
