@@ -3,7 +3,11 @@ export const fragmentTypes = {
 	test: 'test',
 	video: 'video',
 	image: 'image',
-	game: 'game'
+	game: 'game',
+	pairs: 'pairs',
+	matchmaking: 'matchmaking',
+	sequence: 'sequence',
+
 }
 
 export const russianFragmentTypes = {
