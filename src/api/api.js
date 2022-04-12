@@ -236,8 +236,7 @@ export const fragmentsAPI = {
 			for (const links of oldLinks) {
 				data.append('oldLinks[]', links);
 			}
-		}
-
+      
 		data.append('annotation', annotation);
 
 		if (typeof fon !== 'string' && typeof fon !== 'undefined' && fon !== null)
