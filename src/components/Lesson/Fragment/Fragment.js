@@ -38,7 +38,7 @@ const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite, setC
 							{fragment.content.gameType === 'pairs' &&
 								<Pairs
 									images={fragment.content.images}
-									size={170}
+									size={140}
 									inLesson={true}
 									isLastFragmentInLesson={fragment.order === fragmentsCount}
 									toNextFragment={() => setCurrentFragment(fragment.order)}

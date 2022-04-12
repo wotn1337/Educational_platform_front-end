@@ -2,14 +2,11 @@ import React, {useEffect, useState} from 'react';
 import s from './Associations.module.css';
 import {v4 as uuid} from 'uuid'
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
-import {compose} from "redux";
-import {connect} from "react-redux";
 import Card from "../GameCard/Card";
 import {wrongGameNotification} from "../../../notifications/notifications";
 import EndGameModal from "../EndGameModal/EndGameModal";
 import {shuffleArray} from "../../../common/helpers";
 import Task from "../Task/Task";
-import taskAudio from "../Audio/Pairs/task.ogg";
 
 const createInitImagesObject = (initImages) => {
 	const result = {
@@ -160,7 +157,7 @@ const Associations = ({images, cardSize = 200, task, inLesson, isLastFragmentInL
 
 	return (
 		<>
-			<Task task={task} taskAudio={taskAudio}/>
+			<Task task={task} />
 			<DragDropContext onDragEnd={onDragEnd}>
 				<section className={s.cards}>
 					<TopCards imagesState={imagesState} cardSize={cardSize}/>
@@ -176,7 +173,7 @@ const Associations = ({images, cardSize = 200, task, inLesson, isLastFragmentInL
 				restart={restartGame}
 				time={totalTime}
 				inLesson={inLesson}
-				isLastFragmentInLesson={isLastFragmentInLesson}
+				isLastFragment={isLastFragmentInLesson}
 				toNextFragment={toNextFragment}
 			/>
 		</>
@@ -209,8 +206,8 @@ const DroppableCard = ({id, image, size, pairId, pairImage}) => {
 					{...provided.droppableProps}
 					ref={provided.innerRef}
 					style={{
-						width: size + 40,
-						height: size + 40,
+						width: size,
+						height: size,
 					}}
 				>
 					<Card
@@ -218,7 +215,12 @@ const DroppableCard = ({id, image, size, pairId, pairImage}) => {
 						image={image}
 						finished={true}
 						isAssociations={true}
-						style={{boxShadow: snapshot.isDraggingOver ? '0px 0px 20px 5px rgba(243, 106, 118, 0.7)' : 'none'}}
+						style={{
+							boxShadow: snapshot.isDraggingOver ? '0px 0px 20px 5px rgba(243, 106, 118, 0.7)' : 'none',
+							top: !!pairId ? '30%' : '',
+							left: !!pairId ? '70%' : '',
+							transition: '300ms'
+					}}
 					/>
 					{pairId &&
 						<DraggableCard

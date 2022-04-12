@@ -31,7 +31,7 @@ const AssociationCard = (props) => {
                         }
                     }}>
                         <div className={props.isNew && s.cross}/>
-                        <img className={s.image} src={imageSrc} alt=""/>
+                        <img className={s.image} src={imageSrc} alt="" style={{cursor: props.isNew ? 'pointer' : 'default'}}/>
                     </div>
             }
         </div>

@@ -34,7 +34,7 @@ const reducers = combineReducers({
 	lesson: lessonReducer,
 	catalogPages: catalogPagesReducer,
 	pairs: pairsReducer,
-	games: gamesReducer
+	games: gamesReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

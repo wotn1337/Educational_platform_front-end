@@ -40,6 +40,7 @@ const SearchBlock = (props) => {
 					<option value="article">Статья</option>
 					<option value="video">Видео</option>
 					<option value="image">Изображение</option>
+					<option value="game">Игра</option>
 				</select>
 				{/*<div className={s.allTags}>*/}
 				{/*	<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>*/}
