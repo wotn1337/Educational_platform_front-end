@@ -4,6 +4,7 @@ import PairsCreate from "../PairsCreate";
 import AssociationsCreateContainer from "../Associations/AssociationsCreateContainer";
 import s from "../../CreateFragment/CreateImage/CreateImage.module.css";
 import FragmentTitle from "../../CreateFragment/FragmentTitle/FragmentTitle";
+import UploadFon from "../../CreateLesson/UloadFon/UploadFon";
 
 const SelectGame = (props) => {
     const gamesTemplate = props.games?.map(game => (
@@ -14,6 +15,8 @@ const SelectGame = (props) => {
             {props.gameType &&
                 <>
                     {!props.isEdit && <FragmentTitle/>}
+                    {!props.isEdit && <button className="backButton" onClick={() => props.setGameType(undefined)}/>}
+                    {!props.isEdit && props.gameType && <UploadFon type={'fragment'} fon={props.fon} setFon={props.setFon}/>}
                     <div className={s.annotation}>
                         <h3>Описание задания</h3>
                         <textarea className={`textarea ${s.annotationText}`}

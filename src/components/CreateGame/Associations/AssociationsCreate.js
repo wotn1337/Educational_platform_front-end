@@ -6,7 +6,9 @@ const AssociationsCreate = ({setContent, setGameType, ...props}) => {
     const associationPairs = props.pairs?.map(pair => (
         <AssociationPair key={pair.id}
                          pairId={pair.id}
+                         isNew={pair.isNew}
                          content={pair.content}
+                         isEdit={props.isEdit}
                          setAssociation={props.setAssociation}
                          setContent={props.setContent}
                          deleteAssociation={props.deleteAssociation}/>
@@ -15,7 +17,6 @@ const AssociationsCreate = ({setContent, setGameType, ...props}) => {
     return (
         <>
             <section className={s.createGame}>
-                {!props.isEdit && <button className="backButton" onClick={() => setGameType(undefined)}/>}
                 {!props.isEdit && <h3>Загрузите свои изображения парами</h3>}
                 <div className={s.pairsBlock}>
                     {associationPairs}

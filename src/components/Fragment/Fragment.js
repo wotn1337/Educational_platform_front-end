@@ -18,6 +18,7 @@ import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
 import Pairs from "../Games/Pairs/Pairs";
 import PairsCreateContainer from "../CreateGame/PairsCreateContainer";
 import Associations from "../Games/Associations/Associations";
+import AssociationsCreateContainer from "../CreateGame/Associations/AssociationsCreateContainer";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -53,7 +54,16 @@ const Fragment = ({deleteError, ...props}) => {
 				/>
 			}
 
-			{props.isEdit &&
+			{props.isEdit && props.type === fragmentTypes.game  &&
+				<div className={s.annotation}>
+					<h3>Описание задания</h3>
+					<textarea className={`textarea`}
+							  value={props.task}
+							  onChange={e => props.setTask(e.target.value)}/>
+				</div>
+			}
+
+			{props.isEdit && props.type !== fragmentTypes.image &&
 				<UploadFon setFon={props.setFon} fon={props.fon} type={'fragment'}/>
 			}
 
@@ -66,6 +76,7 @@ const Fragment = ({deleteError, ...props}) => {
 						}
 					</>
 				}
+
 				{props.type === fragmentTypes.video &&
 					<VideoFragment
 						video={props.content}
@@ -73,6 +84,7 @@ const Fragment = ({deleteError, ...props}) => {
 						isEdit={props.isEdit}
 					/>
 				}
+
 				{props.type === fragmentTypes.image &&
 					<ImageFragment
 						image={props.content}
@@ -82,6 +94,7 @@ const Fragment = ({deleteError, ...props}) => {
 						setAnnotation={props.setAnnotation}
 					/>
 				}
+
 				{props.type === fragmentTypes.game &&
 					<>
 						{props.content.gameType === 'pairs' &&
@@ -101,7 +114,7 @@ const Fragment = ({deleteError, ...props}) => {
 							<>
 								{!props.isEdit
 									? <Associations images={props.content.images} cardSize={200} task={props.content.task.text}/>
-									: <div>Тут будет редактирование</div>
+									: <AssociationsCreateContainer setContent={props.setContent} isEdit={props.isEdit}/>
 								}
 							</>
 						}
