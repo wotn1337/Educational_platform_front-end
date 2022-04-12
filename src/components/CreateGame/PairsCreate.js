@@ -23,7 +23,6 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 	return (
 		<>
 			<section className={s.createGame}>
-				{!props.isEdit && <button className="backButton" onClick={() => setGameType(undefined)}/>}
 				{!props.isEdit && <h3>Загрузите свои изображения</h3>}
 				{props.isEdit && <div className={s.previewBlock}>{oldContent}</div>}
 				{images.length ? <div className={s.previewBlock}>{previews}</div> :

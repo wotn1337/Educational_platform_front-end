@@ -205,27 +205,40 @@ export const fragmentsAPI = {
 	},
 
 	// Редактировать фрагмент (только для админа или владельца фрагмента)
-	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks) {
+	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task) {
 		const data = new FormData();
 		data.append('title', title);
+		data.append('task', task);
+
 		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null && type !== 'game')
 			data.append('content', content);
 		else if (type === 'game') {
-			for (const image of content?.images) {
-				if (typeof image !== 'string') {
-					data.append('content[]', image);
+			if (gameType === 'matchmaking') {
+				for (let i = 0; i < content?.length; i++) {
+					for (const c of content[i]) {
+						data.append(`content[${i}][]`, c);
+					}
+				}
+			} else {
+				for (const image of content?.images) {
+					if (typeof image !== 'string') {
+						data.append('content[]', image);
+					}
 				}
 			}
 		}
+
 		for (const tag of tagsIds) {
 			data.append('tags[]', tag);
 		}
-		if (oldLinks) {
+
+		if (gameType === 'pairs') {
 			for (const links of oldLinks) {
 				data.append('oldLinks[]', links);
 			}
-		}
+      
 		data.append('annotation', annotation);
+
 		if (typeof fon !== 'string' && typeof fon !== 'undefined' && fon !== null)
 			data.append('fon', fon);
 		return instance.post(`fragments/${id}?_method=PATCH`, data, authConfig());

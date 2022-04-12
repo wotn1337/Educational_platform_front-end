@@ -4,6 +4,7 @@ import {errorNotification, successNotification} from "../notifications/notificat
 
 const SET_FRAGMENT = 'fragment/SET_FRAGMENT';
 const SET_TITLE = 'fragment/SET_TITLE';
+const SET_TASK = 'fragment/SET_TASK';
 const SET_CONTENT = 'fragment/SET_CONTENT';
 const SET_OLD_LINKS = 'fragment/SET_OLD_LINKS';
 const SET_IS_FETCHING = 'fragment/SET_IS_FETCHING';
@@ -31,7 +32,9 @@ const initState = {
 	tagsIds: [],
 	oldLinks: undefined,
 	fon: undefined,
-	deleteError: undefined
+	deleteError: undefined,
+	gameType: undefined,
+	task: ''
 };
 
 const fragmentReducer = (state = initState, action) => {
@@ -50,11 +53,16 @@ const fragmentReducer = (state = initState, action) => {
 				tags: action.fragment.tags ? action.fragment.tags.data : [],
 				tagsIds: action.fragment.tags ? action.fragment.tags.data.map(tag => tag.id) : [],
 				fon: action.fragment.fon,
-				oldLinks: !state.oldLinks ? action.fragment.content.images : state.oldLinks
+				oldLinks: !state.oldLinks ? action.fragment.content.images : state.oldLinks,
+				gameType: action.fragment.content.gameType ? action.fragment.content.gameType: undefined,
+				task: action.fragment.content.task ? action.fragment.content.task.text : undefined
 			};
 
 		case SET_TITLE:
 			return {...state, title: action.title}
+
+		case SET_TASK:
+			return {...state, task: action.task}
 
 		case SET_CONTENT:
 			return {...state, content: action.content}
@@ -109,6 +117,7 @@ const toggleFavoriteFetching = (favoriteFetching) => ({type: TOGGLE_FAVORITE_FET
 const setDeleteError = (error) => ({type: SET_DELETE_ERROR, error});
 
 export const setTitle = (title) => ({type: SET_TITLE, title});
+export const setTask = (task) => ({type: SET_TASK, task});
 export const setContent = (content) => ({type: SET_CONTENT, content});
 export const deleteTag = (tag) => ({type: DELETE_TAG, tag});
 export const setOldLinks = (links) => ({type: SET_OLD_LINKS, links});
@@ -141,9 +150,9 @@ export const deleteFragment = (id, goBack, openErrorModal) => (dispatch) => {
 		});
 };
 
-export const editFragment = (id, type, title, content, tagsIds, annotation, fon, oldLinks) => (dispatch) => {
+export const editFragment = (id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	return fragmentsAPI.editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks)
+	return fragmentsAPI.editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(toggleIsFetching(false));

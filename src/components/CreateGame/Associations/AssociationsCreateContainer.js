@@ -1,10 +1,13 @@
 import React from "react";
 import {connect} from "react-redux";
 import AssociationsCreate from "./AssociationsCreate";
-import {addAssociation, deleteAssociation, setAssociation} from "../../../redux/gamesReducer";
-import {setContent} from "../../../redux/createFragmentReducer";
+import {addAssociation, clearAllFields, deleteAssociation, setAssociation} from "../../../redux/gamesReducer";
 
 class AssociationsCreateContainer extends React.Component {
+    componentWillUnmount() {
+        this.props.clearAllFields();
+    }
+
     render() {
         return (
             <AssociationsCreate
@@ -22,6 +25,6 @@ export default connect(mapStateToProps, {
     addAssociation,
     setAssociation,
     deleteAssociation,
-    setContent
+    clearAllFields
 })
 (AssociationsCreateContainer);
