@@ -1,0 +1,38 @@
+.cards {
+    display: grid;
+    gap: 25px;
+}
+
+.draggableCards {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.droppableCards {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dropCardInner {
+    background-color: white;
+    border: 2px dashed rgba(243, 106, 118, 0.7);
+    border-radius: 10px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 150px;
+    line-height: 180px;
+    color: #F4949C;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonBlock {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}

@@ -87,7 +87,7 @@ const fragmentReducer = (state = initState, action) => {
 			return {
 				...state,
 				tags: [...state.tags, action.tag],
-				tagsIds: [state.tagsIds, action.tag.id]
+				tagsIds: [...state.tagsIds, action.tag.id]
 			};
 
 		case TOGGLE_FAVORITE:
