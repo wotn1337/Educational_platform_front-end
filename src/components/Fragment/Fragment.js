@@ -16,9 +16,10 @@ import VideoFragment from "./VideoFragment/VideoFragment";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
 import Pairs from "../Games/Pairs/Pairs";
-import PairsCreateContainer from "../CreateGame/PairsCreateContainer";
+import PairsCreateContainer from "../CreateGame/Pairs/PairsCreateContainer";
 import Associations from "../Games/Associations/Associations";
 import AssociationsCreateContainer from "../CreateGame/Associations/AssociationsCreateContainer";
+import SequenceCreateContainer from "../CreateGame/Sequence/SequenceCreateContainer";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -115,6 +116,15 @@ const Fragment = ({deleteError, ...props}) => {
 								{!props.isEdit
 									? <Associations images={props.content.images} cardSize={200} task={props.content.task.text}/>
 									: <AssociationsCreateContainer setContent={props.setContent} isEdit={props.isEdit}/>
+								}
+							</>
+						}
+
+						{props.content.gameType === 'sequences' &&
+							<>
+								{!props.isEdit
+									? <></>
+									: <SequenceCreateContainer isEdit={props.isEdit}/>
 								}
 							</>
 						}

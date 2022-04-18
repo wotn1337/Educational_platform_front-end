@@ -163,7 +163,7 @@ export const fragmentsAPI = {
 		if (type === 'game'){
 			data.append('gameType', gameType);
 			data.append('task', task);
-			if (gameType === 'pairs') {
+			if (gameType === 'pairs' || gameType === 'sequences') {
 				for (const image of content.images) {
 					data.append('content[]', image);
 				}
@@ -208,7 +208,8 @@ export const fragmentsAPI = {
 	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task) {
 		const data = new FormData();
 		data.append('title', title);
-		data.append('task', task);
+		if (typeof task !== 'undefined')
+			data.append('task', task);
 
 		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null && type !== 'game')
 			data.append('content', content);
@@ -221,7 +222,7 @@ export const fragmentsAPI = {
 				}
 			} else {
 				for (const image of content?.images) {
-					if (typeof image !== 'string') {
+					if (typeof image !== 'string' || gameType === 'sequences') {
 						data.append('content[]', image);
 					}
 				}

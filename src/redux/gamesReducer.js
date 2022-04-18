@@ -7,6 +7,10 @@ const ADD_ASSOCIATION = 'games/ADD_ASSOCIATION';
 const GET_ASSOCIATIONS = 'games/GET_ASSOCIATION';
 const DELETE_ASSOCIATION = 'games/DELETE_ASSOCIATION';
 const SET_ASSOCIATION = 'games/SET_ASSOCIATION';
+const ADD_SEQUENCE = 'games/ADD_SEQUENCE';
+const GET_SEQUENCE = 'games/GET_SEQUENCE';
+const DELETE_SEQUENCE = 'games/DELETE_SEQUENCE';
+const SET_SEQUENCE = 'games/SET_SEQUENCE';
 const CLEAR_ALL_FIELDS = 'games/CLEAR_ALL_FIELDS';
 
 const initState = {
@@ -14,7 +18,9 @@ const initState = {
     isFetching: false,
     currentGame: undefined,
     associations: [],
-    associationsCount: 0
+    sequence: [],
+    associationsCount: 0,
+    sequenceCount: 0
 };
 
 const gamesReducer = (state = initState, action) => {
@@ -61,6 +67,53 @@ const gamesReducer = (state = initState, action) => {
                 associations: tempAssociations,
                 associationsCount: action.data.length
             }
+        case ADD_SEQUENCE:
+            let arr = state.sequence?.map(s => Number(s.order));
+            return {
+                ...state,
+                sequence: [
+                    ...state.sequence,
+                    {
+                        id: state.sequenceCount,
+                        order: state.sequence.length ? Math.max(...arr) + 1 : 1,
+                        //isNew: true,
+                        content: undefined
+                    }
+                ],
+                sequenceCount: state.sequenceCount + 1
+            }
+        case DELETE_SEQUENCE:
+            let deleteId = state.sequence.findIndex(i => i.id === action.id);
+            let order = state.sequence[deleteId].order
+            return {
+                ...state,
+                sequence: state.sequence.filter(s => s.id !== action.id).map(s => {
+                    return s.order > order ? {...s, order: s.order - 1} : s;
+                })
+            }
+        case SET_SEQUENCE:
+            return {
+                ...state,
+                sequence: state.sequence.map(a => {
+                    if (a.id === action.imageId) {
+                        return {...a, content: action.image};
+                    }
+                    return a;
+                })
+            }
+        case GET_SEQUENCE:
+            let temp = [];
+            for (let i = 0; i < action.data.length; i++) {
+                temp.push({id: i, order: i + 1,
+                    //isNew: false,
+                    content: action.data[i]
+                })
+            }
+            return {
+                ...state,
+                sequence: temp,
+                sequenceCount: action.data.length
+            }
         case SET_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
         case CLEAR_ALL_FIELDS:
@@ -69,7 +122,9 @@ const gamesReducer = (state = initState, action) => {
                 isFetching: false,
                 currentGame: undefined,
                 associations: [],
-                associationsCount: 0
+                sequence: [],
+                associationsCount: 0,
+                sequenceCount: 0
             };
         default:
             return state;
@@ -78,12 +133,18 @@ const gamesReducer = (state = initState, action) => {
 
 const setGames = (games) => ({type: SET_GAMES, games});
 export const setCurrentGame = (game) => ({type: SET_CURRENT_GAME, game});
+
 export const addAssociation = () => ({type: ADD_ASSOCIATION});
 export const getAssociations = (data) => ({type: GET_ASSOCIATIONS, data});
 export const deleteAssociation = (id) => ({type: DELETE_ASSOCIATION, id});
 export const setAssociation = (image, pairId, imageId) => (
     {type: SET_ASSOCIATION, image, pairId, imageId}
 );
+
+export const addSequence = () => ({type: ADD_SEQUENCE});
+export const getSequence = (data) => ({type: GET_SEQUENCE, data});
+export const setSequenceImage = (image, imageId) => ({type: SET_SEQUENCE, image, imageId});
+export const deleteSequence = (id) => ({type: DELETE_SEQUENCE, id});
 const toggleIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
 

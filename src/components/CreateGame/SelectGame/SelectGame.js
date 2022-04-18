@@ -1,10 +1,11 @@
 import React from 'react';
 import GameCard from "../GameCard/GameCard";
-import PairsCreate from "../PairsCreate";
+import PairsCreate from "../Pairs/PairsCreate";
 import AssociationsCreateContainer from "../Associations/AssociationsCreateContainer";
 import s from "../../CreateFragment/CreateImage/CreateImage.module.css";
 import FragmentTitle from "../../CreateFragment/FragmentTitle/FragmentTitle";
 import UploadFon from "../../CreateLesson/UloadFon/UploadFon";
+import SequenceCreateContainer from "../Sequence/SequenceCreateContainer";
 
 const SelectGame = (props) => {
     const gamesTemplate = props.games?.map(game => (
@@ -26,9 +27,15 @@ const SelectGame = (props) => {
                 </>
             }
             {props.gameType === 'pairs'
-                && <PairsCreate setContent={props.setContent} setGameType={props.setGameType}/>}
+                && <PairsCreate setContent={props.setContent}
+                                setGameType={props.setGameType}/>}
             {props.gameType === 'matchmaking'
-                && <AssociationsCreateContainer setContent={props.setContent} setGameType={props.setGameType}/>}
+                && <AssociationsCreateContainer setContent={props.setContent}
+                                                setGameType={props.setGameType}/>}
+            {props.gameType === 'sequences'
+                && <SequenceCreateContainer setContent={props.setContent}
+                                                setGameType={props.setGameType}/>}
+
             {!props.gameType && <div style={{display: 'grid', gap: 50, marginTop: 30}}>{gamesTemplate}</div>}
         </>
     )

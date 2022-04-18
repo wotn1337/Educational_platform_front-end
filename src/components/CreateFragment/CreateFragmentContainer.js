@@ -15,11 +15,25 @@ class CreateFragmentContainer extends React.Component {
 		this.props.clearAllFields();
 	}
 
+	setGameContent = (gameType) => {
+		if (gameType==='matchmaking') {
+			this.props.setContent(this.props.associations.map(a => [a.content[0], a.content[1]]))
+		} else if (gameType==='sequences') {
+			this.props.setContent(this.props.sequence.map(a => a.content))
+		}
+	}
+
 	createFragment = () => {
+		let content;
+		if (this.props.gameType==='matchmaking') {
+			content = this.props.associations.map(a => [a.content[0], a.content[1]]);
+		} else if (this.props.gameType==='sequences') {
+			content = {images: this.props.sequence.map(a => a.content)};
+		}
 		this.props.createFragment(
 			this.props.fragmentType,
 			this.props.title,
-			this.props.content || this.props.associations.map(a => [a.content[0], a.content[1]]),
+			this.props.content || content,
 			this.props.tagsIds,
 			this.props.fon,
 			this.props.annotation,
@@ -27,6 +41,7 @@ class CreateFragmentContainer extends React.Component {
 			this.props.task
 		);
 	}
+
 	render() {
 		if (this.props.isFetching) {
 			return <Preloader size={200}/>;
@@ -48,7 +63,8 @@ const mapStateToProps = (state) => ({
 	errors: state.createFragment.errors,
 	gameType: state.createFragment.gameType,
 	task: state.createFragment.task,
-	associations: state.games.associations
+	associations: state.games.associations,
+	sequence: state.games.sequence
 });
 
 export default compose(
