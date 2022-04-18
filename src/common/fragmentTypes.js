@@ -6,7 +6,7 @@ export const fragmentTypes = {
 	game: 'game',
 	pairs: 'pairs',
 	matchmaking: 'matchmaking',
-	sequence: 'sequence',
+	sequences: 'sequences',
 
 }
 
