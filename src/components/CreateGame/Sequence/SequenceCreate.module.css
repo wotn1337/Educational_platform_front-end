@@ -1,0 +1,133 @@
+.createGame {
+    border-radius: 10px;
+    gap: 15px;
+    flex-direction: column;
+    align-items: start;
+}
+
+.addPairButton {
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    width: fit-content;
+    height: 70px;
+    padding: 9px 19px;
+    margin-top: 30px;
+    background-color: #EF5B5B;
+    border-radius: 10px;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.addPairButton:hover {
+    background-color: #FBCB84;
+    color: white;
+}
+
+.sequenceBlock {
+    display: flex;
+    gap: 55px;
+    flex-wrap: wrap;
+}
+
+.uploadPreview {
+    display: flex;
+    align-items: center;
+    width: 194px;
+    height: 194px;
+    min-height: 70px;
+    margin: 0;
+    padding: 4px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.53);
+    background: #FFFFFF;
+    border: 3px dashed rgba(243, 106, 118, 0.7);
+    border-radius: 9px;
+    transition: background-color;
+    transition-duration: 200ms;
+}
+
+.plus {
+    background-image: url("./../../../assets/img/fragments/plus.svg");
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: invert(1);
+}
+
+.text {
+    width: 180px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imagePreview {
+    position: relative;
+    width: 194px;
+    height: 194px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 3px solid rgba(243, 106, 118, 0.7);
+}
+
+.cross {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    transition-duration: 0.2s;
+}
+
+.order {
+    position: absolute;
+    height: 35px;
+    width: 35px;
+    font-family: "Open Sans", sans-serif;
+    font-size: 35px;
+    font-weight: bold;
+    line-height: 32px;
+    left: 5px;
+    top: 5px;
+    color: #EF5B5B;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
+}
+
+.cross:hover {
+    background-image: url("./../../../assets/img/fragments/cross.svg");
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-color: rgba(93, 93, 93, 0.46);
+}
+
+.deletePair {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background-image: url("./../../../assets/img/profile/delete.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: white;
+    transition-duration: 0.3s;
+}
+
+.deletePair:hover {
+    background-color: rgb(246, 211, 122);
+}
