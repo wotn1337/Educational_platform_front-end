@@ -15,7 +15,7 @@ import {
 import Preloader from "../../common/Preloader/Preloader";
 import {returnTag} from "../../redux/allTagsReducer";
 import {withRouter} from "react-router-dom";
-import {clearAllFields, getAssociations} from "../../redux/gamesReducer";
+import {clearAllFields, getAssociations, getSequence} from "../../redux/gamesReducer";
 
 
 class FragmentContainer extends React.Component {
@@ -35,9 +35,10 @@ class FragmentContainer extends React.Component {
             if (this.props.type === 'game') {
                 if (this.props.content.gameType === 'pairs') {
                     this.setState({oldLinks: this.props.content.images});
-                }
-                if (this.props.content.gameType === 'matchmaking') {
+                } else if (this.props.content.gameType === 'matchmaking') {
                     this.props.getAssociations(this.props.content.images);
+                } else if (this.props.content.gameType === 'sequences') {
+                    this.props.getSequence(this.props.content.images)
                 }
             }
         });
@@ -65,9 +66,12 @@ class FragmentContainer extends React.Component {
     }
 
     editFragment = () => {
-        let content = this.props.gameType !== 'matchmaking'
-            ? this.props.content
-            : this.props.associations.map(a => [a.content[0], a.content[1]]);
+        let content;
+        if (this.props.gameType==='matchmaking') {
+            content = this.props.associations.map(a => [a.content[0], a.content[1]]);
+        } else if (this.props.gameType==='sequences') {
+            content = {images: this.props.sequence.map(a => a.content)};
+        } else content = this.props.content;
         this.props.editFragment(
             this.state.id,
             this.props.type,
@@ -88,6 +92,8 @@ class FragmentContainer extends React.Component {
                         this.setState({oldLinks: this.props.content.images})
                     } else if (this.props.content.gameType === 'matchmaking') {
                         this.props.getAssociations(this.props.content.images);
+                    } else if (this.props.content.gameType === 'sequences') {
+                        this.props.getSequence(this.props.content.images)
                     }
                 });
             });
@@ -130,6 +136,7 @@ const mapStateToProps = (state) => ({
     fon: state.fragment.fon,
     deleteError: state.fragment.deleteError,
     associations: state.games.associations,
+    sequence: state.games.sequence,
     gameType: state.fragment.gameType,
     task: state.fragment.task
 });
@@ -149,6 +156,7 @@ export default compose(
         setFon,
         setOldLinks,
         getAssociations,
+        getSequence,
         setTask,
         clearAllFields
     }),

@@ -19,7 +19,7 @@ export const previewImg = {
 	[fragmentTypes.image]: imagePreview,
 	[fragmentTypes.pairs]: pairsGamePreview,
 	[fragmentTypes.matchmaking]: associationsGamePreview,
-	[fragmentTypes.sequence]: sequenceGamePreview,
+	[fragmentTypes.sequences]: sequenceGamePreview,
 };
 
 export const fragmentTypeImg = {
