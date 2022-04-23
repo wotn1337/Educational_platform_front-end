@@ -4,6 +4,7 @@ import {fragmentTypes} from "../../../common/fragmentTypes";
 import Author from "../Author/Author";
 import Pairs from "../../Games/Pairs/Pairs";
 import Associations from "../../Games/Associations/Associations";
+import Sequences from "../../Games/Sequences/Sequences";
 
 
 const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite, setCurrentFragment, fragmentsCount}) => {
@@ -48,6 +49,15 @@ const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite, setC
 								<Associations
 									images={fragment.content.images}
 									task={fragment.content.task.text}
+									inLesson={true}
+									isLastFragmentInLesson={fragment.order === fragmentsCount}
+									toNextFragment={() => setCurrentFragment(fragment.order)}
+								/>
+							}
+							{fragment.content.gameType === 'sequences' &&
+								<Sequences
+									images={fragment.content.images}
+									size={180}
 									inLesson={true}
 									isLastFragmentInLesson={fragment.order === fragmentsCount}
 									toNextFragment={() => setCurrentFragment(fragment.order)}

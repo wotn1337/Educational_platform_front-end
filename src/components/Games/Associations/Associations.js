@@ -76,34 +76,8 @@ const Associations = ({images, cardSize = 200, task, inLesson, isLastFragmentInL
 
 		// Если перемещение происходит в рамках изначального положения карточек
 		if (source.droppableId === destination.droppableId && destination.droppableId === 'initPlace') {
-			// const newDownIds = [...imagesState.downIds]
-			// newDownIds.splice(source.index, 1)
-			// newDownIds.splice(destination.index, 0, draggableId)
-			// setImagesState({
-			// 	...imagesState,
-			// 	downIds: newDownIds
-			// })
-
 			return
 		}
-
-		// // Если карточку возвращают в начальное место сверху
-		// if (destination.droppableId === 'initPlace') {
-		// 	const start = {...imagesState.images[source.droppableId]}
-		// 	start.pair = undefined
-		// 	const newDownIds = [...imagesState.downIds]
-		// 	newDownIds.splice(destination.index, 0, draggableId)
-		// 	setImagesState({
-		// 		...imagesState,
-		// 		images: {
-		// 			...imagesState.images,
-		// 			[source.droppableId]: start
-		// 		},
-		// 		downIds: newDownIds
-		// 	})
-		//
-		// 	return
-		// }
 
 		// Если карточку перемешают из начального положения наверх
 		if (source.droppableId === 'initPlace') {
@@ -133,26 +107,6 @@ const Associations = ({images, cardSize = 200, task, inLesson, isLastFragmentInL
 			})
 			setAssociationsCount(associationsCount + 1)
 		}
-
-		// // Если карточку перемещают между верхних положений
-		// const start = {...imagesState.images[source.droppableId]}
-		// const finish = {...imagesState.images[destination.droppableId]}
-		//
-		// // Если в конечном положении уже есть карточка, оставить все без изменений
-		// if (finish.pair)
-		// 	return
-		//
-		// start.pair = undefined
-		// finish.pair = draggableId
-		//
-		// setImagesState({
-		// 	...imagesState,
-		// 	images: {
-		// 		...imagesState.images,
-		// 		[source.droppableId]: start,
-		// 		[destination.droppableId]: finish
-		// 	}
-		// })
 	}
 
 	return (

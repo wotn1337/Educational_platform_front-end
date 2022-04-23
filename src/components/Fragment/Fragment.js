@@ -20,6 +20,7 @@ import PairsCreateContainer from "../CreateGame/Pairs/PairsCreateContainer";
 import Associations from "../Games/Associations/Associations";
 import AssociationsCreateContainer from "../CreateGame/Associations/AssociationsCreateContainer";
 import SequenceCreateContainer from "../CreateGame/Sequence/SequenceCreateContainer";
+import Sequences from "../Games/Sequences/Sequences";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -123,7 +124,7 @@ const Fragment = ({deleteError, ...props}) => {
 						{props.content.gameType === 'sequences' &&
 							<>
 								{!props.isEdit
-									? <></>
+									? <Sequences size={200} images={props.content.images} task={props.content.task.text}/>
 									: <SequenceCreateContainer isEdit={props.isEdit}/>
 								}
 							</>
