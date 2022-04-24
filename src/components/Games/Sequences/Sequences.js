@@ -6,14 +6,6 @@ import Card from "../GameCard/Card";
 import {shuffleArray} from "../../../common/helpers";
 import EndGameModal from "../EndGameModal/EndGameModal";
 import {wrongGameNotification} from "../../../notifications/notifications";
-import Task from "../Task/Task";
-
-// const images = [
-// 	'https://klike.net/uploads/posts/2019-06/1560329641_2.jpg', //кися
-// 	'https://www.iguides.ru/upload/medialibrary/9f8/9f8fdff471b7d281f81f694c100b5adc.png', // обезьяна
-// 	'https://klike.net/uploads/posts/2021-01/1611131113_2.jpg', //дом
-// 	'http://sun9-9.userapi.com/c4384/g37962418/a_86cad53d.jpg' // кот в сапогах
-// ]
 
 const createImagesState = (images) => {
 	const result = {
@@ -37,7 +29,7 @@ const createImagesState = (images) => {
 }
 
 
-const Sequences = ({images, size, task, inLesson, isLastFragmentInLesson, toNextFragment}) => {
+const Sequences = ({images, size, inLesson, isLastFragmentInLesson, toNextFragment}) => {
 	const [imagesState, setImagesState] = useState(createImagesState(images))
 	const [inGame, setInGame] = useState(false)
 	const [isRightSequence, setIsRightSequence] = useState(false)
@@ -101,7 +93,6 @@ const Sequences = ({images, size, task, inLesson, isLastFragmentInLesson, toNext
 
 	return (
 		<>
-			<Task task={task} />
 			<DragDropContext onDragEnd={onDragEnd}>
 				<DraggableCards size={size} imagesState={imagesState} inGame={inGame}/>
 			</DragDropContext>

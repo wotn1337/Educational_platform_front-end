@@ -15,12 +15,7 @@ import ImageFragment from "./ImageFragment/ImageFragment";
 import VideoFragment from "./VideoFragment/VideoFragment";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
-import Pairs from "../Games/Pairs/Pairs";
-import PairsCreateContainer from "../CreateGame/Pairs/PairsCreateContainer";
-import Associations from "../Games/Associations/Associations";
-import AssociationsCreateContainer from "../CreateGame/Associations/AssociationsCreateContainer";
-import SequenceCreateContainer from "../CreateGame/Sequence/SequenceCreateContainer";
-import Sequences from "../Games/Sequences/Sequences";
+import GameContainer from "../Games/GameContainer/GameContainer";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -56,12 +51,12 @@ const Fragment = ({deleteError, ...props}) => {
 				/>
 			}
 
-			{props.isEdit && props.type === fragmentTypes.game  &&
+			{props.isEdit && props.type === fragmentTypes.game &&
 				<div className={s.annotation}>
 					<h3>Описание задания</h3>
 					<textarea className={`textarea`}
-							  value={props.task}
-							  onChange={e => props.setTask(e.target.value)}/>
+					          value={props.task}
+					          onChange={e => props.setTask(e.target.value)}/>
 				</div>
 			}
 
@@ -98,39 +93,16 @@ const Fragment = ({deleteError, ...props}) => {
 				}
 
 				{props.type === fragmentTypes.game &&
-					<>
-						{props.content.gameType === 'pairs' &&
-							<>
-								{!props.isEdit
-									? <Pairs images={props.content.images}/>
-									: <PairsCreateContainer setContent={props.setContent}
-									                        isEdit={props.isEdit}
-									                        oldLinks={props.oldLinks}
-									                        content={props.content}
-									                        deleteImage={props.deleteImage}/>
-								}
-							</>
-						}
-
-						{props.content.gameType === 'matchmaking' &&
-							<>
-								{!props.isEdit
-									? <Associations images={props.content.images} cardSize={200} task={props.content.task.text}/>
-									: <AssociationsCreateContainer setContent={props.setContent} isEdit={props.isEdit}/>
-								}
-							</>
-						}
-
-						{props.content.gameType === 'sequences' &&
-							<>
-								{!props.isEdit
-									? <Sequences size={200} images={props.content.images} task={props.content.task.text}/>
-									: <SequenceCreateContainer isEdit={props.isEdit}/>
-								}
-							</>
-						}
-					</>
+					<GameContainer
+						content={props.content}
+						isEdit={props.isEdit}
+						cardSize={200}
+						oldLinks={props.oldLinks}
+						deleteImage={props.deleteImage}
+						setContent={props.setContent}
+					/>
 				}
+
 				{!props.isEdit &&
 					<div className={s.author}>
 						<NavLink className={s.creatorName} to={`/profile/${props.creatorId}`}>{props.creator}</NavLink>

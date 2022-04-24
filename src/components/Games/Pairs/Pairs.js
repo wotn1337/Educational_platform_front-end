@@ -4,14 +4,12 @@ import {v1 as uuid} from "uuid";
 import {compose} from "redux";
 import {connect} from "react-redux";
 import {Transition} from "react-transition-group";
-import taskAudio from '../Audio/Pairs/task.ogg'
 import EndGameModal from "../EndGameModal/EndGameModal";
 import Card from "../GameCard/Card";
 import {shuffleArray} from "../../../common/helpers";
-import Task from "../Task/Task";
 
 
-const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNextFragment}) => {
+const Pairs = ({images, size = 200, inLesson, isLastFragmentInLesson, toNextFragment}) => {
 	const [inGame, setInGame] = useState(false)
 	const [cards, setCards] = useState(createCardsArray(images))
 	const [pair, setPair] = useState([])
@@ -67,7 +65,6 @@ const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNe
 	const startGame = () => {
 		setInGame(true)
 		setStartTime(new Date().getTime())
-		rotateAllCards()
 	}
 
 	// Перезапускает игру
@@ -77,11 +74,6 @@ const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNe
 		setPair([])
 		setPairCount(0)
 		setOpenEndGameModal(false)
-	}
-
-	// Переворачивает все карточки рубашкой вверх
-	const rotateAllCards = () => {
-		setCards(cards.map(card => ({...card, rotated: true})))
 	}
 
 	// Переворачивает карточку с переданным id лицевой стороной вверх
@@ -115,7 +107,6 @@ const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNe
 
 	return (
 		<>
-			<Task task={task} taskAudio={taskAudio}/>
 			<section
 				className={s.cards}
 				style={{gridTemplateColumns: `repeat(${getColumnsCount(images.length)}, ${size}px)`}}
@@ -150,9 +141,9 @@ const Pairs = ({images, task, size = 200, inLesson, isLastFragmentInLesson, toNe
 
 // Состояния анимации для карточек
 const transitionStyles = {
-	entering: {opacity: 1},
+	entering: {opacity: 1, transform: 'scale(0.1)'},
 	entered: {opacity: 0, transform: 'scale(0.1)'},
-	exiting: {opacity: 0},
+	exiting: {opacity: 1, transform: 'scale(0.1)'},
 	exited: {opacity: 1},
 };
 
@@ -182,7 +173,7 @@ const createCardsArray = (images) => {
 		const cardTemp = {
 			image,
 			pairIndex: index,
-			rotated: false,
+			rotated: true,
 			finished: false
 		}
 		const card1 = {...cardTemp, id: uuid()}
