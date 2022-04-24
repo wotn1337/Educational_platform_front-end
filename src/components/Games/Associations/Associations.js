@@ -6,7 +6,6 @@ import Card from "../GameCard/Card";
 import {wrongGameNotification} from "../../../notifications/notifications";
 import EndGameModal from "../EndGameModal/EndGameModal";
 import {shuffleArray} from "../../../common/helpers";
-import Task from "../Task/Task";
 
 const createInitImagesObject = (initImages) => {
 	const result = {
@@ -33,7 +32,7 @@ const createInitImagesObject = (initImages) => {
 }
 
 
-const Associations = ({images, cardSize = 200, task, inLesson, isLastFragmentInLesson, toNextFragment}) => {
+const Associations = ({images, cardSize = 200, inLesson, isLastFragmentInLesson, toNextFragment}) => {
 	const [imagesState, setImagesState] = useState(createInitImagesObject(images))
 	const [inGame, setInGame] = useState(false)
 	const [associationsCount, setAssociationsCount] = useState(0)
@@ -111,7 +110,6 @@ const Associations = ({images, cardSize = 200, task, inLesson, isLastFragmentInL
 
 	return (
 		<>
-			<Task task={task} />
 			<DragDropContext onDragEnd={onDragEnd}>
 				<section className={s.cards}>
 					<TopCards imagesState={imagesState} cardSize={cardSize}/>

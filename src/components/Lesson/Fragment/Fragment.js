@@ -2,9 +2,8 @@ import s from './Fragment.module.css';
 import {withRouter} from "react-router-dom";
 import {fragmentTypes} from "../../../common/fragmentTypes";
 import Author from "../Author/Author";
-import Pairs from "../../Games/Pairs/Pairs";
-import Associations from "../../Games/Associations/Associations";
-import Sequences from "../../Games/Sequences/Sequences";
+import GameContainer from "../../Games/GameContainer/GameContainer";
+import React from "react";
 
 
 const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite, setCurrentFragment, fragmentsCount}) => {
@@ -35,35 +34,13 @@ const Fragment = ({fragment, toggleFavorite, toggleCurrentFragmentFavorite, setC
 						</>
 					}
 					{fragment.type === fragmentTypes.game &&
-						<>
-							{fragment.content.gameType === 'pairs' &&
-								<Pairs
-									images={fragment.content.images}
-									size={140}
-									inLesson={true}
-									isLastFragmentInLesson={fragment.order === fragmentsCount}
-									toNextFragment={() => setCurrentFragment(fragment.order)}
-								/>
-							}
-							{fragment.content.gameType === 'matchmaking' &&
-								<Associations
-									images={fragment.content.images}
-									task={fragment.content.task.text}
-									inLesson={true}
-									isLastFragmentInLesson={fragment.order === fragmentsCount}
-									toNextFragment={() => setCurrentFragment(fragment.order)}
-								/>
-							}
-							{fragment.content.gameType === 'sequences' &&
-								<Sequences
-									images={fragment.content.images}
-									size={180}
-									inLesson={true}
-									isLastFragmentInLesson={fragment.order === fragmentsCount}
-									toNextFragment={() => setCurrentFragment(fragment.order)}
-								/>
-							}
-						</>
+						<GameContainer
+							content={fragment.content}
+							cardSize={180}
+							inLesson={true}
+							isLastFragmentInLesson={fragment.order === fragmentsCount}
+							toNextFragment={() => setCurrentFragment(fragment.order)}
+						/>
 					}
 				</div>
 			</div>
