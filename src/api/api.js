@@ -162,7 +162,7 @@ export const fragmentsAPI = {
 
 		if (type === 'game'){
 			data.append('gameType', gameType);
-			data.append('task', task);
+			if (task) data.append('task', task);
 			if (gameType === 'pairs' || gameType === 'sequences') {
 				for (const image of content.images) {
 					data.append('content[]', image);
