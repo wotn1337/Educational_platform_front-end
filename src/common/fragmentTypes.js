@@ -7,7 +7,7 @@ export const fragmentTypes = {
 	pairs: 'pairs',
 	matchmaking: 'matchmaking',
 	sequences: 'sequences',
-
+	puzzles: 'puzzles'
 }
 
 export const russianFragmentTypes = {
