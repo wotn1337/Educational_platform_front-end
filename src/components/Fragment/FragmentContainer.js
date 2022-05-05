@@ -40,7 +40,7 @@ class FragmentContainer extends React.Component {
                 } else if (this.props.content.gameType === 'sequences') {
                     this.props.getSequence(this.props.content.images)
                 } else if (this.props.content.gameType === 'puzzles') {
-                    this.props.getPuzzles(this.props.content.images)
+                    this.props.getPuzzles(this.props.content.image)
                 }
             }
         });
@@ -99,7 +99,7 @@ class FragmentContainer extends React.Component {
                     } else if (this.props.content.gameType === 'sequences') {
                         this.props.getSequence(this.props.content.images)
                     } else if (this.props.content.gameType === 'puzzles') {
-                        this.props.getPuzzles(this.props.content.images)
+                        this.props.getPuzzles(this.props.content.image)
                     }
                 });
             });

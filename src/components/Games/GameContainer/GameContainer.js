@@ -6,18 +6,19 @@ import AssociationsCreateContainer from "../../CreateGame/Associations/Associati
 import Sequences from "../Sequences/Sequences";
 import SequenceCreateContainer from "../../CreateGame/Sequence/SequenceCreateContainer";
 import Task from "../Task/Task";
+import PuzzlesCreateContainer from "../../CreateGame/Puzzles/PuzzlesCreateContainer";
 
 const gameTypes = {
 	pairs: 'pairs',
 	associations: 'matchmaking',
 	sequences: 'sequences',
-	puzzle: 'puzzle'
+	puzzles: 'puzzles'
 }
 
 const GameContainer = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNextFragment, ...props}) => {
 	return (
 		<>
-			<Task task={content.task.text} taskAudio={content.task.media}/>
+			{!isEdit && <Task task={content.task.text} taskAudio={content.task.media}/>}
 			<Game
 				isEdit={isEdit}
 				content={content}
@@ -82,6 +83,15 @@ const Game = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNe
 							toNextFragment={toNextFragment}
 						/>
 						: <SequenceCreateContainer isEdit={isEdit}/>
+					}
+				</>
+			)
+		case gameTypes.puzzles:
+			return (
+				<>
+					{!isEdit
+						? <></>
+						: <PuzzlesCreateContainer isEdit={isEdit}/>
 					}
 				</>
 			)

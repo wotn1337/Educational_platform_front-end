@@ -4,7 +4,7 @@ import selectStyle from '../../CreateFragment/SelectType/SelectType.module.css'
 
 const PuzzlesCreate = ({puzzleImage, cols, rows, setCols, setRows, setPuzzlesImage, ...props}) => {
     const [image, setImage] = useState(puzzleImage ? puzzleImage : undefined);
-    const [imageSrc, setImageSrc] = useState(undefined);
+    const [imageSrc, setImageSrc] = useState(puzzleImage ? puzzleImage : undefined);
     const colsOptions = [];
     const rowsOptions = [];
 
@@ -20,9 +20,9 @@ const PuzzlesCreate = ({puzzleImage, cols, rows, setCols, setRows, setPuzzlesIma
     return (
         <>
             <section className={s.createGame}>
-                <div className={s.selectBlockWrapper}>
+                <div className={props.isEdit ? `${s.selectBlockWrapper} ${s.selectBlockWrapperEdit}`: s.selectBlockWrapper}>
                     <div className={s.selectBlock}>
-                        <h3>Выберите количество столбцов: </h3>
+                        <h3 style= {props.isEdit ? {color: "#EF5B5B"} : {}}>Выберите количество столбцов: </h3>
                         <select name="cols" id="cols" className={selectStyle.selectType}
                                 onChange={e => {
                                     setCols(e.target.value)
@@ -31,7 +31,7 @@ const PuzzlesCreate = ({puzzleImage, cols, rows, setCols, setRows, setPuzzlesIma
                         </select>
                     </div>
                     <div className={s.selectBlock}>
-                        <h3>Выберите количество строк: </h3>
+                        <h3 style= {props.isEdit ? {color: "#EF5B5B"} : {}}>Выберите количество строк: </h3>
                         <select name="rows" id="rows" className={selectStyle.selectType}
                                 onChange={e => {
                                     setRows(e.target.value)
