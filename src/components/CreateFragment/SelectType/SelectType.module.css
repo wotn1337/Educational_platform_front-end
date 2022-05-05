@@ -21,7 +21,8 @@
     border-color: transparent;
     padding: 5px 10px;
     box-sizing: border-box;
-    width: 220px;
+    width: fit-content;
+    height: fit-content;
     color: #FFFFFF;
 }
 

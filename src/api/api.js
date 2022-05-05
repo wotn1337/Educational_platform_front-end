@@ -167,6 +167,10 @@ export const fragmentsAPI = {
 				for (const image of content.images) {
 					data.append('content[]', image);
 				}
+			} else if (gameType==='puzzles') {
+				data.append('content', content.image);
+				data.append('cols', content.cols);
+				data.append('rows', content.rows);
 			} else {
 				for (let i = 0; i < content.length; i++)
 				{

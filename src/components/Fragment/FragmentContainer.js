@@ -15,7 +15,7 @@ import {
 import Preloader from "../../common/Preloader/Preloader";
 import {returnTag} from "../../redux/allTagsReducer";
 import {withRouter} from "react-router-dom";
-import {clearAllFields, getAssociations, getSequence} from "../../redux/gamesReducer";
+import {clearAllFields, getAssociations, getPuzzles, getSequence} from "../../redux/gamesReducer";
 
 
 class FragmentContainer extends React.Component {
@@ -39,6 +39,8 @@ class FragmentContainer extends React.Component {
                     this.props.getAssociations(this.props.content.images);
                 } else if (this.props.content.gameType === 'sequences') {
                     this.props.getSequence(this.props.content.images)
+                } else if (this.props.content.gameType === 'puzzles') {
+                    this.props.getPuzzles(this.props.content.images)
                 }
             }
         });
@@ -157,6 +159,7 @@ export default compose(
         setOldLinks,
         getAssociations,
         getSequence,
+        getPuzzles,
         setTask,
         clearAllFields
     }),
