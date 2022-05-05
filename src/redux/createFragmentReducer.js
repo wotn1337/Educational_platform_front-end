@@ -13,6 +13,7 @@ const SET_ANNOTATION = 'createFragment/SET_ANNOTATION';
 const SET_TASK = 'createFragment/SET_TASK';
 const SET_GAME_TYPE = 'createFragment/SET_GAME_TYPE';
 const CLEAR_ALL_FIELDS = 'createFragment/CLEAR_ALL_FIELDS';
+const SET_AGE_LIMIT = 'createFragment/SET_AGE_LIMIT'
 
 
 const initState = {
@@ -26,7 +27,8 @@ const initState = {
 	annotation: '',
 	gameType: undefined,
 	task: undefined,
-	errors: undefined
+	errors: undefined,
+	ageLimitId: "1"
 };
 
 const createFragmentReducer = (state = initState, action) => {
@@ -83,10 +85,14 @@ const createFragmentReducer = (state = initState, action) => {
 				annotation: '',
 				gameType: undefined,
 				task: undefined,
+				ageLimitId: "0"
 			};
 
 		case SET_ERRORS:
 			return {...state, errors: action.errors};
+
+		case SET_AGE_LIMIT:
+			return {...state, ageLimitId: action.ageLimitId}
 
 		default:
 			return state;
@@ -103,13 +109,14 @@ export const setAnnotation = (annotation) => ({type: SET_ANNOTATION, annotation}
 export const setTask = (task) => ({type: SET_TASK, task});
 export const setGameType = (gameType) => ({type: SET_GAME_TYPE, gameType});
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
+export const setAgeLimit = (ageLimitId) => ({type: SET_AGE_LIMIT, ageLimitId});
 
 const setIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 const setErrors = (errors) => ({type: SET_ERRORS, errors});
 
-export const createFragment = (fragmentType, title, content, tagsIds, fon, annotation, gameType, task) => (dispatch) => {
+export const createFragment = (fragmentType, title, content, tagsIds, fon, annotation, gameType, task, ageLimitId) => (dispatch) => {
 	dispatch(setIsFetching(true));
-	return fragmentsAPI.createFragment(fragmentType, title, content, tagsIds, fon, annotation, gameType, task)
+	return fragmentsAPI.createFragment(fragmentType, title, content, tagsIds, fon, annotation, gameType, task, ageLimitId)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(clearAllFields());

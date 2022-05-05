@@ -1,5 +1,13 @@
 import React from "react";
-import {addTag, clearAllFields, createFragment, deleteTag, setContent, setFon} from "../../redux/createFragmentReducer";
+import {
+	addTag,
+	clearAllFields,
+	createFragment,
+	deleteTag,
+	setAgeLimit,
+	setContent,
+	setFon
+} from "../../redux/createFragmentReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
@@ -14,14 +22,6 @@ class CreateFragmentContainer extends React.Component {
     componentWillUnmount() {
         this.props.clearAllFields();
     }
-
-    // setGameContent = (gameType) => {
-    //     if (gameType === 'matchmaking') {
-    //         this.props.setContent(this.props.associations.map(a => [a.content[0], a.content[1]]))
-    //     } else if (gameType === 'sequences') {
-    //         this.props.setContent(this.props.sequence.map(a => a.content))
-    //     }
-    // }
 
     createFragment = () => {
         let content;
@@ -40,7 +40,8 @@ class CreateFragmentContainer extends React.Component {
             this.props.fon,
             this.props.annotation,
             this.props.gameType,
-            this.props.task
+            this.props.task,
+            this.props.ageLimitId
         );
     }
 
@@ -54,19 +55,20 @@ class CreateFragmentContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    fragmentType: state.createFragment.fragmentType,
-    title: state.createFragment.title,
-    content: state.createFragment.content,
-    isFetching: state.createFragment.isFetching,
-    tags: state.createFragment.tags,
-    tagsIds: state.createFragment.tagsIds,
-    fon: state.createFragment.fon,
-    annotation: state.createFragment.annotation,
-    errors: state.createFragment.errors,
-    gameType: state.createFragment.gameType,
-    task: state.createFragment.task,
-    associations: state.games.associations,
-    sequence: state.games.sequence,
+	fragmentType: state.createFragment.fragmentType,
+	title: state.createFragment.title,
+	content: state.createFragment.content,
+	isFetching: state.createFragment.isFetching,
+	tags: state.createFragment.tags,
+	tagsIds: state.createFragment.tagsIds,
+	fon: state.createFragment.fon,
+	annotation: state.createFragment.annotation,
+	errors: state.createFragment.errors,
+	gameType: state.createFragment.gameType,
+	task: state.createFragment.task,
+	associations: state.games.associations,
+	sequence: state.games.sequence,
+    ageLimitId: state.createFragment.ageLimitId,
     puzzles: state.games.puzzles
 });
 
@@ -81,6 +83,7 @@ export default compose(
         addTag,
         returnTag,
         setFon,
-        clearAllFields
+        clearAllFields,
+        setAgeLimit
     })
 )(CreateFragmentContainer);

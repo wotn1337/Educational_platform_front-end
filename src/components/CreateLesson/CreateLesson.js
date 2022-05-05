@@ -7,9 +7,10 @@ import ThisTags from "../CreateFragment/ThisTags/ThisTags";
 import LessonAnnotation from "./LessonAnnotation/LessonAnnotation";
 import Preloader from "../../common/Preloader/Preloader";
 import UploadFon from "./UloadFon/UploadFon";
+import AgeLimits from "../CreateFragment/AgeLimits/AgeLimits";
 
 
-const CreateLesson = ({isFetching, annotation, ...props}) => {
+const CreateLesson = ({isFetching, annotation, ageLimitId, setAgeLimit, ...props}) => {
 	return (
 		<div className={s.content}>
 			<h1 className={'pageTitle'}>Создать урок</h1>
@@ -29,6 +30,7 @@ const CreateLesson = ({isFetching, annotation, ...props}) => {
 					/>
 				</>
 			}
+			<AgeLimits ageLimitId={ageLimitId} setAgeLimit={setAgeLimit}/>
 			<div className={s.buttonsBlock}>
 				<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}>
 					<button className={'btn'}>Добавить теги</button>
