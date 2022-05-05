@@ -16,6 +16,7 @@ import lessonReducer from "./lessonReducer";
 import catalogPagesReducer from "./catalogPagesReducer";
 import pairsReducer from "./games/pairsReducer";
 import gamesReducer from "./gamesReducer";
+import ageLimitsReducer from "./ageLimitsReducer";
 
 
 const reducers = combineReducers({
@@ -35,6 +36,7 @@ const reducers = combineReducers({
 	catalogPages: catalogPagesReducer,
 	pairs: pairsReducer,
 	games: gamesReducer,
+	ageLimits: ageLimitsReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
