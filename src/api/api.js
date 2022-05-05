@@ -224,7 +224,11 @@ export const fragmentsAPI = {
 						data.append(`content[${i}][]`, c);
 					}
 				}
-			} else {
+			} else if (gameType==='puzzles') {
+				data.append('content', content?.image);
+				data.append('cols', content?.cols);
+				data.append('rows', content?.rows);
+			}  else {
 				for (const image of content?.images) {
 					if (typeof image !== 'string' || gameType === 'sequences') {
 						data.append('content[]', image);
