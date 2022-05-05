@@ -11,6 +11,7 @@ const SET_FON = 'createLesson/SET_FON';
 const CLEAR_ALL_FIELDS = 'createLesson/CLEAR_ALL_FIELDS';
 const SET_ERRORS = 'createLesson/SET_ERRORS';
 const DELETE_FRAGMENT = 'createLesson/DELETE_FRAGMENT';
+const SET_AGE_LIMIT = 'createLesson/SET_AGE_LIMIT'
 
 
 const initState = {
@@ -23,6 +24,7 @@ const initState = {
     fragments: [],
     annotation: '',
     fon: undefined,
+    ageLimitId: "1"
 };
 
 const createLessonReducer = (state = initState, action) => {
@@ -87,6 +89,9 @@ const createLessonReducer = (state = initState, action) => {
                 fragments: fragments.filter(fragment => fragment.id !== action.id)
             };
 
+        case SET_AGE_LIMIT:
+            return {...state, ageLimitId: action.ageLimitId}
+
         default:
             return state;
     }
@@ -103,10 +108,11 @@ export const changeAnnotation = (annotation) => ({type: CHANGE_ANNOTATION, annot
 export const setFon = (fon) => ({type: SET_FON, fon});
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
 export const deleteFragment = (id) => ({type: DELETE_FRAGMENT, id});
+export const setAgeLimit = (ageLimitId) => ({type: SET_AGE_LIMIT, ageLimitId});
 
-export const createLesson = (title, annotation, fragments, tags, fon) => (dispatch) => {
+export const createLesson = (title, annotation, fragments, tags, fon, ageLimitId) => (dispatch) => {
     dispatch(toggleIsFetching(true));
-    lessonsAPI.createLesson(title, annotation, fragments, tags, fon)
+    lessonsAPI.createLesson(title, annotation, fragments, tags, fon, ageLimitId)
         .then(res => {
             dispatch(clearAllFields());
             successNotification(res.data.messages);

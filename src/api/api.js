@@ -145,7 +145,7 @@ export const adminAPI = {
 
 export const fragmentsAPI = {
 	// Создать новый фрагмент
-	createFragment(type, title, content, tagsIds, fon, annotation, gameType, task) {
+	createFragment(type, title, content, tagsIds, fon, annotation, gameType, task, ageLimitId) {
 		const data = new FormData();
 		data.append('type', type);
 		data.append('title', title);
@@ -178,6 +178,8 @@ export const fragmentsAPI = {
 		} else {
 			data.append('content', content);
 		}
+
+		data.append('ageLimit', ageLimitId)
 
 		return axios.post(`${fullUrl}fragments`, data, authConfig());
 	},
@@ -278,7 +280,7 @@ export const fragmentsAPI = {
 
 export const lessonsAPI = {
 	// Создать урок
-	createLesson(title, annotation, fragments, tags, fon) {
+	createLesson(title, annotation, fragments, tags, fon, ageLimitId) {
 		const data = new FormData();
 		data.append('title', title);
 		data.append('annotation', annotation);
@@ -290,6 +292,8 @@ export const lessonsAPI = {
 		}
 		if (fon)
 			data.append('fon', fon);
+		data.append('ageLimit', ageLimitId)
+
 		return instance.post(`${fullUrl}lessons`, data, authConfig());
 	},
 
@@ -355,4 +359,10 @@ export const lessonsAPI = {
 			data.append('fon', fon);
 		return instance.post(`lessons/${id}?_method=PATCH`, data, authConfig());
 	}
-};
+}
+
+export const ageLimits = {
+	getAgeLimits() {
+		return instance.get('fragments/age-limits', authConfig())
+	}
+}

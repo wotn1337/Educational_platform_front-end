@@ -1,5 +1,13 @@
 import React from "react";
-import {addTag, clearAllFields, createFragment, deleteTag, setContent, setFon} from "../../redux/createFragmentReducer";
+import {
+	addTag,
+	clearAllFields,
+	createFragment,
+	deleteTag,
+	setAgeLimit,
+	setContent,
+	setFon
+} from "../../redux/createFragmentReducer";
 import {connect} from "react-redux";
 import {compose} from "redux";
 import {withoutAuthRedirectToAuthPage} from "../../hoc/withoutAuthRedirectToAuthPage";
@@ -38,7 +46,8 @@ class CreateFragmentContainer extends React.Component {
 			this.props.fon,
 			this.props.annotation,
 			this.props.gameType,
-			this.props.task
+			this.props.task,
+			this.props.ageLimitId
 		);
 	}
 
@@ -64,7 +73,8 @@ const mapStateToProps = (state) => ({
 	gameType: state.createFragment.gameType,
 	task: state.createFragment.task,
 	associations: state.games.associations,
-	sequence: state.games.sequence
+	sequence: state.games.sequence,
+	ageLimitId: state.createFragment.ageLimitId
 });
 
 export default compose(
@@ -78,6 +88,7 @@ export default compose(
 		addTag,
 		returnTag,
 		setFon,
-		clearAllFields
+		clearAllFields,
+		setAgeLimit
 	})
 )(CreateFragmentContainer);

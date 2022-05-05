@@ -7,7 +7,7 @@ import {
 	changeAnnotation,
 	changeLessonTitle,
 	createLesson,
-	deleteTag, setFon, clearAllFields, deleteFragment
+	deleteTag, setFon, clearAllFields, deleteFragment, setAgeLimit
 } from "../../redux/createLessonReducer";
 import {compose} from "redux";
 import {redirectAdminToMain} from "../../hoc/redirectAdminToMain";
@@ -29,7 +29,8 @@ class CreateLessonContainer extends React.Component {
 			this.props.annotation,
 			fragmentsIds,
 			tagsIds,
-			this.props.fon
+			this.props.fon,
+			this.props.ageLimitId
 		);
 	}
 
@@ -47,7 +48,8 @@ const mapStateToProps = (state) => ({
 	fon: state.createLesson.fon,
 	titleError: state.createLesson.titleError,
 	annotationError: state.createLesson.annotationError,
-	fragmentsError: state.createLesson.fragmentsError
+	fragmentsError: state.createLesson.fragmentsError,
+	ageLimitId: state.createLesson.ageLimitId
 });
 
 export default compose(
@@ -64,6 +66,7 @@ export default compose(
 		changeAnnotation,
 		setFon,
 		clearAllFields,
-		deleteFragment
+		deleteFragment,
+		setAgeLimit
 	})
 )(CreateLessonContainer);

@@ -1,0 +1,26 @@
+.selectBlock {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.label {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.select {
+    font-size: 20px;
+    display: block;
+    background: #C4C4C4;
+    border-radius: 10px;
+    border-color: transparent;
+    padding: 5px 10px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+}
+
+.select:focus {
+    outline: none;
+}
