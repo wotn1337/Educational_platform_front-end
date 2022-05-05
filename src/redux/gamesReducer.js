@@ -11,6 +11,10 @@ const ADD_SEQUENCE = 'games/ADD_SEQUENCE';
 const GET_SEQUENCE = 'games/GET_SEQUENCE';
 const DELETE_SEQUENCE = 'games/DELETE_SEQUENCE';
 const SET_SEQUENCE = 'games/SET_SEQUENCE';
+const GET_PUZZLES = 'games/GET_PUZZLES';
+const SET_PUZZLES_IMAGE = 'games/SET_PUZZLES_IMAGE';
+const SET_COLS = 'games/SET_COLS';
+const SET_ROWS = 'games/SET_ROWS';
 const CLEAR_ALL_FIELDS = 'games/CLEAR_ALL_FIELDS';
 
 const initState = {
@@ -20,7 +24,12 @@ const initState = {
     associations: [],
     sequence: [],
     associationsCount: 0,
-    sequenceCount: 0
+    sequenceCount: 0,
+    puzzles: {
+        image: undefined,
+        cols: 3,
+        rows: 3
+    }
 };
 
 const gamesReducer = (state = initState, action) => {
@@ -104,8 +113,8 @@ const gamesReducer = (state = initState, action) => {
         case GET_SEQUENCE:
             let temp = [];
             for (let i = 0; i < action.data.length; i++) {
-                temp.push({id: i, order: i + 1,
-                    //isNew: false,
+                temp.push({
+                    id: i, order: i + 1,
                     content: action.data[i]
                 })
             }
@@ -114,6 +123,14 @@ const gamesReducer = (state = initState, action) => {
                 sequence: temp,
                 sequenceCount: action.data.length
             }
+        case GET_PUZZLES:
+            return {...state, puzzles: {image: action.data.url, cols: action.data.cols, rows: action.data.rows}}
+        case SET_PUZZLES_IMAGE:
+            return {...state, puzzles: {...state.puzzles, image: action.image}}
+        case SET_COLS:
+            return {...state, puzzles: {...state.puzzles, cols: action.cols}}
+        case SET_ROWS:
+            return {...state, puzzles: {...state.puzzles, rows: action.rows}}
         case SET_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
         case CLEAR_ALL_FIELDS:
@@ -124,7 +141,8 @@ const gamesReducer = (state = initState, action) => {
                 associations: [],
                 sequence: [],
                 associationsCount: 0,
-                sequenceCount: 0
+                sequenceCount: 0,
+                puzzles: {image: undefined, cols: 3, rows: 3}
             };
         default:
             return state;
@@ -145,6 +163,12 @@ export const addSequence = () => ({type: ADD_SEQUENCE});
 export const getSequence = (data) => ({type: GET_SEQUENCE, data});
 export const setSequenceImage = (image, imageId) => ({type: SET_SEQUENCE, image, imageId});
 export const deleteSequence = (id) => ({type: DELETE_SEQUENCE, id});
+
+export const getPuzzles = (data) => ({type: GET_PUZZLES, data});
+export const setPuzzlesImage = (image) => ({type: SET_PUZZLES_IMAGE, image})
+export const setCols = (cols) => ({type: SET_COLS, cols})
+export const setRows = (rows) => ({type: SET_ROWS, rows})
+
 const toggleIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
 

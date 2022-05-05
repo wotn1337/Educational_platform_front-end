@@ -15,7 +15,7 @@ import {
 import Preloader from "../../common/Preloader/Preloader";
 import {returnTag} from "../../redux/allTagsReducer";
 import {withRouter} from "react-router-dom";
-import {clearAllFields, getAssociations, getSequence} from "../../redux/gamesReducer";
+import {clearAllFields, getAssociations, getPuzzles, getSequence} from "../../redux/gamesReducer";
 
 
 class FragmentContainer extends React.Component {
@@ -39,6 +39,8 @@ class FragmentContainer extends React.Component {
                     this.props.getAssociations(this.props.content.images);
                 } else if (this.props.content.gameType === 'sequences') {
                     this.props.getSequence(this.props.content.images)
+                } else if (this.props.content.gameType === 'puzzles') {
+                    this.props.getPuzzles(this.props.content.image)
                 }
             }
         });
@@ -71,6 +73,8 @@ class FragmentContainer extends React.Component {
             content = this.props.associations.map(a => [a.content[0], a.content[1]]);
         } else if (this.props.gameType==='sequences') {
             content = {images: this.props.sequence.map(a => a.content)};
+        }else if (this.props.gameType==='puzzles') {
+            content = this.props.puzzles;
         } else content = this.props.content;
         this.props.editFragment(
             this.state.id,
@@ -94,6 +98,8 @@ class FragmentContainer extends React.Component {
                         this.props.getAssociations(this.props.content.images);
                     } else if (this.props.content.gameType === 'sequences') {
                         this.props.getSequence(this.props.content.images)
+                    } else if (this.props.content.gameType === 'puzzles') {
+                        this.props.getPuzzles(this.props.content.image)
                     }
                 });
             });
@@ -137,6 +143,7 @@ const mapStateToProps = (state) => ({
     deleteError: state.fragment.deleteError,
     associations: state.games.associations,
     sequence: state.games.sequence,
+    puzzles: state.games.puzzles,
     gameType: state.fragment.gameType,
     task: state.fragment.task
 });
@@ -157,6 +164,7 @@ export default compose(
         setOldLinks,
         getAssociations,
         getSequence,
+        getPuzzles,
         setTask,
         clearAllFields
     }),

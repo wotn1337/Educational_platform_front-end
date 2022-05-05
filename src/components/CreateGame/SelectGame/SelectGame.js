@@ -6,6 +6,7 @@ import s from "../../CreateFragment/CreateImage/CreateImage.module.css";
 import FragmentTitle from "../../CreateFragment/FragmentTitle/FragmentTitle";
 import UploadFon from "../../CreateLesson/UloadFon/UploadFon";
 import SequenceCreateContainer from "../Sequence/SequenceCreateContainer";
+import PuzzlesCreateContainer from "../Puzzles/PuzzlesCreateContainer";
 
 const SelectGame = (props) => {
     const gamesTemplate = props.games?.map(game => (
@@ -17,7 +18,7 @@ const SelectGame = (props) => {
                 <>
                     {!props.isEdit && <FragmentTitle/>}
                     {!props.isEdit && <button className="backButton" onClick={() => props.setGameType(undefined)}/>}
-                    {!props.isEdit && props.gameType && <UploadFon type={'fragment'} fon={props.fon} setFon={props.setFon}/>}
+                    {!props.isEdit && <UploadFon type={'fragment'} fon={props.fon} setFon={props.setFon}/>}
                     <div className={s.annotation}>
                         <h3>Описание задания</h3>
                         <textarea className={`textarea ${s.annotationText}`}
@@ -27,14 +28,13 @@ const SelectGame = (props) => {
                 </>
             }
             {props.gameType === 'pairs'
-                && <PairsCreate setContent={props.setContent}
-                                setGameType={props.setGameType}/>}
+                && <PairsCreate setContent={props.setContent} setGameType={props.setGameType}/>}
             {props.gameType === 'matchmaking'
-                && <AssociationsCreateContainer setContent={props.setContent}
-                                                setGameType={props.setGameType}/>}
+                && <AssociationsCreateContainer setContent={props.setContent} setGameType={props.setGameType}/>}
             {props.gameType === 'sequences'
-                && <SequenceCreateContainer setContent={props.setContent}
-                                                setGameType={props.setGameType}/>}
+                && <SequenceCreateContainer setContent={props.setContent} setGameType={props.setGameType}/>}
+            {props.gameType === 'puzzles'
+                && <PuzzlesCreateContainer setGameType={props.setGameType}/>}
 
             {!props.gameType && <div style={{display: 'grid', gap: 50, marginTop: 30}}>{gamesTemplate}</div>}
         </>

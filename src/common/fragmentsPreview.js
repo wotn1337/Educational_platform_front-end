@@ -11,6 +11,7 @@ import typeGame from "../assets/img/fragments/typeGame.svg";
 import pairsGamePreview from "../assets/img/fragments/pairsGamePreview.png";
 import associationsGamePreview from "../assets/img/fragments/associationsGamePreview.png";
 import sequenceGamePreview from "../assets/img/fragments/sequenceGamePreview.png";
+import puzzlesGamePreview from "../assets/img/fragments/puzzlesGamePreview.png";
 
 export const previewImg = {
 	[fragmentTypes.video]: videoPreview,
@@ -20,6 +21,7 @@ export const previewImg = {
 	[fragmentTypes.pairs]: pairsGamePreview,
 	[fragmentTypes.matchmaking]: associationsGamePreview,
 	[fragmentTypes.sequences]: sequenceGamePreview,
+	[fragmentTypes.puzzles]: puzzlesGamePreview
 };
 
 export const fragmentTypeImg = {

@@ -1,0 +1,67 @@
+.createGame {
+    border-radius: 10px;
+    gap: 15px;
+    flex-direction: column;
+    align-items: start;
+}
+
+.selectBlockWrapper {
+    display: flex;
+    gap: 40px;
+}
+
+.selectBlockWrapperEdit {
+    margin-bottom: 30px;
+}
+
+.selectBlock {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.previewBlock {
+    display: flex;
+    width: 100%;
+    justify-items: center;
+}
+
+.preview {
+    height: 350px;
+    margin: 0 auto;
+    border: 5px solid #FBE184;
+    box-sizing: content-box;
+}
+
+.plus {
+    background-image: url("./../../../assets/img/fragments/plus.svg");
+    width: 50px;
+    height: 50px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: invert(1);
+}
+
+.uploadBtn {
+    display: flex;
+    width: 295px;
+    min-height: 70px;
+    margin-top: 30px;
+    padding: 0 25px;
+    align-items: center;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    background-color: #EF5B5B;
+    cursor: pointer;
+    transition-duration: 200ms;
+}
+
+.uploadBtn:hover {
+    background-color: #FBCB84;
+    cursor: pointer;
+}
