@@ -7,6 +7,7 @@ import Sequences from "../Sequences/Sequences";
 import SequenceCreateContainer from "../../CreateGame/Sequence/SequenceCreateContainer";
 import Task from "../Task/Task";
 import PuzzlesCreateContainer from "../../CreateGame/Puzzles/PuzzlesCreateContainer";
+import Puzzle from "../Puzzle/Puzzle";
 
 const gameTypes = {
 	pairs: 'pairs',
@@ -90,7 +91,14 @@ const Game = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNe
 			return (
 				<>
 					{!isEdit
-						? <></>
+						? <Puzzle
+							image={content.image.url}
+							rows={content.image.rows}
+							cols={content.image.cols}
+							inLesson={inLesson}
+							isLastFragmentInLesson={isLastFragmentInLesson}
+							toNextFragment={toNextFragment}
+						/>
 						: <PuzzlesCreateContainer isEdit={isEdit}/>
 					}
 				</>

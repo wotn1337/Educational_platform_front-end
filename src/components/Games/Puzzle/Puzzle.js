@@ -6,9 +6,7 @@ import './custom_puzzle_style.css'
 import EndGameModal from "../EndGameModal/EndGameModal";
 
 
-const image = 'https://twitchgid.ru/wp-content/cache/thumb/93/7f34b16bbcbf593_730x400.jpeg'
-
-const Puzzle = ({rows, cols, inLesson, isLastFragmentInLesson, toNextFragment}) => {
+const Puzzle = ({image, rows, cols, inLesson, isLastFragmentInLesson, toNextFragment}) => {
 	const [inGame, setInGame] = useState(false)
 	const [startTime, setStartTime] = useState(new Date().getTime())
 	const [totalTime, setTotalTime] = useState(new Date().getTime())
@@ -30,7 +28,7 @@ const Puzzle = ({rows, cols, inLesson, isLastFragmentInLesson, toNextFragment}) 
 	}
 
 	return (
-		<section className='content'>
+		<>
 			{inGame && <ImageExample src={image}/>}
 			{inGame
 				? <div className={s.puzzleWrapper}>
@@ -56,7 +54,7 @@ const Puzzle = ({rows, cols, inLesson, isLastFragmentInLesson, toNextFragment}) 
 				isLastFragment={isLastFragmentInLesson}
 				toNextFragment={toNextFragment}
 			/>
-		</section>
+		</>
 	)
 }
 
