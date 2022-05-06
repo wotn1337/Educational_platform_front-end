@@ -15,6 +15,7 @@ import LessonContainer from "./components/Lesson/LessonContainer";
 import Catalog from "./components/CatalogPage/Catalog";
 import MyMaterials from "./components/MyMaterials/MyMaterials";
 import Preloader from "./common/Preloader/Preloader";
+import Puzzle from "./components/Games/Puzzle/Puzzle";
 
 const BlockedPage = React.lazy(() => import("./components/BlockedPage/BlockedPage"));
 const ResetPasswordContainer = React.lazy(() => import("./components/AuthPage/Login/ResetPassword/ResetPasswordContainer"));
@@ -100,6 +101,10 @@ const App = () => {
 						<BlockedPage/>
 					</React.Suspense>
 				)}
+			/>
+			<Route
+				path='/puzzle'
+				render={() => <Puzzle rows={3} cols={4}/>}
 			/>
 		</>
 	)

@@ -1,0 +1,8 @@
+.jigsaw-puzzle {
+    background-color: #C4C4C4;
+}
+
+.jigsaw-puzzle__piece {
+    border: none;
+    cursor: grab;
+}
