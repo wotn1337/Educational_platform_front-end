@@ -19,6 +19,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 15px;
+    gap: 35px;
 }
 
 .searchInput {
@@ -33,7 +34,7 @@
     padding: 8px 15px;
     box-sizing: border-box;
     width: 322px;
-    margin-right: 35px;
+    /*margin-right: 35px;*/
     color: white;
 }
 
@@ -57,7 +58,7 @@
     box-sizing: border-box;
     color: white;
     width: 322px;
-    margin-right: 35px;
+    /*margin-right: 35px;*/
 }
 
 .typeSelect:focus {
@@ -71,7 +72,7 @@
 }
 
 .searchButton {
-    margin-left: 35px;
+    /*margin-left: 35px;*/
     width: 42px;
     height: 42px;
     padding: 0;
@@ -106,9 +107,13 @@
 }
 
 @media all and (max-width: 992px) {
-    .searchButton {
-        margin-left: 20px;
+    .searchBlock {
+        gap: 20px;
     }
+
+    /*.searchButton {*/
+    /*    margin-left: 20px;*/
+    /*}*/
 
     .searchInput, .searchInput::placeholder {
         font-size: 18px;

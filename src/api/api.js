@@ -21,6 +21,23 @@ const createTagsString = (tags) => {
 	return tagsString;
 }
 
+const fragmentsQueryParams = (page, title, type, tags, ageLimitId) => {
+	const tagsQuery = createTagsString(tags)
+	const titleQuery = title ? `&title=${title}` : ''
+	const typeQuery = type ? `&type=${type}` : ''
+	const ageQuery = ageLimitId ? `&ageLimit=${ageLimitId}` : ''
+
+	return `?page=${page}${titleQuery}${typeQuery}${tagsQuery}${ageQuery}`
+}
+
+const lessonsQueryParams = (page, title, teacherName, tags, ageLimitId) => {
+	const tagsQuery = createTagsString(tags)
+	const titleQuery = title ? `&title=${title}` : ''
+	const teacherQuery = teacherName ? `&creator=${teacherName}` : ''
+	const ageQuery = ageLimitId ? `&ageLimit=${ageLimitId}` : ''
+
+	return `?page=${page}${titleQuery}${teacherQuery}${tagsQuery}${ageQuery}`
+}
 
 export const authAPI = {
 	// Авторизует ранее зарегистрированного пользователя
@@ -189,15 +206,13 @@ export const fragmentsAPI = {
 	},
 
 	// Получить список всех фрагментов
-	getFragments(page, title = null, type = null, tags = null) {
-		let tagsString = createTagsString(tags);
-		return instance.get(`fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}${tagsString}`, authConfig());
+	getFragments(page, title = null, type = null, tags = null, ageLimitId = null) {
+		return instance.get(`fragments${fragmentsQueryParams(page, title, type, tags, ageLimitId)}`, authConfig());
 	},
 
 	// Получить список фрагментов текущего пользователя (только для учителя)
-	geMyFragments(page, title = null, type = null, tags = null) {
-		let tagsString = createTagsString(tags);
-		return instance.get(`my-fragments?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}${tagsString}`, authConfig());
+	geMyFragments(page, title = null, type = null, tags = null, ageLimitId = null) {
+		return instance.get(`my-fragments${fragmentsQueryParams(page, title, type, tags, ageLimitId)}`, authConfig());
 	},
 
 	// Получить данные конкретного фрагмента
@@ -267,12 +282,8 @@ export const fragmentsAPI = {
 	},
 
 	// Получить список избранного для конкретного пользователя
-	getFavorites(page, title = null, type = null, tags = null) {
-		let tagsString = createTagsString(tags);
-		return instance.get(
-			`fragments/like?page=${page}${title ? `&title=${title}` : ''}${type ? `&type=${type}` : ''}${tagsString}`,
-			authConfig()
-		);
+	getFavorites(page, title = null, type = null, tags = null, ageLimitId = null) {
+		return instance.get(`fragments/like${fragmentsQueryParams(page, title, type, tags, ageLimitId)}`, authConfig())
 	},
 
 	// Добавить/удалить фрагмент в избранное
@@ -306,30 +317,18 @@ export const lessonsAPI = {
 	},
 
 	// Получить список всех уроков
-	getLessons(page, title, teacherName, tags) {
-		let tagsString = createTagsString(tags);
-		return instance.get(
-			`lessons?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&creator=${teacherName}` : ''}${tagsString}`,
-			authConfig()
-		);
+	getLessons(page, title, teacherName, tags, ageLimitId) {
+		return instance.get(`lessons${lessonsQueryParams(page, title, teacherName, tags, ageLimitId)}`, authConfig())
 	},
 
 	// Получить список уроков текущего пользователя
-	getMyLessons(page, title, teacherName, tags) {
-		let tagsString = createTagsString(tags);
-		return instance.get(
-			`my-lessons?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&creator=${teacherName}` : ''}${tagsString}`,
-			authConfig()
-		);
+	getMyLessons(page, title, teacherName, tags, ageLimitId) {
+		return instance.get(`my-lessons${lessonsQueryParams(page, title, teacherName, tags, ageLimitId)}`, authConfig())
 	},
 
 	// Получить список избранных уроков текущего пользователя
-	getFavoriteLessons(page, title, teacherName, tags) {
-		let tagsString = createTagsString(tags);
-		return instance.get(
-			`lessons/like?page=${page}${title ? `&title=${title}` : ''}${teacherName ? `&creator=${teacherName}` : ''}${tagsString}`,
-			authConfig()
-		);
+	getFavoriteLessons(page, title, teacherName, tags, ageLimitId) {
+		return instance.get(`lessons/like${lessonsQueryParams(page, title, teacherName, tags, ageLimitId)}`, authConfig())
 	},
 
 	// Получить уроки конкретного преподавателя

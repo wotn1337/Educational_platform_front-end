@@ -8,6 +8,7 @@ const CHANGE_SEARCH_TEACHER_NAME = 'lessonsCatalog/CHANGE_SEARCH_TEACHER_NAME';
 const ADD_TAG = 'lessonsCatalog/ADD_TAG';
 const DELETE_TAG = 'lessonsCatalog/DELETE_TAG';
 const CLEAR_SEARCH_FIELDS = 'lessonsCatalog/CLEAR_SEARCH_FIELDS';
+const SET_AGE_LIMIT = 'lessonCatalog/SET_AGE_LIMIT'
 
 const initState = {
 	lessons: [],
@@ -20,7 +21,8 @@ const initState = {
 	isFetching: false,
 	searchLessonTitle: '',
 	searchTeacherName: '',
-	searchTags: []
+	searchTags: [],
+	ageLimitId: null
 };
 
 const lessonsCatalogReducer = (state = initState, action) => {
@@ -68,8 +70,12 @@ const lessonsCatalogReducer = (state = initState, action) => {
 				...state,
 				searchLessonTitle: '',
 				searchTeacherName: '',
-				searchTags: []
+				searchTags: [],
+				ageLimitId: null
 			};
+
+		case SET_AGE_LIMIT:
+			return {...state, ageLimitId: action.ageLimitId}
 
 		default:
 			return state;
@@ -85,8 +91,9 @@ export const changeSearchTeacherName = (name) => ({type: CHANGE_SEARCH_TEACHER_N
 export const addSearchTag = (tag) => ({type: ADD_TAG, tag});
 export const deleteSearchTag = (tag) => ({type: DELETE_TAG, tag});
 export const clearSearchFields = () => ({type: CLEAR_SEARCH_FIELDS});
+export const setAgeLimit = (ageLimitId) => ({type: SET_AGE_LIMIT, ageLimitId});
 
-export const getLessons = (page, pageNumber, title, teacherName, tags, teacherId) => (dispatch) => {
+export const getLessons = (page, pageNumber, title, teacherName, tags, teacherId, ageLimitId) => (dispatch) => {
 	let getLessonsFunction;
 	switch (page) {
 		case 'favorite':
@@ -111,7 +118,7 @@ export const getLessons = (page, pageNumber, title, teacherName, tags, teacherId
 	}
 	dispatch(toggleIsFetching(true));
 	if (page !== 'teacher') {
-		getLessonsFunction(pageNumber, title, teacherName, tags)
+		getLessonsFunction(pageNumber, title, teacherName, tags, ageLimitId)
 			.then(res => {
 				dispatch(setLessons(res.data));
 				dispatch(setCurrentPage(pageNumber));

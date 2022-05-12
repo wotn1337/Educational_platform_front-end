@@ -2,6 +2,7 @@ import React from "react";
 import s from './SearchBlock.module.css'
 import TagsListContainer from "../../CreateFragment/TagsList/TagsListContainer";
 import ThisTags from "../../CreateFragment/ThisTags/ThisTags";
+import AgeLimits from "../../CreateFragment/AgeLimits/AgeLimits";
 
 const rightWord = (count) => {
 	const twoLastNumbers = count % 100;
@@ -42,10 +43,7 @@ const SearchBlock = (props) => {
 					<option value="image">Изображение</option>
 					<option value="game">Игра</option>
 				</select>
-				{/*<div className={s.allTags}>*/}
-				{/*	<button className={s.addTagButton} onClick={() => setTagsList(!tagsList)}>+</button>*/}
-				{/*	{tagsList && <TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}/>}*/}
-				{/*</div>*/}
+				<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit} search={true}/>
 				<TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}>
 					<button className={s.addTagButton}>+</button>
 				</TagsListContainer>

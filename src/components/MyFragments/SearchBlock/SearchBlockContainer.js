@@ -4,7 +4,7 @@ import SearchBlock from "./SearchBlock";
 import {
 	addSearchTag, clearSearchFields,
 	deleteSearchTag,
-	getFragments,
+	getFragments, setAgeLimit,
 	setSearchTitle,
 	setSearchType
 } from "../../../redux/catalogFragmentsReducer";
@@ -29,7 +29,8 @@ class SearchBlockContainer extends React.Component {
 			1,
 			this.props.searchTitle,
 			this.props.searchType,
-			tags
+			tags,
+			this.props.ageLimitId
 		);
 	}
 	render() {
@@ -45,7 +46,8 @@ const mapStateToProps = (state) => ({
 	searchType: state.catalogFragments.searchType,
 	totalFragmentsCount: state.catalogFragments.totalFragmentsCount,
 	currentFragmentsCount: state.catalogFragments.currentFragmentsCount,
-	searchTags: state.catalogFragments.searchTags
+	searchTags: state.catalogFragments.searchTags,
+	ageLimitId: state.catalogFragments.ageLimitId
 });
 
 export default connect(mapStateToProps, {
@@ -55,5 +57,6 @@ export default connect(mapStateToProps, {
 	addSearchTag,
 	deleteSearchTag,
 	returnTag,
-	clearSearchFields
+	clearSearchFields,
+	setAgeLimit
 })(SearchBlockContainer);

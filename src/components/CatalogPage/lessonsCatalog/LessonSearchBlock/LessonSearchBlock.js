@@ -3,6 +3,7 @@ import s from './LessonSearchBlock.module.css';
 import Input from "../../../../common/Input/Input";
 import ThisTags from "../../../CreateFragment/ThisTags/ThisTags";
 import TagsListContainer from "../../../CreateFragment/TagsList/TagsListContainer";
+import AgeLimits from "../../../CreateFragment/AgeLimits/AgeLimits";
 
 
 const rightWord = (count) => {
@@ -26,6 +27,7 @@ const LessonSearchBlock = ({searchLessonTitle, changeSearchLessonTitle, searchTe
 			<div className={s.inputBlock}>
 				<Input placeholder={'Название урока'} value={searchLessonTitle} onChange={changeSearchLessonTitle}/>
 				<Input placeholder={'Имя преподавателя'} value={searchTeacherName} onChange={changeSearchTeacherName}/>
+				<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit} search={true}/>
 				<TagsListContainer currentTags={props.searchTags} externalAddTag={props.addSearchTag}>
 					<button className={s.addTagButton}>+</button>
 				</TagsListContainer>

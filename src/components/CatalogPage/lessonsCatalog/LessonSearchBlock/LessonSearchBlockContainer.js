@@ -6,7 +6,7 @@ import {
 	addSearchTag,
 	changeSearchLessonTitle, changeSearchTeacherName, clearSearchFields,
 	deleteSearchTag,
-	getLessons
+	getLessons, setAgeLimit
 } from "../../../../redux/lessonsCatalogReducer";
 import {returnTag} from "../../../../redux/allTagsReducer";
 
@@ -23,7 +23,9 @@ class LessonSearchBlockContainer extends React.Component {
 			1,
 			this.props.searchLessonTitle,
 			this.props.searchTeacherName,
-			tagsIds
+			tagsIds,
+			undefined,
+			this.props.ageLimitId
 		);
 	}
 	render() {
@@ -39,7 +41,8 @@ const mapStateToProps = (state) => ({
 	searchTags: state.lessonsCatalog.searchTags,
 	currentPage: state.lessonsCatalog.currentPage,
 	lessonsCount: state.lessonsCatalog.lessonsCount,
-	allLessonsCount: state.lessonsCatalog.allLessonsCount
+	allLessonsCount: state.lessonsCatalog.allLessonsCount,
+	ageLimitId: state.lessonsCatalog.ageLimitId
 });
 
 export default compose(
@@ -50,6 +53,7 @@ export default compose(
 		deleteSearchTag,
 		returnTag,
 		getLessons,
-		clearSearchFields
+		clearSearchFields,
+		setAgeLimit
 	}),
 )(LessonSearchBlockContainer)

@@ -5,13 +5,13 @@ import {getAgeLimits} from "../../../redux/ageLimitsReducer";
 import Preloader from "../../../common/Preloader/Preloader";
 
 
-const AgeLimits = ({ageLimits, isFetching, getAgeLimits, ageLimitId, setAgeLimit}) => {
+const AgeLimits = ({ageLimits, isFetching, getAgeLimits, ageLimitId, setAgeLimit, search}) => {
 	// Получить список возрастных цензов при вмонтировании компоненты
 	useEffect(getAgeLimits, [])
 
 	return (
 		<div className={s.selectBlock}>
-			<label htmlFor="age_limits" className={s.label}>Возраст:</label>
+			{!search && <label htmlFor="age_limits" className={s.label}>Возраст:</label>}
 			{!isFetching
 				? <select
 					name="age_limits"
@@ -20,6 +20,7 @@ const AgeLimits = ({ageLimits, isFetching, getAgeLimits, ageLimitId, setAgeLimit
 					value={ageLimitId}
 					onChange={e => setAgeLimit(e.target.value)}
 				>
+					{search && <option value={null}>Все возраста</option>}
 					{ageLimits.map(limit => (
 						<option value={limit.id} key={limit.id}>{limit.text_context}</option>
 					))}

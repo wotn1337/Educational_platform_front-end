@@ -9,6 +9,7 @@ const SET_SEARCH_TYPE = 'catalogFragments/SET_SEARCH_TYPE';
 const ADD_SEARCH_TAG = 'catalogFragments/ADD_SEARCH_TAG';
 const DELETE_SEARCH_TAG = 'catalogFragments/DELETE_SEARCH_TAG';
 const CLEAR_SEARCH_FIELDS = 'catalogFragments/CLEAR_SEARCH_FIELDS';
+const SET_AGE_LIMIT = 'catalogFragments/SET_AGE_LIMIT';
 
 
 const initState = {
@@ -24,6 +25,7 @@ const initState = {
 	searchTitle : '',
 	searchType: '',
 	searchTags: [],
+	ageLimitId: null
 };
 
 const myFragmentsReducer = (state = initState, action) => {
@@ -71,8 +73,12 @@ const myFragmentsReducer = (state = initState, action) => {
 				...state,
 				searchTitle : '',
 				searchType: '',
-				searchTags: []
+				searchTags: [],
+				ageLimitId: null
 			};
+
+		case SET_AGE_LIMIT:
+			return {...state, ageLimitId: action.ageLimitId}
 
 		default:
 			return state;
@@ -88,8 +94,9 @@ export const setSearchType = (searchType) => ({type: SET_SEARCH_TYPE, searchType
 export const addSearchTag = (tag) => ({type: ADD_SEARCH_TAG, tag});
 export const deleteSearchTag = (tag) => ({type: DELETE_SEARCH_TAG, tag});
 export const clearSearchFields = () => ({type: CLEAR_SEARCH_FIELDS});
+export const setAgeLimit = (ageLimitId) => ({type: SET_AGE_LIMIT, ageLimitId});
 
-export const getFragments = (page, pageNumber, title, type, tags) => (dispatch) => {
+export const getFragments = (page, pageNumber, title, type, tags, ageLimitId) => (dispatch) => {
 	let getFragments;
 	switch (page) {
 		case 'catalog':
@@ -109,7 +116,7 @@ export const getFragments = (page, pageNumber, title, type, tags) => (dispatch) 
 			break;
 	}
 	dispatch(setIsFetching(true));
-	getFragments(pageNumber, title, type, tags)
+	getFragments(pageNumber, title, type, tags, ageLimitId)
 		.then(res => {
 			dispatch(setFragments(res.data));
 			dispatch(setCurrentPage(pageNumber));
