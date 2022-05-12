@@ -15,6 +15,7 @@ const FragmentsList = (props) => {
             tags={fragment.tags}
             fon={fragment.fon}
             content={fragment.content}
+            ageLimit={fragment.age_limit}
         />
     ));
 

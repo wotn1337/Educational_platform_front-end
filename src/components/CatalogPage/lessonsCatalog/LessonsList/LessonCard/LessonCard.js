@@ -5,7 +5,7 @@ import {NavLink} from "react-router-dom";
 import Tags from "../../../../MyFragments/FragmentsList/FragmentCard/Tags/Tags";
 
 
-const LessonCard = ({lesson, toggleFavorite, role, ...props}) => {
+const LessonCard = ({lesson, toggleFavorite, role}) => {
 	const [favorite, setFavorite] = useState(lesson.favourite);
 	return (
 		<NavLink to={`/lesson/${lesson.id}`} className={s.lessonCard}>
@@ -35,6 +35,9 @@ const LessonCard = ({lesson, toggleFavorite, role, ...props}) => {
 					/>
 				</div>
 				}
+				<div className={s.ageLimitWrapper}>
+					<span className={s.ageLimit}>{lesson.age_limit}</span>
+				</div>
 			</div>
 			<div className={s.author}>Автор: <NavLink to={`/profile/${lesson.user_id}`} className={s.creatorName}>{lesson.user_name}</NavLink></div>
 		</NavLink>
