@@ -72,7 +72,7 @@ class FragmentContainer extends React.Component {
         if (this.props.gameType==='matchmaking') {
             content = this.props.associations.map(a => [a.content[0], a.content[1]]);
         } else if (this.props.gameType==='sequences') {
-            content = {images: this.props.sequence.map(a => a.content)};
+            content = {images: this.props.sequence.filter(a => typeof a.content !== 'string').map(c => c.content)};
         }else if (this.props.gameType==='puzzles') {
             content = this.props.puzzles;
         } else content = this.props.content;
@@ -86,7 +86,8 @@ class FragmentContainer extends React.Component {
             this.props.fon,
             this.state.oldLinks,
             this.props.gameType,
-            this.props.task
+            this.props.task,
+            this.props.metaImagesData
         )
             .then(() => {
                 this.toggleIsEdit();
@@ -145,7 +146,8 @@ const mapStateToProps = (state) => ({
     sequence: state.games.sequence,
     puzzles: state.games.puzzles,
     gameType: state.fragment.gameType,
-    task: state.fragment.task
+    task: state.fragment.task,
+    metaImagesData: state.games.metaImagesData
 });
 
 export default compose(

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import s from './Sequences.module.css';
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
-import {v4 as uuid} from 'uuid'
 import Card from "../GameCard/Card";
 import {shuffleArray} from "../../../common/helpers";
 import EndGameModal from "../EndGameModal/EndGameModal";
@@ -15,10 +14,10 @@ const createImagesState = (images) => {
 	}
 
 	images.forEach(image => {
-		const id = uuid()
+		const id = image.id.toString()
 		result.images = {
 			...result.images,
-			[id]: {id, src: image},
+			[id]: {id, src: image.url},
 		}
 
 		result.sequence = [...result.sequence, id]
@@ -152,7 +151,7 @@ const DraggableCards = ({imagesState, size, inGame}) => {
 
 const DraggableCard = ({id, index, size, image, inGame}) => {
 	return (
-		<Draggable draggableId={id} index={index} key={id} isDragDisabled={!inGame}>
+		<Draggable draggableId={id.toString()} index={index} key={id} isDragDisabled={!inGame}>
 			{(provided) => (
 				<Card
 					size={size}

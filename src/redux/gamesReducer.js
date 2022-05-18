@@ -29,7 +29,8 @@ const initState = {
         image: undefined,
         cols: 3,
         rows: 3
-    }
+    },
+    metaImagesData: []
 };
 
 const gamesReducer = (state = initState, action) => {
@@ -85,11 +86,11 @@ const gamesReducer = (state = initState, action) => {
                     {
                         id: state.sequenceCount,
                         order: state.sequence.length ? Math.max(...arr) + 1 : 1,
-                        //isNew: true,
                         content: undefined
                     }
                 ],
-                sequenceCount: state.sequenceCount + 1
+                sequenceCount: state.sequenceCount + 1,
+                metaImagesData: [...state.metaImagesData, {id: state.sequenceCount, imageName: undefined}]
             }
         case DELETE_SEQUENCE:
             let deleteId = state.sequence.findIndex(i => i.id === action.id);
@@ -98,9 +99,13 @@ const gamesReducer = (state = initState, action) => {
                 ...state,
                 sequence: state.sequence.filter(s => s.id !== action.id).map(s => {
                     return s.order > order ? {...s, order: s.order - 1} : s;
-                })
+                }),
+                metaImagesData: state.metaImagesData.filter(image => image.id !== action.id)
             }
         case SET_SEQUENCE:
+            const imageData = state.metaImagesData.find(image => image.id === action.imageId)
+            delete imageData.url
+            imageData.imageName = action.image?.name
             return {
                 ...state,
                 sequence: state.sequence.map(a => {
@@ -108,20 +113,33 @@ const gamesReducer = (state = initState, action) => {
                         return {...a, content: action.image};
                     }
                     return a;
+                }),
+                metaImagesData: state.metaImagesData.map(image => {
+                    if (image.id === action.imageId) {
+                        return {...imageData};
+                    }
+                    return image;
                 })
             }
         case GET_SEQUENCE:
             let temp = [];
+            let tempMeta = []
             for (let i = 0; i < action.data.length; i++) {
                 temp.push({
-                    id: i, order: i + 1,
-                    content: action.data[i]
+                    id: action.data[i].id,
+                    order: i + 1,
+                    content: action.data[i].url
+                })
+                tempMeta.push({
+                    id: action.data[i].id,
+                    url: action.data[i].url
                 })
             }
             return {
                 ...state,
                 sequence: temp,
-                sequenceCount: action.data.length
+                sequenceCount: action.data.length,
+                metaImagesData: tempMeta
             }
         case GET_PUZZLES:
             return {...state, puzzles: {image: action.data.url, cols: action.data.cols, rows: action.data.rows}}

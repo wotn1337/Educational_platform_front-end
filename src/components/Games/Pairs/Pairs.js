@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import s from './Pairs.module.css';
 import {v1 as uuid} from "uuid";
-import {compose} from "redux";
-import {connect} from "react-redux";
 import {Transition} from "react-transition-group";
 import EndGameModal from "../EndGameModal/EndGameModal";
 import Card from "../GameCard/Card";
@@ -171,7 +169,7 @@ const createCardsArray = (images) => {
 	// Генерирует массив карточек с парными картинками
 	images.forEach((image, index) => {
 		const cardTemp = {
-			image,
+			image: image.url,
 			pairIndex: index,
 			rotated: true,
 			finished: false
@@ -205,10 +203,4 @@ const getProgressBarColor = (percent) => {
 	}
 }
 
-const mapStateToProps = (state) => ({
-	task: state.pairs.task
-});
-
-export default compose(
-	connect(mapStateToProps),
-)(Pairs)
+export default Pairs

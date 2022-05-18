@@ -226,7 +226,7 @@ export const fragmentsAPI = {
 	},
 
 	// Редактировать фрагмент (только для админа или владельца фрагмента)
-	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task) {
+	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData) {
 		const data = new FormData();
 		data.append('title', title);
 		if (typeof task !== 'undefined')
@@ -248,9 +248,10 @@ export const fragmentsAPI = {
 			}  else {
 				for (const image of content?.images) {
 					if (typeof image !== 'string' || gameType === 'sequences') {
-						data.append('content[]', image);
+						data.append('content[]', image)
 					}
 				}
+				data.append('metaImagesData', JSON.stringify(metaImagesData))
 			}
 		}
 
@@ -268,6 +269,7 @@ export const fragmentsAPI = {
 
 		if (typeof fon !== 'string' && typeof fon !== 'undefined' && fon !== null)
 			data.append('fon', fon);
+
 		return instance.post(`fragments/${id}?_method=PATCH`, data, authConfig());
 	},
 
