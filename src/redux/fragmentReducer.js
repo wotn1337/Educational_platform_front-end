@@ -150,9 +150,9 @@ export const deleteFragment = (id, goBack, openErrorModal) => (dispatch) => {
 		});
 };
 
-export const editFragment = (id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task) => (dispatch) => {
+export const editFragment = (id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	return fragmentsAPI.editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task)
+	return fragmentsAPI.editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(toggleIsFetching(false));

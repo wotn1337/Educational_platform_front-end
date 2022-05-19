@@ -6,11 +6,10 @@ import Tippy from "@tippyjs/react";
 const AssociationPair = ({setContent, setGameType, ...props}) => {
     let cards=[];
     for (let i=0; i<2; i++) {
-       cards.push(<AssociationCard key={i}
+       cards.push(<AssociationCard key={props.content[i].id}
                                    pairId={props.pairId}
-                                   imageId={i}
-                                   image={props.content[i]}
-                                   isNew={props.isNew}
+                                   imageId={props.content[i].id}
+                                   image={props.content[i].url}
                                    isEdit={props.isEdit}
                                    setContent={props.setContent}
                                    setAssociation={props.setAssociation}/>)

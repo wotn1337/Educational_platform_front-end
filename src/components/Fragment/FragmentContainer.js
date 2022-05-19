@@ -26,21 +26,17 @@ class FragmentContainer extends React.Component {
         oldLinks: this.props.oldLinks
     }
 
-    deleteImage = (link) => {
-        this.setState({oldLinks: this.state.oldLinks.filter(l => l !== link)});
-    }
-
     componentDidMount() {
         this.props.getFragment(this.state.id).then(() => {
             if (this.props.type === 'game') {
                 if (this.props.content.gameType === 'pairs') {
-                    this.setState({oldLinks: this.props.content.images});
+                    this.props.getSequence(this.props.content.images)
                 } else if (this.props.content.gameType === 'matchmaking') {
                     this.props.getAssociations(this.props.content.images);
                 } else if (this.props.content.gameType === 'sequences') {
                     this.props.getSequence(this.props.content.images)
                 } else if (this.props.content.gameType === 'puzzles') {
-                    this.props.getPuzzles(this.props.content.image)
+                    this.props.getPuzzles(this.props.content.images)
                 }
             }
         });
@@ -68,11 +64,20 @@ class FragmentContainer extends React.Component {
     }
 
     editFragment = () => {
-        let content;
+        let content = [];
+        let metaImagesData
         if (this.props.gameType==='matchmaking') {
-            content = this.props.associations.map(a => [a.content[0], a.content[1]]);
-        } else if (this.props.gameType==='sequences') {
-            content = {images: this.props.sequence.map(a => a.content)};
+            metaImagesData = this.props.metaImagesData.map(p => p.pair)
+            for (const pair of this.props.associations) {
+                for (const image of pair.content) {
+                    if (typeof image.url !== 'string') {
+                        content.push(image.url)
+                    }
+                }
+            }
+            //content = this.props.associations.map(a => [a.content[0].url, a.content[1].url]);
+        } else if (this.props.gameType==='sequences' || this.props.gameType==='pairs') {
+            content = {images: this.props.sequence.filter(a => typeof a.content !== 'string').map(c => c.content)};
         }else if (this.props.gameType==='puzzles') {
             content = this.props.puzzles;
         } else content = this.props.content;
@@ -86,20 +91,20 @@ class FragmentContainer extends React.Component {
             this.props.fon,
             this.state.oldLinks,
             this.props.gameType,
-            this.props.task
+            this.props.task,
+            this.props.gameType==='matchmaking' ? metaImagesData : this.props.metaImagesData
         )
             .then(() => {
                 this.toggleIsEdit();
                 this.props.getFragment(this.state.id).then(() => {
                     if (this.props.content.gameType === 'pairs') {
-                        this.props.setOldLinks(this.props.content.images);
-                        this.setState({oldLinks: this.props.content.images})
+                        this.props.getSequence(this.props.content.images)
                     } else if (this.props.content.gameType === 'matchmaking') {
                         this.props.getAssociations(this.props.content.images);
                     } else if (this.props.content.gameType === 'sequences') {
                         this.props.getSequence(this.props.content.images)
                     } else if (this.props.content.gameType === 'puzzles') {
-                        this.props.getPuzzles(this.props.content.image)
+                        this.props.getPuzzles(this.props.content.images)
                     }
                 });
             });
@@ -145,7 +150,8 @@ const mapStateToProps = (state) => ({
     sequence: state.games.sequence,
     puzzles: state.games.puzzles,
     gameType: state.fragment.gameType,
-    task: state.fragment.task
+    task: state.fragment.task,
+    metaImagesData: state.games.metaImagesData
 });
 
 export default compose(
@@ -166,7 +172,7 @@ export default compose(
         getSequence,
         getPuzzles,
         setTask,
-        clearAllFields
+        clearAllFields,
     }),
     withoutAuthRedirectToAuthPage,
     withRouter

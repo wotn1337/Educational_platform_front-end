@@ -1,6 +1,5 @@
 import React from 'react'
 import Pairs from "../Pairs/Pairs";
-import PairsCreateContainer from "../../CreateGame/Pairs/PairsCreateContainer";
 import Associations from "../Associations/Associations";
 import AssociationsCreateContainer from "../../CreateGame/Associations/AssociationsCreateContainer";
 import Sequences from "../Sequences/Sequences";
@@ -46,12 +45,7 @@ const Game = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNe
 							isLastFragmentInLesson={isLastFragmentInLesson}
 							toNextFragment={toNextFragment}
 						/>
-						: <PairsCreateContainer setContent={props.setContent}
-						                        isEdit={isEdit}
-						                        oldLinks={props.oldLinks}
-						                        content={content}
-						                        deleteImage={props.deleteImage}
-						/>
+						: <SequenceCreateContainer isEdit={isEdit}/>
 					}
 				</>
 			)
@@ -92,9 +86,9 @@ const Game = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNe
 				<>
 					{!isEdit
 						? <Puzzle
-							image={content.image.url}
-							rows={content.image.rows}
-							cols={content.image.cols}
+							image={content.images[0].url}
+							rows={content.images[0].rows}
+							cols={content.images[0].cols}
 							inLesson={inLesson}
 							isLastFragmentInLesson={isLastFragmentInLesson}
 							toNextFragment={toNextFragment}

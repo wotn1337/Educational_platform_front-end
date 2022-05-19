@@ -6,7 +6,6 @@ const AssociationsCreate = ({setContent, setGameType, ...props}) => {
     const associationPairs = props.pairs?.map(pair => (
         <AssociationPair key={pair.id}
                          pairId={pair.id}
-                         isNew={pair.isNew}
                          content={pair.content}
                          isEdit={props.isEdit}
                          setAssociation={props.setAssociation}

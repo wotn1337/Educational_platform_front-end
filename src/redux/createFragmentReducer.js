@@ -85,7 +85,7 @@ const createFragmentReducer = (state = initState, action) => {
 				annotation: '',
 				gameType: undefined,
 				task: undefined,
-				ageLimitId: "0"
+				ageLimitId: "1"
 			};
 
 		case SET_ERRORS:

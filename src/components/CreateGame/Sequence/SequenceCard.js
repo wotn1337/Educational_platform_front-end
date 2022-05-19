@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import s from './SequenceCreate.module.css';
 import Tippy from "@tippyjs/react";
 
-const SequenceCard = (props) => {
-    let imageId = props.imageId;
+const SequenceCard = ({imageId, ...props}) => {
     const [imageSrc, setImageSrc] = useState(props.content ? props.content : undefined);
 
     return (

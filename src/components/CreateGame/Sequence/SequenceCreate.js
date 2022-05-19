@@ -7,7 +7,6 @@ const SequenceCreate = (props) => {
         <SequenceCard key={image.id}
                       imageId={image.id}
                       order={image.order}
-                      isNew={image.isNew}
                       content={image.content}
                       isEdit={props.isEdit}
                       setSequenceImage={props.setSequenceImage}
