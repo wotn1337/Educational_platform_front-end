@@ -24,14 +24,12 @@ const AssociationCard = (props) => {
                     <label htmlFor={`${pairId}_${imageId}`}
                            className={s.uploadPreview}>Добавьте изображение для создания пары</label> :
                     <div className={s.imagePreview} onClick={event => {
-                        if (props.isNew) {
                             event.preventDefault();
-                            props.setAssociation('', pairId, imageId);
+                            props.setAssociation(undefined, pairId, imageId);
                             setImageSrc(undefined);
-                        }
                     }}>
-                        <div className={props.isNew && s.cross}/>
-                        <img className={s.image} src={imageSrc} alt="" style={{cursor: props.isNew ? 'pointer' : 'default'}}/>
+                        <div className={s.cross}/>
+                        <img className={s.image} src={imageSrc} alt="" style={{cursor:'pointer'}}/>
                     </div>
             }
         </div>

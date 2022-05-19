@@ -177,21 +177,20 @@ export const fragmentsAPI = {
 		if (type === 'image')
 			data.append('annotation', annotation);
 
-		if (type === 'game'){
+		if (type === 'game') {
 			data.append('gameType', gameType);
 			if (task) data.append('task', task);
 			if (gameType === 'pairs' || gameType === 'sequences') {
 				for (const image of content.images) {
 					data.append('content[]', image);
 				}
-			} else if (gameType==='puzzles') {
-				data.append('content', content.image);
+			} else if (gameType === 'puzzles') {
+				data.append('content[]', content.image);
 				data.append('cols', content.cols);
 				data.append('rows', content.rows);
 			} else {
-				for (let i = 0; i < content.length; i++)
-				{
-					for(const c of content[i]) {
+				for (let i = 0; i < content.length; i++) {
+					for (const c of content[i]) {
 						data.append(`content[${i}][]`, c);
 					}
 				}
@@ -236,35 +235,29 @@ export const fragmentsAPI = {
 			data.append('content', content);
 		else if (type === 'game') {
 			if (gameType === 'matchmaking') {
-				for (let i = 0; i < content?.length; i++) {
-					for (const c of content[i]) {
-						data.append(`content[${i}][]`, c);
-					}
+				for (const c of content) {
+					data.append(`content[]`, c);
 				}
-			} else if (gameType==='puzzles') {
-				data.append('content', content?.image);
+			} else if (gameType === 'puzzles') {
+				if (typeof content?.image !== 'string') {
+					data.append('content[]', content?.image);
+				}
 				data.append('cols', content?.cols);
 				data.append('rows', content?.rows);
-			}  else {
+			} else {
 				for (const image of content?.images) {
-					if (typeof image !== 'string' || gameType === 'sequences') {
+					if (typeof image !== 'string' || gameType === 'sequences' || gameType === 'pairs') {
 						data.append('content[]', image)
 					}
 				}
-				data.append('metaImagesData', JSON.stringify(metaImagesData))
 			}
+			data.append('metaImagesData', JSON.stringify(metaImagesData))
 		}
 
 		for (const tag of tagsIds) {
 			data.append('tags[]', tag);
 		}
 
-		if (gameType === 'pairs') {
-			for (const links of oldLinks) {
-				data.append('oldLinks[]', links);
-			}
-		}
-      
 		data.append('annotation', annotation);
 
 		if (typeof fon !== 'string' && typeof fon !== 'undefined' && fon !== null)

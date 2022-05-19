@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import s from './PairsCreate.module.css';
 
-const PairsCreate = ({setContent, setGameType, ...props}) => {
+const PairsCreate = ({setContent, setGameType, pairs, ...props}) => {
 	let oldContent;
 	const [images, setImages] = useState([]);
 	const [imagesSrc, setImagesSrc] = useState([]);
@@ -11,10 +11,10 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 		</div>
 	));
 	if (props.isEdit) {
-		oldContent = props.oldLinks?.map(url => (
+		oldContent = pairs?.map(image => (
 			<div className={s.preview}>
-				<div className={s.delete} onClick={() => props.deleteImage(url)}>Удалить</div>
-				<img src={url} className={s.image} alt="img"/>
+				<div className={s.delete} onClick={() => props.deleteImage(image.id)}>Удалить</div>
+				<img src={image.url} className={s.image} alt="img"/>
 			</div>
 		));
 	}
@@ -46,9 +46,8 @@ const PairsCreate = ({setContent, setGameType, ...props}) => {
 							setContent({...props.content, images: [...tempImages]});
 						}}
 					/>
-					<label htmlFor="image"
-						   className={s.uploadBtn}>
-						<div className={s.plus}> </div>
+					<label htmlFor="image" className={s.uploadBtn}>
+						<div className={s.plus}/>
 						{images.length ? 'Выбрать другие изображения' : 'Загрузить изображения'}
 					</label>
 			</section>

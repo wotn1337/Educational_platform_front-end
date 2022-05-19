@@ -15,12 +15,12 @@ const createInitImagesObject = (initImages) => {
 	}
 
 	initImages.forEach((imagePair) => {
-		const id1 = uuid()
-		const id2 = uuid()
+		const id1 = imagePair[0].id.toString()
+		const id2 = imagePair[1].id.toString()
 		result.images = {
 			...result.images,
-			[id1]: {id: id1, src: imagePair[0], pair: undefined, rightPair: id2},
-			[id2]: {id: id2, src: imagePair[1]}
+			[id1]: {id: id1, src: imagePair[0].url, pair: undefined, rightPair: id2},
+			[id2]: {id: id2, src: imagePair[1].url}
 		}
 		result.topIds = [...result.topIds, id1]
 		result.downIds = [...result.downIds, id2]

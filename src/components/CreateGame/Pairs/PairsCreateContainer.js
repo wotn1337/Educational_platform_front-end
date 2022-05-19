@@ -13,7 +13,7 @@ class PairsCreateContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-
+    pairs: state.games.pairs,
 });
 
 export default connect(mapStateToProps, {})(PairsCreateContainer);
