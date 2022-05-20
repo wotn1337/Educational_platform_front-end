@@ -20,9 +20,6 @@ const LessonCard = ({lesson, toggleFavorite, role}) => {
 					<span className={s.fragmentsCountTitle}>Фрагментов в уроке: </span>
 					<span className={s.count}>{lesson.fragments_count}</span>
 				</span>
-				{/*<NavLink to={`/lesson/${lesson.id}`} className={`${s.lessonButton} btn`}>*/}
-				{/*	Перейти к материалам урока*/}
-				{/*</NavLink>*/}
 				{role !== 'admin' &&
 				<div className={s.favorite}>
 					<button
@@ -39,7 +36,11 @@ const LessonCard = ({lesson, toggleFavorite, role}) => {
 					<span className={s.ageLimit}>{lesson.age_limit}</span>
 				</div>
 			</div>
-			<div className={s.author}>Автор: <NavLink to={`/profile/${lesson.user_id}`} className={s.creatorName}>{lesson.user_name}</NavLink></div>
+			<div className={s.author}>
+				Автор: <NavLink to={`/profile/${lesson.user_id}`} className={s.creatorName}>
+					{lesson.user_name}
+				</NavLink>
+			</div>
 		</NavLink>
 	)
 		;
