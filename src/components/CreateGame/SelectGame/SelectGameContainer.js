@@ -7,7 +7,7 @@ import SelectGame from "./SelectGame";
 
 class SelectGameContainer extends React.Component {
     componentDidMount() {
-        this.props.getGames();
+        this.props.getGames()
     }
 
     render() {

@@ -1,3 +1,16 @@
+.navBtn {
+    position: absolute;
+    top: 50%;
+}
+
+.backBtn {
+    left: -6%;
+}
+
+.forwardBtn {
+    right: -6%;
+}
+
 .lesson {
     background-color: white;
     display: grid;
@@ -27,6 +40,12 @@
     margin-left: auto;
 }
 
+@media all and (max-width: 1355px) {
+    .navBtn {
+        width: 40px;
+        height: 40px;
+    }
+}
 
 @media all and (max-width: 768px) {
     .lesson {
@@ -34,10 +53,10 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr;
     }
-}
 
-@media all and (max-width: 720px) {
-
+    .navBtn {
+        display: none;
+    }
 }
 
 @media all and (max-width: 425px) {
