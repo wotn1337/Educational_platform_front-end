@@ -46,8 +46,8 @@ const gamesReducer = (state = initState, action) => {
 			]
 			const newMeta = {
 				pair: [
-					{id: state.associationsCount * 2, imageName: undefined},
-					{id: state.associationsCount * 2 + 1, imageName: undefined}
+					{id: state.associationsCount * 2 + 1, imageName: undefined},
+					{id: state.associationsCount * 2 + 2, imageName: undefined}
 				],
 				id: state.associationsCount
 			}
