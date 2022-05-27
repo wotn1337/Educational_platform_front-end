@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+import s from './GameContainer.module.css'
 import Pairs from "../Pairs/Pairs";
 import Associations from "../Associations/Associations";
 import AssociationsCreateContainer from "../../CreateGame/Associations/AssociationsCreateContainer";
@@ -7,6 +8,7 @@ import SequenceCreateContainer from "../../CreateGame/Sequence/SequenceCreateCon
 import Task from "../Task/Task";
 import PuzzlesCreateContainer from "../../CreateGame/Puzzles/PuzzlesCreateContainer";
 import Puzzle from "../Puzzle/Puzzle";
+import ExampleModal from "../ExampleModal/ExampleModal";
 
 const gameTypes = {
 	pairs: 'pairs',
@@ -16,9 +18,12 @@ const gameTypes = {
 }
 
 const GameContainer = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNextFragment, ...props}) => {
+	const [isModalOpen, setIsModalOpen] = useState(false)
+
 	return (
 		<>
 			{!isEdit && <Task task={content.task.text} taskAudio={content.task.media}/>}
+			<div className={s.exampleButton} onClick={() => setIsModalOpen(true)}>Показать пример</div>
 			<Game
 				isEdit={isEdit}
 				content={content}
@@ -27,6 +32,11 @@ const GameContainer = ({isEdit, content, cardSize, inLesson, isLastFragmentInLes
 				isLastFragmentInLesson={isLastFragmentInLesson}
 				toNextFragment={toNextFragment}
 				{...props}
+			/>
+			<ExampleModal
+				open={isModalOpen}
+				handleClose={() => setIsModalOpen(false)}
+				gameType={content.gameType}
 			/>
 		</>
 	)
