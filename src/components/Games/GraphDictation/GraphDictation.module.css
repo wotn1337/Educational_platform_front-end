@@ -1,0 +1,34 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.canvasWrapper {
+    position: relative;
+    background-color: white;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.point {
+    position: absolute;
+    /*background-color: black;*/
+    border-radius: 50%;
+    transition: 300ms;
+    color: white;
+    text-align: center;
+}
+
+.point:hover {
+    cursor: pointer;
+    /*background-color: red !important;*/
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}

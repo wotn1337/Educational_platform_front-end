@@ -16,6 +16,12 @@ const SET_PUZZLES_IMAGE = 'games/SET_PUZZLES_IMAGE';
 const SET_COLS = 'games/SET_COLS';
 const SET_ROWS = 'games/SET_ROWS';
 const CLEAR_ALL_FIELDS = 'games/CLEAR_ALL_FIELDS';
+const SET_SIZE = 'games/SET_SIZE';
+const SET_COLOR = 'games/SET_COLOR';
+const ADD_POINT = 'games/ADD_POINT'
+const DELETE_POINT = 'games/DELETE_POINT'
+const CLEAR_POINTS = 'games/CLEAR_POINTS'
+const SET_LINE_WIDTH = 'games/SET_LINE_WIDTH'
 
 const initState = {
 	games: undefined,
@@ -30,7 +36,14 @@ const initState = {
 		cols: 3,
 		rows: 3
 	},
-	metaImagesData: []
+	metaImagesData: [],
+	graph: {
+		width: 5,
+		height: 5,
+		color: '#000',
+		points: [],
+		lineWidth: 3
+	}
 };
 
 const gamesReducer = (state = initState, action) => {
@@ -223,6 +236,64 @@ const gamesReducer = (state = initState, action) => {
 				sequenceCount: 0,
 				puzzles: {image: undefined, cols: 3, rows: 3}
 			};
+
+		case SET_SIZE:
+			return {
+				...state,
+				graph: {
+					...state.graph,
+					[action.dimension]: action.size
+				}
+			}
+
+		case SET_COLOR:
+			return {
+				...state,
+				graph: {
+					...state.graph,
+					color: action.color
+				}
+			}
+
+		case ADD_POINT:
+			return {
+				...state,
+				graph: {
+					...state.graph,
+					points: [...state.points, action.point]
+				}
+			}
+
+		case DELETE_POINT: {
+			const pointsCopy = [...state.points]
+			pointsCopy.pop()
+			return {
+				...state,
+				graph: {
+					...state.graph,
+					points: pointsCopy
+				}
+			}
+		}
+
+		case CLEAR_POINTS:
+			return {
+				...state,
+				graph: {
+					...state.graph,
+					points: []
+				}
+			}
+
+		case SET_LINE_WIDTH:
+			return {
+				...state,
+				graph: {
+					...state.graph,
+					lineWidth: action.width
+				}
+			}
+
 		default:
 			return state;
 	}
@@ -247,6 +318,13 @@ export const getPuzzles = (data) => ({type: GET_PUZZLES, data});
 export const setPuzzlesImage = (image) => ({type: SET_PUZZLES_IMAGE, image})
 export const setCols = (cols) => ({type: SET_COLS, cols})
 export const setRows = (rows) => ({type: SET_ROWS, rows})
+
+export const setSize = (dimension, size) => ({type: SET_SIZE, dimension, size})
+export const setColor = (color) => ({type: SET_COLOR, color})
+export const addPoint = (point) => ({type: ADD_POINT, point})
+export const deletePoint = () => ({type: DELETE_POINT})
+export const clearPoints = () => ({type: CLEAR_POINTS})
+export const setLineWidth = (width) => ({type: SET_LINE_WIDTH, width})
 
 const toggleIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
