@@ -9,7 +9,7 @@ import {
 	changeLessonTitle, clearAllFields, deleteFragment,
 	deleteLesson, deleteTag,
 	getLesson, setCurrentFragment, setFon, setFragments, toggleCurrentFragmentFavorite,
-	toggleFavorite, updateLesson
+	toggleFavorite, updateLesson, setAgeLimit
 } from "../../redux/lessonReducer";
 import {returnTag} from "../../redux/allTagsReducer";
 import {changeFavorite} from "../../redux/fragmentReducer";
@@ -47,7 +47,8 @@ class LessonContainer extends React.Component {
 			this.props.lessonAnnotation,
 			fragmentsIds,
 			tagsIds,
-			this.props.fon
+			this.props.fon,
+			this.props.ageLimitId
 		);
 	}
 
@@ -83,6 +84,7 @@ const mapStateToProps = (state) => ({
 	nextFragmentOrder: state.lesson.nextFragmentOrder,
 	currentFragmentOrder: state.lesson.currentFragmentOrder,
 	currentFragmentId: state.lesson.currentFragmentId,
+	ageLimitId: state.lesson.ageLimitId
 });
 
 export default compose(
@@ -102,7 +104,8 @@ export default compose(
 		toggleCurrentFragmentFavorite,
 		clearAllFields,
 		deleteFragment,
-		setFon
+		setFon,
+		setAgeLimit
 	}),
 	withRouter
 )(LessonContainer)

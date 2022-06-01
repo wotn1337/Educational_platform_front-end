@@ -91,6 +91,8 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 					deleteFragment={props.deleteFragment}
 					fon={props.fon}
 					setFon={props.setFon}
+					ageLimitId={props.ageLimitId}
+					setAgeLimit={props.setAgeLimit}
 				/>
 			}
 		</section>

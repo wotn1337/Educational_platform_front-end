@@ -349,10 +349,11 @@ export const lessonsAPI = {
 	},
 
 	// Редактировать урок
-	updateLesson(id, title, annotation, fragments, tags, fon) {
+	updateLesson(id, title, annotation, fragments, tags, fon, ageLimitId) {
 		const data = new FormData();
 		data.append('title', title);
 		data.append('annotation', annotation);
+		data.append('ageLimit', ageLimitId);
 		for (const f of fragments) {
 			data.append('fragments[]', f);
 		}
