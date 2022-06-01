@@ -30,7 +30,9 @@ const CreateLesson = ({isFetching, annotation, ageLimitId, setAgeLimit, ...props
 					/>
 				</>
 			}
-			<AgeLimits ageLimitId={ageLimitId} setAgeLimit={setAgeLimit}/>
+			<div style={{marginTop: "20px"}}>
+				<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit}/>
+			</div>
 			<div className={s.buttonsBlock}>
 				<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}>
 					<button className={'btn'}>Добавить теги</button>

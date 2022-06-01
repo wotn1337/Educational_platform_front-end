@@ -10,7 +10,7 @@ import {
     editFragment,
     getFragment, setAnnotation,
     setContent, setFon,
-    setTitle, setTask
+    setTitle, setTask, setAgeLimit
 } from "../../redux/fragmentReducer";
 import Preloader from "../../common/Preloader/Preloader";
 import {returnTag} from "../../redux/allTagsReducer";
@@ -92,7 +92,8 @@ class FragmentContainer extends React.Component {
             this.state.oldLinks,
             this.props.gameType,
             this.props.task,
-            this.props.gameType==='matchmaking' ? metaImagesData : this.props.metaImagesData
+            this.props.gameType==='matchmaking' ? metaImagesData : this.props.metaImagesData,
+            this.props.ageLimitId
         )
             .then(() => {
                 this.toggleIsEdit();
@@ -151,7 +152,8 @@ const mapStateToProps = (state) => ({
     puzzles: state.games.puzzles,
     gameType: state.fragment.gameType,
     task: state.fragment.task,
-    metaImagesData: state.games.metaImagesData
+    metaImagesData: state.games.metaImagesData,
+    ageLimitId: state.fragment.ageLimitId
 });
 
 export default compose(
@@ -173,6 +175,7 @@ export default compose(
         getPuzzles,
         setTask,
         clearAllFields,
+        setAgeLimit,
     }),
     withoutAuthRedirectToAuthPage,
     withRouter

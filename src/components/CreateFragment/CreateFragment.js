@@ -42,7 +42,9 @@ const CreateFragment = ({fragmentType, errors, ...props}) => {
 					}
 					{(props.gameType || fragmentType !== 'game') &&
 						<>
-							<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit}/>
+							<div style={{marginTop: "20px"}}>
+								<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit}/>
+							</div>
 							<div className={s.buttonsBlock}>
 								<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}>
 									<button className={'btn'}>Добавить теги</button>
