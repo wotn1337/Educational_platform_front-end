@@ -112,7 +112,11 @@ const Fragment = ({deleteError, ...props}) => {
 					</div>
 				}
 			</div>
-
+			{props.isEdit &&
+				<div style={{marginBottom: "20px"}}>
+					<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit}/>
+				</div>
+			}
 			<ThisTags
 				tags={props.tags}
 				edit={props.isEdit}
@@ -122,10 +126,6 @@ const Fragment = ({deleteError, ...props}) => {
 			{props.isEdit
 				?
 				<>
-
-					<div style={{marginTop: "20px"}}>
-						<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit}/>
-					</div>
 					<div className={s.buttonsBlock}>
 						<TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}>
 							<button className={'btn'}>Добавить теги</button>
