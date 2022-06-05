@@ -182,7 +182,7 @@ export default compose(
         getPuzzles,
         setTask,
         clearAllFields,
-        getGraph
+        getGraph,
         setAgeLimit,
     }),
     withoutAuthRedirectToAuthPage,
