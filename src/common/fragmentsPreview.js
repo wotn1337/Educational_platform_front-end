@@ -12,6 +12,7 @@ import pairsGamePreview from "../assets/img/fragments/pairsGamePreview.png";
 import associationsGamePreview from "../assets/img/fragments/associationsGamePreview.png";
 import sequenceGamePreview from "../assets/img/fragments/sequenceGamePreview.png";
 import puzzlesGamePreview from "../assets/img/fragments/puzzlesGamePreview.png";
+import graphPreview from "../assets/img/fragments/graph.svg";
 
 export const previewImg = {
 	[fragmentTypes.video]: videoPreview,
@@ -21,7 +22,8 @@ export const previewImg = {
 	[fragmentTypes.pairs]: pairsGamePreview,
 	[fragmentTypes.matchmaking]: associationsGamePreview,
 	[fragmentTypes.sequences]: sequenceGamePreview,
-	[fragmentTypes.puzzles]: puzzlesGamePreview
+	[fragmentTypes.puzzles]: puzzlesGamePreview,
+	[fragmentTypes.graph]: graphPreview
 };
 
 export const fragmentTypeImg = {

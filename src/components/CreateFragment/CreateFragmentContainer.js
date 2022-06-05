@@ -31,7 +31,10 @@ class CreateFragmentContainer extends React.Component {
             content = {images: this.props.sequence.map(a => a.content)};
         } else if (this.props.gameType === 'puzzles') {
             content = this.props.puzzles;
+        } else if (this.props.gameType === 'graphic_dictation') {
+			content = this.props.graph
         }
+
         this.props.createFragment(
             this.props.fragmentType,
             this.props.title,
@@ -69,7 +72,8 @@ const mapStateToProps = (state) => ({
 	associations: state.games.associations,
 	sequence: state.games.sequence,
     ageLimitId: state.createFragment.ageLimitId,
-    puzzles: state.games.puzzles
+    puzzles: state.games.puzzles,
+    graph: state.games.graph
 });
 
 export default compose(

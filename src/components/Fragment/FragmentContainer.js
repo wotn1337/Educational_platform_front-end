@@ -15,7 +15,7 @@ import {
 import Preloader from "../../common/Preloader/Preloader";
 import {returnTag} from "../../redux/allTagsReducer";
 import {withRouter} from "react-router-dom";
-import {clearAllFields, getAssociations, getPuzzles, getSequence} from "../../redux/gamesReducer";
+import {clearAllFields, getAssociations, getGraph, getPuzzles, getSequence} from "../../redux/gamesReducer";
 
 
 class FragmentContainer extends React.Component {
@@ -37,6 +37,8 @@ class FragmentContainer extends React.Component {
                     this.props.getSequence(this.props.content.images)
                 } else if (this.props.content.gameType === 'puzzles') {
                     this.props.getPuzzles(this.props.content.images)
+                } else if (this.props.content.gameType === 'graphic_dictation') {
+                    this.props.getGraph(this.props.content.content)
                 }
             }
         });
@@ -66,7 +68,7 @@ class FragmentContainer extends React.Component {
     editFragment = () => {
         let content = [];
         let metaImagesData
-        if (this.props.gameType==='matchmaking') {
+        if (this.props.gameType ==='matchmaking') {
             metaImagesData = this.props.metaImagesData.map(p => p.pair)
             for (const pair of this.props.associations) {
                 for (const image of pair.content) {
@@ -76,10 +78,12 @@ class FragmentContainer extends React.Component {
                 }
             }
             //content = this.props.associations.map(a => [a.content[0].url, a.content[1].url]);
-        } else if (this.props.gameType==='sequences' || this.props.gameType==='pairs') {
+        } else if (this.props.gameType ==='sequences' || this.props.gameType==='pairs') {
             content = {images: this.props.sequence.filter(a => typeof a.content !== 'string').map(c => c.content)};
-        }else if (this.props.gameType==='puzzles') {
+        } else if (this.props.gameType ==='puzzles') {
             content = this.props.puzzles;
+        } else if (this.props.gameType ==='graphic_dictation') {
+            content = this.props.graph
         } else content = this.props.content;
         this.props.editFragment(
             this.state.id,
@@ -106,6 +110,8 @@ class FragmentContainer extends React.Component {
                         this.props.getSequence(this.props.content.images)
                     } else if (this.props.content.gameType === 'puzzles') {
                         this.props.getPuzzles(this.props.content.images)
+                    } else if (this.props.content.gameType === 'graphic_dictation') {
+                        this.props.getGraph(this.props.content.content)
                     }
                 });
             });
@@ -153,6 +159,7 @@ const mapStateToProps = (state) => ({
     gameType: state.fragment.gameType,
     task: state.fragment.task,
     metaImagesData: state.games.metaImagesData,
+    graph: state.games.graph,
     ageLimitId: state.fragment.ageLimitId
 });
 
@@ -175,6 +182,7 @@ export default compose(
         getPuzzles,
         setTask,
         clearAllFields,
+        getGraph
         setAgeLimit,
     }),
     withoutAuthRedirectToAuthPage,

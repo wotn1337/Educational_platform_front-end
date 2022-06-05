@@ -8,13 +8,16 @@ import SequenceCreateContainer from "../../CreateGame/Sequence/SequenceCreateCon
 import Task from "../Task/Task";
 import PuzzlesCreateContainer from "../../CreateGame/Puzzles/PuzzlesCreateContainer";
 import Puzzle from "../Puzzle/Puzzle";
+import GraphDictation from "../GraphDictation/GraphDictation";
+import CreateGraphDictationContainer from "../../CreateGame/GraphicDictation/CreateGraphDictationContainer";
 import ExampleModal from "../ExampleModal/ExampleModal";
 
 const gameTypes = {
 	pairs: 'pairs',
 	associations: 'matchmaking',
 	sequences: 'sequences',
-	puzzles: 'puzzles'
+	puzzles: 'puzzles',
+	graph: 'graphic_dictation'
 }
 
 const GameContainer = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNextFragment, ...props}) => {
@@ -91,6 +94,7 @@ const Game = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNe
 					}
 				</>
 			)
+
 		case gameTypes.puzzles:
 			return (
 				<>
@@ -104,6 +108,27 @@ const Game = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNe
 							toNextFragment={toNextFragment}
 						/>
 						: <PuzzlesCreateContainer isEdit={isEdit}/>
+					}
+				</>
+			)
+
+		case gameTypes.graph:
+			return (
+				<>
+					{!isEdit
+						? <GraphDictation
+							width={content.content.width}
+							height={content.content.height}
+							cellSize={80}
+							pointSize={20}
+							color={content.content.color}
+							lineWidth={content.content.lineWidth}
+							picture={content.content.points}
+							inGame={true}
+							inLesson={inLesson}
+							// setPoints={props.setPoints}
+						/>
+						: <CreateGraphDictationContainer/>
 					}
 				</>
 			)

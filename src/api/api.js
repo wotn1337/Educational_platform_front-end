@@ -188,6 +188,8 @@ export const fragmentsAPI = {
 				data.append('content[]', content.image);
 				data.append('cols', content.cols);
 				data.append('rows', content.rows);
+			} else if (gameType === 'graphic_dictation') {
+				data.append(`content`, JSON.stringify(content));
 			} else {
 				for (let i = 0; i < content.length; i++) {
 					for (const c of content[i]) {
@@ -244,6 +246,8 @@ export const fragmentsAPI = {
 				}
 				data.append('cols', content?.cols);
 				data.append('rows', content?.rows);
+			} else if (gameType === 'graphic_dictation') {
+				data.append('content', JSON.stringify(content))
 			} else {
 				for (const image of content?.images) {
 					if (typeof image !== 'string' || gameType === 'sequences' || gameType === 'pairs') {
