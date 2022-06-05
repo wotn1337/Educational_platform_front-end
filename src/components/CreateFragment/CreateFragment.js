@@ -32,9 +32,11 @@ const CreateFragment = ({fragmentType, errors, ...props}) => {
 						{fragmentType === fragmentTypes.game && <SelectGameContainer/>}
 					</div>
 					{contentErrors}
-					<div style={{marginBottom: "20px"}}>
-						<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit}/>
-					</div>
+					{(props.gameType || fragmentType !== 'game') &&
+						<div style={{marginBottom: "20px"}}>
+							<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit}/>
+						</div>
+					}
 					{!!props.tags.length &&
 						<ThisTags
 							tags={props.tags}
