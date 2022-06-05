@@ -77,10 +77,10 @@ a.creatorName:hover {
 
 }
 
-.editBlock {
-    margin-bottom: 15px;
-    background-color: white;
-}
+/*.editBlock {*/
+/*    margin-bottom: 15px;*/
+/*    background-color: white;*/
+/*}*/
 
 .buttonsBlock {
     display: flex;

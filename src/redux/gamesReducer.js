@@ -18,10 +18,9 @@ const SET_ROWS = 'games/SET_ROWS';
 const CLEAR_ALL_FIELDS = 'games/CLEAR_ALL_FIELDS';
 const SET_SIZE = 'games/SET_SIZE';
 const SET_COLOR = 'games/SET_COLOR';
-const ADD_POINT = 'games/ADD_POINT'
-const DELETE_POINT = 'games/DELETE_POINT'
-const CLEAR_POINTS = 'games/CLEAR_POINTS'
+const SET_POINTS = 'games/SET_POINTS'
 const SET_LINE_WIDTH = 'games/SET_LINE_WIDTH'
+const GET_GRAPH = 'games/GET_GRAPH'
 
 const initState = {
 	games: undefined,
@@ -255,33 +254,12 @@ const gamesReducer = (state = initState, action) => {
 				}
 			}
 
-		case ADD_POINT:
+		case SET_POINTS:
 			return {
 				...state,
 				graph: {
 					...state.graph,
-					points: [...state.points, action.point]
-				}
-			}
-
-		case DELETE_POINT: {
-			const pointsCopy = [...state.points]
-			pointsCopy.pop()
-			return {
-				...state,
-				graph: {
-					...state.graph,
-					points: pointsCopy
-				}
-			}
-		}
-
-		case CLEAR_POINTS:
-			return {
-				...state,
-				graph: {
-					...state.graph,
-					points: []
+					points: action.points
 				}
 			}
 
@@ -292,6 +270,12 @@ const gamesReducer = (state = initState, action) => {
 					...state.graph,
 					lineWidth: action.width
 				}
+			}
+
+		case GET_GRAPH:
+			return {
+				...state,
+				graph: {...action.data}
 			}
 
 		default:
@@ -319,11 +303,10 @@ export const setPuzzlesImage = (image) => ({type: SET_PUZZLES_IMAGE, image})
 export const setCols = (cols) => ({type: SET_COLS, cols})
 export const setRows = (rows) => ({type: SET_ROWS, rows})
 
+export const getGraph = (data) => ({type: GET_GRAPH, data})
 export const setSize = (dimension, size) => ({type: SET_SIZE, dimension, size})
 export const setColor = (color) => ({type: SET_COLOR, color})
-export const addPoint = (point) => ({type: ADD_POINT, point})
-export const deletePoint = () => ({type: DELETE_POINT})
-export const clearPoints = () => ({type: CLEAR_POINTS})
+export const setPoints = (points) => ({type: SET_POINTS, points})
 export const setLineWidth = (width) => ({type: SET_LINE_WIDTH, width})
 
 const toggleIsFetching = (isFetching) => ({type: SET_IS_FETCHING, isFetching});

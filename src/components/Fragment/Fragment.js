@@ -64,7 +64,11 @@ const Fragment = ({deleteError, ...props}) => {
 				<UploadFon setFon={props.setFon} fon={props.fon} type={'fragment'}/>
 			}
 
-			<div className={!(props.isEdit && props.type === fragmentTypes.article) ? s.fragmentBlock : s.editBlock}>
+			<div
+				className={!(props.isEdit && (props.type === fragmentTypes.article || props.gameType === 'graphic_dictation'))
+					? s.fragmentBlock
+					: s.editBlock
+				}>
 				{props.type === fragmentTypes.article &&
 					<>
 						{!props.isEdit

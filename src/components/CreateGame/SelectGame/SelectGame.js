@@ -7,6 +7,7 @@ import FragmentTitle from "../../CreateFragment/FragmentTitle/FragmentTitle";
 import UploadFon from "../../CreateLesson/UloadFon/UploadFon";
 import SequenceCreateContainer from "../Sequence/SequenceCreateContainer";
 import PuzzlesCreateContainer from "../Puzzles/PuzzlesCreateContainer";
+import CreateGraphDictationContainer from "../GraphicDictation/CreateGraphDictationContainer";
 
 const SelectGame = (props) => {
     const gamesTemplate = props.games?.map(game => (
@@ -35,6 +36,7 @@ const SelectGame = (props) => {
                 && <SequenceCreateContainer setContent={props.setContent} setGameType={props.setGameType}/>}
             {props.gameType === 'puzzles'
                 && <PuzzlesCreateContainer setGameType={props.setGameType}/>}
+            {props.gameType === 'graphic_dictation' && <CreateGraphDictationContainer/>}
 
             {!props.gameType && <div style={{display: 'grid', gap: 50, marginTop: 30}}>{gamesTemplate}</div>}
         </>

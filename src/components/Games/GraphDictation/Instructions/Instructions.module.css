@@ -1,0 +1,31 @@
+.instructionsWrapper {
+    border: 2px solid rgba(243, 106, 118, 0.7);
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    background-color: white;
+}
+
+.instructionList {
+    padding: 0;
+    margin: 0;
+}
+
+.instruction {
+    line-height: 30px;
+}
+
+.current {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.prev {
+    color: rgba(76, 255, 121, 0.5);
+    text-decoration: line-through;
+}
+
+.next {
+    color: lightgrey;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import CreateGraphicDictation from "./CreateGraphicDictation";
 import {connect} from "react-redux";
-import {addPoint, clearPoints, deletePoint, setColor, setLineWidth, setSize} from "../../../redux/gamesReducer";
+import {setColor, setLineWidth, setPoints, setSize} from "../../../redux/gamesReducer";
 
 
 const CreateGraphDictationContainer = (props) => {
@@ -21,8 +21,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
 	setSize,
 	setColor,
-	addPoint,
-	deletePoint,
-	clearPoints,
+	setPoints,
 	setLineWidth
 })(CreateGraphDictationContainer)
