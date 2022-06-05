@@ -22,6 +22,9 @@ const CreateLesson = ({isFetching, annotation, ageLimitId, setAgeLimit, ...props
 				: <>
 					<ConstructorBlock fragments={props.lessonFragments} setFragments={props.setFragments} deleteFragment={props.deleteFragment}/>
 					<p className={'inputError'}>{props.fragmentsError}</p>
+					<div style={{marginBottom: "20px"}}>
+						<AgeLimits ageLimitId={ageLimitId} setAgeLimit={setAgeLimit}/>
+					</div>
 					<ThisTags
 						tags={props.tags}
 						edit={true}
@@ -30,7 +33,6 @@ const CreateLesson = ({isFetching, annotation, ageLimitId, setAgeLimit, ...props
 					/>
 				</>
 			}
-			<AgeLimits ageLimitId={ageLimitId} setAgeLimit={setAgeLimit}/>
 			<div className={s.buttonsBlock}>
 				<TagsListContainer currentTags={props.tags} externalAddTag={props.addTag}>
 					<button className={'btn'}>Добавить теги</button>

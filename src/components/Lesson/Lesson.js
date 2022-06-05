@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './Lesson.module.css';
+import nav from './Navigation/Navigation.module.css'
 import Navigation from "./Navigation/Navigation";
 import Fragment from "./Fragment/Fragment";
 import Preloader from "../../common/Preloader/Preloader";
@@ -15,6 +16,18 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 		<section className={"content"}>
 			{!isEdit ?
 				<>
+					{props.currentFragmentOrder !== -1 &&
+						<div
+							className={`${nav.btn} ${nav.btnBack} ${s.navBtn} ${s.backBtn}`}
+							onClick={() => setCurrentFragment(props.prevFragmentOrder)}
+						/>
+					}
+					{props.currentFragmentOrder !== fragments.length - 1 &&
+						<div
+							className={`${nav.btn} ${nav.btnForward} ${s.navBtn} ${s.forwardBtn}`}
+							onClick={() => setCurrentFragment(props.nextFragmentOrder)}
+						/>
+					}
 					<HeaderWithBackButton title={lessonTitle}/>
 					<section className={s.lesson}>
 						<Navigation fragments={fragments} setCurrentFragment={setCurrentFragment}
@@ -78,6 +91,8 @@ const Lesson = ({id, fragments, currentFragment, setCurrentFragment, lessonTitle
 					deleteFragment={props.deleteFragment}
 					fon={props.fon}
 					setFon={props.setFon}
+					ageLimitId={props.ageLimitId}
+					setAgeLimit={props.setAgeLimit}
 				/>
 			}
 		</section>

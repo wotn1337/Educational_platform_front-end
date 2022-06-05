@@ -227,13 +227,13 @@ export const fragmentsAPI = {
 	},
 
 	// Редактировать фрагмент (только для админа или владельца фрагмента)
-	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData) {
+	editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData, ageLimitId) {
 		const data = new FormData();
 		data.append('title', title);
 		if (typeof task !== 'undefined')
 			data.append('task', task);
 
-		if (typeof content !== 'string' && typeof content !== 'undefined' && content !== null && type !== 'game')
+		if ((typeof content !== 'string' || type === 'article') && typeof content !== 'undefined' && content !== null && type !== 'game')
 			data.append('content', content);
 		else if (type === 'game') {
 			if (gameType === 'matchmaking') {
@@ -261,6 +261,8 @@ export const fragmentsAPI = {
 		for (const tag of tagsIds) {
 			data.append('tags[]', tag);
 		}
+
+		data.append('ageLimit', ageLimitId)
 
 		data.append('annotation', annotation);
 
@@ -351,10 +353,11 @@ export const lessonsAPI = {
 	},
 
 	// Редактировать урок
-	updateLesson(id, title, annotation, fragments, tags, fon) {
+	updateLesson(id, title, annotation, fragments, tags, fon, ageLimitId) {
 		const data = new FormData();
 		data.append('title', title);
 		data.append('annotation', annotation);
+		data.append('ageLimit', ageLimitId);
 		for (const f of fragments) {
 			data.append('fragments[]', f);
 		}

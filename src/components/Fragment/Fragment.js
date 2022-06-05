@@ -16,6 +16,7 @@ import VideoFragment from "./VideoFragment/VideoFragment";
 import UploadFon from "../CreateLesson/UloadFon/UploadFon";
 import DeleteErrorModal from "./DeleteErrorModal/DeleteErrorModal";
 import GameContainer from "../Games/GameContainer/GameContainer";
+import AgeLimits from "../CreateFragment/AgeLimits/AgeLimits";
 
 const Fragment = ({deleteError, ...props}) => {
 	const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -115,7 +116,11 @@ const Fragment = ({deleteError, ...props}) => {
 					</div>
 				}
 			</div>
-
+			{props.isEdit &&
+				<div style={{marginBottom: "20px"}}>
+					<AgeLimits ageLimitId={props.ageLimitId} setAgeLimit={props.setAgeLimit}/>
+				</div>
+			}
 			<ThisTags
 				tags={props.tags}
 				edit={props.isEdit}
@@ -123,12 +128,15 @@ const Fragment = ({deleteError, ...props}) => {
 				returnTag={props.returnTag}
 			/>
 			{props.isEdit
-				? <div className={s.buttonsBlock}>
-					<TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}>
-						<button className={'btn'}>Добавить теги</button>
-					</TagsListContainer>
-					<button className={'btn'} onClick={props.editFragment}>Сохранить изменения</button>
-				</div>
+				?
+				<>
+					<div className={s.buttonsBlock}>
+						<TagsListContainer externalAddTag={props.addTag} currentTags={props.tags}>
+							<button className={'btn'}>Добавить теги</button>
+						</TagsListContainer>
+						<button className={'btn'} onClick={props.editFragment}>Сохранить изменения</button>
+					</div>
+				</>
 				: <ButtonsBlock
 					id={props.id}
 					creatorId={props.creatorId}

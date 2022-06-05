@@ -15,7 +15,7 @@ const TOGGLE_FAVORITE_FETCHING = 'fragment/TOGGLE_FAVORITE_FETCHING';
 const SET_ANNOTATION = 'fragment/SET_ANNOTATION';
 const SET_FON = 'fragment/SET_FON';
 const SET_DELETE_ERROR = 'fragment/SET_DELETE_ERROR';
-
+const SET_AGE_LIMIT = 'fragment/SET_AGE_LIMIT'
 
 const initState = {
 	title: '',
@@ -34,7 +34,8 @@ const initState = {
 	fon: undefined,
 	deleteError: undefined,
 	gameType: undefined,
-	task: ''
+	task: '',
+	ageLimitId: "1"
 };
 
 const fragmentReducer = (state = initState, action) => {
@@ -105,6 +106,9 @@ const fragmentReducer = (state = initState, action) => {
 		case SET_DELETE_ERROR:
 			return {...state, deleteError: action.error};
 
+		case SET_AGE_LIMIT:
+			return {...state, ageLimitId: action.ageLimitId}
+
 		default:
 			return state;
 	}
@@ -124,6 +128,7 @@ export const setOldLinks = (links) => ({type: SET_OLD_LINKS, links});
 export const addTag = (tag) => ({type: ADD_TAG, tag});
 export const setAnnotation = (annotation) => ({type: SET_ANNOTATION, annotation});
 export const setFon = (fon) => ({type: SET_FON, fon});
+export const setAgeLimit = (ageLimitId) => ({type: SET_AGE_LIMIT, ageLimitId});
 
 export const getFragment = (id) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
@@ -150,9 +155,9 @@ export const deleteFragment = (id, goBack, openErrorModal) => (dispatch) => {
 		});
 };
 
-export const editFragment = (id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData) => (dispatch) => {
+export const editFragment = (id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData, ageLimitId) => (dispatch) => {
 	dispatch(toggleIsFetching(true));
-	return fragmentsAPI.editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData)
+	return fragmentsAPI.editFragment(id, type, title, content, tagsIds, annotation, fon, oldLinks, gameType, task, metaImagesData, ageLimitId)
 		.then(res => {
 			successNotification(res.data.message);
 			dispatch(toggleIsFetching(false));

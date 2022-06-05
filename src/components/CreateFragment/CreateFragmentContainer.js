@@ -26,7 +26,7 @@ class CreateFragmentContainer extends React.Component {
     createFragment = () => {
         let content;
         if (this.props.gameType === 'matchmaking') {
-            content = this.props.associations.map(a => [a.content[0], a.content[1]]);
+            content = this.props.associations.map(a => [a.content[0].url, a.content[1].url]);
         } else if (this.props.gameType === 'sequences') {
             content = {images: this.props.sequence.map(a => a.content)};
         } else if (this.props.gameType === 'puzzles') {

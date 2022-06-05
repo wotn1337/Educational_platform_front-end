@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import GameCard from "../GameCard/GameCard";
 import PairsCreate from "../Pairs/PairsCreate";
 import AssociationsCreateContainer from "../Associations/AssociationsCreateContainer";
@@ -13,6 +13,14 @@ const SelectGame = (props) => {
     const gamesTemplate = props.games?.map(game => (
         <GameCard game={game} setGameType={props.setGameType} key={game.id}/>
     ));
+
+    useEffect(() => {
+        if (props.games && props.gameType) {
+            const game = props.games.find(game => game.type === props.gameType)
+            props.setTask(game.task)
+        }
+    }, [props.gameType])
+
     return (
         <>
             {props.gameType &&

@@ -18,6 +18,7 @@ const TOGGLE_CURRENT_FRAGMENT_FAVORITE = 'lesson/TOGGLE_CURRENT_FRAGMENT_FAVORIT
 const CLEAR_ALL_FIELDS = 'lesson/CLEAR_ALL_FIELDS';
 const DELETE_FRAGMENT = 'lesson/DELETE_FRAGMENT';
 const SET_FON = 'lesson/SET_FON';
+const SET_AGE_LIMIT = 'lesson/SET_AGE_LIMIT'
 
 const initState = {
     currentFragment: undefined,
@@ -36,7 +37,8 @@ const initState = {
     prevFragmentOrder: -1,
     nextFragmentOrder: 0,
     currentFragmentOrder: -1,
-    currentFragmentId: undefined
+    currentFragmentId: undefined,
+    ageLimitId: '1'
 };
 
 const lessonReducer = (state = initState, action) => {
@@ -133,6 +135,9 @@ const lessonReducer = (state = initState, action) => {
         case SET_FON:
             return {...state, fon: action.fon};
 
+        case SET_AGE_LIMIT:
+            return {...state, ageLimitId: action.ageLimitId}
+
         default:
             return state;
     }
@@ -152,6 +157,7 @@ export const toggleCurrentFragmentFavorite = () => ({type: TOGGLE_CURRENT_FRAGME
 export const clearAllFields = () => ({type: CLEAR_ALL_FIELDS});
 export const deleteFragment = (id) => ({type: DELETE_FRAGMENT, id});
 export const setFon = (fon) => ({type: SET_FON, fon});
+export const setAgeLimit = (ageLimitId) => ({type: SET_AGE_LIMIT, ageLimitId});
 
 export const getLesson = (id) => (dispatch) => {
     dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
@@ -176,9 +182,9 @@ export const toggleFavorite = (id) => (dispatch) => {
             dispatch(toggleFavoriteFetching(false));
         })
 }
-export const updateLesson = (id, title, annotation, fragments, tags, fon) => (dispatch) => {
+export const updateLesson = (id, title, annotation, fragments, tags, fon, ageLimitId) => (dispatch) => {
     dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, true));
-    return lessonsAPI.updateLesson(id, title, annotation, fragments, tags, fon)
+    return lessonsAPI.updateLesson(id, title, annotation, fragments, tags, fon, ageLimitId)
         .then(res => {
             dispatch(toggleIsFetching(TOGGLE_IS_FETCHING, false));
             successNotification(res.data.messages);

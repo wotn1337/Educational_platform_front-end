@@ -1,0 +1,32 @@
+.overlay {
+    inset: 0;
+    position: fixed;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.modal {
+    background-color: white;
+    border-radius: 10px;
+    min-width: 750px;
+    min-height: 310px;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+    border: 5px solid rgba(243, 106, 118, 0.7);
+    outline: none;
+}
+
+.modalInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.example {
+    max-height: 70vh;
+}

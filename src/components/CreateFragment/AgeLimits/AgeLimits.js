@@ -20,7 +20,7 @@ const AgeLimits = ({ageLimits, isFetching, getAgeLimits, ageLimitId, setAgeLimit
 					value={ageLimitId}
 					onChange={e => setAgeLimit(e.target.value)}
 				>
-					{search && <option value={null}>Все возраста</option>}
+					{search && <option value="">Все возраста</option>}
 					{ageLimits.map(limit => (
 						<option value={limit.id} key={limit.id}>{limit.text_context}</option>
 					))}
