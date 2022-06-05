@@ -95,11 +95,13 @@ const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...
 		e.target.style.backgroundColor = color
 	}
 
+	// Перезапускает игру
 	const restartGame = () => {
 		clear()
 		setPicState([props.picture[0]])
 		setCurrentInstIndex(0)
 		setPicture(props.picture.slice(1))
+		setIsGameFinished(false)
 	}
 
 	return (

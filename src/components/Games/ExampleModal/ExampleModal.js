@@ -5,12 +5,14 @@ import pairs from '../../../assets/img/games/examples/pairs.gif'
 import associations from '../../../assets/img/games/examples/associations.gif'
 import sequences from '../../../assets/img/games/examples/sequences.gif'
 import puzzles from '../../../assets/img/games/examples/puzzle.gif'
+import graph from '../../../assets/img/games/examples/graph.gif'
 
 const paths = {
 	'pairs': pairs,
 	'matchmaking': associations,
 	'sequences': sequences,
-	'puzzles': puzzles
+	'puzzles': puzzles,
+	'graphic_dictation': graph
 }
 
 
