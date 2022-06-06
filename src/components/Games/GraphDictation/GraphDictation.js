@@ -131,7 +131,7 @@ const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...
 						/>
 					)
 				})}
-				{inGame && <Instructions points={props.picture} current={currentInstIndex}/>}
+				{inGame && <Instructions points={props.picture} current={currentInstIndex} height={cellSize * height}/>}
 			</div>
 			<div className={s.buttons}>
 				{!!picState.length && !inGame &&

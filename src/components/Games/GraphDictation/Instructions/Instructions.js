@@ -3,9 +3,9 @@ import {createInstrucionsList} from "../gameFunctions";
 import s from './Instructions.module.css'
 
 
-const Instructions = ({points, current}) => {
+const Instructions = ({points, current, height}) => {
 	return (
-		<div className={s.instructionsWrapper}>
+		<div className={s.instructionsWrapper} style={{maxHeight: height}}>
 			<ul className={s.instructionList}>
 				{createInstrucionsList(points).map((instruction, index) => {
 					const additionalClass = index === current

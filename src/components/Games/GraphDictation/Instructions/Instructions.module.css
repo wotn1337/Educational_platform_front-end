@@ -5,6 +5,20 @@
     display: flex;
     justify-content: center;
     background-color: white;
+    overflow-y: auto;
+}
+
+.instructionsWrapper::-webkit-scrollbar {
+    width: 15px;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.instructionsWrapper::-webkit-scrollbar-thumb {
+    background-color: rgba(243, 106, 118, 0.7);
+    margin: 3px;
+    border-radius: 10px;
+    border: 3px solid white;
 }
 
 .instructionList {
