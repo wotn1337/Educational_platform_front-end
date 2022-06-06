@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import CreateGraphicDictation from "./CreateGraphicDictation";
 import {connect} from "react-redux";
-import {setColor, setLineWidth, setPoints, setSize} from "../../../redux/gamesReducer";
+import {setColor, setLineWidth, setPoints, setSize, clearAllFields} from "../../../redux/gamesReducer";
 
 
 const CreateGraphDictationContainer = (props) => {
+	useEffect(() => {
+		return props.clearAllFields
+	})
+
 	return (
 		<CreateGraphicDictation {...props}/>
 	)
@@ -22,5 +26,6 @@ export default connect(mapStateToProps, {
 	setSize,
 	setColor,
 	setPoints,
-	setLineWidth
+	setLineWidth,
+	clearAllFields
 })(CreateGraphDictationContainer)
