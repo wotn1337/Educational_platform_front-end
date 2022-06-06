@@ -233,7 +233,8 @@ const gamesReducer = (state = initState, action) => {
 				sequence: [],
 				associationsCount: 0,
 				sequenceCount: 0,
-				puzzles: {image: undefined, cols: 3, rows: 3}
+				puzzles: {image: undefined, cols: 3, rows: 3},
+				graph: {width: 5, height: 5, color: '#000', points: [], lineWidth: 3}
 			};
 
 		case SET_SIZE:
