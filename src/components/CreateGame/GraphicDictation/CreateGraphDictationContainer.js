@@ -7,7 +7,7 @@ import {setColor, setLineWidth, setPoints, setSize, clearAllFields} from "../../
 const CreateGraphDictationContainer = (props) => {
 	useEffect(() => {
 		return props.clearAllFields
-	})
+	}, [])
 
 	return (
 		<CreateGraphicDictation {...props}/>
