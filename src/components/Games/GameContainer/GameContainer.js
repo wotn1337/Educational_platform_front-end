@@ -25,8 +25,10 @@ const GameContainer = ({isEdit, content, cardSize, inLesson, isLastFragmentInLes
 
 	return (
 		<>
-			{!isEdit && <Task task={content.task.text} taskAudio={content.task.media}/>}
-			<div className={s.exampleButton} onClick={() => setIsModalOpen(true)}>Показать пример</div>
+			<div className={s.taskWrapper}>
+				{!isEdit && <Task task={content.task.text} taskAudio={content.task.media}/>}
+				<button className={s.exampleButton} onClick={() => setIsModalOpen(true)}>?</button>
+			</div>
 			<Game
 				isEdit={isEdit}
 				content={content}
@@ -126,7 +128,8 @@ const Game = ({isEdit, content, cardSize, inLesson, isLastFragmentInLesson, toNe
 							picture={content.content.points}
 							inGame={true}
 							inLesson={inLesson}
-							// setPoints={props.setPoints}
+							isLastFragmentInLesson={isLastFragmentInLesson}
+							toNextFragment={toNextFragment}
 						/>
 						: <CreateGraphDictationContainer/>
 					}

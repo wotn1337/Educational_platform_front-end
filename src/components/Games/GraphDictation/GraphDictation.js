@@ -1,17 +1,21 @@
 import React, {useEffect, useRef, useState} from 'react'
 import s from './GraphDictation.module.css'
 import {clearCanvas, drawGrid, redrawPicture} from "./gameFunctions";
-import {successNotification, wrongGameNotification} from "../../../notifications/notifications";
+import {wrongGameNotification} from "../../../notifications/notifications";
 import Instructions from "./Instructions/Instructions";
+import EndGameModal from "../EndGameModal/EndGameModal";
 
 
 const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...props}) => {
 	const cellSize = props.inLesson ? props.cellSize / 1.55 : props.cellSize
-	const [isGameFinished, setIsGameFinished] = useState(false)
+	const [isGameFinished, setIsGameFinished] = useState(true)
 	const [currentInstIndex, setCurrentInstIndex] = useState(0)
 	const [ctx, setCtx] = useState(null)
 	const [picState, setPicState] = useState(props.picture ? [props.picture[0]] : props.points)
 	const [picture, setPicture] = useState(props.picture?.slice(1))
+	const [openEndGameModal, setOpenEndGameModal] = useState(false)
+	const [startTime, setStartTime] = useState(new Date().getTime())
+	const [totalTime, setTotalTime] = useState(new Date().getTime())
 	const can = useRef(null)
 	const points = []
 
@@ -50,12 +54,21 @@ const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...
 	// Сравнивает рисунок с эталонным
 	useEffect(() => {
 		if (props.picture && !picture?.length) {
-			successNotification('Отличная работа!')
 			setIsGameFinished(true)
+			setTotalTime(new Date().getTime() - startTime)
+			setTimeout(() => {
+				setOpenEndGameModal(true)
+			}, 2000)
 		}
 		if (props.setPoints)
 			props.setPoints(picState)
 	}, [picState])
+
+	// Начинает игру
+	const startGame = () => {
+		setIsGameFinished(false)
+		setStartTime(new Date().getTime())
+	}
 
 	// Добавляет точку к изображению
 	const addPointToPicState = (point) => {
@@ -101,7 +114,8 @@ const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...
 		setPicState([props.picture[0]])
 		setCurrentInstIndex(0)
 		setPicture(props.picture.slice(1))
-		setIsGameFinished(false)
+		setIsGameFinished(true)
+		setOpenEndGameModal(false)
 	}
 
 	return (
@@ -140,8 +154,20 @@ const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...
 						<button className='btn' onClick={undo}>Отменить</button>
 					</>
 				}
-				{inGame && picState.length > 1 && <button className='btn' onClick={restartGame}>Начать заново</button>}
+				{inGame &&
+					<button className='btn' onClick={isGameFinished ? startGame : restartGame}>
+						{isGameFinished ? 'Начать игру' : 'Начать заново'}
+					</button>
+				}
 			</div>
+			<EndGameModal
+				open={openEndGameModal}
+				restart={restartGame}
+				time={totalTime}
+				inLesson={props.inLesson}
+				isLastFragment={props.isLastFragmentInLesson}
+				toNextFragment={props.toNextFragment}
+			/>
 		</div>
 	)
 }

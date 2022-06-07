@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import s from './Associations.module.css';
-import {v4 as uuid} from 'uuid'
 import {DragDropContext, Draggable, Droppable} from "react-beautiful-dnd";
 import Card from "../GameCard/Card";
 import {wrongGameNotification} from "../../../notifications/notifications";

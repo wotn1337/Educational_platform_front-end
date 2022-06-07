@@ -1,19 +1,24 @@
+.taskWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 0 50px 0;
+}
+
 .exampleButton {
     display: block;
-    border-radius: 10px;
+    border-radius: 50%;
     font-style: normal;
     font-weight: bold;
-    font-size: 16px;
-    line-height: 27px;
-    padding: 5px 10px;
+    font-size: 30px;
+    padding: 0 16px;
     box-sizing: border-box;
     border: none;
     text-decoration: none;
     color: black;
-    /*padding: 20px 55px;*/
     background-color: #FBE184;
     width: fit-content;
-    margin: 0 0 20px 20px;
 }
 
 .exampleButton:hover {
