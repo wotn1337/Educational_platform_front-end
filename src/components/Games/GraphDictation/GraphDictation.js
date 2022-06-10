@@ -8,7 +8,7 @@ import EndGameModal from "../EndGameModal/EndGameModal";
 
 const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...props}) => {
 	const cellSize = props.inLesson ? props.cellSize / 1.55 : props.cellSize
-	const [isGameFinished, setIsGameFinished] = useState(true)
+	const [isGameFinished, setIsGameFinished] = useState(inGame)
 	const [currentInstIndex, setCurrentInstIndex] = useState(0)
 	const [ctx, setCtx] = useState(null)
 	const [picState, setPicState] = useState(props.picture ? [props.picture[0]] : props.points)
