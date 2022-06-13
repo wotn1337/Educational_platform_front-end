@@ -5,6 +5,8 @@ import Card from "../GameCard/Card";
 import {shuffleArray} from "../../../common/helpers";
 import EndGameModal from "../EndGameModal/EndGameModal";
 import {wrongGameNotification} from "../../../notifications/notifications";
+import StartGameButton from "../Buttons/StartGameButton";
+import RestartGameButton from "../Buttons/RestartGameButton";
 
 const createImagesState = (images) => {
 	const result = {
@@ -96,23 +98,11 @@ const Sequences = ({images, size, inLesson, isLastFragmentInLesson, toNextFragme
 				<DraggableCards size={size} imagesState={imagesState} inGame={inGame}/>
 			</DragDropContext>
 			<div className={s.buttonBlock}>
-				{inGame &&
-					<button
-						className='btn'
-						onClick={checkSequence}
-						style={{
-							width: 'auto',
-							minWidth: '210px',
-							maxWidth: '250px'
-						}}
-					>Проверить последовательность</button>
+				{inGame && <StartGameButton handleClick={checkSequence} text='Проверить последовательность'/>}
+				{!inGame
+					? <StartGameButton handleClick={startGame}/>
+					: <RestartGameButton restartGame={restartGame}/>
 				}
-				<button
-					className={`btn`}
-					onClick={inGame ? restartGame : startGame}
-				>
-					{inGame ? 'Начать заново' : 'Начать игру'}
-				</button>
 			</div>
 			<EndGameModal
 				open={openEndGameModal}
@@ -166,59 +156,5 @@ const DraggableCard = ({id, index, size, image, inGame}) => {
 	)
 }
 
-// const DroppableCards = ({imagesState, size}) => {
-// 	return (
-// 		<div className={s.droppableCards}>
-// 			{Object.keys(imagesState.dropIds).map((dropId, index) => (
-// 				<DroppableCard
-// 					size={size}
-// 					id={dropId}
-// 					number={index + 1}
-// 					key={dropId}
-// 					image={imagesState.dropIds[dropId].image}
-// 				/>
-// 			))}
-// 		</div>
-// 	)
-// }
-//
-// const DroppableCard = ({number, id, size, image}) => {
-// 	return (
-// 		<Droppable droppableId={id} key={id}>
-// 			{provided => (
-// 				<DroppableCardInner
-// 					number={number}
-// 					innerRef={provided.innerRef}
-// 					size={size}
-// 					image={image}
-// 					{...provided.droppableProps}
-// 				>
-// 					{provided.placeholder}
-// 				</DroppableCardInner>
-// 			)}
-// 		</Droppable>
-// 	)
-// }
-//
-// const DroppableCardInner = ({number, innerRef, size, image, children, ...props}) => {
-// 	return (
-// 		<div
-// 			className={s.dropCardInner}
-// 			ref={innerRef}
-// 			{...props}
-// 			style={{
-// 				width: size,
-// 				height: size
-// 			}}
-// 		>
-// 			{
-// 				image
-// 					? <Card size={size} image={image} finished={true}/>
-// 					: number
-// 			}
-// 			{children}
-// 		</div>
-// 	)
-// }
 
 export default Sequences;

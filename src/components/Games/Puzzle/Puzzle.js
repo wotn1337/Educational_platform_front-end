@@ -4,6 +4,8 @@ import {JigsawPuzzle} from "react-jigsaw-puzzle";
 import 'react-jigsaw-puzzle/lib/jigsaw-puzzle.css'
 import './custom_puzzle_style.css'
 import EndGameModal from "../EndGameModal/EndGameModal";
+import StartGameButton from "../Buttons/StartGameButton";
+import RestartGameButton from "../Buttons/RestartGameButton";
 
 
 const Puzzle = ({image, rows, cols, inLesson, isLastFragmentInLesson, toNextFragment}) => {
@@ -42,9 +44,10 @@ const Puzzle = ({image, rows, cols, inLesson, isLastFragmentInLesson, toNextFrag
 				: <img className={s.preview} src={image} alt='preview'/>
 			}
 			<div className={s.buttons}>
-				<button className='btn' onClick={inGame ? restartGame : startGame}>
-					{inGame ? 'Начать заново' : 'Начать игру'}
-				</button>
+				{!inGame
+					? <StartGameButton startGame={startGame}/>
+					: <RestartGameButton restartGame={restartGame}/>
+				}
 			</div>
 			<EndGameModal
 				open={openEndGameModal}

@@ -1,0 +1,45 @@
+.button {
+    min-width: 250px;
+    color: white;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    outline: none;
+    padding: 10px 20px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    transition: 500ms;
+    box-sizing: border-box;
+}
+
+.start {
+    background-color: #F4949C;
+}
+
+.start:hover {
+    /*background-color: white;*/
+    /*color: #F4949C;*/
+    /*border: 1px solid #F4949C;*/
+    text-decoration: underline;
+}
+
+.restart {
+    border: 1px solid #F4949C;
+    background-color: white;
+    color: #F4949C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.restart:hover {
+    text-decoration: underline;
+}
+
+.restart:hover .arrow {
+    transition: 500ms;
+    transform: rotate(360deg);
+}

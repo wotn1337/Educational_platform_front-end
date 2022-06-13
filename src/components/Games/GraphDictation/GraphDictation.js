@@ -4,6 +4,8 @@ import {clearCanvas, drawGrid, redrawPicture} from "./gameFunctions";
 import {wrongGameNotification} from "../../../notifications/notifications";
 import Instructions from "./Instructions/Instructions";
 import EndGameModal from "../EndGameModal/EndGameModal";
+import StartGameButton from "../Buttons/StartGameButton";
+import RestartGameButton from "../Buttons/RestartGameButton";
 
 
 const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...props}) => {
@@ -155,9 +157,12 @@ const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...
 					</>
 				}
 				{inGame &&
-					<button className='btn' onClick={isGameFinished ? startGame : restartGame}>
-						{isGameFinished ? 'Начать игру' : 'Начать заново'}
-					</button>
+					<>
+						{isGameFinished
+							? <StartGameButton startGame={startGame}/>
+							: <RestartGameButton restartGame={restartGame}/>
+						}
+					</>
 				}
 			</div>
 			<EndGameModal

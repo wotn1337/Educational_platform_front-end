@@ -5,6 +5,8 @@ import {Transition} from "react-transition-group";
 import EndGameModal from "../EndGameModal/EndGameModal";
 import Card from "../GameCard/Card";
 import {shuffleArray} from "../../../common/helpers";
+import StartGameButton from "../Buttons/StartGameButton";
+import RestartGameButton from "../Buttons/RestartGameButton";
 
 
 const Pairs = ({images, size = 200, inLesson, isLastFragmentInLesson, toNextFragment}) => {
@@ -118,12 +120,10 @@ const Pairs = ({images, size = 200, inLesson, isLastFragmentInLesson, toNextFrag
 				}}/>
 			</div>
 			<div className={s.button}>
-				<button
-					className={'btn'}
-					onClick={inGame ? restartGame : startGame}
-				>
-					{inGame ? 'Начать заново' : 'Начать игру'}
-				</button>
+				{!inGame
+					? <StartGameButton startGame={startGame}/>
+					: <RestartGameButton restartGame={restartGame}/>
+				}
 			</div>
 			<EndGameModal
 				open={openEndGameModal}

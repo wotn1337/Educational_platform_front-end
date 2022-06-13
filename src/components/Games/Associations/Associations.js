@@ -5,6 +5,8 @@ import Card from "../GameCard/Card";
 import {wrongGameNotification} from "../../../notifications/notifications";
 import EndGameModal from "../EndGameModal/EndGameModal";
 import {shuffleArray} from "../../../common/helpers";
+import StartGameButton from "../Buttons/StartGameButton";
+import RestartGameButton from "../Buttons/RestartGameButton";
 
 const createInitImagesObject = (initImages) => {
 	const result = {
@@ -116,8 +118,10 @@ const Associations = ({images, cardSize = 200, inLesson, isLastFragmentInLesson,
 				</section>
 			</DragDropContext>
 			<div className={s.buttonBlock}>
-				<button className={`btn`}
-				        onClick={inGame ? restartGame : startGame}>{inGame ? 'Начать заново' : 'Начать игру'}</button>
+				{!inGame
+					? <StartGameButton startGame={startGame}/>
+					: <RestartGameButton restartGame={restartGame}/>
+				}
 			</div>
 			<EndGameModal
 				open={openEndGameModal}
@@ -171,7 +175,7 @@ const DroppableCard = ({id, image, size, pairId, pairImage}) => {
 							top: !!pairId ? '30%' : '',
 							left: !!pairId ? '70%' : '',
 							transition: '300ms'
-					}}
+						}}
 					/>
 					{pairId &&
 						<DraggableCard
