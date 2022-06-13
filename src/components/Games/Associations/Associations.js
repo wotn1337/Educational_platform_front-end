@@ -119,7 +119,7 @@ const Associations = ({images, cardSize = 200, inLesson, isLastFragmentInLesson,
 			</DragDropContext>
 			<div className={s.buttonBlock}>
 				{!inGame
-					? <StartGameButton startGame={startGame}/>
+					? <StartGameButton handleClick={startGame}/>
 					: <RestartGameButton restartGame={restartGame}/>
 				}
 			</div>

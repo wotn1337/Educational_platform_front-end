@@ -121,7 +121,7 @@ const Pairs = ({images, size = 200, inLesson, isLastFragmentInLesson, toNextFrag
 			</div>
 			<div className={s.button}>
 				{!inGame
-					? <StartGameButton startGame={startGame}/>
+					? <StartGameButton handleClick={startGame}/>
 					: <RestartGameButton restartGame={restartGame}/>
 				}
 			</div>

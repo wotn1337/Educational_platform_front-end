@@ -159,7 +159,7 @@ const GraphDictation = ({height, width, pointSize, color, lineWidth, inGame, ...
 				{inGame &&
 					<>
 						{isGameFinished
-							? <StartGameButton startGame={startGame}/>
+							? <StartGameButton handleClick={startGame}/>
 							: <RestartGameButton restartGame={restartGame}/>
 						}
 					</>

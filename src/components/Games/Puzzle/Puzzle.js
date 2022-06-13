@@ -45,7 +45,7 @@ const Puzzle = ({image, rows, cols, inLesson, isLastFragmentInLesson, toNextFrag
 			}
 			<div className={s.buttons}>
 				{!inGame
-					? <StartGameButton startGame={startGame}/>
+					? <StartGameButton handleClick={startGame}/>
 					: <RestartGameButton restartGame={restartGame}/>
 				}
 			</div>
